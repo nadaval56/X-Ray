@@ -1,6 +1,8 @@
 import { h } from '../lib/dom.js';
 import { materials, mediaById, mediaUrl } from '../data/content.js';
 import { createAttenuationSim } from '../components/attenuation-sim.js';
+import { createRadiationRuler } from '../components/radiation-ruler.js';
+import doses from '../../content/doses.json';
 
 const sim = createAttenuationSim({ materials: materials.materials, material: 'bone', thickness: 2, idPrefix: 'phys' });
 document.getElementById('sim-physics').append(sim.el);
@@ -14,3 +16,5 @@ for (const fig of document.querySelectorAll('figure[data-media]')) {
     h('figcaption', {}, m.caption, ' ', h('a', { href: m.source.url, rel: 'noopener', target: '_blank', text: 'מקור' })),
   );
 }
+
+document.getElementById('dose-physics').append(createRadiationRuler(doses).el);

@@ -3,32 +3,22 @@
   <head>
     <!-- @head -->
     <title>היסטוריה · {{SITE_NAME}}</title>
-    <meta name="description" content="ציר זמן של צילומי רנטגן: מהגילוי ועד טלסקופי רנטגן בחלל." />
+    <meta name="description" content="ציר זמן של קרני רנטגן: מהגילוי ב-1895, דרך מארי קירי וחנויות הנעליים, ועד טלסקופי רנטגן בחלל." />
   </head>
   <body>
     <!-- @header -->
     <main id="main">
+      <!-- טיוטה לבדיקה: הטקסט בקובץ content/timeline.json -->
       <div class="container">
         <header class="page-head">
           <span class="eyebrow">היסטוריה</span>
           <h1>איך התחיל הכול</h1>
-          <p class="lead">ציר זמן אינטראקטיבי של צילומי רנטגן — מהגילוי במעבדה, דרך שדות הקרב, ועד החלל.</p>
+          <p class="lead">מגילוי מקרי במעבדה בגרמניה, דרך שדות הקרב וחנויות הנעליים, ועד טלסקופים שמסתכלים על היקום.</p>
         </header>
-
-        <div class="callout prose">
-          <p><span class="tag tag-soon">בבנייה</span></p>
-          <p>בציר הזמן יופיעו, בין השאר:</p>
-          <ul>
-            <li>הגילוי של וילהלם רנטגן</li>
-            <li>ניידות הרנטגן של מארי קירי</li>
-            <li>מכשירי הרנטגן שעמדו פעם בחנויות נעליים</li>
-            <li>תצלום 51 ומבנה ה-DNA</li>
-            <li>טלסקופי רנטגן שמסתכלים על היקום</li>
-          </ul>
-          <p class="muted">כל תאריך ועובדה יופיעו עם מקור.</p>
-        </div>
+        <div id="timeline-root"></div>
       </div>
     </main>
     <!-- @footer -->
+    <script type="module" src="./src/pages/history.js"></script>
   </body>
 </html>

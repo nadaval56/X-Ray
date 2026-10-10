@@ -2,6 +2,8 @@
 import { h } from '../lib/dom.js';
 import { cases, materials, media, caseUrl } from '../data/content.js';
 import { creditItem, creditsList } from '../components/credits.js';
+import doses from '../../content/doses.json';
+import timeline from '../../content/timeline.json';
 
 const images = [
   ...cases.flatMap((c) => c.images.map((im) => ({ c, im }))),
@@ -24,4 +26,12 @@ document.getElementById('credits-data').append(creditsList([
     h('div', {}, `מקדמי הבליעה בסימולטור (${materials.energyKeV} keV). אומת: `, h('time', { datetime: src.verifiedOn, text: src.verifiedOn })),
     h('div', { class: 'muted', text: 'National Institute of Standards and Technology — נתונים של ממשלת ארה"ב.' }),
   ),
+  h('li', {},
+    h('a', { class: 'credit-title', href: doses.source.url, rel: 'noopener', target: '_blank', text: doses.source.label }),
+    h('div', { text: 'מנות הקרינה בסרגל הקרינה.' }),
+  ),
+  ...timeline.events.map((e) => h('li', {},
+    h('a', { class: 'credit-title', href: e.source.url, rel: 'noopener', target: '_blank', text: e.source.label }),
+    h('div', { text: `ציר הזמן: ${e.title} (${e.date})` }),
+  )),
 ]));

@@ -3,7 +3,10 @@ import { resolve, basename } from 'node:path';
 import { readFileSync } from 'node:fs';
 import { SITE, NAV, DISCLAIMER } from './src/config.js';
 
-const PAGES = ['index', 'cases', 'case', 'physics', 'lab', 'lab-attenuation', 'history', 'about'];
+const PAGES = [
+  'index', 'cases', 'case', 'physics', 'history', 'about',
+  'lab', 'lab-attenuation', 'lab-density', 'lab-window', 'lab-shadows', 'lab-dose',
+];
 
 const partial = (name) => readFileSync(resolve(import.meta.dirname, 'src/partials', `${name}.html`), 'utf8');
 
