@@ -38,7 +38,7 @@ function card(c) {
       h('img', { src: imageUrl(img.file), alt: '', loading: 'lazy', decoding: 'async' }),
     ),
     h('div', { class: 'card-body' },
-      h('h3', {}, h('a', { class: 'card-link', href: caseUrl(c.id), text: c.title })),
+      h('h2', {}, h('a', { class: 'card-link', href: caseUrl(c.id), text: c.title })),
       h('p', { text: c.question }),
       h('div', { class: 'card-meta' },
         h('span', { class: 'tag', text: categories[c.category] }),

@@ -1,0 +1,42 @@
+{
+  "id": "snake-meal-01",
+  "draft": true,
+  "editorNotes": "מקור: Wellcome Collection, \"A snake in the process of swallowing a small mammal, probably a mouse, viewed through x-ray. Photoprint from radiograph after Sir Arthur Schuster, 1896\". בעמוד המקור הרישיון הוא Public Domain Mark (ב-Commons כתוב CC BY 4.0 — הלכנו לפי המקור).",
+  "title": "מה הנחש אכל?",
+  "category": "animals",
+  "difficulty": 1,
+  "story": "בשנת 1896, חודשים ספורים אחרי שהתגלו קרני הרנטגן, הפיזיקאי ארתור שוסטר צילם נחש באמצע ארוחה. מבחוץ רואים רק נחש עם בטן קצת עבה.",
+  "question": "מה הנחש בלע, ואיפה זה נמצא?",
+  "hint": "זו הדפסה ישנה, והצבעים בה הפוכים: עצמות נראות כהות. חפשו שלד שלא שייך לנחש.",
+  "images": [
+    {
+      "file": "snake-meal-01-xray.webp",
+      "role": "main",
+      "alt": "הדפסה חומה-בהירה ישנה של צילום רנטגן של נחש מפותל בצורת אוזן. לאורך הגוף רואים חוליות וצלעות דקות, ובתוך הגוף, באמצע התמונה מימין, צל כהה של חיה קטנה עם שלד משלה.",
+      "findings": [
+        {
+          "shape": "circle",
+          "x": 0.6,
+          "y": 0.57,
+          "r": 0.13,
+          "label": "חיה קטנה (כנראה עכבר) בתוך הנחש"
+        }
+      ],
+      "source": {
+        "title": "A snake in the process of swallowing a small mammal, probably a mouse, viewed through x-ray (1896)",
+        "author": "Arthur Schuster",
+        "url": "https://wellcomecollection.org/works/ee3ptpxe",
+        "license": "Public-Domain",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "modifications": "הקטנה, המרה ל-WebP",
+        "verifiedOn": "2026-10-10"
+      }
+    }
+  ],
+  "reveal": "בתוך הגוף של הנחש רואים שלד קטן של חיה אחרת — כנראה עכבר. העור והשרירים של הנחש כמעט שקופים לקרינה, אבל העצמות של העכבר עוצרות אותה, ולכן הן נראות גם דרך הנחש.",
+  "principle": {
+    "id": "attenuation-bone",
+    "text": "עצם צפופה יותר מרקמות רכות ויש בה סידן, ולכן היא בולעת הרבה יותר קרינה. בצילום רגיל עצם נראית לבנה. בהדפסות הישנות מתחילת המאה ה-20 הצבעים הפוכים, ולכן כאן העצמות כהות — אבל העיקרון זהה."
+  },
+  "outcome": "התמונה הזו היא מהשנה הראשונה של צילומי הרנטגן, ונשמרת היום באוסף Wellcome בלונדון."
+}

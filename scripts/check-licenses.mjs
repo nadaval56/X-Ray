@@ -2,7 +2,8 @@
 //
 // מותר: CC BY (כל גרסה), CC0, נחלת הכלל, יצירות של ממשלת ארה"ב.
 // אסור: כל רישיון עם NC / ND / SA, או בלי רישיון מפורש.
-import { loadCases, report } from './lib/load-cases.mjs';
+import { resolve } from 'node:path';
+import { ROOT, loadCases, readJson, report } from './lib/load-cases.mjs';
 
 // מזהים קנוניים (בסגנון SPDX) שמותר לכתוב ב-source.license
 const ALLOWED = [
@@ -16,9 +17,14 @@ const FORBIDDEN = /(^|[-\s])(NC|ND|SA)([-\s]|$)/i;
 const errors = [];
 let count = 0;
 
-for (const { file, data, error } of loadCases()) {
-  if (error) continue; // validate-cases מדווח על JSON שבור
-  for (const im of data.images ?? []) {
+const media = readJson(resolve(ROOT, 'content/media.json')).items ?? [];
+const groups = [
+  ...loadCases().filter((c) => !c.error).map(({ file, data }) => ({ file, images: data.images ?? [] })),
+  { file: 'media.json', images: media },
+];
+
+for (const { file, images } of groups) {
+  for (const im of images) {
     count++;
     const where = `${file} → ${im.file ?? '?'}`;
     const license = im.source?.license?.trim();

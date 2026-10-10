@@ -1,0 +1,17 @@
+{
+  "_comment": "מנות קרינה אפקטיביות מקורבות. כל הערכים מ-RadiologyInfo.org (ACR ו-RSNA), טבלת 'Radiation Dose in X-Ray and CT Exams', כולל ההשוואה לקרינת רקע טבעית. טיסה — TODO: לא נמצא מקור מאומת, ולכן לא מוצגת.",
+  "source": {
+    "label": "RadiologyInfo.org (ACR & RSNA) — Radiation Dose in X-Ray and CT Exams",
+    "url": "https://www.radiologyinfo.org/en/info/safety-xray",
+    "verifiedOn": "2026-10-10"
+  },
+  "items": [
+    { "id": "extremity", "label": "צילום של יד או רגל", "mSv": 0.001, "lessThan": true, "background": "פחות מ-3 שעות" },
+    { "id": "dental", "label": "צילום שיניים", "mSv": 0.005, "background": "יום אחד" },
+    { "id": "panoramic", "label": "צילום שיניים פנורמי", "mSv": 0.025, "background": "3 ימים" },
+    { "id": "chest", "label": "צילום חזה", "mSv": 0.1, "background": "10 ימים" },
+    { "id": "spine", "label": "צילום של הגב התחתון", "mSv": 1.4, "background": "חצי שנה" },
+    { "id": "background", "label": "קרינת רקע טבעית בשנה אחת", "mSv": 3, "background": "שנה", "isBackground": true, "note": "ממוצע בארצות הברית, לפי המקור" },
+    { "id": "ct-chest", "label": "בדיקת CT של החזה", "mSv": 6.1, "background": "שנתיים" }
+  ]
+}

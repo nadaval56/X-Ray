@@ -16,21 +16,40 @@ npm run preview    # הצגת ה-build
 ## מבנה
 
 ```
-*.html                    עמודים (index, cases, case, physics, lab, lab-attenuation, history, about)
+*.html                    עמודים (index, cases, case, physics, history, about, lab, lab-*)
 src/config.js             שם האתר (placeholder), ניווט והבהרה רפואית. במקום אחד
 src/partials/             head, כותרת ופוטר משותפים, מוזרקים בזמן build
-src/components/           רכיבים עצמאיים: hotspot, compare, attenuation-sim, credits
+src/components/           רכיבים עצמאיים: hotspot, compare, attenuation-sim, density-sort, window-level, shadow-guess, radiation-ruler, timeline, credits
 src/pages/                קוד לכל עמוד
 src/styles/main.css       מערכת העיצוב (tokens בראש הקובץ)
 content/cases/*.json      מקרים, אחד לכל קובץ
 content/categories.json   קטגוריות ושמותיהן בעברית
 content/principles.json   עקרונות, עם קישור לעמוד ההסבר
 content/materials.json    מקדמי בליעה לסימולטור (NIST)
+content/media.json        תמונות שאינן חלק ממקרה (עמודי הסבר)
+content/timeline.json     ציר הזמן, עם מקור לכל אירוע
+content/doses.json        מנות קרינה לסרגל הקרינה, עם מקור
 content/sources.md        מקורות לכל מספר וטענה
 public/images/cases/      תמונות המקרים (WebP)
 assets-src/originals/     קבצים מקוריים. לא נכנסים ל-build
 scripts/                  validate-cases, check-licenses
 ```
+
+## צינור תוכן
+
+```bash
+# חיפוש מועמדים. לא מוריד תמונות; מפיק רשימה לבדיקה ידנית ב-assets-src/candidates/
+node scripts/find-candidates.mjs --source openi   --query "esophageal coin" --n 25
+node scripts/find-candidates.mjs --source commons --query "Category:X-rays of fish" --n 50
+
+# ייבוא תמונה שנבחרה: שומר את המקור, חותך או מסתיר, וממיר ל-WebP (דורש Python 3 + Pillow)
+python3 scripts/import_image.py <url> <name> [--crop L,T,R,B] [--mask L,T,R,B] [--gray]
+```
+
+- ב-Open-i השאילתה מתאימה כביטוי שלם ("esophageal coin", לא "coin esophagus").
+- הרישיון של מועמד מ-Open-i נבדק מול תגית ה-`license` ב-XML של המאמר ב-PMC. את הקבצים עצמם עדיף להוריד מ-[PMC Open Access ב-AWS](https://pmc-oa-opendata.s3.amazonaws.com/), שבו יש גם את התמונות ברזולוציה מלאה.
+- Wikimedia מגביל קצב בקשות; הסקריפטים מחכים ומנסים שוב.
+- גם כשהכלי אומר "מותר", בודקים בעין את עמוד המקור. בשני מקרים Commons סתר את המוסד המקורי (ראו `content/sources.md`).
 
 ## הוספת מקרה
 
@@ -45,6 +64,8 @@ scripts/                  validate-cases, check-licenses
 - `editorNotes` — הערות לעורך, מוצגות בעמוד המקרה כשהטיוטות מוצגות.
 - `hint` — רמז שמוצג אחרי ניחוש שגוי.
 - `images[].placeholder: true` — איור שיצרנו בעצמנו. רק איור כזה רשאי להיות SVG.
+- `images[].caption` — כיתוב מתחת לתמונה.
+- `images[].showIn` — לתמונות `second-view`: `"reveal"` (ברירת מחדל) או `"outcome"`.
 
 ### מזהי רישיון מותרים (`source.license`)
 `CC-BY-1.0` … `CC-BY-4.0`, ‏`CC0-1.0`, ‏`Public-Domain`, ‏`US-Gov-PD`. כל רישיון אחר, או רישיון שכולל NC, ND או SA, מכשיל את ה-build.

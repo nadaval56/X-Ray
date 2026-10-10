@@ -1,0 +1,20 @@
+{
+  "_comment": "תמונות שאינן חלק ממקרה (עמודי הסבר, היסטוריה). אותם כללי רישיון כמו במקרים; נבדקות ב-check-licenses ומופיעות בקרדיטים.",
+  "items": [
+    {
+      "id": "six-substances",
+      "file": "physics/six-substances.webp",
+      "alt": "הדפסה ישנה של צילום רנטגן של שישה גושים מלבניים בגוונים שונים של אפור, עם כיתובים בכתב יד בגרמנית: קלציט, זכוכית, אלומיניום וקוורץ.",
+      "caption": "וילהלם רנטגן, 1895–1896: שישה גושים מחומרים שונים — זכוכית, אלומיניום, שני גושי קלציט ושני גושי קוורץ — באותו צילום. כל חומר בולע כמות אחרת של קרינה.",
+      "source": {
+        "title": "Radiograph: six blocks of various substance (Röntgen)",
+        "author": "Wilhelm Conrad Röntgen",
+        "url": "https://wellcomecollection.org/works/th25ectc",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "modifications": "הקטנה, המרה ל-WebP",
+        "verifiedOn": "2026-10-10"
+      }
+    }
+  ]
+}

@@ -4,7 +4,43 @@
     "href": "physics.html#why-white"
   },
   "attenuation-bone": {
-    "title": "למה עצם לבנה ואוויר שחור?",
+    "title": "למה עצמות נראות דרך הגוף?",
     "href": "physics.html#why-white"
+  },
+  "metal-density": {
+    "title": "למה מטבע אלומיניום כמעט שקוף?",
+    "href": "physics.html#density"
+  },
+  "thickness": {
+    "title": "כמה מתכת יש בדרך?",
+    "href": "physics.html#density"
+  },
+  "two-views": {
+    "title": "למה מצלמים משני כיוונים?",
+    "href": "physics.html#two-views"
+  },
+  "bone-cortex": {
+    "title": "איך מזהים שבר?",
+    "href": "physics.html#fractures"
+  },
+  "growth-plate": {
+    "title": "איפה העצם גדלה?",
+    "href": "physics.html#growth"
+  },
+  "cartilage-invisible": {
+    "title": "למה חסרות עצמות אצל תינוקות?",
+    "href": "physics.html#growth"
+  },
+  "tooth-enamel": {
+    "title": "למה שיניים לבנות כל כך?",
+    "href": "physics.html#teeth"
+  },
+  "panoramic": {
+    "title": "איך מצלמים את כל השיניים בבת אחת?",
+    "href": "physics.html#teeth"
+  },
+  "bone-healing": {
+    "title": "איך רואים שבר שהחלים?",
+    "href": "physics.html#fractures"
   }
 }

@@ -1,0 +1,113 @@
+{
+  "_comment": "ציר הזמן. כל אירוע עם מקור שנבדק. טקסט בעברית — טיוטה לבדיקה.",
+  "events": [
+    {
+      "id": "discovery",
+      "year": "1895",
+      "date": "8 בנובמבר 1895",
+      "title": "רנטגן מגלה קרינה מסתורית",
+      "text": "וילהלם קונרד רנטגן, פיזיקאי באוניברסיטת וירצבורג שבגרמניה, ניסה להעביר זרם חשמלי דרך שפופרת זכוכית כמעט ריקה מאוויר. הוא עטף את השפופרת בקרטון שחור עבה — ובכל זאת, לוח מצופה בחומר זרחני, במרחק של כשני מטרים, התחיל לזהור. משהו בלתי נראה עבר דרך הקרטון. כיוון שלא ידע מה זה, קרא לקרינה החדשה X.",
+      "source": {
+        "label": "NobelPrize.org — Wilhelm Conrad Röntgen, Biographical",
+        "url": "https://www.nobelprize.org/prizes/physics/1901/rontgen/biographical/"
+      },
+      "link": {
+        "label": "המקרה: המצפן בקופסה",
+        "href": "case.html?id=compass-01"
+      }
+    },
+    {
+      "id": "hand",
+      "year": "1895",
+      "date": "סוף 1895",
+      "title": "היד של אנה ברתה",
+      "text": "רנטגן ביקש מאשתו, אנה ברתה, להחזיק את היד שלה כמה רגעים מעל לוח צילום. בתמונה שהתקבלה נראו העצמות של כף היד והטבעת שענדה, ומסביבן צל חיוור של הבשר — שהעביר יותר קרינה. זה אחד מצילומי הרנטגן הראשונים של גוף אדם.",
+      "source": {
+        "label": "NobelPrize.org — Wilhelm Conrad Röntgen, Biographical",
+        "url": "https://www.nobelprize.org/prizes/physics/1901/rontgen/biographical/"
+      }
+    },
+    {
+      "id": "schuster",
+      "year": "1896",
+      "date": "1896",
+      "title": "כל העולם מצלם",
+      "text": "גם מדענים אחרים התחילו לצלם בקרינה החדשה. באנגליה צילם הפיזיקאי ארתור שוסטר בעלי חיים — צפרדעים, נחשים ועוד — וחלק מהצילומים שלו נשמרו עד היום.",
+      "source": {
+        "label": "Wellcome Collection — Radiographs after Sir Arthur Schuster",
+        "url": "https://wellcomecollection.org/works/ee3ptpxe"
+      },
+      "link": {
+        "label": "המקרה: מה הנחש אכל?",
+        "href": "case.html?id=snake-meal-01"
+      }
+    },
+    {
+      "id": "nobel",
+      "year": "1901",
+      "date": "1901",
+      "title": "פרס הנובל הראשון בפיזיקה",
+      "text": "פרס הנובל הראשון בפיזיקה הוענק לרנטגן, \"כהוקרה על השירות יוצא הדופן שהעניק בגילוי הקרניים המופלאות שנקראו מאוחר יותר על שמו\".",
+      "source": {
+        "label": "NobelPrize.org — The Nobel Prize in Physics 1901",
+        "url": "https://www.nobelprize.org/prizes/physics/1901/summary/"
+      }
+    },
+    {
+      "id": "curie",
+      "year": "1914",
+      "date": "1914–1918",
+      "title": "מארי קירי יוצאת לחזית",
+      "text": "במלחמת העולם הראשונה הבינה מארי קירי שצילומי רנטגן יכולים להציל חיילים: הם עוזרים לרופאים למצוא קליעים, רסיסים ועצמות שבורות. היא הקימה כ-20 תחנות רנטגן ניידות על גבי מכוניות וכ-200 תחנות קבועות, והכשירה כ-150 נשים לעבוד עם המכשירים.",
+      "source": {
+        "label": "American Institute of Physics — Marie Curie: War Duty (1914–1919)",
+        "url": "https://history.aip.org/exhibits/curie/war1.htm"
+      }
+    },
+    {
+      "id": "shoes",
+      "year": "1920",
+      "date": "1920–1957",
+      "title": "רנטגן בחנות הנעליים",
+      "text": "ב-1920 הוצג לראשונה מכשיר שמאפשר לראות את כף הרגל בתוך הנעל: הלקוח עמד בעצם מעל שפופרת רנטגן. בשנות ה-30, ה-40 וה-50 עמד מכשיר כזה בהרבה חנויות נעליים. ב-1957 פנסילבניה הייתה המקום הראשון שאסר על השימוש בו.",
+      "source": {
+        "label": "ORAU Museum of Radiation and Radioactivity — Shoe-Fitting Fluoroscope",
+        "url": "https://www.orau.org/health-physics-museum/collection/shoe-fitting-fluoroscope/index.html"
+      }
+    },
+    {
+      "id": "dna",
+      "year": "1953",
+      "date": "25 באפריל 1953",
+      "title": "צילום רנטגן של DNA",
+      "text": "רוזלינד פרנקלין והסטודנט שלה ריימונד גוסלינג האירו סיבים של DNA בקרני רנטגן, וצילמו את הדפוס שנוצר כשהקרניים מתפזרות מהמולקולה. התמונה, שפורסמה בכתב העת Nature, הראתה צורת X ברורה — רמז חשוב לכך שה-DNA בנוי כסליל. היא נודעה בשם \"תצלום 51\".",
+      "todo": "TODO: לאמת את הכינוי \"תצלום 51\" ואת תאריך הצילום עצמו (1952) מול מקור.",
+      "source": {
+        "label": "Franklin & Gosling, Molecular Configuration in Sodium Thymonucleate, Nature 171 (1953)",
+        "url": "https://www.nature.com/articles/171740a0"
+      }
+    },
+    {
+      "id": "space",
+      "year": "1962",
+      "date": "יוני 1962",
+      "title": "קרני רנטגן מהחלל",
+      "text": "האטמוספרה של כדור הארץ עוצרת קרני רנטגן שמגיעות מהחלל, ולכן אפשר למדוד אותן רק מגובה רב. ריקרדו ג׳קוני והצוות שלו שיגרו מכשיר על גבי רקטה, וגילו לראשונה מקור של קרני רנטגן מחוץ למערכת השמש. על כך קיבל ג׳קוני את פרס הנובל בפיזיקה ב-2002.",
+      "source": {
+        "label": "NobelPrize.org — The Nobel Prize in Physics 2002, Popular information",
+        "url": "https://www.nobelprize.org/prizes/physics/2002/popular-information/"
+      }
+    },
+    {
+      "id": "chandra",
+      "year": "1999",
+      "date": "23 ביולי 1999",
+      "title": "טלסקופ רנטגן במסלול",
+      "text": "נאס\"א שיגרה את מצפה הרנטגן צ׳נדרה, טלסקופ שמצלם את היקום בקרני רנטגן: שאריות של כוכבים שהתפוצצו, גז לוהט סביב חורים שחורים, וגלקסיות רחוקות.",
+      "source": {
+        "label": "NASA — Chandra X-ray Observatory",
+        "url": "https://www.nasa.gov/mission/chandra-x-ray-observatory/"
+      }
+    }
+  ]
+}

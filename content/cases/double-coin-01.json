@@ -1,0 +1,75 @@
+{
+  "id": "double-coin-01",
+  "draft": true,
+  "editorNotes": "עובדות מהמקור: ילדה בת 4, בליעת מטבע יום לפני, המשפחה לא ידעה כמה; בצילום מהצד עובי מוגבר וחריץ; בהרדמה נמצאו והוצאו שני מטבעות. שימו לב: במאמר הכיתובים של Figure 1 ו-2 לא תואמים לתמונות (קובץ 001 הוא צילום מהצד, 002 מלפנים) — כאן תיארנו לפי מה שרואים. השם בדוי.",
+  "title": "מטבע אחד, או שניים?",
+  "category": "foreign-body",
+  "difficulty": 2,
+  "story": "רותם, בת 4, בלעה מטבע — ואולי יותר מאחד. אף אחד במשפחה לא היה בטוח. היא הגיעה לבית החולים למחרת, נושמת רגיל ובלי שיעול.",
+  "question": "איפה המטבע?",
+  "hint": "חפשו בצוואר, מתחת לסנטר.",
+  "images": [
+    {
+      "file": "double-coin-01-front.webp",
+      "role": "main",
+      "alt": "צילום רנטגן של צוואר ילדה מלפנים. למעלה צל לבן גדול של הסנטר והלסת, באמצע עמוד השדרה של הצוואר, ובתחתית הצוואר עיגול לבן בוהק. בצד ימין סימון N13R.",
+      "findings": [
+        {
+          "shape": "circle",
+          "x": 0.54,
+          "y": 0.55,
+          "r": 0.09,
+          "label": "מטבע בוושט"
+        }
+      ],
+      "source": {
+        "title": "Double coin in esophagus at same location and same alignment - a rare occurrence: a case report. Cases J 2009 (image file 002)",
+        "author": "Upadhyaya EV, Srivastava P, Upadhyaya VD, Gangopadhyay AN, Sharma SP, Gupta DK, Hassan Z",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2740069/",
+        "license": "CC-BY-3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+        "modifications": "המרה ל-WebP",
+        "verifiedOn": "2026-10-10"
+      }
+    },
+    {
+      "file": "double-coin-01-side.webp",
+      "role": "second-view",
+      "caption": "אותה ילדה, צילום מהצד: עכשיו המטבע נראה כמו קו עבה, מול עמוד השדרה.",
+      "alt": "צילום רנטגן של הצוואר מהצד. עמוד השדרה של הצוואר בצד שמאל, ולפניו קו לבן ישר ועבה, בשיפוע.",
+      "findings": [],
+      "source": {
+        "title": "Double coin in esophagus at same location and same alignment - a rare occurrence: a case report. Cases J 2009 (image file 001)",
+        "author": "Upadhyaya EV, Srivastava P, Upadhyaya VD, Gangopadhyay AN, Sharma SP, Gupta DK, Hassan Z",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2740069/",
+        "license": "CC-BY-3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+        "modifications": "המרה ל-WebP",
+        "verifiedOn": "2026-10-10"
+      }
+    },
+    {
+      "file": "double-coin-01-coins.webp",
+      "role": "second-view",
+      "showIn": "outcome",
+      "caption": "מה שהרופאים הוציאו: שני מטבעות.",
+      "alt": "צילום צבע של שני מטבעות כסופים שהוצאו מהוושט.",
+      "findings": [],
+      "source": {
+        "title": "Double coin in esophagus at same location and same alignment - a rare occurrence: a case report. Cases J 2009 (Figure 3)",
+        "author": "Upadhyaya EV, Srivastava P, Upadhyaya VD, Gangopadhyay AN, Sharma SP, Gupta DK, Hassan Z",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2740069/",
+        "license": "CC-BY-3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+        "modifications": "המרה ל-WebP",
+        "verifiedOn": "2026-10-10"
+      }
+    }
+  ],
+  "reveal": "מלפנים רואים עיגול אחד בוושט, בתחתית הצוואר. אבל בצילום מהצד המטבע נראה כמו קו — והקו הזה היה עבה מהרגיל, עם חריץ באמצע. הרופאים חשדו שיש שם יותר ממטבע אחד.",
+  "principle": {
+    "id": "two-views",
+    "text": "צילום רנטגן הוא צל שטוח: כל מה שנמצא על אותו קו, אחד מאחורי השני, מתמזג לצל אחד. לכן מצלמים לפחות משני כיוונים. מטבע נראה מלפנים כמו עיגול ומהצד כמו קו — ושני מטבעות צמודים נראים מלפנים בדיוק כמו מטבע אחד."
+  },
+  "outcome": "בבדיקה עם צינור ומצלמה, בהרדמה, הרופאים מצאו שני מטבעות צמודים זה לזה — והוציאו את שניהם."
+}

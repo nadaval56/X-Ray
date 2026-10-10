@@ -1,0 +1,84 @@
+{
+  "id": "knee-growth-01",
+  "draft": true,
+  "editorNotes": "מקור: Wikimedia Commons, \"X-ray of the knee of a 9 year old female - case 1 - anteroposterior\" מאוסף Bonepit (UC San Diego Health), צילום תקין. רישיון בדף הקובץ: PD-US-Medical imaging + אישור VRT (ticket 2018030210000886). נחלת הכלל לפי הדין האמריקאי — לאשר שזה מקובל עלינו. אין כאן סיפור מטופל אמיתי; הסיפור הוא מסגרת בלבד.",
+  "title": "איפה הרגל גדלה?",
+  "category": "growth",
+  "difficulty": 1,
+  "story": "זה צילום תקין לגמרי של ברך של ילדה בת 9. היא תגדל עוד הרבה סנטימטרים בשנים הקרובות — והצילום מראה בדיוק איפה זה יקרה.",
+  "question": "מצאו מקום שבו העצם עדיין גדלה.",
+  "hint": "חפשו קו כהה וגלי שחוצה את העצם לרוחב, קרוב לברך.",
+  "images": [
+    {
+      "file": "knee-growth-01-age9.webp",
+      "role": "main",
+      "alt": "צילום רנטגן של ברך של ילדה מלפנים: עצם הירך למעלה, עצם השוק והשוקית למטה. ליד קצות העצמות, משני צידי מפרק הברך, עוברים קווים כהים גליים לרוחב העצם.",
+      "findings": [
+        {
+          "shape": "circle",
+          "x": 0.35,
+          "y": 0.335,
+          "r": 0.07,
+          "label": "לוח גדילה"
+        },
+        {
+          "shape": "circle",
+          "x": 0.55,
+          "y": 0.335,
+          "r": 0.07,
+          "label": "לוח גדילה"
+        },
+        {
+          "shape": "circle",
+          "x": 0.75,
+          "y": 0.33,
+          "r": 0.07,
+          "label": "לוח גדילה"
+        },
+        {
+          "shape": "circle",
+          "x": 0.3,
+          "y": 0.56,
+          "r": 0.07,
+          "label": "לוח גדילה"
+        },
+        {
+          "shape": "circle",
+          "x": 0.5,
+          "y": 0.56,
+          "r": 0.07,
+          "label": "לוח גדילה"
+        },
+        {
+          "shape": "circle",
+          "x": 0.68,
+          "y": 0.55,
+          "r": 0.07,
+          "label": "לוח גדילה"
+        },
+        {
+          "shape": "circle",
+          "x": 0.15,
+          "y": 0.6,
+          "r": 0.07,
+          "label": "לוח גדילה"
+        }
+      ],
+      "source": {
+        "title": "X-ray of the knee of a 9 year old female - case 1 - anteroposterior (Bonepit collection)",
+        "author": "Staff at the Department of Radiology, UC San Diego Health",
+        "url": "https://commons.wikimedia.org/wiki/File:X-ray_of_the_knee_of_a_9_year_old_female_-_case_1_-_anteroposterior.jpg",
+        "license": "Public-Domain",
+        "licenseUrl": "https://commons.wikimedia.org/wiki/Template:PD-US-Medical_imaging",
+        "modifications": "המרה לגווני אפור, המרה ל-WebP",
+        "verifiedOn": "2026-10-10"
+      }
+    }
+  ],
+  "reveal": "הקווים הכהים הגליים, קצת מעל הברך ומתחתיה, הם לוחות הגדילה — בעצם הירך, בעצם השוק ובעצם השוקית. שם העצמות מתארכות.",
+  "principle": {
+    "id": "growth-plate",
+    "text": "עצמות ארוכות גדלות בעזרת לוח גדילה: שכבה דקה של סחוס ליד קצה העצם. סחוס בולע קרינה כמו רקמה רכה, ולכן בצילום הוא נראה כפס כהה. כשמסיימים לגדול, הלוח הופך לעצם והפס נעלם."
+  },
+  "outcome": "הכול תקין כאן. בעוד כמה שנים, כשהילדה תסיים לגדול, הקווים הכהים ייעלמו והעצם תהיה רציפה — כמו ביד של הנער במקרה \"איזו יד עוד גדלה?\"."
+}

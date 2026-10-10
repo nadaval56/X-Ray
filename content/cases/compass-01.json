@@ -1,0 +1,49 @@
+{
+  "id": "compass-01",
+  "draft": true,
+  "editorNotes": "מקור: Wellcome Collection, \"A compass whose magnetic needle is entirely surrounded by metal, viewed through x-ray. Photoprint from radiograph by W.K. Röntgen, 1895\". בעמוד המקור: Public Domain Mark. TODO: לאמת מול מקור את הטענה שרנטגן עבד בווירצבורג (מופיעה גם בחותמת בתמונה).",
+  "title": "המצפן בקופסה",
+  "category": "objects",
+  "difficulty": 1,
+  "story": "סוף 1895. וילהלם רנטגן גילה קרינה חדשה ומסתורית, ובודק דרך מה היא עוברת. הפעם הוא מצלם מצפן שהמחט שלו סגורה כולה בתוך קופסת מתכת.",
+  "question": "האם הקרינה עברה דרך המתכת? מצאו את המחט של המצפן.",
+  "hint": "זו הדפסה ישנה: מה שעצר את הקרינה נראה כהה.",
+  "images": [
+    {
+      "file": "compass-01-xray.webp",
+      "role": "main",
+      "alt": "הדפסה ישנה בגוון חום של צילום רנטגן של מצפן עגול. רואים את לוח השנתות, טבעת כהה סביבו, ובמרכז מחט מחודדת. למעלה כיתוב בכתב יד בגרמנית, ולמטה חותמת של המכון לפיזיקה באוניברסיטת וירצבורג.",
+      "findings": [
+        {
+          "shape": "circle",
+          "x": 0.47,
+          "y": 0.43,
+          "r": 0.08,
+          "label": "מחט המצפן"
+        },
+        {
+          "shape": "circle",
+          "x": 0.5,
+          "y": 0.55,
+          "r": 0.08,
+          "label": "מחט המצפן"
+        }
+      ],
+      "source": {
+        "title": "A compass whose magnetic needle is entirely surrounded by metal, viewed through x-ray (1895)",
+        "author": "Wilhelm Conrad Röntgen",
+        "url": "https://wellcomecollection.org/works/q3kvkvak",
+        "license": "Public-Domain",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "modifications": "הקטנה, המרה ל-WebP",
+        "verifiedOn": "2026-10-10"
+      }
+    }
+  ],
+  "reveal": "המחט נראית בבירור במרכז — הקרינה עברה דרך דופן הקופסה הדקה. אבל במקומות שבהם יש יותר מתכת בדרך (המחט, והטבעת העבה שסביב לוח השנתות), נבלעה יותר קרינה, והם יצאו כהים יותר בהדפסה.",
+  "principle": {
+    "id": "thickness",
+    "text": "כמה קרינה נבלעת תלוי לא רק בחומר אלא גם בכמות שלו בדרך. שכבה דקה של מתכת מעבירה חלק מהקרינה; כשהקרינה צריכה לעבור דרך יותר מתכת, נבלע יותר. אפשר לנסות את זה בסימולטור הבליעה."
+  },
+  "outcome": "החותמת בתחתית התמונה היא של המכון לפיזיקה באוניברסיטת וירצבורג שבגרמניה — המקום שבו רנטגן גילה את הקרניים."
+}
