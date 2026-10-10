@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <!-- @head -->
+    <title>סימולטור בליעה · מעבדה · {{SITE_NAME}}</title>
+    <meta name="description" content="סימולטור: בוחרים חומר ועובי, ורואים כמה קרני רנטגן עוברות ואיזה גוון יוצא בצילום." />
+  </head>
+  <body>
+    <!-- @header -->
+    <main id="main">
+      <!-- טיוטה לבדיקה: כל הטקסט בעמוד -->
+      <div class="container">
+        <header class="page-head">
+          <nav class="breadcrumb" aria-label="נתיב"><a href="./lab.html">מעבדה</a> / סימולטור בליעה</nav>
+          <h1>סימולטור בליעה</h1>
+          <p class="lead">בוחרים חומר ועובי, ורואים כמה קרני רנטגן מצליחות לעבור — ואיזה גוון זה ייתן בצילום.</p>
+        </header>
+
+        <div id="sim-lab"></div>
+
+        <section class="section prose" aria-labelledby="challenges">
+          <h2 id="challenges">אתגרים</h2>
+          <ol class="challenges">
+            <li>איזה חומר נראה הכי כהה בצילום, ואיזה הכי בהיר? האם זה משתנה כשמשנים את העובי?</li>
+            <li>כמה עבה צריכה להיות שכבת מים כדי שתיראה בהירה בערך כמו 1 ס״מ של עצם?</li>
+            <li>שומן ומים נראים כמעט באותו גוון. מה זה אומר על היכולת לראות אותם בנפרד בצילום?</li>
+            <li>כמה מתכת צריך כדי לעצור כמעט את כל הקרניים? השוו לעצם.</li>
+          </ol>
+          <p class="muted">
+            הנתונים: מקדמי בליעה מטבלאות NIST באנרגיה של 60 keV. קרן רנטגן אמיתית מורכבת מהרבה אנרגיות,
+            ולכן המספרים מקורבים — אבל הסדר בין החומרים נכון. <a href="./about.html#credits">מקורות</a>
+          </p>
+        </section>
+      </div>
+    </main>
+    <!-- @footer -->
+    <script type="module" src="./src/pages/lab-attenuation.js"></script>
+  </body>
+</html>

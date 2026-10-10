@@ -1,0 +1,16 @@
+{
+  "name": "xray-learning-site",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "validate": "node scripts/validate-cases.mjs",
+    "check-licenses": "node scripts/check-licenses.mjs",
+    "build": "npm run validate && npm run check-licenses && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^8.3.4"
+  }
+}
