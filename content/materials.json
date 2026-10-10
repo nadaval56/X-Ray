@@ -1,0 +1,16 @@
+{
+  "_comment": "מקדמי בליעה לסימולטור. μ = (μ/ρ) × ρ, ביחידות 1/ס״מ. ראו content/sources.md.",
+  "energyKeV": 60,
+  "source": {
+    "title": "NIST X-Ray Mass Attenuation Coefficients (Hubbell & Seltzer), Standard Reference Database 126",
+    "url": "https://physics.nist.gov/PhysRefData/XrayMassCoef/",
+    "verifiedOn": "2026-10-10"
+  },
+  "materials": [
+    { "id": "air",   "label": "אוויר", "nistName": "Air, Dry (near sea level)", "muRho": 0.1875, "density": 0.001205, "url": "https://physics.nist.gov/PhysRefData/XrayMassCoef/ComTab/air.html" },
+    { "id": "fat",   "label": "שומן",  "nistName": "Adipose Tissue (ICRU-44)",  "muRho": 0.1974, "density": 0.95,     "url": "https://physics.nist.gov/PhysRefData/XrayMassCoef/ComTab/adipose.html" },
+    { "id": "water", "label": "מים",   "nistName": "Water, Liquid",             "muRho": 0.2059, "density": 1.0,      "url": "https://physics.nist.gov/PhysRefData/XrayMassCoef/ComTab/water.html" },
+    { "id": "bone",  "label": "עצם",   "nistName": "Bone, Cortical (ICRU-44)",  "muRho": 0.3148, "density": 1.92,     "url": "https://physics.nist.gov/PhysRefData/XrayMassCoef/ComTab/bone.html" },
+    { "id": "metal", "label": "מתכת (ברזל)", "nistName": "Iron (Z=26)",        "muRho": 1.205,  "density": 7.874,    "url": "https://physics.nist.gov/PhysRefData/XrayMassCoef/ElemTab/z26.html" }
+  ]
+}
