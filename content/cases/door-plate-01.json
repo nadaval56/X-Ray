@@ -1,0 +1,49 @@
+{
+  "id": "door-plate-01",
+  "draft": true,
+  "editorNotes": "מקור: Wellcome Collection, \"Radiograph: platinum plate attached to a door\" (Wilhelm Konrad Roentgen), CC BY. הכיתוב בכתב היד במקור: \"Thürprofile mit aufgeheftetem Platinblech\" (משקוף דלת עם לוחית פלטינה מוצמדת). נחתכו הכותרת, הכיתוב שמתחת ללוחית והחותמת, כדי לא לגלות את התשובה.",
+  "title": "צילום דרך הדלת",
+  "category": "objects",
+  "difficulty": 2,
+  "story": "רנטגן רצה לדעת אם הקרינה החדשה עוברת גם דרך עץ. הוא הצמיד לוחית מתכת קטנה לצד אחד של דלת, ושם את הלוח הצילומי בצד השני.",
+  "question": "איפה לוחית המתכת?",
+  "hint": "זו הדפסה ישנה: מה שעצר את הקרינה נראה כהה.",
+  "images": [
+    {
+      "file": "door-plate-01-xray.webp",
+      "role": "main",
+      "alt": "הדפסה ישנה בשחור-לבן של צילום רנטגן דרך דלת עץ: פסים אופקיים של משקוף ושל לוחות העץ, ובאמצע מלבן כהה מאוד ומאורך עם עיגול קטן בראשו.",
+      "findings": [
+        {
+          "shape": "circle",
+          "x": 0.555,
+          "y": 0.5,
+          "r": 0.08,
+          "label": "לוחית פלטינה"
+        },
+        {
+          "shape": "circle",
+          "x": 0.555,
+          "y": 0.75,
+          "r": 0.08,
+          "label": "לוחית פלטינה"
+        }
+      ],
+      "source": {
+        "title": "Radiograph: platinum plate attached to a door (Röntgen, 1895–1896)",
+        "author": "Wilhelm Conrad Röntgen",
+        "url": "https://wellcomecollection.org/works/w6y7a4mj",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "modifications": "חיתוך הכותרת, כיתוב בכתב יד וחותמת; המרה לגווני אפור; הקטנה; המרה ל-WebP",
+        "verifiedOn": "2026-10-10"
+      }
+    }
+  ],
+  "reveal": "הלוחית היא המלבן הכהה באמצע. העץ של הדלת העביר את רוב הקרינה — רואים רק את הפסים החלשים של המשקוף. אבל פלטינה, אחת המתכות הצפופות ביותר, עצרה כמעט הכול.",
+  "principle": {
+    "id": "attenuation-metal",
+    "text": "עץ דליל ובנוי מאטומים קלים, ולכן הוא מעביר את רוב הקרינה. מתכת צפופה כמו פלטינה עוצרת כמעט את כולה — ולכן היא בולטת בצילום גם כשהיא מוסתרת מאחורי דלת."
+  },
+  "outcome": "ניסויים כאלה הראו לרנטגן שהקרינה החדשה עוברת דרך חומרים שאור רגיל לא עובר בהם — אבל לא דרך הכול. הצילום הזה נשמר היום באוסף Wellcome בלונדון."
+}

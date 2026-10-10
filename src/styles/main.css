@@ -441,7 +441,7 @@ a:hover { color: var(--accent-strong); }
   justify-self: center;
   width: 100%;
 }
-.hero-figure img { width: 100%; height: auto; }
+.hero-figure img { width: 100%; height: auto; max-height: calc(70vh - 3rem); object-fit: cover; object-position: center 40%; }
 .hero-figure figcaption {
   padding: 0.6rem 1rem;
   border-top: 1px solid var(--border);
@@ -859,3 +859,10 @@ a:hover { color: var(--accent-strong); }
 .embed-note { margin-top: 0.75rem; font-size: 0.875rem; max-width: var(--measure); }
 
 .challenges li { color: var(--text-2); margin-bottom: 0.6rem; }
+
+.extra-figure { margin-top: 1.25rem; }
+.extra-figure img { width: 100%; height: auto; }
+.step .xray-figure + .xray-figure { margin-top: 1.25rem; }
+
+.media-figure { max-width: 420px; margin: 1.5rem 0 0; }
+.media-figure img { width: 100%; height: auto; }

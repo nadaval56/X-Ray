@@ -1,0 +1,42 @@
+{
+  "id": "frog-healed-leg-01",
+  "draft": true,
+  "editorNotes": "מקור: Wellcome Collection, \"The bones of a frog, viewed through x-ray; revealing a healing fracture on one of the hind legs. Photoprint from radiograph after Sir Arthur Schuster\" — Public Domain Mark. המקור לא מציין באיזו רגל; מיקום הממצא נקבע לפי עיבוי נראה בשוק של הרגל האחורית בצד ימין של התמונה, בהשוואה לרגל השנייה. TODO: לאמת את מיקום הממצא.",
+  "title": "הצפרדע שהחלימה",
+  "category": "animals",
+  "difficulty": 2,
+  "story": "בשנת 1896 צילם הפיזיקאי ארתור שוסטר צפרדע בקרני רנטגן. מבחוץ היא נראתה רגילה לגמרי — אבל השלד שלה סיפר סיפור: פעם, אחת הרגליים שלה נשברה.",
+  "question": "איפה הייתה השבירה?",
+  "hint": "השוו בין שתי הרגליים האחוריות. עצם שנשברה והחלימה נעשית עבה יותר במקום השבר. (זו הדפסה ישנה: העצמות כהות.)",
+  "images": [
+    {
+      "file": "frog-healed-leg-01-xray.webp",
+      "role": "main",
+      "alt": "הדפסה ישנה בגוון חום של צילום רנטגן של צפרדע מלמעלה. רואים את הגוף, את הרגליים הקדמיות והאחוריות ואת עצמות האצבעות. העצמות כהות והרקע בהיר.",
+      "findings": [
+        {
+          "shape": "circle",
+          "x": 0.69,
+          "y": 0.6,
+          "r": 0.09,
+          "label": "מקום השבר שהחלים"
+        }
+      ],
+      "source": {
+        "title": "The bones of a frog, viewed through x-ray; revealing a healing fracture on one of the hind legs (1896)",
+        "author": "Arthur Schuster",
+        "url": "https://wellcomecollection.org/works/shuarr4t",
+        "license": "Public-Domain",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "modifications": "הקטנה, המרה ל-WebP",
+        "verifiedOn": "2026-10-10"
+      }
+    }
+  ],
+  "reveal": "בשוק של אחת הרגליים האחוריות העצם עבה יותר באמצע — כמו \"טלאי\". זה המקום שבו העצם נשברה והתאחתה.",
+  "principle": {
+    "id": "bone-healing",
+    "text": "כשעצם נשברת, הגוף בונה סביב השבר עצם חדשה, שנקראת קָלוּס. בהתחלה היא עבה ולא מסודרת, ולכן בצילום רואים במקום השבר עיבוי — גם הרבה אחרי שהעצם כבר החלימה."
+  },
+  "outcome": "הצפרדע הסתדרה בלי רופא: העצם התאחתה בכוחות עצמה. הצילום הזה, מהשנה הראשונה של קרני הרנטגן, נשמר היום באוסף Wellcome בלונדון."
+}

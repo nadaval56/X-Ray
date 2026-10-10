@@ -1,0 +1,74 @@
+{
+  "id": "aluminum-coin-01",
+  "draft": true,
+  "editorNotes": "עובדות מהמקור: ילדה בת שנתיים בלעה מטבע אלומיניום של 2 רופי, הגיעה אחרי 6 שעות עם ריור, השתנקות וקושי בבליעה; המטבע הוצא במלקחי Magill בהרדמה כללית. הוסר חץ שסימן את המטבע בתמונה המקורית. השם בדוי.",
+  "title": "המטבע השקוף",
+  "category": "foreign-body",
+  "difficulty": 3,
+  "story": "נור, בת שנתיים, בלעה מטבע. שש שעות אחר כך הגיעה לחדר המיון: היא הזילה ריר, נשמעה כאילו היא נחנקת, והתקשתה לבלוע.",
+  "question": "איפה המטבע? (זהירות, הפעם זה לא קל)",
+  "hint": "הפעם המטבע לא בוהק. חפשו עיגול חיוור בגובה הצוואר.",
+  "images": [
+    {
+      "file": "aluminum-coin-01-ap.webp",
+      "role": "main",
+      "alt": "צילום רנטגן של צוואר וחזה של פעוטה, מלפנים. הצלעות והריאות נראות היטב; בגובה הצוואר, בקו האמצע, יש עיגול חיוור מאוד שקשה להבחין בו.",
+      "findings": [
+        {
+          "shape": "circle",
+          "x": 0.49,
+          "y": 0.09,
+          "r": 0.09,
+          "label": "מטבע אלומיניום בוושט"
+        }
+      ],
+      "source": {
+        "title": "Aluminum Coins in Esophagus: A Diagnostic Challenge. APSP J Case Rep 2011 (Figure 3)",
+        "author": "Khan YA",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3418023/",
+        "license": "CC-BY-3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+        "modifications": "הסרת חץ סימון מהתמונה המקורית, המרה לגווני אפור, המרה ל-WebP",
+        "verifiedOn": "2026-10-10"
+      }
+    },
+    {
+      "file": "aluminum-coin-01-other-child.webp",
+      "role": "second-view",
+      "caption": "להשוואה: ילד אחר מאותו מאמר, שבלע מטבע ישן של 5 רופי (נחושת וניקל). המטבע בוהק.",
+      "alt": "צילום רנטגן של צוואר וחזה של ילד אחר. בגובה הצוואר עיגול לבן בוהק וברור.",
+      "findings": [],
+      "source": {
+        "title": "Aluminum Coins in Esophagus: A Diagnostic Challenge. APSP J Case Rep 2011 (Figure 2)",
+        "author": "Khan YA",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3418023/",
+        "license": "CC-BY-3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+        "modifications": "המרה לגווני אפור, המרה ל-WebP",
+        "verifiedOn": "2026-10-10"
+      }
+    },
+    {
+      "file": "aluminum-coin-01-coins.webp",
+      "role": "second-view",
+      "caption": "המטבעות עצמם בצילום רנטגן: למעלה מטבעות ישנים, למטה מטבעות אלומיניום חדשים.",
+      "alt": "צילום רנטגן של מטבעות על רקע כהה: שלושה עיגולים לבנים בוהקים למעלה, ושני עיגולים אפורים חיוורים למטה. כיתוב באנגלית: Old coins, New aluminum coins.",
+      "findings": [],
+      "source": {
+        "title": "Aluminum Coins in Esophagus: A Diagnostic Challenge. APSP J Case Rep 2011 (Figure 1)",
+        "author": "Khan YA",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3418023/",
+        "license": "CC-BY-3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+        "modifications": "המרה לגווני אפור, המרה ל-WebP",
+        "verifiedOn": "2026-10-10"
+      }
+    }
+  ],
+  "reveal": "המטבע תקוע בוושט, בגובה הצוואר — אבל רואים רק עיגול חיוור. מטבעות של רופי אחד ושני רופי שפקיסטן התחילה להנפיק ב-2008 עשויים אלומיניום, והם כמעט שקופים בצילום. אם הצילום חשוף מדי, אפשר לא לראות אותם בכלל.",
+  "principle": {
+    "id": "metal-density",
+    "text": "לא כל המתכות שוות. אלומיניום הוא מתכת קלה: הוא דליל פי שלושה בערך מנחושת, והאטומים שלו קלים יותר. לכן הוא בולע הרבה פחות קרינה, ומטבע אלומיניום נראה כמעט כמו הרקמות שסביבו."
+  },
+  "outcome": "הרופאים הוציאו את המטבע בעזרת מלקחיים מיוחדים, בהרדמה כללית. כותב המאמר המליץ לרופאים לזכור שמטבעות כאלה קיימים — כי קל לפספס אותם."
+}

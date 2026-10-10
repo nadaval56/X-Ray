@@ -1,0 +1,14 @@
+# מועמדים: openi — "swallowed magnet"
+
+נוצר 2026-10-10. 2 מתוך 7 עם רישיון מותר.
+הרישיון אומת מול המקור (PMC: תגית license במאמר; Commons: מטא-דאטה של הקובץ). עדיין לבדוק בעין לפני שימוש.
+
+| # | מותר | רישיון | כותרת | כיתוב | קישור |
+|---|---|---|---|---|---|
+| 1 | ✗ | ? | Chronic jejuno-colonic fistula and intestinal malabsorption due to multiple magnet ingestions: A case report and systematic review | Upright abdominal X-ray showing distended jejunal and ileal loops filled with gas, and no visible foreign body present. | [מקור](https://pmc.ncbi.nlm.nih.gov/articles/PMC11154068/) · [תמונה](https://openi.nlm.nih.gov/imgs/512/253/11154068/PMC11154068_TJTES-30-361-g001.png) |
+| 2 | ✗ | ? | Chronic jejuno-colonic fistula and intestinal malabsorption due to multiple magnet ingestions: A case report and systematic review | Contrast enema radiography depicting a jejuno-colonic fistula. | [מקור](https://pmc.ncbi.nlm.nih.gov/articles/PMC11154068/) · [תמונה](https://openi.nlm.nih.gov/imgs/512/253/11154068/PMC11154068_TJTES-30-361-g002.png) |
+| 3 | ✗ | byncnd | Multiple magnet ingestion: Is there a role for early surgical intervention? | A plain abdominal radiograph shows several bar-shaped and sphere-shaped magnets attached to each other. Together they mimic the shape of the | [מקור](https://pmc.ncbi.nlm.nih.gov/articles/PMC6087655/) · [תמונה](https://openi.nlm.nih.gov/imgs/512/74/6087655/PMC6087655_asm-1-93f1.png) |
+| 4 | ✗ | byncnd | Multiple magnet ingestion: Is there a role for early surgical intervention? | A plain abdominal radiograph shows two magnets attracted each other in the intestinal loops that provided a unique view. | [מקור](https://pmc.ncbi.nlm.nih.gov/articles/PMC6087655/) · [תמונה](https://openi.nlm.nih.gov/imgs/512/74/6087655/PMC6087655_asm-1-93f4.png) |
+| 5 | ✗ | ? | Laparoscopic Diagnosis of Magnetic Malrotation with Fistula and Volvulus | Abdominal radiograph demonstrating a metallic foreign body. | [מקור](https://pmc.ncbi.nlm.nih.gov/articles/PMC3558906/) · [תמונה](https://openi.nlm.nih.gov/imgs/512/31/3558906/PMC3558906_jls0041229390001.png) |
+| 6 | ✓ | CC-BY-4.0 | Removal of Ingested Magnetic Bodies via Laparoscopic Appendectomy | The location of MFBs on an abdominal X-ray native abdominal image. MFBs, magnetic foreign bodies. | [מקור](https://pmc.ncbi.nlm.nih.gov/articles/PMC7577785/) · [תמונה](https://openi.nlm.nih.gov/imgs/512/88/7577785/PMC7577785_10-1055-s-0040-1714669-i190508cr-1.png) |
+| 7 | ✓ | CC-BY-4.0 | Removal of Ingested Magnetic Bodies via Laparoscopic Appendectomy | Abdominal X-rays contrasting oval MFBs in the right hypogastrium. MFBs, magnetic foreign bodies. | [מקור](https://pmc.ncbi.nlm.nih.gov/articles/PMC7577785/) · [תמונה](https://openi.nlm.nih.gov/imgs/512/88/7577785/PMC7577785_10-1055-s-0040-1714669-i190508cr-2.png) |

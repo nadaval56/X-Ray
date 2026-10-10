@@ -63,7 +63,7 @@ function renderCase(c) {
     src: imageUrl(main.file),
     alt: main.alt,
     findings: main.findings,
-    caption: main.placeholder ? 'איור סכמטי להמחשה — לא צילום אמיתי.' : undefined,
+    caption: main.placeholder ? 'איור סכמטי להמחשה — לא צילום אמיתי.' : main.caption,
     onCheck: handleResult,
   });
   hotspot.el.addEventListener('hotspot:mark', () => {
@@ -98,7 +98,7 @@ function renderCase(c) {
       return;
     }
     setFeedback(status === 'hit' ? 'is-hit' : 'is-near',
-      status === 'hit' ? `מצאתם! זה ${finding.label}.` : `קרוב מאוד — זה האזור. מדובר ב${finding.label}.`);
+      status === 'hit' ? `מצאתם! ${finding.label}.` : `קרוב מאוד — זה האזור: ${finding.label}.`);
     finish();
   }
 
@@ -115,13 +115,23 @@ function renderCase(c) {
     return el;
   };
 
-  const revealStep = step(3, 'החשיפה', main.findings.map((f) => f.label).join(', '),
+  // צילומים נוספים (מנח נוסף, מעקב): בשלב החשיפה, או בשלב הסיום אם showIn: "outcome"
+  const extraFigures = (where) => imagesByRole(c, 'second-view')
+    .filter((im) => (im.showIn ?? 'reveal') === where)
+    .map((im) => h('figure', { class: 'xray-figure extra-figure' },
+      h('div', { class: 'xray-frame' },
+        h('img', { src: imageUrl(im.file), alt: im.alt, loading: 'lazy', decoding: 'async' })),
+      im.caption && h('figcaption', { text: im.caption }),
+    ));
+
+  const revealStep = step(3, 'החשיפה', [...new Set(main.findings.map((f) => f.label))].join(', '),
     h('p', { text: c.reveal }),
     normal && createCompare({
       left: { src: imageUrl(normal.file), alt: normal.alt, label: 'צילום תקין' },
       right: { src: imageUrl(main.file), alt: main.alt, label: 'הצילום במקרה' },
       caption: 'גררו את הקו כדי להשוות לצילום תקין.',
     }).el,
+    ...extraFigures('reveal'),
   );
 
   step(4, 'למה זה נראה ככה?', principle.title,
@@ -131,7 +141,7 @@ function renderCase(c) {
     ),
   );
 
-  step(5, 'מה קרה בסוף', 'הסוף הטוב', h('p', { text: c.outcome }));
+  step(5, 'מה קרה בסוף', 'הסוף הטוב', h('p', { text: c.outcome }), ...extraFigures('outcome'));
 
   step(6, 'קרדיט', 'מקור התמונות',
     creditsList(c.images.map((im) => creditItem(im, {

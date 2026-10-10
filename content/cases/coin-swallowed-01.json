@@ -1,53 +1,59 @@
 {
   "id": "coin-swallowed-01",
   "draft": true,
-  "editorNotes": "טיוטה לבדיקה של נדב. התמונה היא איור סכמטי (placeholder) ולא צילום אמיתי. כשתוחלף בצילום מאומת — לעדכן את הסיפור, הממצא והסיום לפי העובדות במקור. TODO: לאמת את הטענות הרפואיות ב-reveal וב-outcome מול מקור.",
+  "editorNotes": "עובדות מהמקור (מקרה 2 במאמר): ילדה בת שנה ו-7 חודשים, מטבע 1.9 ס״מ בקריקופרינקס, הוצא בהרדמה במלקחיים. השם בדוי.",
   "title": "המטבע שנעלם",
   "category": "foreign-body",
   "difficulty": 1,
-  "story": "נועה, בת 6, שיחקה עם מטבעות על השטיח בסלון. אחרי כמה דקות היא סיפרה לאמא שהיא בלעה אחד מהם, ושמשהו מרגיש לה \"תקוע\" בגרון. היא נושמת רגיל ומדברת רגיל, אבל קשה לה לבלוע. בבית החולים החליטו לצלם את החזה.",
+  "story": "מאיה, בת שנה ושבעה חודשים, בלעה מטבע. ההורים מיהרו איתה לבית החולים, ושם צילמו לה את הצוואר והחזה כדי לבדוק לאן המטבע הגיע.",
   "question": "איפה לדעתך המטבע?",
-  "hint": "חפשו משהו בהיר מאוד, בהיר יותר מכל עצם בצילום.",
+  "hint": "חפשו עיגול בהיר מאוד — בהיר יותר מכל עצם בצילום.",
   "images": [
     {
-      "file": "coin-swallowed-01-ap.svg",
+      "file": "coin-swallowed-01-ap.webp",
       "role": "main",
-      "placeholder": true,
-      "alt": "איור סכמטי של צילום חזה מלפנים: ריאות כהות, צלעות ועמוד שדרה באפור, ועיגול לבן בוהק במרכז, בגובה עצמות הבריח.",
+      "alt": "צילום רנטגן של חזה וצוואר של פעוטה, מלפנים. הריאות כהות, הצלעות אפורות-לבנות, ובראש החזה, בקו האמצע, עיגול לבן בוהק.",
       "findings": [
-        { "shape": "circle", "x": 0.5, "y": 0.25, "r": 0.06, "label": "מטבע בוושט" }
+        {
+          "shape": "circle",
+          "x": 0.49,
+          "y": 0.16,
+          "r": 0.08,
+          "label": "מטבע בוושט"
+        }
       ],
       "source": {
-        "title": "איור סכמטי: צילום חזה עם מטבע (placeholder)",
-        "author": "צוות האתר",
-        "url": "https://github.com/nadaval56/X-Ray",
-        "license": "CC0-1.0",
-        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
-        "modifications": "ללא — איור מקורי שנוצר עבור האתר",
+        "title": "Accidental ingestion of coins by children: management of the ENT Department of João XXIII Hospital. Braz J Otorhinolaryngol 2006 (Figure 2)",
+        "author": "T-Ping C, Nunes CA, Guimarães GR, Vieira JPM, Weckx LLM, Borges TJA",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9445681/",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "modifications": "חיתוך השוליים התחתונים (תאריך צרוב בתמונה), המרה ל-WebP",
         "verifiedOn": "2026-10-10"
       }
     },
     {
-      "file": "coin-swallowed-01-normal.svg",
-      "role": "normal",
-      "placeholder": true,
-      "alt": "אותו איור סכמטי של צילום חזה, בלי העיגול הלבן: ריאות כהות, צלעות ועמוד שדרה באפור.",
+      "file": "coin-swallowed-01-8h.webp",
+      "role": "second-view",
+      "showIn": "outcome",
+      "caption": "הצילום החוזר אחרי 8 שעות: המטבע עדיין באותו מקום.",
+      "alt": "צילום חוזר של חזה וצוואר של אותה פעוטה. העיגול הלבן עדיין בראש החזה, באותו מקום.",
       "findings": [],
       "source": {
-        "title": "איור סכמטי: צילום חזה תקין (placeholder)",
-        "author": "צוות האתר",
-        "url": "https://github.com/nadaval56/X-Ray",
-        "license": "CC0-1.0",
-        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
-        "modifications": "ללא — איור מקורי שנוצר עבור האתר",
+        "title": "Accidental ingestion of coins by children: management of the ENT Department of João XXIII Hospital. Braz J Otorhinolaryngol 2006 (Figure 3)",
+        "author": "T-Ping C, Nunes CA, Guimarães GR, Vieira JPM, Weckx LLM, Borges TJA",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9445681/",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "modifications": "חיתוך השוליים התחתונים (תאריך צרוב בתמונה), המרה ל-WebP",
         "verifiedOn": "2026-10-10"
       }
     }
   ],
-  "reveal": "המטבע נמצא בוושט — הצינור שמוביל אוכל מהפה לקיבה — ממש בגובה עצמות הבריח. הוא נראה כעיגול שלם כי אנחנו מסתכלים עליו \"מהפנים\", כמו מטבע שמונח על שולחן.",
+  "reveal": "המטבע תקוע בוושט — הצינור שמוביל אוכל מהפה לקיבה — בחלק העליון שלו, ממש מתחת לגרון. זה המקום הצר הראשון בוושט, ושם נתקעים רוב המטבעות שילדים בולעים.",
   "principle": {
     "id": "attenuation-metal",
     "text": "מתכת צפופה מאוד, ולכן היא עוצרת כמעט את כל קרני הרנטגן שפוגעות בה. למקום שמאחוריה כמעט לא מגיעה קרינה — ובצילום רנטגן, מקום שלא הגיעה אליו קרינה נשאר לבן. לכן המטבע בהיר יותר אפילו מהעצמות."
   },
-  "outcome": "הרופאים הוציאו את המטבע בעזרת צינור דק וגמיש עם מצלמה, בזמן שנועה ישנה שינה קצרה בהרדמה. עוד באותו ערב היא חזרה הביתה, ואכלה ארטיק."
+  "outcome": "כדי שהרדמה תהיה בטוחה, מחכים כמה שעות בלי לאכול. אחרי 8 שעות צילמו שוב — והמטבע עדיין היה באותו מקום. הרופאים הוציאו אותו בעזרת מלקחיים, בזמן שמאיה הייתה בהרדמה קצרה, ובלי צורך בצינור נשימה."
 }

@@ -1,0 +1,15 @@
+# מועמדים: openi — "esophageal coin"
+
+נוצר 2026-10-10. 6 מתוך 8 עם רישיון מותר.
+הרישיון אומת מול המקור (PMC: תגית license במאמר; Commons: מטא-דאטה של הקובץ). עדיין לבדוק בעין לפני שימוש.
+
+| # | מותר | רישיון | כותרת | כיתוב | קישור |
+|---|---|---|---|---|---|
+| 1 | ✓ | CC-BY-3.0 | Double coin in esophagus at same location and same alignment - a rare occurrence: a case report | A.P. View X-ray chest showing coin in upper esophagus. | [מקור](https://pmc.ncbi.nlm.nih.gov/articles/PMC2740069/) · [תמונה](https://openi.nlm.nih.gov/imgs/512/36/2740069/PMC2740069_1757-1626-0002-0000007758-001.png) |
+| 2 | ✓ | CC-BY-3.0 | Double coin in esophagus at same location and same alignment - a rare occurrence: a case report | Lateral view X-ray showing double coin in upper esophagus. | [מקור](https://pmc.ncbi.nlm.nih.gov/articles/PMC2740069/) · [תמונה](https://openi.nlm.nih.gov/imgs/512/36/2740069/PMC2740069_1757-1626-0002-0000007758-002.png) |
+| 3 | ✗ | byncnd | A 3‐year‐old boy with rapid obstructive symptoms secondary to coin ingestion and gastric impaction | Foreign body ingestion series anteroposterior view | [מקור](https://pmc.ncbi.nlm.nih.gov/articles/PMC7831616/) · [תמונה](https://openi.nlm.nih.gov/imgs/512/86/7831616/PMC7831616_EMP2-2-e12382-g001.png) |
+| 4 | ✗ | byncnd | A 3‐year‐old boy with rapid obstructive symptoms secondary to coin ingestion and gastric impaction | Foreign body ingestion series lateral view | [מקור](https://pmc.ncbi.nlm.nih.gov/articles/PMC7831616/) · [תמונה](https://openi.nlm.nih.gov/imgs/512/86/7831616/PMC7831616_EMP2-2-e12382-g002.png) |
+| 5 | ✓ | CC-BY-4.0 | Esophageal perforation and septic shock after accidental coin ingestion in elderly person | Radiolucent area was shown in the mediastinum and a clear metallic shadow was seen in the stomach. | [מקור](https://pmc.ncbi.nlm.nih.gov/articles/PMC9760784/) · [תמונה](https://openi.nlm.nih.gov/imgs/512/43/9760784/PMC9760784_CCR3-10-e6703-g001.png) |
+| 6 | ✓ | CC-BY-3.0 | Aluminum Coins in Esophagus: A Diagnostic Challenge | Figure 2: X-ray neck and chest: Showing opaque shadow of a 5 Rupee coin in the cervical esophagus in the 1st patient | [מקור](https://pmc.ncbi.nlm.nih.gov/articles/PMC3418023/) · [תמונה](https://openi.nlm.nih.gov/imgs/512/300/3418023/PMC3418023_ajcr-2-19.f2.png) |
+| 7 | ✓ | CC-BY-3.0 | Aluminum Coins in Esophagus: A Diagnostic Challenge | Figure 3: X-ray neck and Chest: showing faintly visible aluminum coin in the cervical esophagus (Arrow) in the 2nd patient | [מקור](https://pmc.ncbi.nlm.nih.gov/articles/PMC3418023/) · [תמונה](https://openi.nlm.nih.gov/imgs/512/300/3418023/PMC3418023_ajcr-2-19.f3.png) |
+| 8 | ✓ | CC-BY-3.0 | Two Stacked Coins Mimicking an Esophageal Button Battery: A Case Presentation and Review of the Literature | Radiographic images of two stacked coinsImage A shows an anterior-posterior radiograph (kilovoltage peak (KVP) 75, milliampere-seconds (mAs) | [מקור](https://pmc.ncbi.nlm.nih.gov/articles/PMC10250127/) · [תמונה](https://openi.nlm.nih.gov/imgs/512/166/10250127/PMC10250127_cureus-0015-00000038795-i01.png) |

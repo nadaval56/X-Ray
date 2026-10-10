@@ -55,6 +55,8 @@ for (const { file, data, error } of cases) {
     }
     if (!ROLES.includes(im.role)) ierr(`role "${im.role}" לא חוקי (${ROLES.join(', ')})`);
     if (!isText(im.alt) || im.alt.trim().length < 15) ierr('alt חסר או קצר מדי — נדרש תיאור של הצילום');
+    if (im.caption !== undefined && !isText(im.caption)) ierr('caption חייב להיות טקסט');
+    if (im.showIn !== undefined && !['reveal', 'outcome'].includes(im.showIn)) ierr('showIn חייב להיות "reveal" או "outcome"');
 
     if (im.findings !== undefined && !Array.isArray(im.findings)) ierr('findings חייב להיות מערך');
     const findings = im.findings ?? [];
@@ -73,6 +75,16 @@ for (const { file, data, error } of cases) {
     if (s.licenseUrl && !isUrl(s.licenseUrl)) ierr('source.licenseUrl אינו כתובת תקינה');
     if (s.verifiedOn && !isDate(s.verifiedOn)) ierr('source.verifiedOn חייב להיות בפורמט YYYY-MM-DD');
   });
+}
+
+// תמונות שאינן במקרה (content/media.json): אותם שדות source וקובץ קיים
+const PUBLIC_DIR = resolve(ROOT, 'public/images');
+for (const [i, m] of (readJson(resolve(ROOT, 'content/media.json')).items ?? []).entries()) {
+  const err = (msg) => errors.push(`media.json items[${i}] (${m.id ?? '?'}): ${msg}`);
+  if (!isText(m.id)) err('id חסר');
+  if (!isText(m.file) || !existsSync(resolve(PUBLIC_DIR, m.file))) err('הקובץ לא קיים תחת public/images/');
+  if (!isText(m.alt)) err('alt חסר');
+  for (const key of SOURCE_FIELDS) if (!isText(m.source?.[key])) err(`source.${key} חסר`);
 }
 
 report('בדיקת מקרים', errors, `${cases.length} מקרים תקינים`);

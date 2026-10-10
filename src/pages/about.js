@@ -1,14 +1,17 @@
 // קרדיטים מרוכזים — נוצרים מנתוני המקרים ומקובץ החומרים, בלי רשימה ידנית.
 import { h } from '../lib/dom.js';
-import { cases, materials, caseUrl } from '../data/content.js';
+import { cases, materials, media, caseUrl } from '../data/content.js';
 import { creditItem, creditsList } from '../components/credits.js';
 
-const images = cases.flatMap((c) => c.images.map((im) => ({ c, im })));
+const images = [
+  ...cases.flatMap((c) => c.images.map((im) => ({ c, im }))),
+  ...media.map((im) => ({ im })),
+];
 document.getElementById('credits-images').append(
   images.length
     ? creditsList(images.map(({ c, im }) => {
       const li = creditItem(im);
-      li.append(h('div', { class: 'muted' }, 'מופיעה במקרה: ', h('a', { href: caseUrl(c.id), text: c.title })));
+      if (c) li.append(h('div', { class: 'muted' }, 'מופיעה במקרה: ', h('a', { href: caseUrl(c.id), text: c.title })));
       return li;
     }))
     : h('p', { class: 'muted', text: 'עדיין אין תמונות.' }),
