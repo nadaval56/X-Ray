@@ -30,6 +30,7 @@ function stepLabel(num, text) {
 
 function renderCase(c) {
   document.title = `${c.title} · ${SITE.name}`;
+  document.querySelector('meta[name="description"]')?.setAttribute('content', `${c.question} ${c.story}`.slice(0, 160));
   const main = mainImage(c);
   const normal = imagesByRole(c, 'normal')[0];
   const principle = principles[c.principle.id];

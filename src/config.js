@@ -5,6 +5,8 @@ export const SITE = {
   name: 'רנטגן',            // TODO: שם סופי
   tagline: 'לראות מבפנים',  // TODO: לאשר
   domain: 'example.org',    // TODO: דומיין
+  // כתובת האתר החי (לקישורים מלאים ב-sitemap וב-Open Graph). TODO: לעדכן כשייקבע דומיין.
+  url: 'https://nadaval56.github.io/X-Ray/',
   // מציג תגית "טיוטה" על תוכן שעדיין לא עבר עריכה סופית
   showDraftBadges: true,
 };
