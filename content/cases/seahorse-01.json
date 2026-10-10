@@ -1,0 +1,70 @@
+{
+  "id": "seahorse-01",
+  "draft": true,
+  "editorNotes": "מקור: Wikimedia Commons, \"Hippocampus sindonis X-ray\" — Sandra Raredon / Smithsonian Institution (מוזיאון הטבע הלאומי, אגף הדגים), 2009. רישיון בדף הקובץ: PD-USGov-SI (יצירה של עובד ממשל ארה\"ב). TODO: לאמת מול מקור את הטענה שסוסוני ים הם דגים (מופיע באוסף אגף הדגים של סמיתסוניאן).",
+  "title": "סוסון הים — דג או לא?",
+  "category": "animals",
+  "difficulty": 1,
+  "story": "סוסון ים שוחה זקוף, יש לו ראש של סוס וזנב שמתגלגל כמו קפיץ. הוא לא נראה כמו דג — אבל צילום רנטגן יכול לעזור להחליט.",
+  "question": "מצאו את עמוד השדרה של סוסון הים.",
+  "hint": "חפשו שרשרת של עצמות קטנות, אחת אחרי השנייה, לאורך הגב.",
+  "images": [
+    {
+      "file": "seahorse-01-xray.webp",
+      "role": "main",
+      "alt": "צילום רנטגן של סוסון ים מהצד, על רקע כהה: ראש עם חרטום ארוך, גוף מכוסה טבעות, וזנב מסולסל. לאורך הגב עוברת שרשרת של חוליות קטנות.",
+      "findings": [
+        {
+          "shape": "circle",
+          "x": 0.66,
+          "y": 0.3,
+          "r": 0.07,
+          "label": "עמוד השדרה"
+        },
+        {
+          "shape": "circle",
+          "x": 0.65,
+          "y": 0.42,
+          "r": 0.07,
+          "label": "עמוד השדרה"
+        },
+        {
+          "shape": "circle",
+          "x": 0.63,
+          "y": 0.55,
+          "r": 0.07,
+          "label": "עמוד השדרה"
+        },
+        {
+          "shape": "circle",
+          "x": 0.62,
+          "y": 0.68,
+          "r": 0.07,
+          "label": "עמוד השדרה"
+        },
+        {
+          "shape": "circle",
+          "x": 0.6,
+          "y": 0.8,
+          "r": 0.07,
+          "label": "עמוד השדרה"
+        }
+      ],
+      "source": {
+        "title": "Hippocampus sindonis X-ray (Smithsonian NMNH, Division of Fishes)",
+        "author": "Sandra Raredon / Smithsonian Institution",
+        "url": "https://commons.wikimedia.org/wiki/File:Hippocampus_sindonis_X-ray.jpg",
+        "license": "US-Gov-PD",
+        "licenseUrl": "https://commons.wikimedia.org/wiki/Template:PD-USGov-SI",
+        "modifications": "המרה לגווני אפור, הקטנה, המרה ל-WebP",
+        "verifiedOn": "2026-10-10"
+      }
+    }
+  ],
+  "reveal": "לאורך הגב של סוסון הים עוברת שרשרת של חוליות — עמוד שדרה, בדיוק כמו אצל דגים אחרים. מסביב לגוף רואים גם טבעות של לוחיות עצם, שמשמשות לו כמו שריון.",
+  "principle": {
+    "id": "attenuation-bone",
+    "text": "עצם בולעת הרבה יותר קרינה מרקמות רכות, ולכן בצילום רואים את השלד גם דרך העור והשרירים. השלד מגלה איך החיה בנויה — גם כשהצורה החיצונית מטעה."
+  },
+  "outcome": "סוסון הים הוא דג! יש לו עמוד שדרה, הוא נושם בזימים ושוחה בעזרת סנפירים קטנים. הצילום הזה הוא חלק מאוסף הדגים של מוזיאון הטבע הלאומי של סמיתסוניאן בארצות הברית."
+}
