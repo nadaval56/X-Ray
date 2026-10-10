@@ -77,6 +77,8 @@ main { flex: 1; }
 
 img, svg, canvas { display: block; max-width: 100%; }
 
+[hidden] { display: none !important; }
+
 h1, h2, h3, h4 {
   margin: 0 0 0.5em;
   line-height: 1.25;
@@ -328,6 +330,7 @@ a:hover { color: var(--accent-strong); }
 .btn-ghost { background: transparent; border-color: transparent; color: var(--text-2); }
 .btn-ghost:hover { background: var(--surface); border-color: transparent; }
 
+.btn { -webkit-tap-highlight-color: transparent; }
 .btn-row { display: flex; flex-wrap: wrap; gap: 0.75rem; }
 
 /* ---------- צ'יפים / סינון ---------- */
@@ -344,6 +347,7 @@ a:hover { color: var(--accent-strong); }
   font: inherit;
   font-size: 0.9375rem;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 .chip:hover { color: var(--text); border-color: #45505e; }
 .chip[aria-pressed='true'],
@@ -409,6 +413,7 @@ a:hover { color: var(--accent-strong); }
 }
 .card-thumb img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
 .card.is-disabled { opacity: 0.6; }
+@media (min-width: 960px) { .grid-4 { grid-template-columns: repeat(4, 1fr); } }
 .card-icon { width: 36px; height: 36px; color: var(--accent); margin-bottom: 0.25rem; }
 
 /* ---------- עמוד בית ---------- */
@@ -438,13 +443,11 @@ a:hover { color: var(--accent-strong); }
 }
 .hero-figure img { width: 100%; height: auto; }
 .hero-figure figcaption {
-  position: absolute;
-  inset-inline: 0;
-  bottom: 0;
-  padding: 0.75rem 1rem;
+  padding: 0.6rem 1rem;
+  border-top: 1px solid var(--border);
+  background: var(--bg-elev);
   font-size: 0.8125rem;
-  color: var(--text-2);
-  background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+  color: var(--text-muted);
 }
 
 .steps {
@@ -506,17 +509,33 @@ a:hover { color: var(--accent-strong); }
 
 .case-layout {
   display: grid;
-  gap: 2rem;
+  gap: 0;
   padding-block: 1.5rem 0;
 }
+/* נייד: סיפור → צילום וסימון → שלבי החשיפה. מחשב: טקסט מימין, צילום דביק משמאל. */
 @media (min-width: 960px) {
   .case-layout {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: 3rem;
+    grid-template-areas: 'head media' 'steps media';
+    grid-template-rows: auto 1fr;
+    column-gap: 3.5rem;
     align-items: start;
+    padding-top: 2.5rem;
   }
-  .case-media { position: sticky; top: 84px; }
+  .case-head { grid-area: head; }
+  .case-steps { grid-area: steps; }
+  .case-media {
+    grid-area: media;
+    position: sticky;
+    top: 76px;
+    border-top: 0 !important;
+    padding-top: 0 !important;
+  }
 }
+.case-media .xray-figure { max-width: 560px; }
+.editor-notes { margin-bottom: 1.25rem; font-size: 0.9375rem; }
+.editor-notes summary { cursor: pointer; color: var(--warning); font-weight: 500; }
+.editor-notes p { margin: 0.5rem 0 0; }
 
 .breadcrumb { margin: 0 0 1rem; font-size: 0.875rem; color: var(--text-muted); }
 .breadcrumb a { color: var(--text-muted); }
@@ -811,3 +830,32 @@ a:hover { color: var(--accent-strong); }
     scroll-behavior: auto !important;
   }
 }
+
+.hotspot-labels { position: absolute; inset: 0; pointer-events: none; }
+
+/* ---------- מאמר / תוכן עניינים ---------- */
+
+.article { display: grid; gap: 3rem; }
+.article > section { scroll-margin-top: 80px; }
+.article h2 { margin-bottom: 0.75rem; }
+.article ul { padding-inline-start: 1.25rem; }
+.article li { margin-bottom: 0.5rem; }
+
+.toc {
+  margin-bottom: 2.5rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg-elev);
+  max-width: var(--measure);
+}
+.toc-title { margin: 0 0 0.4rem; font-size: 0.8125rem; font-weight: 600; color: var(--text-muted); }
+.toc ol { margin: 0; padding-inline-start: 1.25rem; }
+.toc li { margin: 0.2rem 0; }
+.toc a { color: var(--text-2); text-decoration: none; }
+.toc a:hover { color: var(--accent); text-decoration: underline; }
+
+.embed { margin-top: 1.5rem; }
+.embed-note { margin-top: 0.75rem; font-size: 0.875rem; max-width: var(--measure); }
+
+.challenges li { color: var(--text-2); margin-bottom: 0.6rem; }
