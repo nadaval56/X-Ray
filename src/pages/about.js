@@ -8,11 +8,12 @@ import timeline from '../../content/timeline.json';
 const images = [
   ...cases.flatMap((c) => c.images.map((im) => ({ c, im }))),
   ...media.map((im) => ({ im })),
+  ...timeline.events.filter((e) => e.image).map((e) => ({ im: e.image, where: `ציר הזמן: ${e.title}` })),
 ];
 document.getElementById('credits-images').append(
   images.length
-    ? creditsList(images.map(({ c, im }) => {
-      const li = creditItem(im);
+    ? creditsList(images.map(({ c, im, where }) => {
+      const li = creditItem(im, { context: where });
       if (c) li.append(h('div', { class: 'muted' }, 'מופיעה במקרה: ', h('a', { href: caseUrl(c.id), text: c.title })));
       return li;
     }))

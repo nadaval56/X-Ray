@@ -3,6 +3,8 @@
 import { h } from '../lib/dom.js';
 import { SITE } from '../config.js';
 
+const imgUrl = (file) => `${import.meta.env.BASE_URL}images/${file}`;
+
 /** @param {{events: Array<{id,year,date,title,text,source:{label,url},link?:{label,href},todo?:string}>}} opts */
 export function createTimeline({ events }) {
   const nav = h('nav', { class: 'tl-nav', 'aria-label': 'קפיצה לשנה' },
@@ -13,6 +15,11 @@ export function createTimeline({ events }) {
   const list = h('ol', { class: 'tl-list' }, events.map((e) => h('li', { class: 'tl-item', id: `tl-${e.id}` },
     h('div', { class: 'tl-marker', 'aria-hidden': 'true' }, h('span', { text: e.year })),
     h('article', { class: 'tl-card' },
+      e.image && h('figure', { class: 'tl-figure' },
+        h('img', { src: imgUrl(e.image.file), alt: e.image.alt, loading: 'lazy', decoding: 'async' }),
+        h('figcaption', {}, e.image.caption, ' ',
+          h('a', { href: e.image.source.url, rel: 'noopener', target: '_blank', text: 'מקור התמונה' })),
+      ),
       h('p', { class: 'tl-date', text: e.date }),
       h('h2', { class: 'tl-title', text: e.title }),
       h('p', { class: 'tl-text', text: e.text }),

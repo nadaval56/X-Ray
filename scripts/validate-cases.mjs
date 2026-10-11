@@ -103,4 +103,15 @@ for (const [i, m] of (readJson(resolve(ROOT, 'content/media.json')).items ?? [])
   for (const key of SOURCE_FIELDS) if (!isText(m.source?.[key])) err(`source.${key} חסר`);
 }
 
+// תמונות בציר הזמן (content/timeline.json)
+for (const e of readJson(resolve(ROOT, 'content/timeline.json')).events ?? []) {
+  const m = e.image;
+  if (!m) continue;
+  const err = (msg) => errors.push(`timeline.json (${e.id}): ${msg}`);
+  if (!isText(m.file) || !existsSync(resolve(PUBLIC_DIR, m.file))) err('הקובץ לא קיים תחת public/images/');
+  if (!isText(m.alt)) err('alt חסר');
+  if (!isText(m.caption)) err('caption חסר');
+  for (const key of SOURCE_FIELDS) if (!isText(m.source?.[key])) err(`source.${key} חסר`);
+}
+
 report('בדיקת מקרים', errors, `${cases.length} מקרים תקינים`);

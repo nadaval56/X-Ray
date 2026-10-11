@@ -14,6 +14,20 @@
       "link": {
         "label": "המקרה: מה בקופסה?",
         "href": "case.html?id=compass-01"
+      },
+      "image": {
+        "file": "history/crookes-tubes.webp",
+        "alt": "שפופרת זכוכית גדולה בצורת אגס, עם אלקטרודות מתכת קטנות בקצוות.",
+        "caption": "שפופרת פריקה מסוג קרוקס. רנטגן עבד עם שפופרת פריקה כזו כשגילה את הקרינה החדשה.",
+        "source": {
+          "title": "Crookes' type discharge tubes",
+          "author": "Wellcome Collection",
+          "url": "https://wellcomecollection.org/works/pgjs2hj4",
+          "license": "CC-BY-4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+          "modifications": "הקטנה, המרה ל-WebP",
+          "verifiedOn": "2026-10-11"
+        }
       }
     },
     {
@@ -25,6 +39,20 @@
       "source": {
         "label": "NobelPrize.org — Wilhelm Conrad Röntgen, Biographical",
         "url": "https://www.nobelprize.org/prizes/physics/1901/rontgen/biographical/"
+      },
+      "image": {
+        "file": "history/look-pleasant-1896.webp",
+        "alt": "קריקטורה בשחור-לבן: צלם מצלם איכר עם חרמש, ובתמונה המוגמרת שלצידו מופיע שלד שמחזיק חרמש.",
+        "caption": "קריקטורה אמריקאית מ-1896: \"חייכו בבקשה\". הצילום החדש הפך מיד לנושא לבדיחות.",
+        "source": {
+          "title": "The new Roentgen photography. \"Look pleasant, please.\" (1896)",
+          "author": "לא ידוע (ספריית הקונגרס, אוסף ההדפסים והצילומים)",
+          "url": "https://www.loc.gov/pictures/item/2007680190/",
+          "license": "Public-Domain",
+          "licenseUrl": "https://www.loc.gov/pictures/item/2007680190/",
+          "modifications": "המרה לגווני אפור, המרה ל-WebP. בסיס לנחלת הכלל: פורסם ב-1896; ספריית הקונגרס: \"No known restrictions on publication\"",
+          "verifiedOn": "2026-10-11"
+        }
       }
     },
     {
@@ -40,6 +68,20 @@
       "link": {
         "label": "המקרה: מה הנחש אכל?",
         "href": "case.html?id=snake-meal-01"
+      },
+      "image": {
+        "file": "history/schuster-hands-1896.webp",
+        "alt": "הדפסה ישנה של צילום רנטגן של שתי כפות ידיים זו לצד זו. העצמות כהות והרקע בהיר.",
+        "caption": "שתי ידיים בצילום רנטגן, מתוך הצילומים של שוסטר מ-1896.",
+        "source": {
+          "title": "Two hands, viewed through x-ray. Photoprint from radiograph after Sir Arthur Schuster, 1896",
+          "author": "Arthur Schuster",
+          "url": "https://wellcomecollection.org/works/sgcpgvkh",
+          "license": "Public-Domain",
+          "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+          "modifications": "הקטנה, המרה ל-WebP",
+          "verifiedOn": "2026-10-11"
+        }
       }
     },
     {
@@ -51,6 +93,20 @@
       "source": {
         "label": "NobelPrize.org — The Nobel Prize in Physics 1901",
         "url": "https://www.nobelprize.org/prizes/physics/1901/summary/"
+      },
+      "image": {
+        "file": "history/roentgen-portrait.webp",
+        "alt": "דיוקן בשחור-לבן של גבר עם זקן מלא ושיער גלי, בחליפה כהה.",
+        "caption": "וילהלם קונרד רנטגן.",
+        "source": {
+          "title": "Prof. Roentgen",
+          "author": "George Grantham Bain Collection (ספריית הקונגרס)",
+          "url": "https://www.loc.gov/pictures/item/2014685672/",
+          "license": "Public-Domain",
+          "licenseUrl": "https://www.loc.gov/rr/print/res/274_bain.html",
+          "modifications": "המרה לגווני אפור, המרה ל-WebP. בסיס לנחלת הכלל: אוסף Bain; ספריית הקונגרס: \"No known restrictions on publication\"",
+          "verifiedOn": "2026-10-11"
+        }
       }
     },
     {
@@ -62,6 +118,20 @@
       "source": {
         "label": "American Institute of Physics — Marie Curie: War Duty (1914–1919)",
         "url": "https://history.aip.org/exhibits/curie/war1.htm"
+      },
+      "image": {
+        "file": "history/radiographic-car-1918.webp",
+        "alt": "צילום ישן בשחור-לבן של משאית קטנה עם ארגז סגור, חונה ליד בית עץ ועצים בלי עלים.",
+        "caption": "\"Ambulance radiographic car\" — רכב רנטגן נייד של הצלב האדום האמריקאי, יולי 1918.",
+        "source": {
+          "title": "Ambulance radiographic car (July 1918)",
+          "author": "American National Red Cross photograph collection (ספריית הקונגרס)",
+          "url": "https://www.loc.gov/pictures/item/2017673850/",
+          "license": "Public-Domain",
+          "licenseUrl": "https://www.loc.gov/rr/print/res/717_anrc.html",
+          "modifications": "חיתוך, המרה לגווני אפור, המרה ל-WebP. בסיס לנחלת הכלל: 1918; ספריית הקונגרס: \"No known restrictions on publication\"",
+          "verifiedOn": "2026-10-11"
+        }
       }
     },
     {
@@ -73,6 +143,20 @@
       "source": {
         "label": "ORAU Museum of Radiation and Radioactivity — Shoe-Fitting Fluoroscope",
         "url": "https://www.orau.org/health-physics-museum/collection/shoe-fitting-fluoroscope/index.html"
+      },
+      "image": {
+        "file": "history/schuster-foot-1896.webp",
+        "alt": "הדפסה ישנה של צילום רנטגן של כף רגל מהצד: עצמות האצבעות, כף הרגל והקרסול.",
+        "caption": "כף רגל בצילום רנטגן, 1896 (שוסטר). במכשירים שבחנויות הנעליים ראו תמונה כזו — של כף הרגל בתוך הנעל.",
+        "source": {
+          "title": "The bones of a foot, viewed through x-ray. Photoprint from radiograph after Sir Arthur Schuster, 1896",
+          "author": "Arthur Schuster",
+          "url": "https://wellcomecollection.org/works/jjjrbyy9",
+          "license": "Public-Domain",
+          "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+          "modifications": "הקטנה, המרה ל-WebP",
+          "verifiedOn": "2026-10-11"
+        }
       }
     },
     {
@@ -85,6 +169,20 @@
       "source": {
         "label": "Franklin & Gosling, Molecular Configuration in Sodium Thymonucleate, Nature 171 (1953)",
         "url": "https://www.nature.com/articles/171740a0"
+      },
+      "image": {
+        "file": "history/diffraction-pattern.webp",
+        "alt": "עיגול כחול כהה ובו מאות נקודות לבנות קטנות, מסודרות בשורות מעוקלות סביב המרכז.",
+        "caption": "דפוס פיזור של קרני רנטגן מגביש של אנזים (הצבע הכחול נוסף בעיבוד). \"תצלום 51\" היה צילום מאותו סוג, של סיבי DNA.",
+        "source": {
+          "title": "X-ray diffraction pattern of the enzyme glutamate",
+          "author": "Patrick Baker",
+          "url": "https://wellcomecollection.org/works/jxhce79r",
+          "license": "CC-BY-4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+          "modifications": "הקטנה, המרה ל-WebP",
+          "verifiedOn": "2026-10-11"
+        }
       }
     },
     {
@@ -96,6 +194,20 @@
       "source": {
         "label": "NobelPrize.org — The Nobel Prize in Physics 2002, Popular information",
         "url": "https://www.nobelprize.org/prizes/physics/2002/popular-information/"
+      },
+      "image": {
+        "file": "history/aerobee-rocket.webp",
+        "alt": "שרטוט חתך של רקטה ארוכה ודקה עם כנפיים מאחור, ותוויות באנגלית לחלקים השונים.",
+        "caption": "שרטוט של רקטת מחקר מסוג Aerobee — מהסוג ששיגר הצוות של ג׳קוני ב-1962.",
+        "source": {
+          "title": "Aerobee sounding rocket",
+          "author": "U.S. Air Force",
+          "url": "https://commons.wikimedia.org/wiki/File:Aerobee_01.jpg",
+          "license": "US-Gov-PD",
+          "licenseUrl": "https://commons.wikimedia.org/wiki/Template:PD-USGov-Military-Air_Force",
+          "modifications": "הקטנה, המרה ל-WebP",
+          "verifiedOn": "2026-10-11"
+        }
       }
     },
     {
@@ -107,6 +219,20 @@
       "source": {
         "label": "NASA — Chandra X-ray Observatory",
         "url": "https://www.nasa.gov/mission/chandra-x-ray-observatory/"
+      },
+      "image": {
+        "file": "history/chandra-cas-a.webp",
+        "alt": "ענן עגול ומעורפל בצבעי כתום ואדום על רקע שחור, עם נקודה בהירה קטנה במרכז.",
+        "caption": "התמונה הרשמית הראשונה של צ׳נדרה (1999): קסיופאה A, שארית של כוכב שהתפוצץ.",
+        "source": {
+          "title": "History of Chandra X-Ray Observatory — Cassiopeia A, official first light image (NASA 9905485)",
+          "author": "NASA / Marshall Space Flight Center",
+          "url": "https://images.nasa.gov/details/9905485",
+          "license": "US-Gov-PD",
+          "licenseUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+          "modifications": "הקטנה, המרה ל-WebP",
+          "verifiedOn": "2026-10-11"
+        }
       }
     }
   ]

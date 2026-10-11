@@ -15,7 +15,7 @@
 
 פלט:
   assets-src/originals/<name>.<ext>   — הקובץ המקורי כפי שהורד (לא נכנס ל-build)
-  public/images/cases/<name>.webp     — הקובץ שמוגש באתר
+  public/images/<dir>/<name>.webp     — הקובץ שמוגש באתר (ברירת מחדל: cases)
 """
 import argparse
 import io
@@ -79,6 +79,7 @@ def main():
     p.add_argument('--mask', action='append', default=[], help='L,T,R,B יחסי (0–1)')
     p.add_argument('--max', type=int, default=1600)
     p.add_argument('--quality', type=int, default=82)
+    p.add_argument('--dir', default='cases', help='תיקיית יעד תחת public/images (cases, history, physics)')
     a = p.parse_args()
 
     if a.url.startswith('http'):
@@ -102,7 +103,8 @@ def main():
     if img.width > a.max:
         img = img.resize((a.max, round(img.height * a.max / img.width)), Image.LANCZOS)
 
-    out = ROOT / 'public' / 'images' / 'cases' / f'{a.name}.webp'
+    out = ROOT / 'public' / 'images' / a.dir / f'{a.name}.webp'
+    out.parent.mkdir(parents=True, exist_ok=True)
     img.save(out, 'WEBP', quality=a.quality, method=6)
     print(f'✓ {orig.relative_to(ROOT)} → {out.relative_to(ROOT)} ({img.width}×{img.height}, {out.stat().st_size // 1024}KB)')
 
