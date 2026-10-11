@@ -18,11 +18,12 @@ const BIG_STEP = 0.08;
  * @param {Array<{x:number,y:number,r:number,label:string}>} opts.findings
  * @param {string} [opts.caption]
  * @param {(result: {status: 'hit'|'near'|'miss', distance: number, finding: object}) => void} [opts.onCheck]
+ * @param {boolean} [opts.startLocked]  נעול לסימון עד unlock() (למשל עד שעונים על שאלת הזיהוי)
  */
-export function createHotspot({ src, alt, findings, caption, onCheck }) {
+export function createHotspot({ src, alt, findings, caption, onCheck, startLocked = false }) {
   let aspect = 1;
   let point = null;
-  let locked = false;
+  let locked = startLocked;
 
   const img = h('img', { src, alt, draggable: 'false', decoding: 'async' });
   const overlay = s('svg', { class: 'hotspot-overlay', 'aria-hidden': 'true', preserveAspectRatio: 'none' });
@@ -36,6 +37,10 @@ export function createHotspot({ src, alt, findings, caption, onCheck }) {
     'aria-label': 'סימון על הצילום. לחצו על המקום שבו לדעתכם נמצא הממצא, או השתמשו בחיצים כדי להזיז סמן.',
   }, img, overlay, labels);
 
+  if (startLocked) {
+    stage.classList.add('is-locked');
+    stage.removeAttribute('tabindex');
+  }
   const frame = h('div', { class: 'xray-frame' }, stage);
   const el = h('figure', { class: 'xray-figure' },
     frame,
@@ -144,10 +149,17 @@ export function createHotspot({ src, alt, findings, caption, onCheck }) {
     }
   }
 
+  function unlock() {
+    locked = false;
+    stage.classList.remove('is-locked');
+    stage.setAttribute('tabindex', '0');
+  }
+
   return {
     el,
     check,
     reveal,
+    unlock,
     get point() { return point; },
     focus: () => stage.focus(),
   };
