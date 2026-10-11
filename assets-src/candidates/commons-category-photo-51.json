@@ -1,0 +1,50 @@
+[
+  {
+    "source": "commons",
+    "title": "Experimental setup of Photo 51.svg",
+    "caption": "Experimental setup:\nSample: A DNA strand was stretched across a paperclip and mounted on a piece of cork.\nPhoto 51: X-rays were sent through the DNA strand and their diffracted paths were captured on light-sensitive paper to create Photo 51.\n\nDouble helix: The \"X\" in the centre of Photo 51 was cause",
+    "authors": "MagentaGreen",
+    "journal": "Own work based on: geograph.org.uk after ideas of Rosalind Franklin + Raymond Gosling",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:Experimental_setup_of_Photo_51.svg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Experimental_setup_of_Photo_51.svg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumbUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f6/Experimental_setup_of_Photo_51.svg/500px-Experimental_setup_of_Photo_51.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "size": "1200×600",
+    "claimedLicense": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "statement": "Creative Commons Attribution-Share Alike 2.0",
+    "license": null,
+    "allowed": false
+  },
+  {
+    "source": "commons",
+    "title": "60251254 photo-51-print-qp867-a4 2.jpg",
+    "caption": "Cartoon explanation of how Photo 51 captured the double helix structure of DNA.",
+    "authors": "Emily Willoughby",
+    "journal": "Personal communication from Dr. Emily Willoughby",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:60251254_photo-51-print-qp867-a4_2.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cf/60251254_photo-51-print-qp867-a4_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumbUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cf/60251254_photo-51-print-qp867-a4_2.jpg/500px-60251254_photo-51-print-qp867-a4_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "size": "1291×549",
+    "claimedLicense": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "statement": "Creative Commons Zero, Public Domain Dedication",
+    "license": "CC0-1.0",
+    "allowed": true
+  },
+  {
+    "source": "commons",
+    "title": "モノクロネガフィル.jpg",
+    "caption": "銀塩コート処理によりモノクロの潜像を映し込むことができるフィルム",
+    "authors": "sakamoto.takaichi",
+    "journal": "Own work",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:%E3%83%A2%E3%83%8E%E3%82%AF%E3%83%AD%E3%83%8D%E3%82%AC%E3%83%95%E3%82%A3%E3%83%AB.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9f/%E3%83%A2%E3%83%8E%E3%82%AF%E3%83%AD%E3%83%8D%E3%82%AC%E3%83%95%E3%82%A3%E3%83%AB.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumbUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9f/%E3%83%A2%E3%83%8E%E3%82%AF%E3%83%AD%E3%83%8D%E3%82%AC%E3%83%95%E3%82%A3%E3%83%AB.jpg/500px-%E3%83%A2%E3%83%8E%E3%82%AF%E3%83%AD%E3%83%8D%E3%82%AC%E3%83%95%E3%82%A3%E3%83%AB.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "size": "3024×4032",
+    "claimedLicense": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "statement": "Creative Commons Attribution-Share Alike 3.0",
+    "license": null,
+    "allowed": false
+  }
+]
