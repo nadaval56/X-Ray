@@ -38,6 +38,22 @@ for (const { file, data, error } of cases) {
   if (!c.principle || !isText(c.principle.text)) err('principle.text חסר');
   else if (!PRINCIPLES.includes(c.principle.id)) err(`principle.id "${c.principle.id}" לא מוגדר ב-content/principles.json`);
 
+  // אתגרים (רשות): challenge.identify — "מה רואים?", challenge.explain — "למה זה נראה ככה?"
+  for (const key of ['identify', 'explain']) {
+    const q = c.challenge?.[key];
+    if (q === undefined) continue;
+    if (!isText(q.question)) err(`challenge.${key}.question חסר`);
+    if (!Array.isArray(q.options) || q.options.length < 3 || q.options.length > 5) {
+      err(`challenge.${key}.options: צריך 3–5 תשובות`);
+      continue;
+    }
+    if (q.options.filter((o) => o.correct === true).length !== 1) err(`challenge.${key}: צריכה להיות בדיוק תשובה נכונה אחת`);
+    q.options.forEach((o, j) => {
+      if (!isText(o.text)) err(`challenge.${key}.options[${j}].text חסר`);
+      if (!o.correct && !isText(o.feedback)) err(`challenge.${key}.options[${j}]: לתשובה שגויה חסר הסבר (feedback)`);
+    });
+  }
+
   if (!Array.isArray(c.images) || c.images.length === 0) { err('images ריק'); continue; }
   const mains = c.images.filter((im) => im.role === 'main');
   if (mains.length !== 1) err(`צריכה להיות בדיוק תמונה אחת עם role "main" (נמצאו ${mains.length})`);

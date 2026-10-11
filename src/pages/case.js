@@ -4,6 +4,7 @@ import { h, prefersReducedMotion } from '../lib/dom.js';
 import { getCase, mainImage, imagesByRole, imageUrl, categories, principles } from '../data/content.js';
 import { createHotspot } from '../components/hotspot.js';
 import { createCompare } from '../components/compare.js';
+import { createQuiz } from '../components/quiz.js';
 import { creditItem, creditsList } from '../components/credits.js';
 import { difficultyBadge } from '../components/badges.js';
 import { SITE } from '../config.js';
@@ -54,7 +55,10 @@ function renderCase(c) {
     ),
   );
 
-  // ---------- 2. השערה ----------
+  // ---------- 2. מה רואים? (זיהוי) ואיפה בדיוק? (סימון) ----------
+  const identify = c.challenge?.identify;
+  const explain = c.challenge?.explain;
+  const score = {};
   let misses = 0;
   const feedback = h('div', { class: 'feedback', role: 'status', 'aria-live': 'polite' });
   const checkBtn = h('button', { type: 'button', class: 'btn btn-primary', disabled: true, text: 'בדיקה' });
@@ -66,6 +70,7 @@ function renderCase(c) {
     findings: main.findings,
     caption: main.placeholder ? 'איור סכמטי להמחשה — לא צילום אמיתי.' : main.caption,
     onCheck: handleResult,
+    startLocked: Boolean(identify),
   });
   hotspot.el.addEventListener('hotspot:mark', () => {
     checkBtn.disabled = false;
@@ -73,17 +78,37 @@ function renderCase(c) {
   });
   checkBtn.addEventListener('click', () => hotspot.check());
   answerBtn.addEventListener('click', () => {
+    score.locate = { gaveUp: true, attempts: misses };
     setFeedback('is-near', 'הנה התשובה — הממצא מסומן על הצילום בעיגול ירוק.');
     finish();
   });
 
-  const hypothesis = h('section', { class: 'step case-media', 'aria-labelledby': 'step-q' },
-    stepLabel('2', 'ההשערה שלך'),
-    h('h2', { id: 'step-q', text: c.question }),
+  // שלב הסימון: גלוי מההתחלה אם אין שאלת זיהוי, אחרת נפתח אחריה
+  const locate = h('div', { class: 'locate', hidden: Boolean(identify) },
+    identify && stepLabel('3', 'איפה בדיוק?'),
+    h('h3', { class: 'locate-q', id: 'step-q', text: c.question }),
     h('p', { class: 'muted', text: 'לחצו על הצילום במקום שבו לדעתכם נמצא הממצא, ואז על "בדיקה". אפשר לשנות את הסימון כמה שרוצים.' }),
-    hotspot.el,
-    h('div', { class: 'btn-row', style: 'margin-top: 1rem' }, checkBtn, answerBtn),
+    h('div', { class: 'btn-row' }, checkBtn, answerBtn),
     feedback,
+  );
+
+  const identifyQuiz = identify && createQuiz({
+    ...identify,
+    id: 'identify',
+    onDone: (r) => {
+      score.identify = r;
+      hotspot.unlock();
+      locate.hidden = false;
+      locate.classList.add('is-entering');
+    },
+  });
+
+  const hypothesis = h('section', { class: 'step case-media', 'aria-labelledby': identify ? 'step-id' : 'step-q' },
+    stepLabel('2', identify ? 'מה רואים?' : 'ההשערה שלך'),
+    identify && h('h2', { id: 'step-id', class: 'visually-hidden', text: identify.question }),
+    hotspot.el,
+    identifyQuiz && identifyQuiz.el,
+    locate,
   );
 
   function setFeedback(kind, ...content) {
@@ -98,6 +123,7 @@ function renderCase(c) {
       if (misses >= MISSES_BEFORE_ANSWER) answerBtn.hidden = false;
       return;
     }
+    score.locate = { gaveUp: false, attempts: misses + 1 };
     setFeedback(status === 'hit' ? 'is-hit' : 'is-near',
       status === 'hit' ? `מצאתם! ${finding.label}.` : `קרוב מאוד — זה האזור: ${finding.label}.`);
     finish();
@@ -105,6 +131,8 @@ function renderCase(c) {
 
   // ---------- 3–6: מוסתרים עד החשיפה ----------
   const revealSteps = [];
+  const afterExplain = [];
+  const n = (k) => (identify ? k + 1 : k);
   const step = (num, label, title, ...body) => {
     const headingId = `step-${num}`;
     const el = h('section', { class: 'step', hidden: true, 'aria-labelledby': headingId },
@@ -125,7 +153,7 @@ function renderCase(c) {
       im.caption && h('figcaption', { text: im.caption }),
     ));
 
-  const revealStep = step(3, 'החשיפה', [...new Set(main.findings.map((f) => f.label))].join(', '),
+  const revealStep = step(n(3), 'החשיפה', [...new Set(main.findings.map((f) => f.label))].join(', '),
     h('p', { text: c.reveal }),
     normal && createCompare({
       left: { src: imageUrl(normal.file), alt: normal.alt, label: 'צילום תקין' },
@@ -135,16 +163,32 @@ function renderCase(c) {
     ...extraFigures('reveal'),
   );
 
-  step(4, 'למה זה נראה ככה?', principle.title,
-    h('div', { class: 'callout' },
-      h('p', { text: c.principle.text }),
-      h('p', {}, h('a', { href: `./${principle.href}`, text: 'להסבר המלא ב"איך זה עובד"' })),
-    ),
+  // "למה?" — אם יש שאלת הסבר, ההסבר והשלבים שאחריו נפתחים רק אחרי שעונים עליה
+  const principleBox = h('div', { class: 'callout', hidden: Boolean(explain) },
+    h('p', { text: c.principle.text }),
+    h('p', {}, h('a', { href: `./${principle.href}`, text: 'להסבר המלא ב"איך זה עובד"' })),
   );
+  const summary = h('ul', { class: 'score' });
+  const explainQuiz = explain && createQuiz({
+    ...explain,
+    id: 'explain',
+    onDone: (r) => {
+      score.explain = r;
+      principleBox.hidden = false;
+      principleBox.classList.add('is-entering');
+      for (const el of afterExplain) { el.hidden = false; el.classList.add('is-entering'); }
+      renderSummary();
+    },
+  });
+  step(n(4), 'למה זה נראה ככה?', explain ? explain.question : principle.title,
+    explainQuiz && explainQuiz.el,
+    principleBox,
+  );
+  if (explainQuiz) explainQuiz.el.querySelector('.quiz-question').classList.add('visually-hidden');
 
-  step(5, 'מה קרה בסוף', 'הסוף הטוב', h('p', { text: c.outcome }), ...extraFigures('outcome'));
+  const outcomeStep = step(n(5), 'מה קרה בסוף', 'הסוף הטוב', h('p', { text: c.outcome }), ...extraFigures('outcome'), summary);
 
-  step(6, 'קרדיט', 'מקור התמונות',
+  const creditStep = step(n(6), 'קרדיט', 'מקור התמונות',
     creditsList(c.images.map((im) => creditItem(im, {
       context: { main: 'הצילום במקרה', normal: 'צילום תקין להשוואה', 'second-view': 'מנח נוסף' }[im.role],
     }))),
@@ -162,15 +206,31 @@ function renderCase(c) {
     },
   });
 
+  if (explain) afterExplain.push(outcomeStep, creditStep);
+
+  function renderSummary() {
+    const rows = [
+      identify && ['זיהוי', score.identify],
+      ['מיקום', score.locate],
+      explain && ['הסבר', score.explain],
+    ].filter(Boolean).filter(([, r]) => r);
+    summary.replaceChildren(...rows.map(([label, r]) => h('li', { class: r.gaveUp ? 'is-gaveup' : 'is-ok' },
+      h('span', { class: 'score-label', text: label }),
+      r.gaveUp ? 'ראיתם את התשובה' : r.attempts === 1 ? 'בניסיון הראשון' : `אחרי ${r.attempts} ניסיונות`,
+    )));
+  }
+
   function finish() {
     hotspot.reveal();
     checkBtn.hidden = true;
     answerBtn.hidden = true;
     feedback.append(h('div', {}, continueBtn));
     for (const el of revealSteps) {
+      if (afterExplain.includes(el)) continue;
       el.hidden = false;
       el.classList.add('is-entering');
     }
+    renderSummary();
   }
 
   root.replaceChildren(h('div', { class: 'case-layout' },
