@@ -370,7 +370,6 @@ a:hover { color: var(--accent-strong); }
   color: var(--text-2);
   line-height: 1.5;
 }
-.tag-draft { border-color: rgba(231, 192, 122, 0.4); color: var(--warning); background: var(--warning-soft); }
 .tag-soon { color: var(--text-muted); }
 
 .difficulty { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.8125rem; color: var(--text-2); }
@@ -533,9 +532,6 @@ a:hover { color: var(--accent-strong); }
   }
 }
 .case-media .xray-figure { max-width: 560px; }
-.editor-notes { margin-bottom: 1.25rem; font-size: 0.9375rem; }
-.editor-notes summary { cursor: pointer; color: var(--warning); font-weight: 500; }
-.editor-notes p { margin: 0.5rem 0 0; }
 
 .breadcrumb { margin: 0 0 1rem; font-size: 0.875rem; color: var(--text-muted); }
 .breadcrumb a { color: var(--text-muted); }
@@ -943,7 +939,6 @@ a:hover { color: var(--accent-strong); }
 .tl-meta a { color: var(--text-muted); }
 .tl-meta a:hover { color: var(--text); }
 .tl-meta .tl-case { color: var(--accent); }
-.tl-todo { margin: 0.6rem 0 0; font-size: 0.8125rem; color: var(--warning); }
 @media (min-width: 720px) {
   .tl-item { grid-template-columns: 72px 1fr; gap: 1.25rem; }
   .tl-marker span { width: 72px; height: 32px; font-size: 0.9375rem; }

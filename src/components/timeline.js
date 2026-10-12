@@ -1,11 +1,10 @@
 // ציר זמן: סרגל שנים דביק לקפיצה מהירה, ורשימת אירועים. כל אירוע עם מקור.
 // מסמן בסרגל את האירוע שנמצא כרגע בתצוגה (IntersectionObserver).
 import { h } from '../lib/dom.js';
-import { SITE } from '../config.js';
 
 const imgUrl = (file) => `${import.meta.env.BASE_URL}images/${file}`;
 
-/** @param {{events: Array<{id,year,date,title,text,source:{label,url},link?:{label,href},todo?:string}>}} opts */
+/** @param {{events: Array<{id,year,date,title,text,source:{label,url},link?:{label,href}}>}} opts */
 export function createTimeline({ events }) {
   const nav = h('nav', { class: 'tl-nav', 'aria-label': 'קפיצה לשנה' },
     h('ol', {}, events.map((e) => h('li', {},
@@ -28,7 +27,6 @@ export function createTimeline({ events }) {
         ...(e.moreSources ?? []).map((m) => h('a', { href: m.url, rel: 'noopener', target: '_blank', text: m.label })),
         e.link && h('a', { class: 'tl-case', href: `./${e.link.href}`, text: e.link.label }),
       ),
-      SITE.showDraftBadges && e.todo && h('p', { class: 'tl-todo', text: e.todo }),
     ),
   )));
 
