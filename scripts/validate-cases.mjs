@@ -39,6 +39,10 @@ for (const { file, data, error } of cases) {
   else if (!PRINCIPLES.includes(c.principle.id)) err(`principle.id "${c.principle.id}" לא מוגדר ב-content/principles.json`);
 
   // אתגרים (רשות): challenge.identify — "מה רואים?", challenge.explain — "למה זה נראה ככה?"
+  // question מוצג גם ברשימת המקרים: במקרה עם שאלה אמריקאית הוא חייב להיות אותה שאלה, כדי שלא יסגיר את התשובה
+  if (c.challenge?.identify && c.question !== c.challenge.identify.question) {
+    err('question חייב להיות זהה ל-challenge.identify.question (הוא מוצג ברשימת המקרים)');
+  }
   for (const key of ['identify', 'explain']) {
     const q = c.challenge?.[key];
     if (q === undefined) continue;
