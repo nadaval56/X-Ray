@@ -67,15 +67,20 @@ function renderCase(c) {
   const checkBtn = h('button', { type: 'button', class: 'btn btn-primary', disabled: true, text: 'בדיקה' });
   const answerBtn = h('button', { type: 'button', class: 'btn btn-ghost', hidden: true, text: 'הצגת התשובה' });
 
-  const hotspot = createHotspot({
+  const caption = main.placeholder ? 'איור סכמטי להמחשה — לא צילום אמיתי.' : main.caption;
+  // בשאלה אמריקאית הצילום רק להסתכלות: בלי סימון ובלי עיגולים בחשיפה
+  const hotspot = !identify && createHotspot({
     src: imageUrl(main.file),
     alt: main.alt,
     findings: main.findings,
-    caption: main.placeholder ? 'איור סכמטי להמחשה — לא צילום אמיתי.' : main.caption,
+    caption,
     onCheck: handleResult,
-    startLocked: Boolean(identify),
   });
-  hotspot.el.addEventListener('hotspot:mark', () => {
+  const figure = hotspot ? hotspot.el : h('figure', { class: 'xray-figure' },
+    h('div', { class: 'xray-frame' }, h('img', { src: imageUrl(main.file), alt: main.alt, decoding: 'async' })),
+    caption && h('figcaption', { text: caption }),
+  );
+  hotspot && hotspot.el.addEventListener('hotspot:mark', () => {
     checkBtn.disabled = false;
     if (feedback.classList.contains('is-miss')) setFeedback('', '');
   });
@@ -105,7 +110,7 @@ function renderCase(c) {
   const hypothesis = h('section', { class: 'step case-media', 'aria-labelledby': identify ? 'step-id' : 'step-q' },
     stepLabel('2', identify ? 'מה רואים?' : 'איפה?'),
     identify && h('h2', { id: 'step-id', class: 'visually-hidden', text: identify.question }),
-    hotspot.el,
+    figure,
     identifyQuiz && identifyQuiz.el,
     locate,
   );
@@ -219,7 +224,7 @@ function renderCase(c) {
   }
 
   function finish() {
-    hotspot.reveal();
+    hotspot && hotspot.reveal();
     checkBtn.hidden = true;
     answerBtn.hidden = true;
     (identifyQuiz ? identifyQuiz.el : feedback).append(h('div', {}, continueBtn));
