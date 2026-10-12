@@ -5,6 +5,7 @@ const LICENSE_NAMES = {
   'CC0-1.0': 'CC0 (ויתור על זכויות)',
   'Public-Domain': 'נחלת הכלל',
   'US-Gov-PD': 'נחלת הכלל (יצירה של ממשלת ארה"ב)',
+  'Owner-Permission': 'באישור בעל הזכויות',
 };
 const licenseName = (id) => LICENSE_NAMES[id] ?? id.replace(/^CC-BY-/, 'CC BY ');
 
