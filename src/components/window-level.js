@@ -2,12 +2,13 @@
 // level = מרכז החלון (0–255), window = רוחב החלון (8–255).
 // כל פיקסל: out = (v − (level − window/2)) · 255 / window, חתוך ל-0..255.
 // הצילומים כאן הם JPEG/WebP של 8 ביט, כך שזה רק המחשה: בצילום רפואי אמיתי יש הרבה יותר רמות אפור.
+// לכל צילום רשימת משימות משלו (tasks), שמתחלפת יחד עם הצילום.
 
 import { h } from '../lib/dom.js';
 
 /**
  * @param {object} opts
- * @param {Array<{id:string,label:string,src:string,alt:string,hint?:string}>} opts.images
+ * @param {Array<{id:string,label:string,src:string,alt:string,tasks?:string[]}>} opts.images
  * @param {string} [opts.idPrefix='wl']
  */
 export function createWindowLevel({ images, idPrefix = 'wl' }) {
@@ -18,7 +19,9 @@ export function createWindowLevel({ images, idPrefix = 'wl' }) {
 
   const canvas = h('canvas', { class: 'wl-canvas', role: 'img' });
   const ctx = canvas.getContext('2d', { willReadFrequently: true });
-  const hint = h('p', { class: 'muted wl-hint' });
+  const taskList = h('ol', { class: 'wl-tasks-list' });
+  const tasks = h('div', { class: 'wl-tasks', 'aria-live': 'polite' },
+    h('p', { class: 'wl-tasks-title', text: 'משימות לצילום הזה' }), taskList);
 
   const slider = (id, label, min, max, value, onInput) => {
     const out = h('output', { for: id, text: String(value) });
@@ -47,13 +50,14 @@ export function createWindowLevel({ images, idPrefix = 'wl' }) {
   });
 
   const el = h('div', { class: 'sim wl' },
-    h('div', { class: 'sim-controls' }, picker, levelCtl.el, widthCtl.el, h('div', { class: 'btn-row' }, reset), hint),
+    h('div', { class: 'sim-controls' }, picker, levelCtl.el, widthCtl.el, h('div', { class: 'btn-row' }, reset), tasks),
     h('div', { class: 'sim-stage' }, h('div', { class: 'xray-frame' }, canvas)),
   );
 
   function load(im) {
     current = im;
-    hint.textContent = im.hint ?? '';
+    taskList.replaceChildren(...(im.tasks ?? []).map((t) => h('li', { text: t })));
+    tasks.hidden = !im.tasks?.length;
     canvas.setAttribute('aria-label', im.alt);
     const img = new Image();
     img.decoding = 'async';
