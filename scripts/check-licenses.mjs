@@ -11,6 +11,7 @@ const ALLOWED = [
   /^CC0-1\.0$/,
   /^Public-Domain$/,  // נחלת הכלל (למשל זכויות שפקעו) — לתעד את הנימוק ב-modifications או בהערה
   /^US-Gov-PD$/,      // יצירה של עובד ממשלת ארה"ב במסגרת עבודתו
+  /^Owner-Permission$/, // בעל הזכויות (נדב, בעל האתר) נתן את התמונה לשימוש באתר — רק לתמונות שלו
 ];
 const FORBIDDEN = /(^|[-\s])(NC|ND|SA)([-\s]|$)/i;
 
@@ -35,7 +36,7 @@ for (const { file, images } of groups) {
       continue;
     }
     if (!ALLOWED.some((re) => re.test(license))) {
-      errors.push(`${where}: "${license}" לא ברשימת המותרים (CC-BY-x.x, CC0-1.0, Public-Domain, US-Gov-PD)`);
+      errors.push(`${where}: "${license}" לא ברשימת המותרים (CC-BY-x.x, CC0-1.0, Public-Domain, US-Gov-PD, Owner-Permission)`);
     }
   }
 }

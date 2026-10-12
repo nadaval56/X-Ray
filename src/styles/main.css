@@ -842,6 +842,7 @@ a:hover { color: var(--accent-strong); }
 
 .media-figure { max-width: 420px; margin: 1.5rem 0 0; }
 .media-figure img { width: 100%; height: auto; }
+.mail-figure { max-width: 640px; margin-bottom: 1.25rem; }
 
 /* ---------- שיעור ("איך זה עובד"): תפריט צד, פרקים ככרטיסים ---------- */
 
