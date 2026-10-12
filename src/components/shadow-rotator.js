@@ -1,14 +1,16 @@
 // צורה וצל: גוף תלת-ממדי שאפשר לסובב בחופשיות, מקור קרינה מלמעלה, והצל (ההיטל) שלו על הגלאי למטה.
 //
 // בלי ספריות: רשת משולשים פשוטה, מטריצות סיבוב 3×3, וציור על <canvas>.
-// הצל הוא היטל אמיתי: לכל פיקסל בגלאי מחשבים כמה חומר יש בדרך (עובי לאורך קרן אנכית),
-// ממירים לגוון כמו בצילום רנטגן — יותר חומר = בהיר יותר.
+// הצל הוא היטל אמיתי ממקור נקודתי, כמו בשפופרת רנטגן: הקרניים יוצאות מנקודה אחת ומתפזרות כחרוט.
+// לכל פיקסל בגלאי מחשבים כמה חומר יש על הקו הישר מהמקור אליו, וממירים לגוון כמו בצילום —
+// יותר חומר = בהיר יותר. בגלל ההתפזרות הצל גדול מהגוף, והוא גדל ככל שהגוף קרוב יותר למקור.
 //
-// עובי לאורך קרן: הקרן נכנסת לגוף דרך פאות שפונות למעלה ויוצאת דרך פאות שפונות למטה.
-// לכל פיקסל מסכמים +y של כל פאת כניסה ו-−y של כל פאת יציאה, וזה בדיוק אורך הקטעים שבתוך הגוף —
-// נכון גם לגופים לא קמורים (טבעת, צורת L). דורש רשת סגורה עם נורמלים כלפי חוץ.
+// עובי לאורך קרן: הקרן נכנסת לגוף דרך פאות שפונות אל המקור ויוצאת דרך פאות שפונות ממנו.
+// לכל פיקסל מסכמים את המרחק מהמקור לכל פאת יציאה, פחות המרחק לכל פאת כניסה, וזה בדיוק אורך
+// הקטעים שבתוך הגוף — נכון גם לגופים לא קמורים (טבעת, צורת L). דורש רשת סגורה עם נורמלים כלפי חוץ.
+// בתוך משולש מוטל, 1/(גובה המקור מעל הנקודה) משתנה באופן ליניארי, ולכן אותו מאנטרפלים.
 //
-// פישוט: הקרניים מקבילות (מקור רחוק). במכשיר אמיתי הקרניים יוצאות מנקודה, והצל מוגדל מעט.
+// פישוט: מקור נקודתי לגמרי. במכשיר אמיתי למוקד יש גודל קטן, ולכן שולי הצל מעט מטושטשים.
 
 import { h, prefersReducedMotion } from '../lib/dom.js';
 
@@ -188,9 +190,11 @@ export const SHAPES = [
 ];
 
 // ---------- סצנה ----------
-const PLATE_Y = -1.6;   // גובה הגלאי
-const PLATE = 1.4;      // חצי רוחב הגלאי
-const SOURCE_Y = 2.35;  // גובה מקור הקרינה
+const PLATE_Y = -1.7;   // גובה הגלאי
+const PLATE = 1.6;      // חצי רוחב הגלאי
+const SOURCE_Y = 2.6;   // גובה מקור הקרינה (נקודה מעל מרכז הגלאי)
+const OBJ_Y = -0.35;    // גובה מרכז הגוף
+const SCALE = 0.75;     // גודל הגופים בסצנה
 const N = 300;          // רזולוציית הצל (פיקסלים לכל צד)
 const MU = 1.15;        // "בליעה" ליחידת עובי — לגוון בלבד
 const VIEW = mul(axisAngle([1, 0, 0], 0.4), axisAngle([0, 1, 0], -0.55)); // מצלמה: קצת מלמעלה ומהצד
@@ -312,17 +316,24 @@ export function createShadowRotator({ idPrefix = 'sr' } = {}) {
   });
 
   // ---------- הצל ----------
+  const SID = SOURCE_Y - PLATE_Y; // מרחק מקור–גלאי
   function computeShadow() {
     thick.fill(0);
     const s = N / (2 * PLATE);
+    // היטל כל קודקוד מהמקור אל מישור הגלאי, בפיקסלים, ו-1/(גובה המקור מעליו)
+    const proj = world.map(([x, y, z]) => {
+      const dv = SOURCE_Y - y;
+      const f = SID / dv;
+      return [(x * f + PLATE) * s, (z * f + PLATE) * s, 1 / dv];
+    });
+    const src = [0, SOURCE_Y, 0];
     for (const [a, b, c] of geo.tris) {
-      const A = world[a], B = world[b], C = world[c];
-      const ny = (B[2] - A[2]) * (C[0] - A[0]) - (B[0] - A[0]) * (C[2] - A[2]); // רכיב y של הנורמל
-      if (Math.abs(ny) < 1e-12) continue;
-      const sign = ny > 0 ? 1 : -1; // פונה למעלה = כניסה (+y), למטה = יציאה (−y)
-      const ax = (A[0] + PLATE) * s, az = (A[2] + PLATE) * s;
-      const bx = (B[0] + PLATE) * s, bz = (B[2] + PLATE) * s;
-      const cx = (C[0] + PLATE) * s, cz = (C[2] + PLATE) * s;
+      const A = world[a];
+      const n = cross(sub(world[b], A), sub(world[c], A));
+      const facing = dot(n, sub(src, A));
+      if (Math.abs(facing) < 1e-12) continue;
+      const sign = facing > 0 ? -1 : 1; // פונה אל המקור = כניסה (−), ממנו = יציאה (+)
+      const [ax, az, ia] = proj[a], [bx, bz, ib] = proj[b], [cx, cz, ic] = proj[c];
       const area = (bx - ax) * (cz - az) - (bz - az) * (cx - ax);
       if (Math.abs(area) < 1e-12) continue;
       const x0 = Math.max(0, Math.floor(Math.min(ax, bx, cx))), x1 = Math.min(N - 1, Math.ceil(Math.max(ax, bx, cx)));
@@ -337,13 +348,16 @@ export function createShadowRotator({ idPrefix = 'sr' } = {}) {
           const w1 = ((ax - cx) * (pz - cz) - (az - cz) * (px - cx)) / area;
           const w2 = 1 - w0 - w1;
           if (w0 < 0 || w1 < 0 || w2 < 0) continue;
-          thick[j * N + i] += sign * (w0 * A[1] + w1 * B[1] + w2 * C[1]);
+          thick[j * N + i] += sign / (w0 * ia + w1 * ib + w2 * ic);
         }
       }
     }
+    // מגובה לאורך: נקודה בגובה dv מתחת למקור נמצאת במרחק dv·L/SID ממנו, כש-L אורך הקרן עד הפיקסל
     const d = shadowImg.data;
     for (let p = 0, q = 0; p < thick.length; p++, q += 4) {
-      const v = 1 - Math.exp(-MU * Math.max(0, thick[p]));
+      const X = ((p % N) + 0.5) / s - PLATE, Z = (Math.floor(p / N) + 0.5) / s - PLATE;
+      const len = thick[p] * (Math.hypot(X, Z, SID) / SID);
+      const v = 1 - Math.exp(-MU * Math.max(0, len));
       const g = 14 + v * 241;
       d[q] = g; d[q + 1] = g; d[q + 2] = g + (1 - v) * 6; d[q + 3] = 255;
     }
@@ -352,8 +366,8 @@ export function createShadowRotator({ idPrefix = 'sr' } = {}) {
 
   // ---------- ציור הסצנה ----------
   const W = scene.width, H = scene.height;
-  const S = 150;                          // פיקסלים ליחידה
-  const CX = W / 2, CY = H * 0.47;
+  const S = 135;                          // פיקסלים ליחידה
+  const CX = W / 2, CY = H * 0.475;
   const toScreen = (p) => { const q = apply(VIEW, p); return [CX + S * q[0], CY - S * q[1], q[2]]; };
   const LIGHT = norm([-0.45, 0.75, 0.5]);
 
@@ -361,7 +375,7 @@ export function createShadowRotator({ idPrefix = 'sr' } = {}) {
     sctx.setTransform(1, 0, 0, 1, 0, 0);
     sctx.clearRect(0, 0, W, H);
 
-    // הגלאי, עם הצל עליו (מיפוי אפיני — מדויק בהטלה מקבילה)
+    // הגלאי, עם הצל עליו (מיפוי אפיני — מדויק כי המצלמה מציירת בהטלה מקבילה)
     const P0 = toScreen([-PLATE, PLATE_Y, -PLATE]);
     const P1 = toScreen([PLATE, PLATE_Y, -PLATE]);
     const P2 = toScreen([-PLATE, PLATE_Y, PLATE]);
@@ -385,14 +399,14 @@ export function createShadowRotator({ idPrefix = 'sr' } = {}) {
     sctx.fillStyle = '#161b22';
     sctx.fill();
 
-    // קרניים: קווים אנכיים מקווקווים מהמקור לגלאי (מאחורי הגוף)
+    // קרניים: יוצאות מנקודה אחת במקור ומתפזרות כחרוט אל הגלאי (מאחורי הגוף)
+    const src0 = toScreen([0, SOURCE_Y, 0]);
     sctx.setLineDash([6, 10]);
     sctx.lineWidth = 2;
     sctx.strokeStyle = 'rgba(124, 199, 220, 0.28)';
-    for (const x of [-1.05, 0, 1.05]) for (const z of [-1.05, 0, 1.05]) {
-      const a = toScreen([x * 0.9, SOURCE_Y - 0.25, z * 0.9]);
-      const b = toScreen([x, PLATE_Y, z]);
-      sctx.beginPath(); sctx.moveTo(a[0], a[1]); sctx.lineTo(b[0], b[1]); sctx.stroke();
+    for (const x of [-1, 0, 1]) for (const z of [-1, 0, 1]) {
+      const b = toScreen([x * PLATE * 0.95, PLATE_Y, z * PLATE * 0.95]);
+      sctx.beginPath(); sctx.moveTo(src0[0], src0[1] + 14); sctx.lineTo(b[0], b[1]); sctx.stroke();
     }
     sctx.setLineDash([]);
 
@@ -440,7 +454,7 @@ export function createShadowRotator({ idPrefix = 'sr' } = {}) {
     sctx.textAlign = 'right';
     sctx.fillStyle = '#b4bdc8';
     sctx.fillText('מקור הקרינה', src[0] - 60, src[1] + 8);
-    sctx.fillText('גלאי', P3[0] - 12, P3[1] + 50);
+    sctx.fillText('גלאי', P3[0] - 12, P3[1] + 42);
   }
 
   function drawDetector() {
@@ -449,7 +463,10 @@ export function createShadowRotator({ idPrefix = 'sr' } = {}) {
   }
 
   function render() {
-    world = geo.verts.map((p) => apply(R, p));
+    world = geo.verts.map((p) => {
+      const q = apply(R, p);
+      return [q[0] * SCALE, q[1] * SCALE + OBJ_Y, q[2] * SCALE];
+    });
     computeShadow();
     drawScene();
     drawDetector();
