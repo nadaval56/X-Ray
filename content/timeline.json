@@ -66,7 +66,7 @@
         "url": "https://wellcomecollection.org/works/ee3ptpxe"
       },
       "link": {
-        "label": "המקרה: מה הנחש אכל?",
+        "label": "המקרה: מה בבטן של הנחש?",
         "href": "case.html?id=snake-meal-01"
       },
       "image": {
@@ -200,6 +200,7 @@
       "date": "יוני 1962",
       "title": "קרני רנטגן מהחלל",
       "text": "האטמוספרה של כדור הארץ עוצרת קרני רנטגן שמגיעות מהחלל, ולכן אפשר למדוד אותן רק מגובה רב. ריקרדו ג׳קוני והצוות שלו שיגרו מכשיר על גבי רקטה, וגילו לראשונה מקור של קרני רנטגן מחוץ למערכת השמש. על כך קיבל ג׳קוני את פרס הנובל בפיזיקה ב-2002.",
+      "link": { "label": "קרני X מהשמש, עכשיו: מדידה חיה באתר „השמש היום“", "href": "https://sunspots.co.il/#xray-title" },
       "source": {
         "label": "NobelPrize.org — The Nobel Prize in Physics 2002, Popular information",
         "url": "https://www.nobelprize.org/prizes/physics/2002/popular-information/"
