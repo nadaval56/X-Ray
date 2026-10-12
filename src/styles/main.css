@@ -1156,21 +1156,42 @@ a:hover { color: var(--accent-strong); }
 .wl-tasks-list { margin: 0; padding-inline-start: 1.2rem; font-size: 0.9375rem; line-height: 1.6; color: var(--text-2); }
 .wl-tasks-list li + li { margin-top: 0.35rem; }
 
-/* ---------- צללים ---------- */
-.shadow-views { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0; }
-.shadow-view { margin: 0; width: 128px; }
-.shadow-svg { width: 128px; height: 128px; border-radius: var(--radius); border: 1px solid var(--border); }
-.shadow-view figcaption { margin-top: 0.3rem; font-size: 0.8125rem; color: var(--text-muted); text-align: center; }
-.shadow-options { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 0.5rem; }
-.shadow-option {
-  display: grid; justify-items: center; gap: 0.2rem; padding: 0.5rem 0.25rem 0.6rem;
-  border: 1px solid var(--border-strong); border-radius: var(--radius); background: var(--surface);
-  color: var(--text); font: inherit; font-size: 0.875rem; cursor: pointer;
+/* ---------- צורה וצל ---------- */
+.sr {
+  display: grid;
+  gap: 1.25rem;
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg-elev);
 }
-.shadow-option svg { width: 52px; height: 48px; color: var(--accent); }
-.shadow-option:hover:not(:disabled) { border-color: var(--accent); }
-.shadow-option:disabled { opacity: 0.45; cursor: default; }
-.shadow-option.is-wrong { text-decoration: line-through; }
+@media (min-width: 720px) { .sr { padding: 1.75rem; } }
+.sr-stage { display: grid; gap: 1rem; }
+@media (min-width: 720px) { .sr-stage { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); align-items: start; } }
+.sr-fig { margin: 0; }
+.sr-fig figcaption { margin-top: 0.5rem; font-size: 0.875rem; color: var(--text-muted); }
+.sr-scene {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  background: radial-gradient(ellipse at 50% 15%, #131a22, #07090c 70%);
+  border: 1px solid var(--border);
+  cursor: grab;
+  touch-action: none;
+}
+.sr-scene.is-dragging { cursor: grabbing; }
+.sr-scene:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.sr-detector { display: block; width: 100%; max-width: 340px; margin-inline: auto; height: auto; border-radius: var(--radius); border: 1px solid var(--border-strong); background: #0e1013; }
+@media (min-width: 720px) { .sr-detector { max-width: none; } }
+.sr-controls { display: grid; gap: 1.25rem; }
+@media (min-width: 720px) { .sr-controls { grid-template-columns: 1fr 1fr; align-items: start; } }
+.sr fieldset { margin: 0; padding: 0; border: 0; min-width: 0; }
+.sr legend { display: block; margin-bottom: 0.5rem; padding: 0; font-size: 0.875rem; font-weight: 500; color: var(--text-muted); }
+.sr-buttons { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.sr-snap-row { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+.sr-snaps { display: flex; gap: 0.5rem; }
+.sr-snap { width: 64px; height: 64px; border-radius: 8px; border: 1px solid var(--border-strong); }
 
 /* ---------- סרגל קרינה ---------- */
 .rr { margin: 0; }
