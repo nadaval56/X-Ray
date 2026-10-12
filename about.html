@@ -8,56 +8,92 @@
   <body>
     <!-- @header -->
     <main id="main">
+      <!-- אייקונים לפרקים (קישוטיים) -->
+      <svg class="icon-sprite" aria-hidden="true" focusable="false">
+        <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/></symbol>
+        <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6"/><circle cx="12" cy="7.6" r=".9" fill="currentColor"/></symbol>
+        <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5"/><path d="M12 14.5v2.5"/></symbol>
+        <symbol id="i-license" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><circle cx="12" cy="10" r="3.2"/><path d="M8.5 17h7"/></symbol>
+      </svg>
+
       <div class="container">
-        <header class="page-head">
+        <header class="page-head lesson-head">
           <span class="eyebrow">אודות</span>
           <h1>על האתר</h1>
         </header>
 
-        <div class="article">
-          <section class="prose" aria-labelledby="purpose">
-            <h2 id="purpose">המטרה</h2>
-            <p>
-              האתר נועד לסקרנים בכל גיל — ובמיוחד לתלמידי יסודות שאוהבים להבין איך דברים עובדים.
-              במקום להסביר מראש, כל מקרה מזמין אתכם לחקור: לקרוא סיפור, להסתכל על צילום, לנחש — ורק אז לגלות.
-            </p>
-            <p>
-              כל המקרים "רכים": מטבעות שנבלעו, שברים שהחלימו, שיניים שגדלות. בלי מחלות קשות ובלי תמונות קשות.
-            </p>
-          </section>
+        <div class="lesson-layout">
+          <nav class="lesson-nav" aria-label="בעמוד הזה">
+            <p class="lesson-nav-title">בעמוד הזה</p>
+            <ol>
+              <li><a href="#purpose"><span class="lesson-nav-ico"><svg><use href="#i-target"/></svg></span>המטרה</a></li>
+              <li><a href="#medical"><span class="lesson-nav-ico"><svg><use href="#i-info"/></svg></span>הבהרה רפואית</a></li>
+              <li><a href="#privacy"><span class="lesson-nav-ico"><svg><use href="#i-lock"/></svg></span>פרטיות</a></li>
+              <li><a href="#credits"><span class="lesson-nav-ico"><svg><use href="#i-license"/></svg></span>קרדיטים ורישיונות</a></li>
+            </ol>
+          </nav>
 
-          <section class="prose" aria-labelledby="medical">
-            <h2 id="medical">הבהרה רפואית</h2>
-            <div class="callout">
-              <p><strong>האתר נועד ללמידה בלבד ואינו כלי אבחון.</strong></p>
-              <p>
-                אין להסתמך על התוכן כאן כדי להחליט החלטות רפואיות, ואין להשוות אליו צילומים אישיים.
-                בכל שאלה רפואית יש לפנות לרופא.
-              </p>
-            </div>
-          </section>
+          <div class="lessons">
+            <section id="purpose" class="lesson" aria-labelledby="purpose-h">
+              <header class="lesson-title">
+                <span class="lesson-ico" aria-hidden="true"><svg><use href="#i-target"/></svg></span>
+                <h2 id="purpose-h">המטרה</h2>
+              </header>
+              <div class="prose">
+                <p>
+                  האתר נועד לסקרנים בכל גיל — ובמיוחד לתלמידי יסודות שאוהבים להבין איך דברים עובדים.
+                  במקום להסביר מראש, כל מקרה מזמין אתכם לחקור: לקרוא סיפור, להסתכל על צילום, לנחש — ורק אז לגלות.
+                </p>
+                <p>
+                  כל המקרים "רכים": מטבעות שנבלעו, שברים שהחלימו, שיניים שגדלות. בלי מחלות קשות ובלי תמונות קשות.
+                </p>
+              </div>
+            </section>
 
-          <section class="prose" aria-labelledby="privacy">
-            <h2 id="privacy">פרטיות</h2>
-            <p>
-              הצילומים באתר כבר פורסמו בעבר במקורות פתוחים, ואין בהם פרטים מזהים. כל סיפורי המקרה נכתבו מחדש,
-              עם שמות בדויים.
-            </p>
-          </section>
+            <section id="medical" class="lesson lesson-warn" aria-labelledby="medical-h">
+              <header class="lesson-title">
+                <span class="lesson-ico" aria-hidden="true"><svg><use href="#i-info"/></svg></span>
+                <h2 id="medical-h">הבהרה רפואית</h2>
+              </header>
+              <div class="prose">
+                <p><strong>האתר נועד ללמידה בלבד ואינו כלי אבחון.</strong></p>
+                <p>
+                  אין להסתמך על התוכן כאן כדי להחליט החלטות רפואיות, ואין להשוות אליו צילומים אישיים.
+                  בכל שאלה רפואית יש לפנות לרופא.
+                </p>
+              </div>
+            </section>
 
-          <section aria-labelledby="credits">
-            <div class="prose">
-              <h2 id="credits">קרדיטים ורישיונות</h2>
-              <p>
-                אנחנו משתמשים רק בתמונות עם רישיון פתוח שמאפשר שימוש ושינוי: CC BY, CC0, או נחלת הכלל.
-                הרישיון של כל תמונה נבדק בעמוד המקור. הרשימה כאן נוצרת אוטומטית מנתוני המקרים.
-              </p>
-            </div>
-            <h3>תמונות</h3>
-            <div id="credits-images"></div>
-            <h3 style="margin-top: 2rem">נתונים</h3>
-            <div id="credits-data"></div>
-          </section>
+            <section id="privacy" class="lesson" aria-labelledby="privacy-h">
+              <header class="lesson-title">
+                <span class="lesson-ico" aria-hidden="true"><svg><use href="#i-lock"/></svg></span>
+                <h2 id="privacy-h">פרטיות</h2>
+              </header>
+              <div class="prose">
+                <p>
+                  הצילומים באתר כבר פורסמו בעבר במקורות פתוחים, ואין בהם פרטים מזהים. כל סיפורי המקרה נכתבו מחדש,
+                  עם שמות בדויים.
+                </p>
+              </div>
+            </section>
+
+            <section id="credits" class="lesson" aria-labelledby="credits-h">
+              <header class="lesson-title">
+                <span class="lesson-ico" aria-hidden="true"><svg><use href="#i-license"/></svg></span>
+                <h2 id="credits-h">קרדיטים ורישיונות</h2>
+              </header>
+              <div class="prose">
+                <p>
+                  אנחנו משתמשים רק בתמונות עם רישיון פתוח שמאפשר שימוש ושינוי: CC BY, CC0, או נחלת הכלל.
+                  הרישיון של כל תמונה נבדק בעמוד המקור. הרשימה כאן נוצרת אוטומטית מנתוני המקרים.
+                </p>
+              </div>
+              <h3 class="lesson-sub">תמונות</h3>
+              <div id="credits-images"></div>
+              <h3 class="lesson-sub">נתונים</h3>
+              <div id="credits-data"></div>
+            </section>
+          </div>
         </div>
       </div>
     </main>
