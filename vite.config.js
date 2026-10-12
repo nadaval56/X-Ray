@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 import { resolve, basename } from 'node:path';
 import { readFileSync, readdirSync } from 'node:fs';
-import { SITE, NAV, DISCLAIMER } from './src/config.js';
+import { SITE, NAV, LAB, DISCLAIMER } from './src/config.js';
 
 const PAGES = [
   'index', 'cases', 'case', 'physics', 'history', 'about',
@@ -36,6 +36,8 @@ function layoutPartials() {
         ].join('\n    ');
 
         return html
+          .replace('<!-- @labnav -->', labNav(page))
+          .replace('<!-- @labpager -->', labPager(page))
           .replace('<!-- @head -->', `${partial('head')}\n    ${og}`)
           .replace('<!-- @header -->', partial('header').replace('{{NAV}}', navItems))
           .replace('<!-- @footer -->', partial('footer').replace('{{DISCLAIMER}}', DISCLAIMER))
@@ -44,6 +46,24 @@ function layoutPartials() {
       },
     },
   };
+}
+
+// תפריט המעבדה בראש כל עמוד כלי: כל הכלים, עם הכלי הנוכחי מסומן
+function labNav(page) {
+  const items = LAB.map(({ page: p, label }) =>
+    `<li><a href="./${p}.html"${p === page ? ' aria-current="page"' : ''}>${label}</a></li>`).join('');
+  return `<nav class="subnav" aria-label="כלי המעבדה"><ul><li><a href="./lab.html">כל המעבדה</a></li>${items}</ul></nav>`;
+}
+
+// מעבר לכלי הקודם / הבא בתחתית עמוד כלי
+function labPager(page) {
+  const i = LAB.findIndex((t) => t.page === page);
+  if (i < 0) return '';
+  const prev = LAB[i - 1], next = LAB[i + 1];
+  const link = (t, dir) => (t
+    ? `<a class="pager-link pager-${dir}" href="./${t.page}.html"><span class="pager-dir">${dir === 'prev' ? 'הכלי הקודם' : 'הכלי הבא'}</span><span class="pager-title">${t.label}</span></a>`
+    : '<span></span>');
+  return `<nav class="pager" aria-label="מעבר בין כלי המעבדה">${link(prev, 'prev')}${link(next, 'next')}</nav>`;
 }
 
 // sitemap.xml + robots.txt בזמן build. עמודי המקרים נוצרים מרשימת קובצי ה-JSON.

@@ -1,10 +1,10 @@
 // עמוד מקרה: סיפור → אתגר → חשיפה → עיקרון → סיום → קרדיט.
 // האתגר הוא אחד משניים, לפי מה שמעניין יותר במקרה:
 //   - סימון על הצילום ("איפה?") — ברירת המחדל;
-//   - שאלה אמריקאית ("מה רואים?") — כשיש challenge.identify. אז הצילום לא לסימון, והממצא מסומן בחשיפה.
+//   - שאלה אמריקאית ("מה רואים?") — כשיש challenge.identify. אז הצילום רק להסתכלות, בלי סימון ובלי עיגולים.
 // השלבים שאחרי האתגר מוסתרים עד שהתלמיד פותר אותו או מבקש לראות את התשובה.
 import { h, prefersReducedMotion } from '../lib/dom.js';
-import { getCase, mainImage, imagesByRole, imageUrl, categories, principles } from '../data/content.js';
+import { cases, getCase, mainImage, imagesByRole, imageUrl, caseUrl, categories, principles } from '../data/content.js';
 import { createHotspot } from '../components/hotspot.js';
 import { createCompare } from '../components/compare.js';
 import { createQuiz } from '../components/quiz.js';
@@ -58,7 +58,6 @@ function renderCase(c) {
   // ---------- 2. האתגר: מה רואים? (שאלה אמריקאית) או איפה? (סימון) ----------
   const identify = c.challenge?.identify;
   const explain = c.challenge?.explain;
-  const score = {};
   let misses = 0;
   const feedback = h('div', { class: 'feedback', role: 'status', 'aria-live': 'polite' });
   const checkBtn = h('button', { type: 'button', class: 'btn btn-primary', disabled: true, text: 'בדיקה' });
@@ -83,7 +82,6 @@ function renderCase(c) {
   });
   checkBtn.addEventListener('click', () => hotspot.check());
   answerBtn.addEventListener('click', () => {
-    score.locate = { gaveUp: true, attempts: misses };
     setFeedback('is-near', 'הנה התשובה — הממצא מסומן על הצילום בעיגול ירוק.');
     finish();
   });
@@ -98,10 +96,7 @@ function renderCase(c) {
   const identifyQuiz = identify && createQuiz({
     ...identify,
     id: 'identify',
-    onDone: (r) => {
-      score.identify = r;
-      finish();
-    },
+    onDone: () => finish(),
   });
 
   const hypothesis = h('section', { class: 'step case-media', 'aria-labelledby': identify ? 'step-id' : 'step-q' },
@@ -124,7 +119,6 @@ function renderCase(c) {
       if (misses >= MISSES_BEFORE_ANSWER) answerBtn.hidden = false;
       return;
     }
-    score.locate = { gaveUp: false, attempts: misses + 1 };
     setFeedback(status === 'hit' ? 'is-hit' : 'is-near',
       status === 'hit' ? `מצאתם! ${finding.label}.` : `קרוב מאוד — זה האזור: ${finding.label}.`);
     finish();
@@ -168,16 +162,13 @@ function renderCase(c) {
     h('p', { text: c.principle.text }),
     h('p', {}, h('a', { href: `./${principle.href}`, text: 'להסבר המלא ב"איך זה עובד"' })),
   );
-  const summary = h('ul', { class: 'score' });
   const explainQuiz = explain && createQuiz({
     ...explain,
     id: 'explain',
-    onDone: (r) => {
-      score.explain = r;
+    onDone: () => {
       principleBox.hidden = false;
       principleBox.classList.add('is-entering');
       for (const el of afterExplain) { el.hidden = false; el.classList.add('is-entering'); }
-      renderSummary();
     },
   });
   step(4, 'למה זה נראה ככה?', explain ? explain.question : principle.title,
@@ -186,7 +177,7 @@ function renderCase(c) {
   );
   if (explainQuiz) explainQuiz.el.querySelector('.quiz-question').classList.add('visually-hidden');
 
-  const outcomeStep = step(5, 'מה קרה בסוף', 'הסוף הטוב', h('p', { text: c.outcome }), ...extraFigures('outcome'), summary);
+  const outcomeStep = step(5, 'מה קרה בסוף', 'הסוף הטוב', h('p', { text: c.outcome }), ...extraFigures('outcome'));
 
   const creditStep = step(6, 'קרדיט', 'מקור התמונות',
     creditsList(c.images.map((im) => creditItem(im, {
@@ -208,18 +199,6 @@ function renderCase(c) {
 
   if (explain) afterExplain.push(outcomeStep, creditStep);
 
-  function renderSummary() {
-    const rows = [
-      identify && ['זיהוי', score.identify],
-      ['מיקום', score.locate],
-      explain && ['הסבר', score.explain],
-    ].filter(Boolean).filter(([, r]) => r);
-    summary.replaceChildren(...rows.map(([label, r]) => h('li', { class: r.gaveUp ? 'is-gaveup' : 'is-ok' },
-      h('span', { class: 'score-label', text: label }),
-      r.gaveUp ? 'ראיתם את התשובה' : r.attempts === 1 ? 'בניסיון הראשון' : `אחרי ${r.attempts} ניסיונות`,
-    )));
-  }
-
   function finish() {
     hotspot && hotspot.reveal();
     checkBtn.hidden = true;
@@ -230,12 +209,28 @@ function renderCase(c) {
       el.hidden = false;
       el.classList.add('is-entering');
     }
-    renderSummary();
   }
 
   root.replaceChildren(h('div', { class: 'case-layout' },
     head,
     hypothesis,
     h('div', { class: 'case-steps' }, revealSteps),
+    casePager(c),
   ));
+}
+
+// מעבר למקרה הקודם / הבא (לפי הסדר ברשימת המקרים), וחזרה לרשימה
+function casePager(c) {
+  const i = cases.indexOf(c);
+  const prev = cases[i - 1], next = cases[i + 1];
+  const link = (t, dir) => (t
+    ? h('a', { class: `pager-link pager-${dir}`, href: caseUrl(t.id) },
+      h('span', { class: 'pager-dir', text: dir === 'prev' ? 'המקרה הקודם' : 'המקרה הבא' }),
+      h('span', { class: 'pager-title', text: t.title }))
+    : h('span'));
+  return h('nav', { class: 'pager case-pager', 'aria-label': 'מעבר בין מקרים' },
+    link(prev, 'prev'),
+    h('a', { class: 'pager-all', href: './cases.html' }, 'כל המקרים', h('span', { class: 'pager-count', text: `${i + 1} מתוך ${cases.length}` })),
+    link(next, 'next'),
+  );
 }

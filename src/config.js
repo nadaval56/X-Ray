@@ -17,5 +17,14 @@ export const NAV = [
   { href: 'about.html', label: 'אודות', pages: ['about'] },
 ];
 
+// כלי המעבדה, לפי הסדר — לתפריט המעבדה ולמעבר "הקודם / הבא" בעמודי הכלים
+export const LAB = [
+  { page: 'lab-attenuation', label: 'סימולטור בליעה' },
+  { page: 'lab-density', label: 'מיון צפיפויות' },
+  { page: 'lab-window', label: 'בהירות וניגודיות' },
+  { page: 'lab-shadows', label: 'צורה וצל' },
+  { page: 'lab-dose', label: 'סרגל קרינה' },
+];
+
 export const DISCLAIMER =
   'האתר נועד ללמידה בלבד ואינו כלי אבחון. אין להסתמך עליו להחלטות רפואיות — בכל שאלה רפואית יש לפנות לרופא.';

@@ -22,3 +22,12 @@ if (toggle && nav) {
     if (nav.classList.contains('is-open') && !nav.contains(e.target) && !toggle.contains(e.target)) setOpen(false);
   });
 }
+
+// תפריט משני שנגלל לרוחב (בנייד): לגלול אליו כך שהפריט הנוכחי ייראה
+for (const sub of document.querySelectorAll('.subnav')) {
+  const cur = sub.querySelector('[aria-current="page"]');
+  if (!cur || sub.scrollWidth <= sub.clientWidth) continue;
+  const r = cur.getBoundingClientRect();
+  const n = sub.getBoundingClientRect();
+  if (r.left < n.left || r.right > n.right) sub.scrollBy({ left: r.left - n.left - (n.width - r.width) / 2 });
+}
