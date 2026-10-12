@@ -62,7 +62,8 @@ https://physics.nist.gov/PhysRefData/XrayMassCoef/ — אומת מול הטבל�
 - פרס נובל 1901 — NobelPrize.org, Physics 1901 summary.
 - מארי קירי: 20 תחנות ניידות, 200 קבועות, הכשרת כ-150 נשים — American Institute of Physics, Marie Curie exhibit.
 - מכשירי רנטגן בחנויות נעליים: הוצג ב-1920, נפוץ בשנות ה-30 עד ה-50, פנסילבניה אסרה ב-1957 — ORAU Museum.
-- Franklin & Gosling, Nature 171, 25.4.1953. **TODO: לאמת** את הכינוי "תצלום 51" ואת מועד הצילום (1952).
+- Franklin & Gosling, Nature 171, 25.4.1953. הכינוי "תצלום 51" והשנה שבה צולם (1952) — אומתו (2026-10-12) מול שני מאמרים בביקורת עמיתים: Ciurea et al., J Med Life 2024 (PMC11282898) ו-Attar, Genome Biology 2013 (PMC3663117, ראיון עם גוסלינג).
+  התאריך המדויק "2 במאי 1952" **לא** הוכנס: המקור היחיד שנמצא לו (Acta Cryst A, PMC13325185) מצטט את ויקיפדיה, ובארכיון המסמכים של פרנקלין ב-NLM הוא לא מופיע.
 - ג׳קוני, יוני 1962, נובל 2002 — NobelPrize.org, Physics 2002 popular information.
 - צ׳נדרה, 23.7.1999 — NASA.
 

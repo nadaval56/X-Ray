@@ -31,8 +31,8 @@ document.getElementById('credits-data').append(creditsList([
     h('a', { class: 'credit-title', href: doses.source.url, rel: 'noopener', target: '_blank', text: doses.source.label }),
     h('div', { text: 'מנות הקרינה בסרגל הקרינה.' }),
   ),
-  ...timeline.events.map((e) => h('li', {},
-    h('a', { class: 'credit-title', href: e.source.url, rel: 'noopener', target: '_blank', text: e.source.label }),
+  ...timeline.events.flatMap((e) => [e.source, ...(e.moreSources ?? [])].map((src) => h('li', {},
+    h('a', { class: 'credit-title', href: src.url, rel: 'noopener', target: '_blank', text: src.label }),
     h('div', { text: `ציר הזמן: ${e.title} (${e.date})` }),
-  )),
+  ))),
 ]));
