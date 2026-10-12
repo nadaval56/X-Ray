@@ -1,5 +1,8 @@
-// עמוד מקרה: סיפור → השערה (סימון על הצילום) → חשיפה → עיקרון → סיום → קרדיט.
-// השלבים שאחרי ההשערה מוסתרים עד שהתלמיד מוצא את הממצא או מבקש לראות את התשובה.
+// עמוד מקרה: סיפור → אתגר → חשיפה → עיקרון → סיום → קרדיט.
+// האתגר הוא אחד משניים, לפי מה שמעניין יותר במקרה:
+//   - סימון על הצילום ("איפה?") — ברירת המחדל;
+//   - שאלה אמריקאית ("מה רואים?") — כשיש challenge.identify. אז הצילום לא לסימון, והממצא מסומן בחשיפה.
+// השלבים שאחרי האתגר מוסתרים עד שהתלמיד פותר אותו או מבקש לראות את התשובה.
 import { h, prefersReducedMotion } from '../lib/dom.js';
 import { getCase, mainImage, imagesByRole, imageUrl, categories, principles } from '../data/content.js';
 import { createHotspot } from '../components/hotspot.js';
@@ -55,7 +58,7 @@ function renderCase(c) {
     ),
   );
 
-  // ---------- 2. מה רואים? (זיהוי) ואיפה בדיוק? (סימון) ----------
+  // ---------- 2. האתגר: מה רואים? (שאלה אמריקאית) או איפה? (סימון) ----------
   const identify = c.challenge?.identify;
   const explain = c.challenge?.explain;
   const score = {};
@@ -83,9 +86,7 @@ function renderCase(c) {
     finish();
   });
 
-  // שלב הסימון: גלוי מההתחלה אם אין שאלת זיהוי, אחרת נפתח אחריה
-  const locate = h('div', { class: 'locate', hidden: Boolean(identify) },
-    identify && stepLabel('3', 'איפה בדיוק?'),
+  const locate = !identify && h('div', { class: 'locate' },
     h('h3', { class: 'locate-q', id: 'step-q', text: c.question }),
     h('p', { class: 'muted', text: 'לחצו על הצילום במקום שבו לדעתכם נמצא הממצא, ואז על "בדיקה". אפשר לשנות את הסימון כמה שרוצים.' }),
     h('div', { class: 'btn-row' }, checkBtn, answerBtn),
@@ -97,14 +98,12 @@ function renderCase(c) {
     id: 'identify',
     onDone: (r) => {
       score.identify = r;
-      hotspot.unlock();
-      locate.hidden = false;
-      locate.classList.add('is-entering');
+      finish();
     },
   });
 
   const hypothesis = h('section', { class: 'step case-media', 'aria-labelledby': identify ? 'step-id' : 'step-q' },
-    stepLabel('2', identify ? 'מה רואים?' : 'ההשערה שלך'),
+    stepLabel('2', identify ? 'מה רואים?' : 'איפה?'),
     identify && h('h2', { id: 'step-id', class: 'visually-hidden', text: identify.question }),
     hotspot.el,
     identifyQuiz && identifyQuiz.el,
@@ -132,7 +131,6 @@ function renderCase(c) {
   // ---------- 3–6: מוסתרים עד החשיפה ----------
   const revealSteps = [];
   const afterExplain = [];
-  const n = (k) => (identify ? k + 1 : k);
   const step = (num, label, title, ...body) => {
     const headingId = `step-${num}`;
     const el = h('section', { class: 'step', hidden: true, 'aria-labelledby': headingId },
@@ -153,7 +151,7 @@ function renderCase(c) {
       im.caption && h('figcaption', { text: im.caption }),
     ));
 
-  const revealStep = step(n(3), 'החשיפה', [...new Set(main.findings.map((f) => f.label))].join(', '),
+  const revealStep = step(3, 'החשיפה', [...new Set(main.findings.map((f) => f.label))].join(', '),
     h('p', { text: c.reveal }),
     normal && createCompare({
       left: { src: imageUrl(normal.file), alt: normal.alt, label: 'צילום תקין' },
@@ -180,15 +178,15 @@ function renderCase(c) {
       renderSummary();
     },
   });
-  step(n(4), 'למה זה נראה ככה?', explain ? explain.question : principle.title,
+  step(4, 'למה זה נראה ככה?', explain ? explain.question : principle.title,
     explainQuiz && explainQuiz.el,
     principleBox,
   );
   if (explainQuiz) explainQuiz.el.querySelector('.quiz-question').classList.add('visually-hidden');
 
-  const outcomeStep = step(n(5), 'מה קרה בסוף', 'הסוף הטוב', h('p', { text: c.outcome }), ...extraFigures('outcome'), summary);
+  const outcomeStep = step(5, 'מה קרה בסוף', 'הסוף הטוב', h('p', { text: c.outcome }), ...extraFigures('outcome'), summary);
 
-  const creditStep = step(n(6), 'קרדיט', 'מקור התמונות',
+  const creditStep = step(6, 'קרדיט', 'מקור התמונות',
     creditsList(c.images.map((im) => creditItem(im, {
       context: { main: 'הצילום במקרה', normal: 'צילום תקין להשוואה', 'second-view': 'מנח נוסף' }[im.role],
     }))),
@@ -224,7 +222,7 @@ function renderCase(c) {
     hotspot.reveal();
     checkBtn.hidden = true;
     answerBtn.hidden = true;
-    feedback.append(h('div', {}, continueBtn));
+    (identifyQuiz ? identifyQuiz.el : feedback).append(h('div', {}, continueBtn));
     for (const el of revealSteps) {
       if (afterExplain.includes(el)) continue;
       el.hidden = false;
