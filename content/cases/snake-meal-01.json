@@ -1,10 +1,10 @@
 {
   "id": "snake-meal-01",
   "editorNotes": "מקור: Wellcome Collection, \"A snake in the process of swallowing a small mammal, probably a mouse, viewed through x-ray. Photoprint from radiograph after Sir Arthur Schuster, 1896\". בעמוד המקור הרישיון הוא Public Domain Mark (ב-Commons כתוב CC BY 4.0 — הלכנו לפי המקור).",
-  "title": "מה הנחש אכל?",
+  "title": "מה בבטן של הנחש?",
   "category": "animals",
   "difficulty": 1,
-  "story": "בשנת 1896, חודשים ספורים אחרי שהתגלו קרני הרנטגן, הפיזיקאי ארתור שוסטר צילם נחש באמצע ארוחה. מבחוץ רואים רק נחש עם בטן קצת עבה.",
+  "story": "בשנת 1896, חודשים ספורים אחרי שהתגלו קרני הרנטגן, הפיזיקאי ארתור שוסטר צילם נחש. מבחוץ רואים רק נחש עם בטן קצת עבה.",
   "challenge": {
     "identify": {
       "question": "מה יש בתוך הנחש?",
@@ -50,7 +50,7 @@
       ]
     }
   },
-  "question": "מה הנחש בלע, ואיפה זה נמצא?",
+  "question": "מה יש בתוך הנחש?",
   "hint": "זו הדפסה ישנה, והצבעים בה הפוכים: עצמות נראות כהות. חפשו שלד שלא שייך לנחש.",
   "images": [
     {
