@@ -367,7 +367,7 @@ export function createShadowRotator({ idPrefix = 'sr' } = {}) {
   // ---------- ציור הסצנה ----------
   const W = scene.width, H = scene.height;
   const S = 135;                          // פיקסלים ליחידה
-  const CX = W / 2, CY = H * 0.475;
+  const CX = W / 2, CY = H * 0.52;
   const toScreen = (p) => { const q = apply(VIEW, p); return [CX + S * q[0], CY - S * q[1], q[2]]; };
   const LIGHT = norm([-0.45, 0.75, 0.5]);
 
@@ -451,10 +451,11 @@ export function createShadowRotator({ idPrefix = 'sr' } = {}) {
     // תוויות
     sctx.font = '500 26px Heebo, system-ui, sans-serif';
     sctx.direction = 'rtl';
-    sctx.textAlign = 'right';
     sctx.fillStyle = '#b4bdc8';
-    sctx.fillText('מקור הקרינה', src[0] - 60, src[1] + 8);
-    sctx.fillText('גלאי', P3[0] - 12, P3[1] + 42);
+    sctx.textAlign = 'center';
+    sctx.fillText('מקור הקרינה', src[0], src[1] - 34);
+    sctx.textAlign = 'right';
+    sctx.fillText('גלאי', P2[0] - 14, P2[1] + 8);
   }
 
   function drawDetector() {
