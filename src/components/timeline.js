@@ -25,7 +25,9 @@ export function createTimeline({ events }) {
       h('p', { class: 'tl-meta' },
         h('a', { href: e.source.url, rel: 'noopener', target: '_blank' }, 'מקור: ', e.source.label),
         ...(e.moreSources ?? []).map((m) => h('a', { href: m.url, rel: 'noopener', target: '_blank', text: m.label })),
-        e.link && h('a', { class: 'tl-case', href: `./${e.link.href}`, text: e.link.label }),
+        e.link && (/^https?:/.test(e.link.href)
+          ? h('a', { class: 'tl-case', href: e.link.href, rel: 'noopener', target: '_blank', text: e.link.label })
+          : h('a', { class: 'tl-case', href: `./${e.link.href}`, text: e.link.label })),
       ),
     ),
   )));
