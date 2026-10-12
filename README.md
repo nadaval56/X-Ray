@@ -19,7 +19,7 @@ npm run preview    # הצגת ה-build
 *.html                    עמודים (index, cases, case, physics, history, about, lab, lab-*)
 src/config.js             שם האתר (placeholder), ניווט והבהרה רפואית. במקום אחד
 src/partials/             head, כותרת ופוטר משותפים, מוזרקים בזמן build
-src/components/           רכיבים עצמאיים: hotspot, compare, attenuation-sim, density-sort, window-level, shadow-guess, radiation-ruler, timeline, credits
+src/components/           רכיבים עצמאיים: hotspot, compare, attenuation-sim, density-sort, window-level, shadow-rotator, radiation-ruler, timeline, credits
 src/pages/                קוד לכל עמוד
 src/styles/main.css       מערכת העיצוב (tokens בראש הקובץ)
 content/cases/*.json      מקרים, אחד לכל קובץ
