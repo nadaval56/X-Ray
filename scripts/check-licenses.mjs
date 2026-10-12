@@ -22,6 +22,7 @@ const media = readJson(resolve(ROOT, 'content/media.json')).items ?? [];
 const groups = [
   ...loadCases().filter((c) => !c.error).map(({ file, data }) => ({ file, images: data.images ?? [] })),
   { file: 'media.json', images: media },
+  (() => { const sc = readJson(resolve(ROOT, 'content/scanner.json')); return { file: 'scanner.json', images: [{ file: `COMPASS-XP (${sc.items.length} סריקות)`, source: sc.source }] }; })(),
   { file: 'timeline.json', images: (readJson(resolve(ROOT, 'content/timeline.json')).events ?? []).map((e) => e.image).filter(Boolean) },
 ];
 
