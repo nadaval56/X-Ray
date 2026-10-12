@@ -164,8 +164,7 @@
       "year": "1953",
       "date": "25 באפריל 1953",
       "title": "צילום רנטגן של DNA",
-      "text": "רוזלינד פרנקלין והסטודנט שלה ריימונד גוסלינג האירו סיבים של DNA בקרני רנטגן, וצילמו את הדפוס שנוצר כשהקרניים מתפזרות מהמולקולה. התמונה, שפורסמה בכתב העת Nature, הראתה צורת X ברורה — רמז חשוב לכך שה-DNA בנוי כסליל. היא נודעה בשם \"תצלום 51\".",
-      "todo": "TODO: לאמת את הכינוי \"תצלום 51\" ואת תאריך הצילום עצמו (1952) מול מקור.",
+      "text": "רוזלינד פרנקלין והדוקטורנט שלה ריימונד גוסלינג האירו סיבים של DNA בקרני רנטגן, וצילמו את הדפוס שנוצר כשהקרניים מתפזרות מהמולקולה. אחד הצילומים, שצולם ב-1952 ונודע בשם \"תצלום 51\", הראה צורת X ברורה — רמז חשוב לכך שה-DNA בנוי כסליל. הוא פורסם בכתב העת Nature באפריל 1953.",
       "source": {
         "label": "Franklin & Gosling, Molecular Configuration in Sodium Thymonucleate, Nature 171 (1953)",
         "url": "https://www.nature.com/articles/171740a0"
@@ -183,7 +182,17 @@
           "modifications": "הקטנה, המרה ל-WebP",
           "verifiedOn": "2026-10-11"
         }
-      }
+      },
+      "moreSources": [
+        {
+          "label": "Ciurea et al., Celebrating 70 years of DNA discovery, J Med Life (2024) — \"taken in 1952 by Raymond Gosling… commonly referred to as Photo 51\"",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11282898/"
+        },
+        {
+          "label": "Attar, Raymond Gosling: the man who crystallized genes, Genome Biology (2013)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3663117/"
+        }
+      ]
     },
     {
       "id": "space",
