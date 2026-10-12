@@ -118,4 +118,17 @@ for (const e of readJson(resolve(ROOT, 'content/timeline.json')).events ?? []) {
   for (const key of SOURCE_FIELDS) if (!isText(m.source?.[key])) err(`source.${key} חסר`);
 }
 
+// סורק המזוודות (content/scanner.json): מקור מלא, ולכל חפץ שלושת הקבצים
+{
+  const sc = readJson(resolve(ROOT, 'content/scanner.json'));
+  const err = (msg) => errors.push(`scanner.json: ${msg}`);
+  for (const key of SOURCE_FIELDS) if (!isText(sc.source?.[key])) err(`source.${key} חסר`);
+  for (const it of sc.items ?? []) {
+    if (!isText(it.label) || !isText(it.note)) err(`${it.scan}: label או note חסר`);
+    for (const kind of ['photo', 'colour', 'grey']) {
+      if (!existsSync(resolve(PUBLIC_DIR, `scanner/${it.scan}-${kind}.webp`))) err(`${it.scan}: חסר scanner/${it.scan}-${kind}.webp`);
+    }
+  }
+}
+
 report('בדיקת מקרים', errors, `${cases.length} מקרים תקינים`);

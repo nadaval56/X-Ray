@@ -82,15 +82,14 @@ https://physics.nist.gov/PhysRefData/XrayMassCoef/ — אומת מול הטבל�
 
 ## סורק המזוודות (content/scanner.json)
 
-- מקדמי בליעה ב-60 keV מטבלאות NIST (Hubbell & Seltzer, SRD 126), נבדקו 2026-10-12:
-  מים 0.2059, פוליאתילן 0.1970 (ρ 0.93), PET/Mylar 0.1868 (ρ 1.38), פוליסטירן 0.1870 (ρ 1.06),
-  זכוכית בורוסיליקט (Pyrex) 0.2417 (ρ 2.23), אלומיניום 0.2778 (ρ 2.699), ברזל 1.205 (ρ 7.874), נחושת 1.593 (ρ 8.96) — μ/ρ ב-cm²/g.
-  https://physics.nist.gov/PhysRefData/XrayMassCoef/
-- קירובים (מסומנים ב-approx בקובץ): נייר, בד, עץ ומילוי של בובה כחומר אורגני (μ/ρ של PET) בצפיפויות משוערות;
-  פרי, דבש ולחם כמים בצפיפויות משוערות; פלדה כברזל; גומי כפוליסטירן.
-- המבנה והעוביים של החפצים (מחשב, טלפון, מטען וכו') הם הערכות סבירות לצורך המחשה, לא מדידות.
-- סורק אמיתי עובד בספקטרום של אנרגיות (לרוב עד 160 קילו-וולט ויותר), לא באנרגיה אחת. הסדר בין החומרים נשמר.
-- "הצבעים הפוכים מבית חולים": בתצוגת אפור של סורקי מזוודות, מה שבולע הרבה קרינה מוצג כהה והרקע לבן. TODO: לצטט מקור.
+- הצילומים: COMPASS-XP, ‏Griffin, Caldwell & Andrews, ‏UCL, ‏2019. https://zenodo.org/records/2654887 —
+  רישיון CC BY 4.0, נבדק ב-Zenodo וב-Read Me של המאגר ("may be freely used for research and commercial purpose, including derivative works, providing the source is acknowledged"), 2026-10-12.
+  הסורק: Gilardoni FEP ME 536, סורק דו-אנרגטי לדואר וחבילות. העיבוד: scripts/import_compass.py.
+- הצבעים: Rapiscan Systems, "Dual-energy transmission X-ray": "Organic materials are orange, mixed materials are green, and metallic is blue."
+  https://rapiscansystems.com/en/technologies/dual-energy-transmission-x-ray — צביעה לפי אומדן המספר האטומי משתי אנרגיות.
+  וגם: Liang et al., arXiv:1912.06329 (2019). שיטת הצבעים משתנה מעט בין יצרנים.
+- "הפוך מבית חולים": בצילומי האפור של המאגר הרקע בהיר וחומר שבולע הרבה כהה — נראה ישירות בצילומים שבאתר.
+- התיאורים הקצרים של כל חפץ נכתבו לפי מה שנראה בצילומים עצמם.
 
 ## שיקוף דואר (עמוד סורק המזוודות)
 

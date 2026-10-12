@@ -1,85 +1,38 @@
 {
-  "_comment": "סורק המזוודות. חומרים: μ = (μ/ρ) × ρ ב-1/ס״מ, μ/ρ מ-NIST ב-60 keV (ראו content/sources.md). חלק מהחומרים הם קירוב (מסומן ב-approx). המזוודות: רשימת חפצים ומיקומם (ס״מ) בתוך מזוודה בגודל 60×40. איך כל חפץ נראה (כמעט לא רואים / רואים חלש / רואים חזק) מחושב בקוד מהחומרים.",
-  "energyKeV": 60,
-  "materials": {
-    "water":    { "label": "מים",                 "muRho": 0.2059, "density": 1.0,   "nist": "Water, Liquid" },
-    "apple":    { "label": "פרי (בעיקר מים)",       "muRho": 0.2059, "density": 0.85,  "nist": "Water, Liquid", "approx": "פרי כמים בצפיפות 0.85" },
-    "honey":    { "label": "דבש",                 "muRho": 0.2059, "density": 1.4,   "nist": "Water, Liquid", "approx": "דבש כמים בצפיפות 1.4" },
-    "bread":    { "label": "לחם",                 "muRho": 0.2059, "density": 0.3,   "nist": "Water, Liquid", "approx": "לחם כמים בצפיפות 0.3 (הרבה אוויר)" },
-    "paper":    { "label": "נייר",                "muRho": 0.1868, "density": 0.8,   "nist": "Polyethylene Terephthalate, (Mylar)", "approx": "נייר כחומר אורגני (μ/ρ של PET) בצפיפות 0.8" },
-    "cloth":    { "label": "בד מקופל",            "muRho": 0.1868, "density": 0.3,   "nist": "Polyethylene Terephthalate, (Mylar)", "approx": "בד מקופל, עם אוויר בין השכבות" },
-    "stuffing": { "label": "מילוי של בובה",        "muRho": 0.1868, "density": 0.03,  "nist": "Polyethylene Terephthalate, (Mylar)", "approx": "סיבי מילוי עם הרבה אוויר" },
-    "wood":     { "label": "עץ",                  "muRho": 0.1868, "density": 0.6,   "nist": "Polyethylene Terephthalate, (Mylar)", "approx": "עץ כחומר אורגני בצפיפות 0.6" },
-    "plastic":  { "label": "פלסטיק",              "muRho": 0.1970, "density": 0.93,  "nist": "Polyethylene" },
-    "pet":      { "label": "פלסטיק של בקבוק",     "muRho": 0.1868, "density": 1.38,  "nist": "Polyethylene Terephthalate, (Mylar)" },
-    "rubber":   { "label": "גומי",                "muRho": 0.1870, "density": 1.06,  "nist": "Polystyrene", "approx": "גומי של סוליה כפולימר בצפיפות 1.06" },
-    "glass":    { "label": "זכוכית",              "muRho": 0.2417, "density": 2.23,  "nist": "Glass, Borosilicate (Pyrex)" },
-    "aluminum": { "label": "אלומיניום",           "muRho": 0.2778, "density": 2.699, "nist": "Aluminum (Z=13)" },
-    "steel":    { "label": "פלדה",                "muRho": 1.205,  "density": 7.874, "nist": "Iron (Z=26)", "approx": "פלדה כברזל" },
-    "copper":   { "label": "נחושת",               "muRho": 1.593,  "density": 8.96,  "nist": "Copper (Z=29)" }
+  "_comment": "סורק המזוודות: צילומים אמיתיים מסורק ביטחוני דו-אנרגטי (מאגר COMPASS-XP). לכל חפץ: צילום רגיל, צילום רנטגן בצבע וצילום רנטגן באפור, חתוכים סביב החפץ (scripts/import_compass.py). scan = מספר הסריקה במאגר.",
+  "source": {
+    "title": "COMPASS-XP: X-ray security scans with matching photographs",
+    "author": "Lewis D. Griffin, Matthew Caldwell, Jerone T. A. Andrews (UCL Computational Security Science Group)",
+    "url": "https://zenodo.org/records/2654887",
+    "license": "CC-BY-4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "modifications": "בחירת 16 סריקות, חיתוך ריבועי סביב החפץ, הקטנה, המרה ל-WebP",
+    "verifiedOn": "2026-10-12"
   },
-  "bags": [
-    {
-      "id": "lunch",
-      "title": "תיק עם אוכל לדרך",
-      "items": [
-        { "item": "shirt", "x": 17, "y": 13, "rot": 4 },
-        { "item": "sandwich", "x": 44, "y": 11, "rot": -6 },
-        { "item": "apple", "x": 47, "y": 29, "rot": 0 },
-        { "item": "bottleFull", "x": 18, "y": 31, "rot": -6 },
-        { "item": "bottleEmpty", "x": 32, "y": 22, "rot": 78 }
-      ],
-      "lesson": "מים עוצרים הרבה קרינה: בקבוק מלא ותפוח עסיסי נראים היטב, ובקבוק ריק כמעט נעלם."
-    },
-    {
-      "id": "school",
-      "title": "תיק בית ספר",
-      "items": [
-        { "item": "book", "x": 15, "y": 13, "rot": -3 },
-        { "item": "notebook", "x": 42, "y": 12, "rot": 5 },
-        { "item": "pencilCase", "x": 19, "y": 31, "rot": -5 },
-        { "item": "ruler", "x": 40, "y": 30, "rot": 9 },
-        { "item": "calculator", "x": 52, "y": 27, "rot": 90 }
-      ],
-      "lesson": "גם שכבה דקה של מתכת עוצרת הרבה קרינה. נייר צריך להיות עבה מאוד כדי שיראו אותו."
-    },
-    {
-      "id": "tech",
-      "title": "תיק עם מחשב",
-      "items": [
-        { "item": "laptop", "x": 20, "y": 17, "rot": 0 },
-        { "item": "charger", "x": 46, "y": 9, "rot": 0 },
-        { "item": "phone", "x": 48, "y": 26, "rot": 18 },
-        { "item": "headphones", "x": 24, "y": 33, "rot": 0 },
-        { "item": "keys", "x": 51, "y": 35, "rot": -15 },
-        { "item": "coins", "x": 7, "y": 34, "rot": 0 }
-      ],
-      "lesson": "בתוך מכשירים חשמליים מסתתרים חלקים של מתכת — סוללות, ברגים, מגנטים וחוטים — ובצילום רואים אותם היטב."
-    },
-    {
-      "id": "holiday",
-      "title": "מזוודת חופשה",
-      "items": [
-        { "item": "shoe", "x": 15, "y": 11, "rot": 8 },
-        { "item": "umbrella", "x": 40, "y": 7, "rot": 0 },
-        { "item": "sunglasses", "x": 43, "y": 21, "rot": -8 },
-        { "item": "honey", "x": 29, "y": 30, "rot": 90 },
-        { "item": "teddy", "x": 50, "y": 31, "rot": 10 },
-        { "item": "scarf", "x": 14.5, "y": 30, "rot": -4 }
-      ],
-      "lesson": "זכוכית עוצרת יותר קרינה מפלסטיק — ובובה רכה, למרות שהיא גדולה, כמעט שקופה."
-    },
-    {
-      "id": "hidden",
-      "title": "מה מסתתר?",
-      "items": [
-        { "item": "laptop", "x": 21, "y": 19, "rot": 3 },
-        { "item": "keys", "x": 17, "y": 22, "rot": 30 },
-        { "item": "shoe", "x": 46, "y": 27, "rot": -12 },
-        { "item": "coins", "x": 46, "y": 27, "rot": 20 },
-        { "item": "scarf", "x": 45, "y": 10, "rot": 2 }
-      ],
-      "lesson": "גם חפץ שמוסתר מתחת לחפץ אחר נראה בצילום: הצללים שלהם מצטרפים זה לזה."
-    }
+  "colors": {
+    "_source": "Rapiscan Systems, Dual-energy transmission X-ray: 'Organic materials are orange, mixed materials are green, and metallic is blue.' https://rapiscansystems.com/en/technologies/dual-energy-transmission-x-ray",
+    "items": [
+      { "id": "orange", "label": "כתום", "text": "חומרים אורגניים: אוכל, מים, בד, נייר, עץ ורוב סוגי הפלסטיק" },
+      { "id": "green", "label": "ירוק", "text": "חומרים שבאמצע: לא אורגניים, ולא מתכת כבדה" },
+      { "id": "blue", "label": "כחול", "text": "מתכות: פלדה, נחושת, ברזל" }
+    ]
+  },
+  "items": [
+    { "scan": "1845", "label": "בננה", "note": "בננה היא בעיקר מים וחומר אורגני, ולכן היא כתומה — בדיוק כמו בקבוק המים." },
+    { "scan": "0942", "label": "בקבוק מים", "note": "המים עוצרים הרבה קרינה, ולכן הבקבוק כתום כהה. את הפלסטיק הדק של הבקבוק עצמו כמעט לא רואים." },
+    { "scan": "1809", "label": "כריך", "note": "לחם וגבינה הם חומר אורגני, ולכן כתומים. האריזה מפלסטיק דק כמעט לא נראית." },
+    { "scan": "0685", "label": "בובה רכה", "note": "הבובה כמעט שקופה: יש בה הרבה אוויר. רק המילוי הצפוף בבטן נראה קצת כהה יותר." },
+    { "scan": "0676", "label": "נעל ספורט", "note": "הסוליה מגומי נראית כתומה, ואפשר לראות אפילו את הדוגמה שלה. בנעל הזאת אין מתכת." },
+    { "scan": "0191", "label": "קובייה הונגרית", "note": "כמעט כולה פלסטיק, ולכן חיוורת. בפנים מסתתרים כמה חלקי מתכת קטנים — כחולים." },
+    { "scan": "0927", "label": "צרור מפתחות", "note": "מפתחות מפלדה נראים כחולים כהים. גם המחזיק נראה, אבל חלש יותר, כי הוא מפלסטיק." },
+    { "scan": "1437", "label": "מצפן", "note": "קופסת מתכת סגורה — ועדיין רואים בתוכה את המחט. בדיוק מה שרנטגן צילם ב-1895.", "link": { "label": "למקרה: מה בקופסה?", "href": "case.html?id=compass-01" } },
+    { "scan": "0995", "label": "קופת חיסכון", "note": "הקופה עשויה מחומר קשיח שאינו מתכת ואינו אורגני, ולכן היא ירוקה. בפנים רואים את השכבות של הקירות שלה." },
+    { "scan": "0390", "label": "קלמר מפח", "note": "הדפנות מפח נראות בצבע כחול-טורקיז, ובתוך הקלמר רואים צללים חלשים של מה שבתוכו." },
+    { "scan": "0056", "label": "מטרייה מקופלת", "note": "המוטות הדקים מפלדה נראים כחולים, והבד של המטרייה כמעט נעלם." },
+    { "scan": "0178", "label": "אוזניות", "note": "בתוך הקשת עובר פס מתכת, ובכל צד רואים את הרמקול הקטן." },
+    { "scan": "0052", "label": "טלפון נייד", "note": "מבחוץ רואים רק מסך שחור. בצילום מופיעים הלוח האלקטרוני והסוללה הגדולה." },
+    { "scan": "1633", "label": "משחק מחשב נייד", "note": "רואים את הלוח האלקטרוני ואת שתי הסוללות, ממש כמו ציור טכני." },
+    { "scan": "0044", "label": "מחשב נייד", "note": "המעטפת מפלסטיק כמעט לא נראית. מה שבולט הוא מה שבפנים: לוחות, ברגים וסוללה." },
+    { "scan": "1126", "label": "יוקלילי בתוך תיק", "note": "גוף העץ כתום וחיוור. המיתרים מניילון לא נראים, אבל פסי המתכת על הצוואר והמנגנונים לכיוון המיתרים — כן." }
   ]
 }

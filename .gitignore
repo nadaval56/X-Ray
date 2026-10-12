@@ -1,3 +1,6 @@
 node_modules/
 dist/
 .DS_Store
+
+# מקורות COMPASS-XP (כ-40MB) — לא בגיט; ‏scripts/import_compass.py מוריד ומעבד מחדש
+assets-src/originals/compass-xp/
