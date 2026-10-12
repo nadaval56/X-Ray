@@ -9,145 +9,245 @@
     <!-- @header -->
     <main id="main">
       <!-- מקורות: content/sources.md -->
+      <!-- אייקונים לפרקים (קישוטיים) -->
+      <svg class="icon-sprite" aria-hidden="true" focusable="false">
+        <symbol id="i-wave" viewBox="0 0 24 24"><path d="M2 12c2-5 4-5 6 0s4 5 6 0 4-5 6 0 2 3 2 3"/></symbol>
+        <symbol id="i-rays" viewBox="0 0 24 24"><path d="M2 7h7M2 12h7M2 17h7"/><path d="M7 5l2 2-2 2M7 10l2 2-2 2M7 15l2 2-2 2"/><rect x="11" y="4" width="5" height="16" rx="1"/><path d="M18 12h4" opacity=".5"/></symbol>
+        <symbol id="i-contrast" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" stroke="none"/></symbol>
+        <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/><path d="M3 17.5l9 5 9-5" opacity=".5"/></symbol>
+        <symbol id="i-views" viewBox="0 0 24 24"><circle cx="9" cy="12" r="5"/><rect x="18" y="7" width="2" height="10" rx="1"/><path d="M14 12h2" opacity=".5"/></symbol>
+        <symbol id="i-fracture" viewBox="0 0 24 24"><path d="M6 3c-1.5 0-2.5 1.5-1.5 3l1.5 2v5l-2 2 3 1 1 3 2-2h1"/><path d="M18 21c1.5 0 2.5-1.5 1.5-3L18 16v-5l2-2-3-1-1-3-2 2h-1"/><path d="M10 13l2-2 2 2" opacity=".6"/></symbol>
+        <symbol id="i-growth" viewBox="0 0 24 24"><path d="M6 21V8"/><path d="M3 11l3-3 3 3"/><path d="M14 3h6M14 21h6M17 3v18M14 9h3M14 15h3" opacity=".7"/></symbol>
+        <symbol id="i-tooth" viewBox="0 0 24 24"><path d="M7 3c-3 0-4.5 3-3.5 6 .8 2.4 1.5 4 2 7 .4 2.8 1.2 5 2.5 5s1.6-2 2-4 .8-3 2-3 1.6 1 2 3 .7 4 2 4 2.1-2.2 2.5-5c.5-3 1.2-4.6 2-7 1-3-.5-6-3.5-6-2 0-3 1-5 1S9 3 7 3z"/></symbol>
+        <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.3 8-8 9-4.7-1-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></symbol>
+        <symbol id="i-flask" viewBox="0 0 24 24"><path d="M9 3h6M10 3v6l-5.5 9.5A2 2 0 0 0 6.2 21h11.6a2 2 0 0 0 1.7-2.5L14 9V3"/><path d="M7.5 15h9" opacity=".6"/></symbol>
+      </svg>
+
       <div class="container">
-        <header class="page-head">
+        <header class="page-head lesson-head">
           <span class="eyebrow">איך זה עובד</span>
           <h1>הפיזיקה של צילום רנטגן</h1>
           <p class="lead">צילום רנטגן הוא בעצם צל. כדי להבין מה רואים בו, צריך להבין מה קורה לקרינה בדרך.</p>
         </header>
 
-        <nav class="toc" aria-label="בעמוד הזה">
-          <p class="toc-title">בעמוד הזה</p>
-          <ol>
-            <li><a href="#what">מהי קרינת רנטגן?</a></li>
-            <li><a href="#absorption">בליעה: מה קורה לקרינה בדרך</a></li>
-            <li><a href="#why-white">למה עצם לבנה ואוויר שחור?</a></li>
-            <li><a href="#density">צפיפות ועובי</a></li>
-            <li><a href="#two-views">למה מצלמים משני כיוונים?</a></li>
-            <li><a href="#fractures">איך מזהים שבר?</a></li>
-            <li><a href="#growth">עצמות שעוד גדלות</a></li>
-            <li><a href="#teeth">שיניים</a></li>
-            <li><a href="#safety">בטיחות קרינה</a></li>
-          </ol>
-        </nav>
+        <div class="lesson-layout">
+          <nav class="lesson-nav" aria-label="בעמוד הזה">
+            <p class="lesson-nav-title">בעמוד הזה</p>
+            <ol>
+              <li><a href="#what"><span class="lesson-nav-ico"><svg><use href="#i-wave"/></svg></span>מהי קרינת רנטגן?</a></li>
+              <li><a href="#absorption"><span class="lesson-nav-ico"><svg><use href="#i-rays"/></svg></span>בליעה: מה קורה לקרינה בדרך</a></li>
+              <li><a href="#why-white"><span class="lesson-nav-ico"><svg><use href="#i-contrast"/></svg></span>למה עצם לבנה ואוויר שחור?</a></li>
+              <li><a href="#density"><span class="lesson-nav-ico"><svg><use href="#i-layers"/></svg></span>צפיפות ועובי</a></li>
+              <li><a href="#two-views"><span class="lesson-nav-ico"><svg><use href="#i-views"/></svg></span>למה מצלמים משני כיוונים?</a></li>
+              <li><a href="#fractures"><span class="lesson-nav-ico"><svg><use href="#i-fracture"/></svg></span>איך מזהים שבר?</a></li>
+              <li><a href="#growth"><span class="lesson-nav-ico"><svg><use href="#i-growth"/></svg></span>עצמות שעוד גדלות</a></li>
+              <li><a href="#teeth"><span class="lesson-nav-ico"><svg><use href="#i-tooth"/></svg></span>שיניים</a></li>
+              <li><a href="#safety"><span class="lesson-nav-ico"><svg><use href="#i-shield"/></svg></span>בטיחות קרינה</a></li>
+            </ol>
+          </nav>
 
-        <article class="article">
-          <section id="what" class="prose">
-            <h2>מהי קרינת רנטגן?</h2>
-            <p>
-              קרינת רנטגן (X-ray) היא קרובת משפחה של האור שאנחנו רואים. גם היא קרינה אלקטרומגנטית —
-              אבל יש לה הרבה יותר אנרגיה, והעין שלנו לא מסוגלת לראות אותה.
-            </p>
-            <p>
-              בזכות האנרגיה הגבוהה, קרני רנטגן יכולות לעבור דרך חומרים שאור רגיל נעצר בהם, כמו עור ושרירים.
-              אבל לא כל החומרים "שקופים" להן באותה מידה — וזה בדיוק מה שמאפשר לצלם את מה שיש בפנים.
-            </p>
-          </section>
+          <article class="lessons">
+            <section id="what" class="lesson">
+              <header class="lesson-title">
+                <span class="lesson-ico" aria-hidden="true"><svg><use href="#i-wave"/></svg></span>
+                <span class="lesson-num" aria-hidden="true">01</span>
+                <h2>מהי קרינת רנטגן?</h2>
+              </header>
+              <div class="prose">
+                <p>
+                  קרינת רנטגן (X-ray) היא קרובת משפחה של האור שאנחנו רואים. גם היא קרינה אלקטרומגנטית —
+                  אבל יש לה הרבה יותר אנרגיה, והעין שלנו לא מסוגלת לראות אותה.
+                </p>
+                <p>
+                  בזכות האנרגיה הגבוהה, קרני רנטגן יכולות לעבור דרך חומרים שאור רגיל נעצר בהם, כמו עור ושרירים.
+                  אבל לא כל החומרים "שקופים" להן באותה מידה — וזה בדיוק מה שמאפשר לצלם את מה שיש בפנים.
+                </p>
+              </div>
+            </section>
 
-          <section id="absorption" class="prose">
-            <h2>בליעה: מה קורה לקרינה בדרך</h2>
-            <p>
-              בצילום רנטגן, הקרניים יוצאות ממקור אחד, עוברות דרך הגוף, ופוגעות ב<strong>גלאי</strong> שנמצא מאחוריו.
-              בדרך, חלק מהקרניים נבלעות בחומר ונעצרות. כמה ייבלעו? זה תלוי בשני דברים:
-              <strong>מאיזה חומר</strong> הן עוברות, ו<strong>כמה עבה</strong> השכבה.
-            </p>
-            <p><a class="btn" href="./lab-attenuation.html">לנסות בעצמכם: סימולטור הבליעה במעבדה</a></p>
-          </section>
+            <section id="absorption" class="lesson">
+              <header class="lesson-title">
+                <span class="lesson-ico" aria-hidden="true"><svg><use href="#i-rays"/></svg></span>
+                <span class="lesson-num" aria-hidden="true">02</span>
+                <h2>בליעה: מה קורה לקרינה בדרך</h2>
+              </header>
+              <div class="lesson-split">
+                <div class="prose">
+                  <p>
+                    בצילום רנטגן, הקרניים יוצאות ממקור אחד, עוברות דרך הגוף, ופוגעות ב<strong>גלאי</strong> שנמצא מאחוריו.
+                    בדרך, חלק מהקרניים נבלעות בחומר ונעצרות. כמה ייבלעו? זה תלוי בשני דברים:
+                    <strong>מאיזה חומר</strong> הן עוברות, ו<strong>כמה עבה</strong> השכבה.
+                  </p>
+                </div>
+                <!-- איור: מקור → קרניים → גוף (חלק נבלע) → גלאי -->
+                <svg class="lesson-diagram" viewBox="0 0 320 160" aria-hidden="true" focusable="false">
+                  <defs>
+                    <linearGradient id="det" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0" stop-color="#2a323d"/><stop offset=".35" stop-color="#2a323d"/>
+                      <stop offset=".36" stop-color="#d9e1e8"/><stop offset=".64" stop-color="#d9e1e8"/>
+                      <stop offset=".65" stop-color="#2a323d"/><stop offset="1" stop-color="#2a323d"/>
+                    </linearGradient>
+                  </defs>
+                  <rect x="282" y="58" width="22" height="44" rx="4" class="dg-src"/>
+                  <circle cx="282" cy="80" r="4" class="dg-dot"/>
+                  <g class="dg-rays">
+                    <path d="M278 80 L18 24"/>
+                    <path d="M278 80 L18 40"/>
+                    <path d="M278 80 L18 120"/>
+                    <path d="M278 80 L18 136"/>
+                    <path d="M278 80 L150 70.2"/>
+                    <path d="M278 80 L150 80"/>
+                    <path d="M278 80 L150 89.8"/>
+                  </g>
+                  <g class="dg-rays dg-rays-weak">
+                    <path d="M118 67.7 L18 60"/>
+                    <path d="M118 80 L18 80"/>
+                    <path d="M118 92.3 L18 100"/>
+                  </g>
+                  <rect x="118" y="64" width="32" height="32" rx="8" class="dg-body"/>
+                  <rect x="8" y="14" width="10" height="132" rx="3" fill="url(#det)" class="dg-det"/>
+                </svg>
+              </div>
+              <p><a class="lab-link" href="./lab-attenuation.html"><svg aria-hidden="true"><use href="#i-flask"/></svg>לנסות בעצמכם: סימולטור הבליעה במעבדה</a></p>
+            </section>
 
-          <section id="why-white" class="prose">
-            <h2>למה עצם לבנה ואוויר שחור?</h2>
-            <p>
-              בצילום רנטגן, מקום שהגיעה אליו <strong>הרבה</strong> קרינה יוצא <strong>כהה</strong>.
-              מקום שהקרינה נבלעה בדרך אליו — נשאר <strong>בהיר</strong>. כלומר, הצילום מראה איפה הקרינה <em>נעצרה</em>.
-            </p>
-            <ul>
-              <li><strong>אוויר</strong> כמעט לא בולע קרינה. לכן הריאות, שמלאות באוויר, נראות כהות.</li>
-              <li><strong>רקמות רכות</strong> — שרירים, שומן ואיברים — בנויות בעיקר ממים, ובולעות חלק מהקרינה. הן נראות אפורות.</li>
-              <li><strong>עצם</strong> צפופה יותר, ויש בה אטומים כבדים יותר כמו סידן. היא בולעת הרבה יותר, ולכן נראית לבנה.</li>
-              <li><strong>מתכת</strong> צפופה עוד יותר, ועוצרת כמעט הכול. לכן מטבע או מסמר נראים לבנים בוהקים — אפילו יותר מעצם.</li>
-            </ul>
-          </section>
+            <section id="why-white" class="lesson">
+              <header class="lesson-title">
+                <span class="lesson-ico" aria-hidden="true"><svg><use href="#i-contrast"/></svg></span>
+                <span class="lesson-num" aria-hidden="true">03</span>
+                <h2>למה עצם לבנה ואוויר שחור?</h2>
+              </header>
+              <div class="prose">
+                <p>
+                  בצילום רנטגן, מקום שהגיעה אליו <strong>הרבה</strong> קרינה יוצא <strong>כהה</strong>.
+                  מקום שהקרינה נבלעה בדרך אליו — נשאר <strong>בהיר</strong>. כלומר, הצילום מראה איפה הקרינה <em>נעצרה</em>.
+                </p>
+              </div>
+              <ul class="shade-list">
+                <li style="--shade: #07090c"><strong>אוויר</strong> כמעט לא בולע קרינה. לכן הריאות, שמלאות באוויר, נראות כהות.</li>
+                <li style="--shade: #5b636d"><strong>רקמות רכות</strong> — שרירים, שומן ואיברים — בנויות בעיקר ממים, ובולעות חלק מהקרינה. הן נראות אפורות.</li>
+                <li style="--shade: #c9d0d7"><strong>עצם</strong> צפופה יותר, ויש בה אטומים כבדים יותר כמו סידן. היא בולעת הרבה יותר, ולכן נראית לבנה.</li>
+                <li style="--shade: #ffffff"><strong>מתכת</strong> צפופה עוד יותר, ועוצרת כמעט הכול. לכן מטבע או מסמר נראים לבנים בוהקים — אפילו יותר מעצם.</li>
+              </ul>
+            </section>
 
-          <section id="density">
-            <div class="prose">
-              <h2>צפיפות ועובי</h2>
-              <p>
-                כמה קרינה חומר בולע תלוי בשלושה דברים: <strong>כמה הוא צפוף</strong>, <strong>מאילו אטומים הוא בנוי</strong>
-                (אטומים כבדים בולעים יותר), ו<strong>כמה ממנו יש בדרך</strong>.
-              </p>
-              <p>
-                לכן לא כל המתכות נראות אותו דבר. אלומיניום הוא מתכת קלה — דליל פי שלושה בערך מנחושת — ובצילום הוא
-                חיוור הרבה יותר. ושכבה דקה של מתכת יכולה להעביר חלק מהקרינה, בעוד ששכבה עבה עוצרת כמעט הכול.
-              </p>
-            </div>
-            <figure class="xray-figure media-figure" data-media="six-substances"></figure>
-          </section>
+            <section id="density" class="lesson">
+              <header class="lesson-title">
+                <span class="lesson-ico" aria-hidden="true"><svg><use href="#i-layers"/></svg></span>
+                <span class="lesson-num" aria-hidden="true">04</span>
+                <h2>צפיפות ועובי</h2>
+              </header>
+              <div class="lesson-split">
+                <div class="prose">
+                  <p>
+                    כמה קרינה חומר בולע תלוי בשלושה דברים: <strong>כמה הוא צפוף</strong>, <strong>מאילו אטומים הוא בנוי</strong>
+                    (אטומים כבדים בולעים יותר), ו<strong>כמה ממנו יש בדרך</strong>.
+                  </p>
+                  <p>
+                    לכן לא כל המתכות נראות אותו דבר. אלומיניום הוא מתכת קלה — דליל פי שלושה בערך מנחושת — ובצילום הוא
+                    חיוור הרבה יותר. ושכבה דקה של מתכת יכולה להעביר חלק מהקרינה, בעוד ששכבה עבה עוצרת כמעט הכול.
+                  </p>
+                </div>
+                <figure class="xray-figure media-figure" data-media="six-substances"></figure>
+              </div>
+            </section>
 
-          <section id="two-views" class="prose">
-            <h2>למה מצלמים משני כיוונים?</h2>
-            <p>
-              צילום רנטגן הוא צל שטוח. כל מה שנמצא על אותו קו — אחד מאחורי השני — מתמזג בצילום לצל אחד, ואין דרך לדעת
-              מה קדימה ומה מאחור.
-            </p>
-            <p>
-              לכן מצלמים לרוב משני כיוונים: מלפנים ומהצד. מטבע, למשל, נראה מלפנים כמו עיגול ומהצד כמו קו.
-              שני מטבעות צמודים נראים מלפנים כמו מטבע אחד — ורק מהצד אפשר לחשוד שיש שניים.
-            </p>
-            <p><a class="btn" href="./lab-shadows.html">לנסות בעצמכם: נחשו את הצורה מהצללים</a></p>
-          </section>
+            <section id="two-views" class="lesson">
+              <header class="lesson-title">
+                <span class="lesson-ico" aria-hidden="true"><svg><use href="#i-views"/></svg></span>
+                <span class="lesson-num" aria-hidden="true">05</span>
+                <h2>למה מצלמים משני כיוונים?</h2>
+              </header>
+              <div class="prose">
+                <p>
+                  צילום רנטגן הוא צל שטוח. כל מה שנמצא על אותו קו — אחד מאחורי השני — מתמזג בצילום לצל אחד, ואין דרך לדעת
+                  מה קדימה ומה מאחור.
+                </p>
+                <p>
+                  לכן מצלמים לרוב משני כיוונים: מלפנים ומהצד. מטבע, למשל, נראה מלפנים כמו עיגול ומהצד כמו קו.
+                  שני מטבעות צמודים נראים מלפנים כמו מטבע אחד — ורק מהצד אפשר לחשוד שיש שניים.
+                </p>
+              </div>
+              <p><a class="lab-link" href="./lab-shadows.html"><svg aria-hidden="true"><use href="#i-flask"/></svg>לנסות בעצמכם: נחשו את הצורה מהצללים</a></p>
+            </section>
 
-          <section id="fractures" class="prose">
-            <h2>איך מזהים שבר?</h2>
-            <p>
-              לעצם יש קליפה חיצונית קשה, שנראית בצילום כקו לבן וחלק לאורך העצם. כשמחפשים שבר, עוקבים אחרי הקו הזה:
-              קו כהה שחוצה את העצם, מדרגה, או "קפל" בדופן — כולם סימנים לפגיעה.
-            </p>
-            <p>
-              אצל ילדים יש שברים מיוחדים: לפעמים העצם לא נשברת לשני חלקים, אלא רק נדחסת ומתקפלת בצד אחד — כמו קש שתייה
-              שלוחצים עליו. שבר כזה נקרא "שבר כיפוף" (buckle fracture).
-            </p>
-            <p>
-              וגם שבר שהחלים משאיר סימן: הגוף בונה סביב השבר עצם חדשה (קָלוּס), ובצילום רואים במקום הזה עיבוי.
-              <!-- TODO: לאמת — מקור כללי על היווצרות קלוס -->
-            </p>
-          </section>
+            <section id="fractures" class="lesson">
+              <header class="lesson-title">
+                <span class="lesson-ico" aria-hidden="true"><svg><use href="#i-fracture"/></svg></span>
+                <span class="lesson-num" aria-hidden="true">06</span>
+                <h2>איך מזהים שבר?</h2>
+              </header>
+              <div class="prose">
+                <p>
+                  לעצם יש קליפה חיצונית קשה, שנראית בצילום כקו לבן וחלק לאורך העצם. כשמחפשים שבר, עוקבים אחרי הקו הזה:
+                  קו כהה שחוצה את העצם, מדרגה, או "קפל" בדופן — כולם סימנים לפגיעה.
+                </p>
+                <p>
+                  אצל ילדים יש שברים מיוחדים: לפעמים העצם לא נשברת לשני חלקים, אלא רק נדחסת ומתקפלת בצד אחד — כמו קש שתייה
+                  שלוחצים עליו. שבר כזה נקרא "שבר כיפוף" (buckle fracture).
+                </p>
+                <p>
+                  וגם שבר שהחלים משאיר סימן: הגוף בונה סביב השבר עצם חדשה (קָלוּס), ובצילום רואים במקום הזה עיבוי.
+                  <!-- TODO: לאמת — מקור כללי על היווצרות קלוס -->
+                </p>
+              </div>
+            </section>
 
-          <section id="growth" class="prose">
-            <h2>עצמות שעוד גדלות</h2>
-            <p>
-              לא כל השלד עשוי עצם. חלקים ממנו עשויים <strong>סחוס</strong> — רקמה גמישה שבולעת קרינה בערך כמו רקמה רכה,
-              ולכן בצילום היא כמעט לא נראית.
-            </p>
-            <p>
-              עצמות ארוכות גדלות בעזרת <strong>לוח גדילה</strong>: שכבה דקה של סחוס ליד קצה העצם. בצילום של ילד הוא נראה
-              כפס כהה דק. כשמסיימים לגדול, הסחוס הופך לעצם והפס נעלם.
-              <!-- TODO: לאמת — מקור לגיל סגירת לוחות הגדילה ולהתגרמות עצמות שורש כף היד -->
-            </p>
-          </section>
+            <section id="growth" class="lesson">
+              <header class="lesson-title">
+                <span class="lesson-ico" aria-hidden="true"><svg><use href="#i-growth"/></svg></span>
+                <span class="lesson-num" aria-hidden="true">07</span>
+                <h2>עצמות שעוד גדלות</h2>
+              </header>
+              <div class="prose">
+                <p>
+                  לא כל השלד עשוי עצם. חלקים ממנו עשויים <strong>סחוס</strong> — רקמה גמישה שבולעת קרינה בערך כמו רקמה רכה,
+                  ולכן בצילום היא כמעט לא נראית.
+                </p>
+                <p>
+                  עצמות ארוכות גדלות בעזרת <strong>לוח גדילה</strong>: שכבה דקה של סחוס ליד קצה העצם. בצילום של ילד הוא נראה
+                  כפס כהה דק. כשמסיימים לגדול, הסחוס הופך לעצם והפס נעלם.
+                  <!-- TODO: לאמת — מקור לגיל סגירת לוחות הגדילה ולהתגרמות עצמות שורש כף היד -->
+                </p>
+              </div>
+            </section>
 
-          <section id="teeth" class="prose">
-            <h2>שיניים</h2>
-            <p>
-              הכתר של השן מצופה <strong>אמייל</strong>, הרקמה הקשה והמינרלית ביותר בגוף. לכן שיניים נראות בצילום לבנות
-              יותר מהעצם שסביבן — ואפשר לראות אותן גם כשהן עדיין קבורות בתוך הלסת.
-              <!-- TODO: לאמת — מקור לטענה על האמייל -->
-            </p>
-            <p>
-              רופאי שיניים משתמשים הרבה ב<strong>צילום פנורמי</strong>: המכשיר מסתובב סביב הראש ו"פורס" את הקשת המעוגלת
-              של הלסת לתמונה אחת ארוכה. כך רואים בבת אחת את כל השיניים, גם את אלה שעוד לא יצאו.
-            </p>
-          </section>
+            <section id="teeth" class="lesson">
+              <header class="lesson-title">
+                <span class="lesson-ico" aria-hidden="true"><svg><use href="#i-tooth"/></svg></span>
+                <span class="lesson-num" aria-hidden="true">08</span>
+                <h2>שיניים</h2>
+              </header>
+              <div class="prose">
+                <p>
+                  הכתר של השן מצופה <strong>אמייל</strong>, הרקמה הקשה והמינרלית ביותר בגוף. לכן שיניים נראות בצילום לבנות
+                  יותר מהעצם שסביבן — ואפשר לראות אותן גם כשהן עדיין קבורות בתוך הלסת.
+                  <!-- TODO: לאמת — מקור לטענה על האמייל -->
+                </p>
+                <p>
+                  רופאי שיניים משתמשים הרבה ב<strong>צילום פנורמי</strong>: המכשיר מסתובב סביב הראש ו"פורס" את הקשת המעוגלת
+                  של הלסת לתמונה אחת ארוכה. כך רואים בבת אחת את כל השיניים, גם את אלה שעוד לא יצאו.
+                </p>
+              </div>
+            </section>
 
-          <section id="safety" class="prose">
-            <h2>בטיחות קרינה</h2>
-            <p>
-              קרני רנטגן נושאות הרבה אנרגיה, ולכן משתמשים בהן בזהירות: מצלמים רק כשיש סיבה, ומכוונים את הקרינה רק לאזור
-              שצריך. כמות הקרינה בצילום רגיל קטנה — והדרך הכי פשוטה להבין אותה היא להשוות לקרינה הטבעית שכולנו מקבלים
-              כל יום מהאדמה, מהאוויר ומהחלל.
-            </p>
-            <p><a class="btn" href="./lab-dose.html">להשוואת המנות בסרגל הקרינה במעבדה</a></p>
-          </section>
-        </article>
+            <section id="safety" class="lesson">
+              <header class="lesson-title">
+                <span class="lesson-ico" aria-hidden="true"><svg><use href="#i-shield"/></svg></span>
+                <span class="lesson-num" aria-hidden="true">09</span>
+                <h2>בטיחות קרינה</h2>
+              </header>
+              <div class="prose">
+                <p>
+                  קרני רנטגן נושאות הרבה אנרגיה, ולכן משתמשים בהן בזהירות: מצלמים רק כשיש סיבה, ומכוונים את הקרינה רק לאזור
+                  שצריך. כמות הקרינה בצילום רגיל קטנה — והדרך הכי פשוטה להבין אותה היא להשוות לקרינה הטבעית שכולנו מקבלים
+                  כל יום מהאדמה, מהאוויר ומהחלל.
+                </p>
+              </div>
+              <p><a class="lab-link" href="./lab-dose.html"><svg aria-hidden="true"><use href="#i-flask"/></svg>להשוואת המנות בסרגל הקרינה במעבדה</a></p>
+            </section>
+          </article>
+        </div>
       </div>
     </main>
     <!-- @footer -->
