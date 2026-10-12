@@ -1,7 +1,6 @@
 // רשימת מקרים עם סינון לפי קטגוריה ורמת קושי. מצב הסינון נשמר בכתובת (אפשר לשתף קישור).
 import { h } from '../lib/dom.js';
 import { cases, categories, mainImage, imageUrl, caseUrl } from '../data/content.js';
-import { SITE } from '../config.js';
 import { difficultyBadge } from '../components/badges.js';
 
 const root = document.getElementById('cases-root');
@@ -43,7 +42,6 @@ function card(c) {
       h('div', { class: 'card-meta' },
         h('span', { class: 'tag', text: categories[c.category] }),
         difficultyBadge(c.difficulty),
-        SITE.showDraftBadges && c.draft && h('span', { class: 'tag tag-draft', text: 'טיוטה' }),
       ),
     ),
   );

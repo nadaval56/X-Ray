@@ -7,8 +7,6 @@ export const SITE = {
   domain: 'example.org',    // TODO: דומיין
   // כתובת האתר החי (לקישורים מלאים ב-sitemap וב-Open Graph). TODO: לעדכן כשייקבע דומיין.
   url: 'https://nadaval56.github.io/X-Ray/',
-  // מציג תגית "טיוטה" על תוכן שעדיין לא עבר עריכה סופית
-  showDraftBadges: true,
 };
 
 export const NAV = [
