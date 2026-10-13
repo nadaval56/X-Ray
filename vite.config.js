@@ -61,7 +61,8 @@ function layoutPartials() {
         const page = basename(ctx.filename, '.html');
         const navItems = NAV.map((item) => {
           const current = item.pages.includes(page) ? ' aria-current="page"' : '';
-          return `<li><a href="./${item.href}"${current}>${item.label}</a></li>`;
+          const icon = item.icon ? `<svg class="nav-icon" viewBox="0 0 36 36" aria-hidden="true" focusable="false">${item.icon}</svg>` : '';
+          return `<li><a href="./${item.href}"${current}>${icon}<span>${item.label}</span></a></li>`;
         }).join('\n          ');
 
         const title = html.match(/<title>(.*?)<\/title>/)?.[1]?.replaceAll('{{SITE_NAME}}', SITE.name) ?? SITE.name;
