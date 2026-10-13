@@ -1179,13 +1179,11 @@ a:hover { color: var(--accent-strong); }
 
 /* ---------- סורק מזוודות: מכונת שיקוף ---------- */
 .xm { display: grid; gap: 1rem 1.5rem; }
-/* במחשב: המכונה למעלה (גובה מוגבל כדי שהמחסן ייראה מתחתיה), ומתחתיה המחסן והמידע זה לצד זה */
+/* במחשב: המכונה למעלה (גובה מוגבל כדי שהמחסן ייראה מתחתיה), ומתחתיה המחסן לכל הרוחב:
+   כותרת והנחיה, ההסבר על החפץ שבסורק, ואז החפצים */
 @media (min-width: 960px) {
-  .xm { grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); grid-template-areas: "stage stage" "shelf info"; align-items: start; }
-  .xm-stage { grid-area: stage; width: min(100%, 80vh); justify-self: center; top: 72px; }
-  .xm-info { grid-area: info; }
-  .xm-shelf { grid-area: shelf; }
-  .xm-shelf .rs-grid { grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); }
+  .xm-stage { width: min(100%, 80vh); justify-self: center; }
+  .xm-shelf .rs-grid { grid-template-columns: repeat(auto-fill, minmax(112px, 1fr)); }
 }
 
 .xm-stage {
@@ -1440,6 +1438,7 @@ a:hover { color: var(--accent-strong); }
 }
 /* מידע */
 .xm-info {
+  margin-bottom: 1rem;
   padding: 1rem 1.15rem;
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
