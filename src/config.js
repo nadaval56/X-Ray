@@ -10,11 +10,11 @@ export const SITE = {
 };
 
 export const NAV = [
-  { href: 'cases.html', label: 'מקרים', pages: ['cases', 'case'] },
+  { href: 'cases.html', label: 'התיקים', pages: ['cases', 'case'] },
   { href: 'physics.html', label: 'איך זה עובד', pages: ['physics'] },
-  { href: 'lab.html', label: 'מעבדה', pages: ['lab', 'lab-thickness', 'lab-scanner', 'lab-window', 'lab-shadows', 'lab-dose'] },
+  { href: 'lab.html', label: 'המעבדה', pages: ['lab', 'lab-thickness', 'lab-scanner', 'lab-window', 'lab-shadows', 'lab-dose'] },
   { href: 'history.html', label: 'היסטוריה', pages: ['history'] },
-  { href: 'sky.html', label: 'השמיים', pages: ['sky'] },
+  { href: 'sky.html', label: 'רנטגן בחלל', pages: ['sky'] },
   { href: 'about.html', label: 'אודות', pages: ['about'] },
 ];
 

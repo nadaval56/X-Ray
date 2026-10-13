@@ -20,10 +20,10 @@ const id = document.documentElement.dataset.caseId || new URLSearchParams(locati
 const c = id && getCase(id);
 
 if (!c) {
-  document.title = `המקרה לא נמצא · ${SITE.name}`;
+  document.title = `התיק לא נמצא · ${SITE.name}`;
   root.replaceChildren(h('div', { class: 'page-head' },
-    h('h1', { text: 'המקרה לא נמצא' }),
-    h('p', { class: 'lead' }, 'ייתכן שהקישור שגוי או שהמקרה הוסר. ', h('a', { href: './cases.html', text: 'לרשימת המקרים' })),
+    h('h1', { text: 'התיק לא נמצא' }),
+    h('p', { class: 'lead' }, 'ייתכן שהקישור שגוי או שהתיק הוסר. ', h('a', { href: './cases.html', text: 'לרשימת התיקים' })),
   ));
 } else {
   renderCase(c);
@@ -43,7 +43,7 @@ function renderCase(c) {
   // ---------- 1. סיפור ----------
   const head = h('div', { class: 'case-head' },
     h('nav', { class: 'breadcrumb', 'aria-label': 'נתיב' },
-      h('a', { href: './cases.html', text: 'מקרים' }), ' / ', categories[c.category]),
+      h('a', { href: './cases.html', text: 'התיקים' }), ' / ', categories[c.category]),
     h('div', { class: 'case-tags' },
       h('span', { class: 'tag', text: categories[c.category] }),
       difficultyBadge(c.difficulty),
@@ -152,7 +152,7 @@ function renderCase(c) {
     h('p', { text: c.reveal }),
     normal && createCompare({
       left: { src: imageUrl(normal.file), alt: normal.alt, label: 'צילום תקין' },
-      right: { src: imageUrl(main.file), alt: main.alt, label: 'הצילום במקרה' },
+      right: { src: imageUrl(main.file), alt: main.alt, label: 'הצילום בתיק' },
       caption: 'גררו את הקו כדי להשוות לצילום תקין.',
     }).el,
     ...extraFigures('reveal'),
@@ -182,7 +182,7 @@ function renderCase(c) {
 
   const creditStep = step(6, 'קרדיט', 'מקור התמונות',
     creditsList(c.images.map((im) => creditItem(im, {
-      context: { main: 'הצילום במקרה', normal: 'צילום תקין להשוואה', 'second-view': 'מנח נוסף' }[im.role],
+      context: { main: 'הצילום בתיק', normal: 'צילום תקין להשוואה', 'second-view': 'מנח נוסף' }[im.role],
     }))),
   );
 
@@ -226,12 +226,12 @@ function casePager(c) {
   const prev = cases[i - 1], next = cases[i + 1];
   const link = (t, dir) => (t
     ? h('a', { class: `pager-link pager-${dir}`, href: caseUrl(t.id) },
-      h('span', { class: 'pager-dir', text: dir === 'prev' ? 'המקרה הקודם' : 'המקרה הבא' }),
+      h('span', { class: 'pager-dir', text: dir === 'prev' ? 'התיק הקודם' : 'התיק הבא' }),
       h('span', { class: 'pager-title', text: t.title }))
     : h('span'));
-  return h('nav', { class: 'pager case-pager', 'aria-label': 'מעבר בין מקרים' },
+  return h('nav', { class: 'pager case-pager', 'aria-label': 'מעבר בין תיקים' },
     link(prev, 'prev'),
-    h('a', { class: 'pager-all', href: './cases.html' }, 'כל המקרים', h('span', { class: 'pager-count', text: `${i + 1} מתוך ${cases.length}` })),
+    h('a', { class: 'pager-all', href: './cases.html' }, 'כל התיקים', h('span', { class: 'pager-count', text: `${i + 1} מתוך ${cases.length}` })),
     link(next, 'next'),
   );
 }
