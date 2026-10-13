@@ -23,9 +23,8 @@ const SPEEDS = [0.4, 0.6, 1, 1.5, 2.5];
 /**
  * @param {object} opts
  * @param {Array<{scan:string,label:string,note:string,link?:{label:string,href:string}}>} opts.items
- * @param {{items:Array<{id:string,label:string,text:string}>}} opts.colors
  */
-export function createRealScanner({ items, colors }) {
+export function createRealScanner({ items }) {
   let trays = [];         // {it, pos, trayEl, xrayEl, seen} — מימין לשמאל לפי סדר ההעמסה
   let mode = 'colour';
   let running = false;
@@ -85,13 +84,11 @@ export function createRealScanner({ items, colors }) {
   const status = h('p', { class: 'visually-hidden', role: 'status', 'aria-live': 'polite' });
 
   // ---------- המידע מתחת למכונה ----------
-  const title = h('h2', { class: 'xm-title', text: 'מכונת השיקוף' });
-  const note = h('p', { class: 'xm-note', text: 'גררו חפץ מהמחסן אל הצד הימני של המכונה, או הקישו עליו.' });
+  // לפני החפץ הראשון: מקום ריק ועדין (במחשב בלבד), כדי שהעמוד לא יקפוץ כשהמידע מופיע
+  const title = h('h2', { class: 'xm-title', text: 'מה רואים בצילום?' });
+  const note = h('p', { class: 'xm-note', text: 'כאן יופיע הסבר על החפץ שנמצא בסורק.' });
   const extra = h('p', { class: 'xm-extra' });
-  const legend = h('ul', { class: 'rs-legend' }, colors.items.map((c) => h('li', {},
-    h('span', { class: `rs-swatch rs-${c.id}`, 'aria-hidden': 'true' }),
-    h('strong', { text: c.label }), ' — ', c.text)));
-  const info = h('div', { class: 'xm-info' }, title, note, extra, legend);
+  const info = h('div', { class: 'xm-info is-empty' }, title, note, extra);
 
   // ---------- המחסן ----------
   const shelfItems = items.map((it) => {
@@ -102,7 +99,9 @@ export function createRealScanner({ items, colors }) {
     return b;
   });
   const shelf = h('section', { class: 'xm-shelf', 'aria-label': 'המחסן' },
-    h('p', { class: 'rs-shelf-title', text: 'המחסן' }),
+    h('div', { class: 'rs-shelf-head' },
+      h('p', { class: 'rs-shelf-title', text: 'המחסן' }),
+      h('p', { class: 'rs-shelf-hint', text: 'גררו חפץ אל הצד הימני של המכונה, או הקישו עליו.' })),
     h('div', { class: 'rs-grid' }, shelfItems));
 
   const el = h('div', { class: 'xm' }, stage, info, shelf, status);
@@ -154,7 +153,6 @@ export function createRealScanner({ items, colors }) {
   function setMode(id) {
     mode = id;
     modeBtns.forEach((b, k) => b.setAttribute('aria-pressed', String(['colour', 'grey'][k] === mode)));
-    legend.hidden = mode !== 'colour';
     trays.forEach((t) => { t.xrayEl.src = img(t.it.scan, mode); });
   }
 
@@ -187,6 +185,7 @@ export function createRealScanner({ items, colors }) {
 
   // החפץ הגיע למרכז הסורק: המידע מתחת למכונה עובר אליו
   function showInfo(it) {
+    info.classList.remove('is-empty');
     title.textContent = it.label;
     note.textContent = it.note;
     extra.replaceChildren(...(it.link ? [h('a', { href: `./${it.link.href}`, text: it.link.label })] : []));
@@ -261,6 +260,7 @@ export function createRealScanner({ items, colors }) {
     screen.append(t.xrayEl);
     if (trays.every((x) => x === t || x.seen)) {
       // אין חפץ אחר בדרך למרכז: המידע מתחיל להראות את החפץ החדש
+      info.classList.remove('is-empty');
       title.textContent = item.label;
       note.textContent = 'החפץ נוסע בסורק. אפשר לעצור את המסוע כדי להתבונן בצילום.';
       extra.replaceChildren();
@@ -277,6 +277,5 @@ export function createRealScanner({ items, colors }) {
     if (prefersReducedMotion() && !paused && trays.length) { [...trays].forEach(remove); render(); stop(); }
   });
 
-  legend.hidden = false;
   return { el };
 }
