@@ -117,7 +117,7 @@ https://physics.nist.gov/PhysRefData/XrayMassCoef/ — אומת מול הטבל�
 - העובדות בכל כרטיס (מרחק, זמן צילום, תוכן המחקר) — מעמוד התמונה עצמו, שהקישור אליו שמור בשדה `page`. ב-Sgr A East בעמוד יש סתירה בזמן הצילום (422 שעות מול "5 days 6 hours"), ולכן לא הוצג.
 - הצבעים "לא אמיתיים": Chandra, "Adding Color to Chandra Images" — "X rays … cannot be seen with the human eye", והצבעים "are chosen to bring out important details". https://chandra.harvard.edu/photo/false_color.html
 - האטמוספרה עוצרת קרני רנטגן מהחלל: NobelPrize.org, The Nobel Prize in Physics 2002, Popular information (אותו מקור כמו בציר הזמן).
-- השמש: שטף קרני X מלוויין GOES של NOAA, דרך האתר "השמש היום" (https://media.sunspots.co.il/today.json), נמשך פעם ביום בזמן ה-build (scripts/fetch-sun.mjs).
+- השמש: שטף קרני X מלוויין GOES של NOAA, דרך האתר "השמש היום" (https://media.sunspots.co.il/xray.json, מתעדכן כל שעה; גיבוי: today.json), נמשך כל שעה בזמן ה-build (scripts/fetch-sun.mjs).
 - סולם A/B/C/M/X, "כל אות חזקה פי 10": NOAA SWPC, "Solar Flares (Radio Blackouts)" — "The X-ray flux levels start with the 'A' level (nominally starting at 10^-8 W/m^2). The next level, ten times higher, is the 'B' level…". https://www.swpc.noaa.gov/phenomena/solar-flares-radio-blackouts
   התוויות "שקט / פעילות קלה / בינונית / חזקה" הן פישוט שלנו לאותיות.
 
