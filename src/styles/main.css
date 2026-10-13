@@ -295,7 +295,10 @@ a:hover { color: var(--accent-strong); }
   color: var(--text-2);
 }
 .disclaimer svg { flex: none; width: 20px; height: 20px; margin-top: 0.25em; color: var(--warning); }
-.footer-meta { display: flex; gap: 0.6rem; margin: 0; font-size: 0.875rem; color: var(--text-muted); }
+.footer-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem 0.6rem; margin: 0; font-size: 0.875rem; color: var(--text-muted); }
+.footer-note { display: inline-flex; align-items: center; gap: 0.35rem; }
+.footer-meta a.footer-note { color: var(--text-2); }
+.footer-note svg { flex: none; width: 16px; height: 16px; color: var(--warning); }
 .footer-meta a { color: var(--text-muted); }
 .footer-meta a:hover { color: var(--text); }
 
@@ -363,6 +366,8 @@ a:hover { color: var(--accent-strong); }
   box-shadow: 0 0 10px rgba(124, 199, 220, 0.45);
 }
 .section.prose > h2:not(:first-child) { margin-top: 2em; }
+/* בעמודי הכלים קטעי הטקסט שמתחת לכלי פרושים לרוחב העמוד, בלי שבירת שורות מוקדמת */
+.section.prose { max-width: none; }
 
 .section { padding-block: 2rem; }
 .section + .section { border-top: 1px solid var(--border); }
@@ -1250,7 +1255,7 @@ a:hover { color: var(--accent-strong); }
 /* במחשב: המכונה למעלה (גובה מוגבל כדי שהמחסן ייראה מתחתיה), ומתחתיה המחסן לכל הרוחב:
    כותרת והנחיה, ההסבר על החפץ שבסורק, ואז החפצים */
 @media (min-width: 960px) {
-  .xm-stage { width: min(100%, 80vh); justify-self: center; }
+  .xm-stage { width: min(100%, 72vh); justify-self: center; }
   .xm-shelf .rs-grid { grid-template-columns: repeat(auto-fill, minmax(112px, 1fr)); }
 }
 
@@ -1267,8 +1272,11 @@ a:hover { color: var(--accent-strong); }
   -webkit-user-select: none;
 }
 /* המכונה נשארת למעלה בזמן שגוללים במחסן, כדי שאפשר יהיה לגרור אליה */
-.xm-stage { position: sticky; top: 64px; z-index: 6; box-shadow: 0 10px 18px rgba(0, 0, 0, 0.45); }
-@media (min-width: 960px) { .xm-stage { top: 72px; } }
+/* בטלפון המכונה נדבקת למעלה בזמן הגלילה במחסן (היא ברוחב מלא, ולכן מכסה את מה שגולל מתחתיה).
+   במחשב היא לא דביקה: שם היא צרה מהעמוד, ומה שגולל מתחתיה היה מציץ בצדדים. */
+@media (max-width: 959px) {
+  .xm-stage { position: sticky; top: 64px; z-index: 6; box-shadow: 0 10px 18px rgba(0, 0, 0, 0.45); }
+}
 
 /* ---- מסוע: משטח מצולע, מסילה מתכתית, גלגלות ורגליים ---- */
 .xm-belt { position: absolute; left: 0; right: 0; bottom: 3%; height: 13%; }
@@ -1686,6 +1694,20 @@ a:hover { color: var(--accent-strong); }
 }
 .tl-figure figcaption { padding: 0.5rem 1.15rem 0; font-size: 0.8125rem; color: var(--text-muted); line-height: 1.5; }
 .tl-figure figcaption a { color: var(--text-muted); }
+@media (min-width: 900px) {
+  .tl-card { max-width: none; }
+  .tl-card:has(.tl-figure) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+    grid-template-rows: auto auto auto 1fr;
+    column-gap: 1.75rem;
+  }
+  .tl-card:has(.tl-figure) > :not(.tl-figure) { grid-column: 1; }
+  .tl-card .tl-figure { grid-column: 2; grid-row: 1 / -1; margin: -1rem 0 -1.1rem -1.15rem; display: flex; flex-direction: column; }
+  .tl-card .tl-figure img { flex: 1; height: auto; min-height: 260px; max-height: 340px; border-radius: var(--radius-lg) 0 0 0; border-bottom: 0; border-inline-start: 1px solid var(--border); }
+  .tl-card .tl-figure figcaption { padding: 0.5rem 1rem 0.9rem; border-inline-start: 1px solid var(--border); }
+  .tl-card:has(.tl-figure) .tl-date { margin-top: 0.4rem; }
+}
 
 /* ---------- ניווט משני: תפריט המעבדה, ומעבר הקודם / הבא ---------- */
 .subnav {
@@ -1898,3 +1920,33 @@ kbd { padding: 0.05em 0.4em; border: 1px solid var(--border-strong); border-bott
 @media (prefers-reduced-motion: reduce) { .sister-clone { display: none; } }
 html.a11y-still .sister-clone { display: none; }
 @media print { .sister { display: none; } }
+
+/* ---------- איורים בעמוד "איך זה עובד" ---------- */
+.lesson-fig { margin: 0; }
+.lesson-illus { display: block; width: 100%; max-width: 380px; height: auto; margin-inline: auto; font-family: inherit; }
+.il-label { fill: var(--text); font-size: 13px; font-weight: 600; }
+.il-small { fill: var(--text-muted); font-size: 11.5px; }
+.il-tag { fill: var(--text-2); font-size: 12px; font-weight: 600; }
+.il-accent { fill: var(--accent); }
+.il-wave { fill: none; stroke: var(--accent); stroke-width: 2.2; stroke-linejoin: round; }
+.il-xzone { stroke: rgba(124, 199, 220, 0.25); stroke-dasharray: 3 4; }
+.il-arrow { stroke: var(--text-muted); stroke-width: 1.5; }
+.il-ahead { fill: var(--text-muted); }
+.il-film { fill: #06080b; stroke: var(--border-strong); }
+.il-soft { fill: #4a525c; }
+.il-air { fill: #121519; }
+.il-bone { fill: #d9e0e6; }
+.il-rib { fill: none; stroke: #c9d0d7; stroke-width: 4.2; stroke-linecap: round; opacity: 0.9; }
+.il-metal { fill: #ffffff; filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.55)); }
+.il-lead path, .il-lead-line { stroke: var(--accent); stroke-width: 1.2; fill: none; opacity: 0.8; }
+.il-marrow { fill: #7b848e; }
+.il-cortex { stroke: #eef2f5; stroke-width: 4; fill: none; stroke-linecap: round; }
+.il-crack { stroke: #06080b; stroke-width: 3.2; stroke-linecap: round; }
+.il-buckle { fill: none; stroke: #ffffff; stroke-width: 3; stroke-linecap: round; }
+.il-bonefill { fill: #c9d0d7; stroke: #eef2f5; stroke-width: 2.5; }
+.il-plate { fill: none; stroke: #2a3038; stroke-width: 5; stroke-linecap: round; }
+.il-jaw { fill: #4a525c; }
+.il-tooth { fill: #eef2f5; }
+.il-tooth-new { fill: #cfd6dd; }
+.il-day { fill: var(--surface-2); stroke: var(--border-strong); }
+.il-day-on { fill: var(--accent); }
