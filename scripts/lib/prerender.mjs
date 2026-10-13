@@ -69,7 +69,7 @@ export function skyFeature(sky) {
   return `<article class="sky-feature" id="sky-${esc(it.id)}" aria-labelledby="sky-t-${esc(it.id)}">`
     + `<figure class="sky-figure"><img src="${img(esc(im.file))}" alt="${esc(im.alt)}" width="${im.width}" height="${im.height}" decoding="async">`
     + `<figcaption dir="ltr">X-ray: <a href="${esc(im.source.url)}" rel="noopener" target="_blank">${esc(im.source.author)}</a></figcaption></figure>`
-    + `<div class="sky-body"><p class="sky-date">צ'נדרה · <time datetime="${esc(it.date)}">${skyDate(it.date)}</time></p>`
+    + `<div class="sky-body"><p class="sky-date">טלסקופ החלל צ'נדרה · <time datetime="${esc(it.date)}">${skyDate(it.date)}</time></p>`
     + `<h3 id="sky-t-${esc(it.id)}">${esc(it.title)}</h3><p class="sky-object" dir="ltr" lang="en">${esc(it.object)}</p>`
     + it.text.map((p) => `<p>${esc(p)}</p>`).join('')
     + `<dl class="sky-facts">${it.facts.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>`

@@ -15,7 +15,7 @@ export function skyFeature(item) {
       h('img', { src: imgUrl(im.file), alt: im.alt, width: im.width, height: im.height, decoding: 'async' }),
       h('figcaption', { dir: 'ltr' }, 'X-ray: ', h('a', { href: im.source.url, rel: 'noopener', target: '_blank', text: im.source.author }))),
     h('div', { class: 'sky-body' },
-      h('p', { class: 'sky-date' }, "צ'נדרה · ", h('time', { datetime: item.date, text: skyDate(item.date) })),
+      h('p', { class: 'sky-date' }, "טלסקופ החלל צ'נדרה · ", h('time', { datetime: item.date, text: skyDate(item.date) })),
       h('h3', { id: `sky-t-${item.id}`, text: item.title }),
       h('p', { class: 'sky-object', dir: 'ltr', lang: 'en', text: item.object }),
       item.text.map((p) => h('p', { text: p })),
