@@ -58,7 +58,10 @@ function layoutPartials() {
         const share = SHARE.pages[page === 'case' ? 'cases' : page] ?? {};
         const og = metaTags({ page: page === 'case' ? 'cases' : page, title, description, ogTitle: share.title, ogText: share.text });
 
+        const isTool = LAB.some((t) => t.page === page);
         return html
+          // בעמודי כלי המעבדה: תווית "מעבדה" מעל הכותרת, כמו בשאר העמודים
+          .replace('<header class="page-head">', isTool ? '<header class="page-head">\n          <span class="eyebrow">מעבדה</span>' : '<header class="page-head">')
           .replace('<!-- @labnav -->', labNav(page))
           .replace('<!-- @labpager -->', labPager(page))
           .replace('<!-- @head -->', `${partial('head')}\n    ${og}`)
