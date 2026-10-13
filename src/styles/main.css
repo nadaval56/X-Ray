@@ -1689,3 +1689,105 @@ a:hover { color: var(--accent-strong); }
   .xm-pause-text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   .xm-key { padding: 2px 6px; min-width: 30px; }
 }
+
+/* ---------- סורק מזוודות: החלקים שמתחת למכונה ---------- */
+.sx-section { margin-top: 3.5rem; }
+.sx-head { margin-bottom: 1.25rem; }
+.sx-kicker { display: block; margin-bottom: 0.25rem; font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.04em; color: var(--accent); }
+.sx-head h2 { margin: 0; }
+
+/* שלושה שלבים */
+.sx-steps { display: grid; gap: 0.75rem; margin: 0; padding: 0; list-style: none; counter-reset: none; }
+@media (min-width: 760px) { .sx-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; } }
+.sx-step {
+  position: relative; display: grid; gap: 0.35rem; align-content: start;
+  padding: 1.1rem 1.15rem 1.2rem; border: 1px solid var(--border); border-radius: var(--radius-lg);
+  background: var(--bg-elev); color: var(--text-2); font-size: 0.9375rem; line-height: 1.55;
+}
+.sx-step strong { color: var(--text); font-size: 1rem; }
+.sx-step-num {
+  position: absolute; top: 0.9rem; inset-inline-end: 1rem;
+  font-size: 1.75rem; font-weight: 800; line-height: 1; color: var(--border-strong); font-variant-numeric: tabular-nums;
+}
+.sx-step-ico { display: block; width: 44px; height: 44px; margin-bottom: 0.25rem; color: var(--accent); }
+.sx-step-ico svg { width: 100%; height: 100%; }
+@media (min-width: 760px) {
+  .sx-step:not(:last-child)::after {
+    content: '←'; position: absolute; top: 50%; inset-inline-end: -0.85rem; transform: translateY(-50%);
+    width: 1.5rem; height: 1.5rem; display: grid; place-items: center; z-index: 1;
+    border-radius: 50%; background: var(--bg); border: 1px solid var(--border); color: var(--accent); font-size: 0.8125rem;
+  }
+}
+
+/* שלושת הצבעים, עם דוגמה אמיתית */
+.sx-colours { display: grid; gap: 0.75rem; margin: 1.25rem 0 0; padding: 0; list-style: none; }
+@media (min-width: 760px) { .sx-colours { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; } }
+.sx-colour {
+  display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 0.9rem; align-items: center;
+  padding: 0.75rem; border-radius: var(--radius-lg); background: var(--bg-elev);
+  border: 1px solid var(--border); border-inline-start: 4px solid var(--sx-c);
+}
+.sx-colour img { width: 88px; height: 88px; object-fit: cover; border-radius: var(--radius-sm); background: #f1efe9; }
+.sx-colour div { display: grid; gap: 0.2rem; font-size: 0.875rem; line-height: 1.5; color: var(--text-2); }
+.sx-colour strong { font-size: 1.0625rem; color: var(--sx-c); }
+.sx-colour small { color: var(--text-muted); font-size: 0.75rem; }
+.sx-orange { --sx-c: #f0a24a; }
+.sx-green { --sx-c: #74cc55; }
+.sx-blue { --sx-c: #5aa3ec; }
+
+/* צבע מול שחור-לבן */
+.sx-flip {
+  display: grid; gap: 1.25rem; align-items: center; margin-top: 1.25rem;
+  padding: 1.25rem; border-radius: var(--radius-lg); border: 1px solid var(--border);
+  background: linear-gradient(135deg, var(--bg-elev), var(--bg));
+}
+@media (min-width: 760px) { .sx-flip { grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); padding: 1.5rem 1.75rem; } }
+.sx-flip-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+.sx-flip-pair figure { margin: 0; }
+.sx-flip-pair img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: var(--radius-sm); background: #f1efe9; }
+.sx-flip-pair figcaption { margin-top: 0.3rem; text-align: center; font-size: 0.75rem; color: var(--text-muted); }
+.sx-flip-text h3 { margin: 0 0 0.4rem; font-size: 1.125rem; }
+.sx-flip-text p { margin: 0; color: var(--text-2); line-height: 1.7; }
+.sx-credit { margin: 1rem 0 0; font-size: 0.8125rem; color: var(--text-muted); line-height: 1.6; }
+
+/* מהארכיון: אז והיום, מעטפות, וכתבה */
+.sx-then-now { display: grid; gap: 0.75rem; }
+@media (min-width: 760px) { .sx-then-now { grid-template-columns: 1.4fr 1fr; gap: 1rem; } }
+.sx-era { padding: 1.1rem 1.2rem; border-radius: var(--radius-lg); background: var(--bg-elev); border: 1px solid var(--border); }
+.sx-era p { margin: 0.6rem 0 0; color: var(--text-2); line-height: 1.7; }
+.sx-era-tag {
+  display: inline-block; padding: 0.15rem 0.6rem; border-radius: 999px;
+  font-size: 0.8125rem; font-weight: 700; color: #1a1406; background: var(--warning);
+}
+.sx-era + .sx-era .sx-era-tag { color: var(--accent-ink); background: var(--accent); }
+
+.sx-envelopes { display: grid; gap: 1.75rem; margin: 2rem 0 0; }
+@media (min-width: 760px) { .sx-envelopes { grid-template-columns: 1fr 1fr; gap: 2rem; padding: 0 0.5rem; } }
+.sx-envelope.media-figure { max-width: none; margin: 0; }
+.sx-envelope .xray-frame {
+  padding: 10px; border-radius: 4px; background: #f3efe6; border: 0;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.4);
+  transform: rotate(-1.6deg); transition: transform 0.25s var(--ease);
+}
+.sx-envelope:nth-child(2) .xray-frame { transform: rotate(1.4deg); }
+.sx-envelope:hover .xray-frame { transform: rotate(0) scale(1.01); }
+.sx-envelope .xray-frame img { display: block; border-radius: 2px; }
+.sx-envelope figcaption { margin-top: 1rem; font-size: 0.875rem; color: var(--text-2); line-height: 1.6; }
+@media (prefers-reduced-motion: reduce) { .sx-envelope .xray-frame { transition: none; } }
+
+.sx-article {
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 1rem; align-items: center;
+  margin-top: 2rem; padding: 1.1rem 1.25rem; border-radius: var(--radius-lg);
+  border: 1px solid var(--border-strong); background: var(--bg-elev); color: var(--text); text-decoration: none;
+  transition: border-color 0.15s var(--ease), background-color 0.15s var(--ease);
+}
+.sx-article:hover { border-color: var(--accent); background: var(--accent-soft); }
+.sx-article:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.sx-article-ico { width: 48px; height: 48px; color: var(--accent); }
+.sx-article-ico svg { width: 100%; height: 100%; }
+.sx-article-text { display: grid; gap: 0.15rem; }
+.sx-article-text small { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.04em; color: var(--accent); }
+.sx-article-text strong { font-size: 1.0625rem; }
+.sx-article-text span { font-size: 0.875rem; color: var(--text-2); }
+.sx-article-arrow { font-size: 1.25rem; color: var(--accent); }
+@media (max-width: 480px) { .sx-article { grid-template-columns: auto minmax(0, 1fr); } .sx-article-arrow { display: none; } .sx-article-ico { width: 36px; height: 36px; } }
