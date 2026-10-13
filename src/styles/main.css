@@ -27,7 +27,7 @@
   --danger: #ef9a8f;
   --danger-soft: rgba(239, 154, 143, 0.12);
 
-  --font: 'Heebo', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  --font: 'Heebo Variable', 'Heebo', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
   --font-mono: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
 
   --radius-sm: 6px;
@@ -1786,3 +1786,19 @@ a:hover { color: var(--accent-strong); }
 .sx-article-text span { font-size: 0.875rem; color: var(--text-2); }
 .sx-article-arrow { font-size: 1.25rem; color: var(--accent); }
 @media (max-width: 480px) { .sx-article { grid-template-columns: auto minmax(0, 1fr); } .sx-article-arrow { display: none; } .sx-article-ico { width: 36px; height: 36px; } }
+
+/* ---------- דפי מדיניות: טבלאות, פקדי פרטיות ---------- */
+.table-wrap { overflow-x: auto; margin: 1rem 0; border: 1px solid var(--border); border-radius: var(--radius); }
+.data-table { width: 100%; border-collapse: collapse; font-size: 0.9375rem; }
+.data-table caption { padding: 0.75rem 1rem; text-align: start; font-weight: 600; color: var(--text); background: var(--surface); border-bottom: 1px solid var(--border); }
+.data-table th, .data-table td { padding: 0.6rem 1rem; text-align: start; vertical-align: top; border-bottom: 1px solid var(--border); color: var(--text-2); }
+.data-table th { font-size: 0.8125rem; font-weight: 600; color: var(--text-muted); background: var(--bg-elev); }
+.data-table tr:last-child td { border-bottom: 0; }
+.data-table code { font-family: var(--font-mono); font-size: 0.875em; color: var(--accent); }
+.lesson .prose h3 { margin: 1.4rem 0 0.4rem; font-size: 1.0625rem; color: var(--text); }
+.lesson .prose h3:first-child { margin-top: 0; }
+kbd { padding: 0.05em 0.4em; border: 1px solid var(--border-strong); border-bottom-width: 2px; border-radius: 4px; font-family: var(--font-mono); font-size: 0.85em; color: var(--text); background: var(--surface); }
+.privacy-tools { margin-top: 1rem; padding: 1rem; border: 1px dashed var(--border-strong); border-radius: var(--radius); }
+.privacy-status { margin: 0 0 0.75rem; color: var(--text); }
+.privacy-dump { margin: 0.75rem 0 0; padding: 0.75rem; max-height: 14rem; overflow: auto; direction: ltr; text-align: left; white-space: pre-wrap; word-break: break-all; font-family: var(--font-mono); font-size: 0.8125rem; color: var(--text-2); background: var(--bg); border-radius: var(--radius-sm); }
+.legal-updated { margin: 0.5rem 0 0; font-size: 0.875rem; }

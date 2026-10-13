@@ -1,4 +1,6 @@
 // נטען בכל עמוד: סגנונות, ותפריט נייד.
+// גופן Heebo מוגש מהאתר עצמו (לא מ-Google Fonts), כדי שאף צד שלישי לא יראה את הגולשים
+import '@fontsource-variable/heebo';
 import './styles/main.css';
 
 document.documentElement.classList.add('js');
