@@ -1552,7 +1552,6 @@ a:hover { color: var(--accent-strong); }
 }
 .rr-pick:hover { color: var(--text); border-color: #45505e; }
 .rr-pick[aria-pressed='true'] { color: var(--text); border-color: var(--accent); background: var(--accent-soft); }
-.rr-pick.is-ref { border-style: dashed; }
 .rr-pick-name { font-weight: 600; font-size: 0.9375rem; }
 .rr-pick-days { font-size: 0.8125rem; color: var(--text-muted); }
 .rr-pick[aria-pressed='true'] .rr-pick-days { color: var(--text-2); }
@@ -1562,7 +1561,11 @@ a:hover { color: var(--accent-strong); }
 .rr-sub { margin: -0.6rem 0 0; font-size: 0.875rem; }
 
 .rr-calendars { display: grid; gap: 1.25rem; }
-@media (min-width: 900px) { .rr-calendars.is-two { grid-template-columns: 1fr 1fr; } }
+/* במחשב תמיד שתי עמודות, כדי שלוח השנה לא ישנה גודל כשמתווספת שנה שנייה */
+@media (min-width: 900px) { .rr-calendars { grid-template-columns: 1fr 1fr; } }
+.rr-year.is-new { animation: rr-new 0.35s var(--ease); }
+@keyframes rr-new { from { opacity: 0; transform: translateY(8px); } }
+@media (prefers-reduced-motion: reduce) { .rr-year.is-new { animation: none; } }
 .rr-year { display: grid; gap: 3px; padding: 0.9rem; border-radius: var(--radius); background: var(--bg); border: 1px solid var(--border); }
 .rr-year-title { margin: 0 0 0.4rem; font-size: 0.8125rem; color: var(--text-muted); }
 .rr-month { display: grid; grid-template-columns: 4.2rem minmax(0, 1fr); gap: 0.5rem; align-items: center; }
@@ -1570,9 +1573,7 @@ a:hover { color: var(--accent-strong); }
 .rr-days { display: grid; grid-template-columns: repeat(31, minmax(0, 1fr)); gap: 2px; }
 .rr-day { aspect-ratio: 1; border-radius: 2px; background: #232a33; }
 .rr-day.is-on { background: var(--accent); }
-.rr-day.is-partial { background: linear-gradient(to left, var(--accent) 50%, #232a33 50%); }
-.rr-hours { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 4px; max-width: 28rem; }
-.rr-hour { border-radius: 4px; }
+.rr-day.is-partial { background: linear-gradient(to left, var(--accent) var(--part), #232a33 var(--part)); outline: 1px solid var(--accent); outline-offset: 1px; }
 .rr figcaption { font-size: 0.8125rem; color: var(--text-muted); }
 @media (max-width: 560px) {
   .rr { padding: 1rem; }

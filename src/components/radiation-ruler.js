@@ -1,46 +1,42 @@
 // סרגל קרינה: "לוח שנה של קרינה". בוחרים בדיקה, ולוח השנה מתמלא בימים של קרינת רקע טבעית
-// ששווים לה — יחידה שכל ילד מבין. 12 שורות של חודשים, משבצת לכל יום; מעל שנה — לוח שני.
-// בדיקה שקטנה מיום אחד מוצגת כיום אחד מוגדל, עם משבצת לכל שעה.
+// ששווים לה — יחידה שכל ילד מבין. 12 שורות של חודשים, משבצת לכל יום.
+// קנה המידה לא משתנה לעולם: בדיקה שקטנה מיום ממלאת חלק ממשבצת אחת, ובדיקה שגדולה משנה
+// "גולשת" — כשהלוח מתמלא, מופיע תוך כדי מילוי לוח של שנה נוספת, באותו גודל.
 // הערכים וההשוואה לימים לקוחים כמו שהם מהמקור (content/doses.json), לא מחושבים כאן.
 
 import { h, prefersReducedMotion } from '../lib/dom.js';
 
 const MONTHS = ['ינואר', 'פברואר', 'מרץ', 'אפריל', 'מאי', 'יוני', 'יולי', 'אוגוסט', 'ספטמבר', 'אוקטובר', 'נובמבר', 'דצמבר'];
 const MONTH_DAYS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+const YEAR = 365;
+const DAYS_PER_SEC = 450; // קצב המילוי
 const fmt = (v) => (v < 0.01 ? v.toFixed(3) : String(v));
+const ORDINAL = ['הראשונה', 'השנייה', 'השלישית'];
 
-function yearGrid(label) {
+function yearGrid(k) {
   const cells = [];
-  const months = MONTHS.map((m, k) => h('div', { class: 'rr-month' },
+  const title = h('p', { class: 'rr-year-title', text: 'שנה אחת' });
+  const months = MONTHS.map((m, i) => h('div', { class: 'rr-month' },
     h('span', { class: 'rr-month-name', text: m }),
-    h('span', { class: 'rr-days' }, Array.from({ length: MONTH_DAYS[k] }, () => {
+    h('span', { class: 'rr-days' }, Array.from({ length: MONTH_DAYS[i] }, () => {
       const c = h('span', { class: 'rr-day' });
       cells.push(c);
       return c;
     }))));
-  const el = h('div', { class: 'rr-year' }, h('p', { class: 'rr-year-title', text: label }), ...months);
-  return { el, cells };
-}
-
-function dayGrid() {
-  const cells = Array.from({ length: 24 }, () => h('span', { class: 'rr-day rr-hour' }));
-  const el = h('div', { class: 'rr-year rr-oneday' },
-    h('p', { class: 'rr-year-title', text: 'יום אחד, משבצת לכל שעה' }),
-    h('span', { class: 'rr-hours' }, cells));
-  return { el, cells };
+  const el = h('div', { class: 'rr-year' }, title, ...months);
+  return { el, cells, title, k };
 }
 
 /**
  * @param {object} opts
- * @param {Array<{id:string,label:string,short:string,mSv:number,lessThan?:boolean,background:string,days:number,isBackground?:boolean,note?:string}>} opts.items
+ * @param {Array<{id:string,label:string,short:string,mSv:number,lessThan?:boolean,background:string,days:number}>} opts.items
  * @param {{label:string,url:string}} opts.source
  */
 export function createRadiationRuler({ items, source }) {
-  let current = items.find((it) => it.id === 'chest') ?? items[0];
   let anim = 0;
 
   const picks = items.map((it) => h('button', {
-    type: 'button', class: `rr-pick${it.isBackground ? ' is-ref' : ''}`, 'aria-pressed': 'false',
+    type: 'button', class: 'rr-pick', 'aria-pressed': 'false',
     onclick: () => select(it),
   }, h('span', { class: 'rr-pick-name', text: it.short }), h('span', { class: 'rr-pick-days', text: it.background })));
 
@@ -57,49 +53,51 @@ export function createRadiationRuler({ items, source }) {
   );
 
   function select(it) {
-    current = it;
     picks.forEach((b, k) => b.setAttribute('aria-pressed', String(items[k] === it)));
-    const value = `${it.lessThan ? 'פחות מ-' : 'בערך '}${fmt(it.mSv)} מיליסיוורט`;
     headline.replaceChildren(
       h('strong', { text: it.label }), ': ',
-      it.isBackground ? 'לוח שנה מלא.' : h('span', {},
-        it.lessThan ? '' : 'כמו ', h('strong', { class: 'rr-hl-days', text: it.background }), ' של קרינה טבעית.'));
-    sub.textContent = it.isBackground
-      ? `${value} (מיליסיוורט: היחידה שבה מודדים קרינה). ${it.note ?? ''}`.trim()
-      : `${value} (מיליסיוורט: היחידה שבה מודדים קרינה).`;
-
-    // בונים את הלוחות: שעות (פחות מיום), שנה אחת, או שתיים
-    let grids;
-    let filled;
-    if (it.days < 1) {
-      grids = [dayGrid()];
-      filled = Math.round(it.days * 24);
-    } else {
-      const years = Math.max(1, Math.ceil(it.days / 365));
-      grids = Array.from({ length: years }, (_, k) => yearGrid(years > 1 ? `שנה ${k === 0 ? 'ראשונה' : 'שנייה'}` : 'שנה אחת'));
-      filled = Math.round(it.days);
-    }
-    calendars.replaceChildren(...grids.map((g) => g.el));
-    calendars.classList.toggle('is-two', grids.length > 1);
-    const cells = grids.flatMap((g) => g.cells);
-    if (it.lessThan && it.days < 1) cells[filled - 1]?.classList.add('is-partial');
+      it.lessThan ? '' : 'כמו ', h('strong', { class: 'rr-hl-days', text: it.background }), ' של קרינה טבעית.');
+    sub.textContent = `${it.lessThan ? 'פחות מ-' : 'בערך '}${fmt(it.mSv)} מיליסיוורט (מיליסיוורט: היחידה שבה מודדים קרינה).`
+      + (it.days < 1 ? ' בלוח זה פחות משמינית של משבצת אחת.' : '');
 
     cancelAnimationFrame(anim);
-    if (prefersReducedMotion() || filled <= 1) {
-      cells.slice(0, filled).forEach((c) => c.classList.add('is-on'));
+    const years = [yearGrid(0)];
+    calendars.replaceChildren(years[0].el);
+
+    // פחות מיום: חלק יחסי של המשבצת הראשונה, לפי השעות (3 שעות = שמינית)
+    if (it.days < 1) {
+      const c = years[0].cells[0];
+      c.classList.add('is-partial');
+      c.style.setProperty('--part', `${it.days * 100}%`);
       return;
     }
-    // מילוי הדרגתי: כ-0.8 שניות, בלי קשר לכמות
-    const t0 = performance.now();
+
+    const total = Math.round(it.days);
     let done = 0;
+    // מדליק את משבצת מספר i; כשהשנה מתמלאת — מוסיף לוח של שנה חדשה, באותו גודל
+    const light = (i) => {
+      const y = Math.floor(i / YEAR);
+      if (!years[y]) {
+        years[y] = yearGrid(y);
+        years.forEach((g) => { g.title.textContent = `השנה ${ORDINAL[g.k] ?? g.k + 1}`; });
+        calendars.append(years[y].el);
+        years[y].el.classList.add('is-new');
+      }
+      years[y].cells[i % YEAR].classList.add('is-on');
+    };
+    if (prefersReducedMotion()) {
+      for (; done < total; done++) light(done);
+      return;
+    }
+    const t0 = performance.now();
     const step = (t) => {
-      const n = Math.min(filled, Math.ceil(((t - t0) / 800) * filled));
-      for (; done < n; done++) cells[done].classList.add('is-on');
-      if (done < filled) anim = requestAnimationFrame(step);
+      const n = Math.min(total, Math.ceil(((t - t0) / 1000) * DAYS_PER_SEC));
+      for (; done < n; done++) light(done);
+      if (done < total) anim = requestAnimationFrame(step);
     };
     anim = requestAnimationFrame(step);
   }
 
-  select(current);
+  select(items.find((it) => it.id === 'chest') ?? items[0]);
   return { el };
 }

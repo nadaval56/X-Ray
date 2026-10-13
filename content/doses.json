@@ -1,5 +1,5 @@
 {
-  "_comment": "מנות קרינה אפקטיביות מקורבות. כל הערכים מ-RadiologyInfo.org (ACR ו-RSNA), טבלת 'Radiation Dose in X-Ray and CT Exams', כולל ההשוואה לקרינת רקע טבעית. days = אותה השוואה כמספר ימים (כפי שכתוב במקור: '3 hours' = 0.125, 'six months' = 182, '2 years' = 730). טיסה — TODO: לא נמצא מקור מאומת, ולכן לא מוצגת.",
+  "_comment": "מנות קרינה אפקטיביות מקורבות. כל הערכים מ-RadiologyInfo.org (ACR ו-RSNA), טבלת 'Radiation Dose in X-Ray and CT Exams', כולל ההשוואה לקרינת רקע טבעית. days = אותה השוואה כמספר ימים (כפי שכתוב במקור: '3 hours' = 0.125, 'six months' = 182, '2 years' = 730). טיסה — TODO: לא נמצא מקור מאומת, ולכן לא מוצגת. קרינת רקע שנתית (כ-3 mSv, ממוצע בארה\"ב לפי אותו מקור) — היא היחידה של הלוח עצמו, ולכן אינה מופיעה כבדיקה.",
   "source": {
     "label": "RadiologyInfo.org (ACR & RSNA) — Radiation Dose in X-Ray and CT Exams",
     "url": "https://www.radiologyinfo.org/en/info/safety-xray",
@@ -46,16 +46,6 @@
       "background": "חצי שנה",
       "days": 182,
       "short": "גב תחתון"
-    },
-    {
-      "id": "background",
-      "label": "קרינת רקע טבעית בשנה אחת",
-      "mSv": 3,
-      "background": "שנה",
-      "isBackground": true,
-      "note": "ממוצע בארצות הברית, לפי המקור",
-      "days": 365,
-      "short": "שנה בטבע"
     },
     {
       "id": "ct-chest",
