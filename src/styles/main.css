@@ -1179,11 +1179,13 @@ a:hover { color: var(--accent-strong); }
 
 /* ---------- סורק מזוודות: מכונת שיקוף ---------- */
 .xm { display: grid; gap: 1rem 1.5rem; }
+/* במחשב: המכונה למעלה (גובה מוגבל כדי שהמחסן ייראה מתחתיה), ומתחתיה המחסן והמידע זה לצד זה */
 @media (min-width: 960px) {
-  .xm { grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr); grid-template-rows: auto 1fr; grid-template-areas: "shelf stage" "shelf info"; align-items: start; }
-  .xm-stage { grid-area: stage; }
+  .xm { grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); grid-template-areas: "stage stage" "shelf info"; align-items: start; }
+  .xm-stage { grid-area: stage; width: min(100%, 80vh); justify-self: center; top: 72px; }
   .xm-info { grid-area: info; }
-  .xm-shelf { grid-area: shelf; position: sticky; top: 84px; }
+  .xm-shelf { grid-area: shelf; }
+  .xm-shelf .rs-grid { grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); }
 }
 
 .xm-stage {
@@ -1198,10 +1200,9 @@ a:hover { color: var(--accent-strong); }
   user-select: none;
   -webkit-user-select: none;
 }
-/* בנייד: המכונה נשארת למעלה בזמן שגוללים במחסן, כדי שאפשר יהיה לגרור אליה */
-@media (max-width: 959px) {
-  .xm-stage { position: sticky; top: 64px; z-index: 6; box-shadow: 0 10px 18px rgba(0, 0, 0, 0.45); }
-}
+/* המכונה נשארת למעלה בזמן שגוללים במחסן, כדי שאפשר יהיה לגרור אליה */
+.xm-stage { position: sticky; top: 64px; z-index: 6; box-shadow: 0 10px 18px rgba(0, 0, 0, 0.45); }
+@media (min-width: 960px) { .xm-stage { top: 72px; } }
 
 /* ---- מסוע: משטח מצולע, מסילה מתכתית, גלגלות ורגליים ---- */
 .xm-belt { position: absolute; left: 0; right: 0; bottom: 3%; height: 13%; }
@@ -1245,6 +1246,13 @@ a:hover { color: var(--accent-strong); }
   background: linear-gradient(180deg, #8f9aa6, #6f7a87 30%, #5b6572);
   box-shadow: inset 0 3px 0 rgba(255, 255, 255, 0.25), inset 0 -4px 0 rgba(0, 0, 0, 0.25), 0 4px 6px rgba(0, 0, 0, 0.5);
 }
+/* ידית קטנה למעלה, כמו במזוודה */
+.xm-tray::before {
+  content: ''; position: absolute; left: 34%; width: 32%; bottom: 100%; height: 13%;
+  border: 3px solid #4c5561; border-bottom: 0; border-radius: 8px 8px 0 0;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+.xm-tray::after { content: ''; position: absolute; left: 30%; width: 40%; top: -2px; height: 4px; border-radius: 2px; background: #3d4651; }
 .xm-tray img {
   position: absolute; top: 7%; left: 7%; width: 86%; height: 82%; object-fit: cover; pointer-events: none;
   border-radius: 4px; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35), inset 0 2px 6px rgba(0, 0, 0, 0.35);
