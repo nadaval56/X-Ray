@@ -30,6 +30,7 @@ const credit = (s) => (s ? [s.author, s.license].filter(Boolean).join(' · ') : 
 for (const c of cases) for (const im of c.images) credits[`cases/${im.file}`] = credit(im.source);
 for (const e of json('content/timeline.json').events ?? []) if (e.image) credits[e.image.file] = credit(e.image.source);
 for (const m of Object.values(json('content/media.json')).flat().filter((m) => m && m.file)) credits[m.file] = credit(m.source);
+for (const it of json('content/sky.json').items) credits[it.image.file] = credit(it.image.source);
 const scanner = json('content/scanner.json');
 const SCANNER_CREDIT = `COMPASS-XP (UCL) · ${scanner.source.license}`;
 
@@ -110,7 +111,7 @@ async function render(name, html) {
   console.log('✓', `og/${name}.jpg`);
 }
 
-const KICKERS = { lab: 'מעבדה', privacy: 'פרטיות', accessibility: 'נגישות', history: 'היסטוריה', physics: 'איך זה עובד', cases: 'מקרים' };
+const KICKERS = { sky: 'מהחלל', lab: 'מעבדה', privacy: 'פרטיות', accessibility: 'נגישות', history: 'היסטוריה', physics: 'איך זה עובד', cases: 'מקרים' };
 for (const [page, s] of Object.entries(share.pages)) {
   let visual = null, cr = '', fit = 'contain';
   if (s.image) { visual = imgUri(s.image); cr = credits[s.image] ?? ''; }

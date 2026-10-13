@@ -1,0 +1,373 @@
+{
+  "_comment": "\"השמיים ברנטגן\": תמונות ממצפה הרנטגן צ'נדרה (נאס\"א). רק שכבת הרנטגן — צ'נדרה לא טוען לזכויות יוצרים על התוכן שלו (image_use.html), אבל בתמונות משולבות יש שכבות מטלסקופים אחרים שעשויות להיות מוגנות. כלל: נכנסת רק תמונת ה-X-ray בלבד, ורק אם כל הקרדיט של חלק הרנטגן הוא של נאס\"א/CXC (לא ESA/XMM וכו'). הטקסט בעברית נכתב מחדש מעובדות שבעמוד התמונה. הוספת תמונה: פריט חדש בראש items וקובץ ב-public/images/sky/.",
+  "about": {
+    "chandraUrl": "https://chandra.harvard.edu/photo/",
+    "policyUrl": "https://chandra.harvard.edu/photo/image_use.html"
+  },
+  "items": [
+    {
+      "id": "sgrae",
+      "date": "2026-09-30",
+      "title": "שאריות של פיצוץ בלב הגלקסיה",
+      "object": "Sagittarius A East",
+      "text": [
+        "במרכז הגלקסיה שלנו, שביל החלב, יושב חור שחור ענק — כבד פי 4 מיליון מהשמש. סביבו יש צפיפות של גז, אבק, שדות מגנטיים וכוכבים, ולכן קשה להבחין שם בפרטים.",
+        "בצילום הרנטגן החדש רואים בבירור את מה שנשאר מכוכב שהתפוצץ, הכי קרוב לחור השחור מכל השאריות שמוכרות לאסטרונומים. גלי ההדף של הפיצוץ מחממים את הגז למיליוני מעלות, ובחום כזה הוא זוהר בקרני X."
+      ],
+      "facts": [["מרחק", "כ-26,000 שנות אור"]],
+      "page": "https://chandra.harvard.edu/photo/2026/sgrae/",
+      "image": {
+        "file": "sky/sgrae-2026.webp",
+        "width": 864, "height": 864,
+        "alt": "צילום רנטגן: ענן בצורת אליפסה בגווני ירוק, ובמרכזו כתם תכלת בהיר, על רקע כהה.",
+        "source": {
+          "title": "Sagittarius A East — Chandra X-ray image",
+          "author": "NASA/CXC/McGill Univ./M. Balakrishnan et al.",
+          "url": "https://chandra.harvard.edu/photo/2026/sgrae/",
+          "license": "Public-Domain",
+          "licenseUrl": "https://chandra.harvard.edu/photo/image_use.html",
+          "modifications": "שכבת הרנטגן בלבד (בלי שכבות של טלסקופים אחרים), המרה ל-WebP",
+          "verifiedOn": "2026-10-13"
+        }
+      }
+    },
+    {
+      "id": "m101",
+      "date": "2026-09-09",
+      "title": "עצמים מסתוריים בגלקסיית השבשבת",
+      "object": "M101",
+      "text": [
+        "M101, שמכונה גלקסיית השבשבת, היא גלקסיה ספירלית שאנחנו רואים מלמעלה, כמו גלגל. כל נקודה בהירה בצילום היא מקור של קרני X: כוכב נייטרונים, חור שחור או גז לוהט.",
+        "אסטרונומים גילו בעזרת צ'נדרה סוג חדש של עצמים, שפולטים קרני X חלשות מאוד באנרגיה שלהן. כדי לגלות אותם היה צריך לצלם זמן רב מאוד. בסך הכול נמצאו 84 עצמים כאלה, בכמה גלקסיות, ושבעה מהם ב-M101. עדיין לא ברור מה הם."
+      ],
+      "facts": [["מרחק", "כ-21 מיליון שנות אור"], ["זמן צילום", "כ-11 ימים"]],
+      "page": "https://chandra.harvard.edu/photo/2026/m101/",
+      "image": {
+        "file": "sky/m101-2026.webp",
+        "width": 864, "height": 865,
+        "alt": "צילום רנטגן: עשרות נקודות סגולות ולבנות פזורות על ערפל סגול עגול, בצורת גלקסיה ספירלית.",
+        "source": {
+          "title": "M101 — Chandra X-ray image",
+          "author": "NASA/CXC/Univ. of Alabama/M. Muhibullah et al.",
+          "url": "https://chandra.harvard.edu/photo/2026/m101/",
+          "license": "Public-Domain",
+          "licenseUrl": "https://chandra.harvard.edu/photo/image_use.html",
+          "modifications": "שכבת הרנטגן בלבד (בלי שכבות של טלסקופים אחרים), המרה ל-WebP",
+          "verifiedOn": "2026-10-13"
+        }
+      }
+    },
+    {
+      "id": "cena",
+      "date": "2026-08-25",
+      "title": "גלקסיה שיורה סילון",
+      "object": "Centaurus A",
+      "text": [
+        "קנטאורוס A היא גלקסיה אליפטית ענקית, ובמרכז שלה יש חור שחור ענק.",
+        "כשחומר נופל לעבר החור השחור, חלק ממנו נזרק החוצה בסילון של חלקיקים מהירים מאוד. בצילום הרנטגן רואים את הסילון יוצא מהמרכז הבהיר באלכסון, לאורך עשרות אלפי שנות אור."
+      ],
+      "facts": [["מרחק", "כ-12 מיליון שנות אור"], ["זמן צילום", "כ-9.5 ימים"]],
+      "page": "https://chandra.harvard.edu/photo/2026/galaxies/",
+      "image": {
+        "file": "sky/cena-2026.webp",
+        "width": 864, "height": 864,
+        "alt": "צילום רנטגן: ערפל כחול רחב, ובמרכזו נקודה בהירה שממנה יוצא קו דק ובהיר באלכסון, כלפי מעלה ושמאלה.",
+        "source": {
+          "title": "Centaurus A — Chandra X-ray image (Galaxy Gallery)",
+          "author": "NASA/CXC/SAO",
+          "url": "https://chandra.harvard.edu/photo/2026/galaxies/",
+          "license": "Public-Domain",
+          "licenseUrl": "https://chandra.harvard.edu/photo/image_use.html",
+          "modifications": "שכבת הרנטגן של צ'נדרה בלבד (בלי שכבות של טלסקופים אחרים), המרה ל-WebP",
+          "verifiedOn": "2026-10-13"
+        }
+      }
+    },
+    {
+      "id": "30dor",
+      "date": "2026-08-11",
+      "title": "ערפילית הטרנטולה",
+      "object": "30 Doradus",
+      "text": [
+        "ערפילית הטרנטולה נמצאת בענן המגלני הגדול, גלקסיה קטנה שכנה לשביל החלב. נולדים בה אלפי כוכבים צעירים.",
+        "הכוכבים הצעירים והכבדים נושבים רוחות חזקות מהשטח שלהם. הרוחות יוצרות גלי הדף, כמו בום על-קולי של מטוס, שמחממים את הגז למיליוני מעלות. את הגז הלוהט הזה רואים בצילום הרנטגן. מחקר חדש מצא לאן בורחת האנרגיה שלו: חלק מהגז דולף החוצה, חלק מתערבב עם גז קר, וחלק מהחום פשוט עובר לסביבה."
+      ],
+      "facts": [["מרחק", "כ-160,000 שנות אור"], ["זמן צילום", "כ-24 ימים"]],
+      "page": "https://chandra.harvard.edu/photo/2026/30dor/",
+      "image": {
+        "file": "sky/30dor-2026.webp",
+        "width": 864, "height": 861,
+        "alt": "צילום רנטגן: עננים כחולים מעורפלים ובועות כהות ביניהם, שממלאים את כל התמונה.",
+        "source": {
+          "title": "30 Doradus (Tarantula Nebula) — Chandra X-ray image",
+          "author": "NASA/CXC/Ohio State Univ./J. Rodriguez et al.",
+          "url": "https://chandra.harvard.edu/photo/2026/30dor/",
+          "license": "Public-Domain",
+          "licenseUrl": "https://chandra.harvard.edu/photo/image_use.html",
+          "modifications": "שכבת הרנטגן בלבד (בלי שכבות של טלסקופים אחרים), המרה ל-WebP",
+          "verifiedOn": "2026-10-13"
+        }
+      }
+    },
+    {
+      "id": "lighthouse",
+      "date": "2026-07-09",
+      "title": "המגדלור והשובל שלו",
+      "object": "PSR J1101-6101",
+      "text": [
+        "פולסר הוא מה שנשאר מכוכב כבד שקרס: כדור קטן וצפוף מאוד, עם שדה מגנטי חזק, שמסתובב מהר. הפולסר שבתוך „ערפילית המגדלור“ מסתובב 16 פעמים בשנייה.",
+        "הפולסר שועט בחלל ופולט חלקיקים מהירים. כשהם פוגשים את הגז שבחלל נוצר גל הדף, כמו הגל שלפני חרטום של סירה מהירה, ומאחוריו נמשך שובל. בצילום רואים את השובל הארוך והדק בצד ימין למטה. צ'נדרה מדד אותו באורך של יותר מ-37 שנות אור."
+      ],
+      "facts": [["מרחק", "כ-21,000 שנות אור"], ["זמן צילום", "כ-5 ימים"]],
+      "page": "https://chandra.harvard.edu/photo/2026/lighthouse/",
+      "image": {
+        "file": "sky/lighthouse-2026.webp",
+        "width": 864, "height": 723,
+        "alt": "צילום רנטגן: ענן סגול גדול ומפוזר משמאל למעלה, ומימין למטה קו סגול דק וארוך שיוצא מנקודה בהירה.",
+        "source": {
+          "title": "Lighthouse Pulsar (PSR J1101-6101) — Chandra X-ray image",
+          "author": "NASA/CXC/ISDC/L. Pavan et al.",
+          "url": "https://chandra.harvard.edu/photo/2026/lighthouse/",
+          "license": "Public-Domain",
+          "licenseUrl": "https://chandra.harvard.edu/photo/image_use.html",
+          "modifications": "שכבת הרנטגן של צ'נדרה בלבד (בלי שכבות של טלסקופים אחרים), המרה ל-WebP",
+          "verifiedOn": "2026-10-13"
+        }
+      }
+    },
+    {
+      "id": "ngc3603",
+      "date": "2026-06-30",
+      "title": "צביר של כוכבים כבדים",
+      "object": "NGC 3603",
+      "text": [
+        "NGC 3603 היא ערפילית בגלקסיה שלנו, ובתוכה צביר גדול של כוכבים כבדים.",
+        "בצילום הרנטגן יש שני סוגים של אור: נקודות קטנות ובהירות, שכל אחת מהן מקור נפרד של קרני X, וזוהר מפוזר ליד המרכז. התמונה פורסמה באוסף של צ'נדרה לכבוד יום ההולדת ה-250 של ארצות הברית, בצבעי אדום ולבן."
+      ],
+      "facts": [["מרחק", "כ-20,000 שנות אור"], ["זמן צילום", "כ-6 ימים"]],
+      "page": "https://chandra.harvard.edu/photo/2026/250th/",
+      "image": {
+        "file": "sky/ngc3603-2026.webp",
+        "width": 864, "height": 768,
+        "alt": "צילום רנטגן: מקבץ צפוף של נקודות אדומות ולבנות סביב מרכז בהיר, ונקודות אדומות בודדות מפוזרות סביבו.",
+        "source": {
+          "title": "NGC 3603 — Chandra X-ray image (U.S. 250th collection)",
+          "author": "NASA/CXC/SAO",
+          "url": "https://chandra.harvard.edu/photo/2026/250th/",
+          "license": "Public-Domain",
+          "licenseUrl": "https://chandra.harvard.edu/photo/image_use.html",
+          "modifications": "שכבת הרנטגן בלבד (בלי שכבות של טלסקופים אחרים), המרה ל-WebP",
+          "verifiedOn": "2026-10-13"
+        }
+      }
+    },
+    {
+      "id": "m83",
+      "date": "2026-06-15",
+      "title": "שאריות פיצוץ שמהבהבות",
+      "object": "M83",
+      "text": [
+        "כשכוכב מתפוצץ, מה שנשאר ממנו זוהר בקרני X, ובמשך השנים הזוהר הולך ונחלש לאט. כך אמור להיות.",
+        "אבל כשאסטרונומים השוו צילומים של הגלקסיה M83 לאורך 14 שנה, הם מצאו 22 שאריות כאלה שמתבהרות ומתעמעמות בחדות. ההסבר שהם מציעים: כל אחת מהן הייתה זוג כוכבים. אחד התפוצץ והשאיר אחריו חור שחור או כוכב נייטרונים, והשני שרד."
+      ],
+      "facts": [["מרחק", "כ-15 מיליון שנות אור"], ["זמן צילום", "כ-9.5 ימים"]],
+      "page": "https://chandra.harvard.edu/photo/2026/m83/",
+      "image": {
+        "file": "sky/m83-2026.webp",
+        "width": 864, "height": 864,
+        "alt": "צילום רנטגן: גלקסיה ספירלית בגווני אדום וכתום, עם מרכז צהוב בהיר ונקודות צבעוניות קטנות פזורות על הזרועות.",
+        "source": {
+          "title": "M83 — Chandra X-ray image",
+          "author": "NASA/CXC/SAO",
+          "url": "https://chandra.harvard.edu/photo/2026/m83/",
+          "license": "Public-Domain",
+          "licenseUrl": "https://chandra.harvard.edu/photo/image_use.html",
+          "modifications": "שכבת הרנטגן בלבד (בלי שכבות של טלסקופים אחרים), המרה ל-WebP",
+          "verifiedOn": "2026-10-13"
+        }
+      }
+    },
+    {
+      "id": "m87",
+      "date": "2026-06-15",
+      "title": "סילון מהיר יותר מהאור? לא באמת",
+      "object": "M87",
+      "text": [
+        "במרכז הגלקסיה M87 יש חור שחור כבד פי 6.5 מיליארד מהשמש. זה החור השחור הראשון שצולם ישירות, ב-2019. ממנו יוצא סילון ארוך של חלקיקים, וצ'נדרה צילם אותו ב-2012, 2017, 2023 ו-2025.",
+        "בהשוואה בין הצילומים נראה שחלקים מהסילון זזים כמעט פי חמישה ממהירות האור. זו אשליה: כשחלקיקים נעים כמעט במהירות האור, וכמעט בכיוון שלנו, הם נראים מהירים יותר ממה שהם באמת."
+      ],
+      "facts": [["מרחק", "כ-55 מיליון שנות אור"], ["זמן צילום", "כ-3 ימים"]],
+      "page": "https://chandra.harvard.edu/photo/2026/m87/",
+      "image": {
+        "file": "sky/m87-2026.webp",
+        "width": 864, "height": 453,
+        "alt": "צילום רנטגן: קו סגול דק ואלכסוני על רקע שחור, עם כמה גושים בהירים לאורכו.",
+        "source": {
+          "title": "M87 Jet — Chandra X-ray image",
+          "author": "NASA/CXC/Univ. Laval/C. Poitras et al.",
+          "url": "https://chandra.harvard.edu/photo/2026/m87/",
+          "license": "Public-Domain",
+          "licenseUrl": "https://chandra.harvard.edu/photo/image_use.html",
+          "modifications": "שכבת הרנטגן בלבד (בלי שכבות של טלסקופים אחרים), המרה ל-WebP",
+          "verifiedOn": "2026-10-13"
+        }
+      }
+    },
+    {
+      "id": "sgrawind",
+      "date": "2026-06-04",
+      "title": "הרוח של החור השחור שלנו",
+      "object": "Sagittarius A*",
+      "text": [
+        "לפי התאוריה, כשחור שחור „אוכל“ גז, הוא גם נושף חלק ממנו החוצה ברוח או בסילון. אצל החור השחור שבמרכז שביל החלב חיפשו את הרוח הזו יותר מ-50 שנה.",
+        "עכשיו מצאו אותה. בגז הקר שסביב החור השחור יש חלל גדול בצורת חרוט, שמצביע ישר אל החור השחור. את החלל ממלא גז לוהט, וזה מה שרואים בצילום הרנטגן."
+      ],
+      "facts": [["מרחק", "כ-26,000 שנות אור"], ["זמן צילום", "כ-11.5 ימים"]],
+      "page": "https://chandra.harvard.edu/photo/2026/sgrawind/",
+      "image": {
+        "file": "sky/sgrawind-2026.webp",
+        "width": 864, "height": 862,
+        "alt": "צילום רנטגן: ענן תכלת מעורפל בצורה לא סדירה, ובמרכזו שתי נקודות בהירות.",
+        "source": {
+          "title": "Sagittarius A* — Chandra X-ray image",
+          "author": "NASA/CXC/UMass/D. Wang et al.",
+          "url": "https://chandra.harvard.edu/photo/2026/sgrawind/",
+          "license": "Public-Domain",
+          "licenseUrl": "https://chandra.harvard.edu/photo/image_use.html",
+          "modifications": "שכבת הרנטגן בלבד (בלי שכבות של טלסקופים אחרים), המרה ל-WebP",
+          "verifiedOn": "2026-10-13"
+        }
+      }
+    },
+    {
+      "id": "a2029",
+      "date": "2026-05-12",
+      "title": "הצביר ה„רגוע“ שהיה פרוע",
+      "object": "Abell 2029",
+      "text": [
+        "צביר גלקסיות הוא המבנה הגדול ביותר ביקום שכוח הכבידה מחזיק יחד: מאות או אלפי גלקסיות, וביניהן המון גז שמחומם למיליוני מעלות וזוהר בקרני X.",
+        "לצביר Abell 2029 קראו „הצביר הרגוע ביותר ביקום“, כי הגז שבו נראה שקט. אבל בצילום הרנטגן החדש רואים בגז צורה של ספירלה, כמו מים שמתנדנדים באמבטיה. היא נוצרה כשצביר קטן יותר עבר דרכו, לפני כ-4 מיליארד שנה."
+      ],
+      "facts": [["מרחק", "כמיליארד שנות אור"], ["זמן צילום", "כ-6 ימים"]],
+      "page": "https://chandra.harvard.edu/photo/2026/a2029/",
+      "image": {
+        "file": "sky/a2029-2026.webp",
+        "width": 864, "height": 859,
+        "alt": "צילום רנטגן: ענן כחול עגול שמתבהר לכיוון המרכז, ובמרכז צורה בהירה של ספירלה קטנה.",
+        "source": {
+          "title": "Abell 2029 — Chandra X-ray image",
+          "author": "NASA/CXC/CfA/C. Watson et al.",
+          "url": "https://chandra.harvard.edu/photo/2026/a2029/",
+          "license": "Public-Domain",
+          "licenseUrl": "https://chandra.harvard.edu/photo/image_use.html",
+          "modifications": "שכבת הרנטגן בלבד (בלי שכבות של טלסקופים אחרים), המרה ל-WebP",
+          "verifiedOn": "2026-10-13"
+        }
+      }
+    },
+    {
+      "id": "westerlund2",
+      "date": "2026-03-19",
+      "title": "משתלה של כוכבים",
+      "object": "Westerlund 2",
+      "text": [
+        "Westerlund 2 הוא צביר של כוכבים צעירים, בני מיליון עד שלושה מיליון שנה. השמש שלנו, לשם השוואה, בת יותר מ-4.5 מיליארד שנה.",
+        "כוכבים נולדים בתוך ענני גז ואבק סמיכים, שמסתירים אותם באור רגיל. קרני X חודרות דרך הגז והאבק, ולכן בצילום הרנטגן רואים את הכוכבים הצעירים עצמם: עשרות נקודות בהירות."
+      ],
+      "facts": [["מרחק", "כ-20,000 שנות אור"], ["זמן צילום", "כ-37 שעות"]],
+      "page": "https://chandra.harvard.edu/photo/2026/spring/",
+      "image": {
+        "file": "sky/westerlund2-2026.webp",
+        "width": 864, "height": 879,
+        "alt": "צילום רנטגן: עשרות נקודות ורודות וסגולות בגדלים שונים על רקע כהה, צפופות יותר בחלק העליון.",
+        "source": {
+          "title": "Westerlund 2 — Chandra X-ray image (Spring Collection)",
+          "author": "NASA/CXC/SAO/Sejong Univ./Hur et al.",
+          "url": "https://chandra.harvard.edu/photo/2026/spring/",
+          "license": "Public-Domain",
+          "licenseUrl": "https://chandra.harvard.edu/photo/image_use.html",
+          "modifications": "שכבת הרנטגן בלבד (בלי שכבות של טלסקופים אחרים), המרה ל-WebP",
+          "verifiedOn": "2026-10-13"
+        }
+      }
+    },
+    {
+      "id": "saturn",
+      "date": "2026-02-25",
+      "title": "שבתאי מחזיר קרני רנטגן",
+      "object": "Saturn",
+      "text": [
+        "כוכבי לכת לא זוהרים בעצמם בקרני X. אבל השמש פולטת קרני X, וכוכבי לכת, ירחים וגופים אחרים במערכת השמש מחזירים חלק מהן — וצ'נדרה קולט אותן.",
+        "בצילום הזה של שבתאי, מ-2003 ו-2004, הכתמים הכחולים הם קרני X של השמש שהוחזרו מהכוכב. התמונה פורסמה עם „סוניפיקציה“: הנתונים הומרו לצלילים, כדי שאפשר יהיה גם לשמוע אותם."
+      ],
+      "facts": [["מרחק", "כ-1.4 מיליארד ק״מ (בממוצע)"], ["זמן צילום", "כ-30 שעות"]],
+      "page": "https://chandra.harvard.edu/photo/2026/sonify11/",
+      "image": {
+        "file": "sky/saturn-2026.webp",
+        "width": 864, "height": 589,
+        "alt": "צילום רנטגן של שבתאי: כתם כחול עגול במרכז, וסביבו טבעת אליפטית של כתמים כחולים קטנים.",
+        "source": {
+          "title": "Saturn — Chandra X-ray image (Sonification Collection)",
+          "author": "NASA/MSFC/CXC/A. Bhardwaj et al.",
+          "url": "https://chandra.harvard.edu/photo/2026/sonify11/",
+          "license": "Public-Domain",
+          "licenseUrl": "https://chandra.harvard.edu/photo/image_use.html",
+          "modifications": "שכבת הרנטגן בלבד (בלי שכבות של טלסקופים אחרים), המרה ל-WebP",
+          "verifiedOn": "2026-10-13"
+        }
+      }
+    },
+    {
+      "id": "heart",
+      "date": "2026-02-12",
+      "title": "לב בשמיים",
+      "object": "IC 5146",
+      "text": [
+        "ערפילית הפקעת (IC 5146) היא ענן של גז ואבק בצורת לב, ברוחב של כ-15 שנות אור, שבו נולדים כוכבים חדשים. צ'נדרה פרסם את התמונה לכבוד יום האהבה.",
+        "כוכבים צעירים פעילים מאוד, ופולטים הרבה קרני X. לכן בצילום הרנטגן הערפילית עצמה כמעט לא נראית, ובמקומה מופיע צביר של כוכבים חדשים: נקודות צבעוניות קטנות."
+      ],
+      "facts": [["מרחק", "כ-2,650 שנות אור"], ["זמן צילום", "כ-18 שעות"]],
+      "page": "https://chandra.harvard.edu/photo/2026/heart/",
+      "image": {
+        "file": "sky/heart-2026.webp",
+        "width": 864, "height": 871,
+        "alt": "צילום רנטגן: נקודות קטנות בצבעים שונים — צהוב, תכלת וירוק — מקובצות במרכז רקע שחור.",
+        "source": {
+          "title": "IC 5146 (Cocoon Nebula) — Chandra X-ray image",
+          "author": "NASA/CXC/SAO",
+          "url": "https://chandra.harvard.edu/photo/2026/heart/",
+          "license": "Public-Domain",
+          "licenseUrl": "https://chandra.harvard.edu/photo/image_use.html",
+          "modifications": "שכבת הרנטגן בלבד (בלי שכבות של טלסקופים אחרים), המרה ל-WebP",
+          "verifiedOn": "2026-10-13"
+        }
+      }
+    },
+    {
+      "id": "kepler",
+      "date": "2026-01-06",
+      "title": "הכוכב שקפלר ראה מתפוצץ",
+      "object": "Kepler's Supernova Remnant",
+      "text": [
+        "בשנת 1604 הופיע בשמיים כוכב חדש ובהיר, והאסטרונום יוהאנס קפלר היה מהאנשים שראו אותו. היום יודעים שזה היה ננס לבן שהתפוצץ, ומה שנשאר ממנו הוא ענן גז לוהט שמתרחב לכל הכיוונים.",
+        "הגז חם כל כך, שהוא זוהר בקרני X. צ'נדרה צילם אותו חמש פעמים במשך 25 שנה, ובהשוואה בין הצילומים רואים איך הענן גדל. החלק המהיר ביותר נע בכ-2% ממהירות האור."
+      ],
+      "facts": [["מרחק", "כ-17,000 שנות אור"], ["זמן צילום", "כ-12 ימים"]],
+      "page": "https://chandra.harvard.edu/photo/2026/kepler/",
+      "image": {
+        "file": "sky/kepler-2026.webp",
+        "width": 864, "height": 864,
+        "alt": "צילום רנטגן: טבעת עגולה ומעורפלת בכחול, בהירה יותר בחלק העליון, עם פס דק שחוצה אותה באלכסון.",
+        "source": {
+          "title": "Kepler's Supernova Remnant — Chandra X-ray image",
+          "author": "NASA/CXC/SAO",
+          "url": "https://chandra.harvard.edu/photo/2026/kepler/",
+          "license": "Public-Domain",
+          "licenseUrl": "https://chandra.harvard.edu/photo/image_use.html",
+          "modifications": "שכבת הרנטגן בלבד (בלי שכבות של טלסקופים אחרים), המרה ל-WebP",
+          "verifiedOn": "2026-10-13"
+        }
+      }
+    }
+  ]
+}

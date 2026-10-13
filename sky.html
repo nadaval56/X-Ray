@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <!-- @head -->
+    <title>השמיים ברנטגן · {{SITE_NAME}}</title>
+    <meta name="description" content="תמונות רנטגן של היקום מטלסקופ החלל צ׳נדרה של נאס״א, עם הסבר בעברית, ומדידה יומית של קרני X מהשמש." />
+  </head>
+  <body>
+    <!-- @header -->
+    <main id="main">
+      <div class="container">
+        <header class="page-head">
+          <span class="eyebrow">מהחלל</span>
+          <h1>השמיים ברנטגן</h1>
+          <p class="lead">לא רק בבית חולים: גם ביקום יש דברים שזוהרים בקרני X — גז לוהט במיליוני מעלות, שאריות של כוכבים שהתפוצצו, וסביבה של חורים שחורים.</p>
+        </header>
+
+        <section class="section prose sky-intro" aria-label="על התמונות">
+          <p>
+            האטמוספרה של כדור הארץ עוצרת את קרני ה-X שמגיעות מהחלל, ולכן טלסקופ רנטגן חייב להיות בחלל.
+            מצפה הרנטגן <strong>צ׳נדרה</strong> של נאס״א מצלם את היקום מאז 1999
+            (<a href="./history.html#tl-chandra">בציר הזמן</a>). כאן מופיעות התמונות שהוא מפרסם, עם הסבר קצר בעברית.
+          </p>
+          <p class="muted">
+            העין לא רואה קרני X, ולכן הצבעים בתמונות נבחרו כדי להראות את הנתונים — הם לא „הצבע האמיתי“.
+            בתמונות המקוריות של צ׳נדרה יש לעיתים גם שכבות מטלסקופים אחרים; כאן מוצגת רק שכבת הרנטגן.
+          </p>
+        </section>
+
+        <section class="section" aria-labelledby="sky-feature-title">
+          <h2 id="sky-feature-title">התמונה האחרונה</h2>
+          <div id="sky-feature"></div>
+        </section>
+
+        <section class="section" aria-labelledby="sun-title">
+          <h2 id="sun-title">השמש ברנטגן</h2>
+          <p class="sun-lead">
+            גם השמש פולטת קרני X. לוויין GOES של NOAA (סוכנות האוקיינוסים והאטמוספרה של ארה״ב) מודד אותן כל הזמן.
+            את העוצמה מסמנים באותיות <span dir="ltr">A, B, C, M, X</span>: כל אות חזקה פי 10 מהקודמת, והמספר שאחריה מדייק.
+            כשיש התפרצות על השמש, הגרף קופץ.
+          </p>
+          <div id="sun-root"></div>
+        </section>
+
+        <section class="section" aria-labelledby="sky-archive-title">
+          <h2 id="sky-archive-title">כל התמונות</h2>
+          <p class="muted">בחרו תמונה כדי לקרוא עליה.</p>
+          <div id="sky-archive"></div>
+          <p class="muted sky-credit">
+            תמונות: NASA/CXC — צ׳נדרה לא טוען לזכויות יוצרים על התוכן שלו
+            (<a href="https://chandra.harvard.edu/photo/image_use.html" rel="noopener" target="_blank" dir="ltr">Image Use Policy</a>).
+            עוד תמונות ב<a href="https://chandra.harvard.edu/photo/" rel="noopener" target="_blank">אלבום של צ׳נדרה</a> (באנגלית).
+          </p>
+        </section>
+      </div>
+    </main>
+    <!-- @footer -->
+    <script type="module" src="./src/pages/sky.js"></script>
+  </body>
+</html>

@@ -4,7 +4,7 @@ import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { SITE, NAV, LAB, DISCLAIMER, SISTER_SITES, SISTER_INVITE } from './src/config.js';
 
 const PAGES = [
-  'index', 'cases', 'case', 'physics', 'history', 'about',
+  'index', 'cases', 'case', 'physics', 'history', 'sky', 'about',
   'lab', 'lab-thickness', 'lab-scanner', 'lab-window', 'lab-shadows', 'lab-dose', 'privacy', 'accessibility', '404',
 ];
 
