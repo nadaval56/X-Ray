@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 import { resolve, basename } from 'node:path';
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
-import { SITE, NAV, LAB, DISCLAIMER } from './src/config.js';
+import { SITE, NAV, LAB, DISCLAIMER, SISTER_SITES, SISTER_INVITE } from './src/config.js';
 
 const PAGES = [
   'index', 'cases', 'case', 'physics', 'history', 'about',
@@ -66,12 +66,28 @@ function layoutPartials() {
           .replace('<!-- @labpager -->', labPager(page))
           .replace('<!-- @head -->', `${partial('head')}\n    ${og}`)
           .replace('<!-- @header -->', partial('header').replace('{{NAV}}', navItems))
-          .replace('<!-- @footer -->', partial('footer').replace('{{DISCLAIMER}}', DISCLAIMER))
+          .replace('<!-- @footer -->', partial('footer').replace('{{DISCLAIMER}}', DISCLAIMER).replace('{{SISTER}}', sisterNav()))
           .replaceAll('{{SITE_NAME}}', SITE.name)
           .replaceAll('{{SITE_TAGLINE}}', SITE.tagline);
       },
     },
   };
+}
+
+// פס "עוד אתרים שלי". הרשימה כתובה פעמיים: העותק השני קיים רק כדי שהגלילה האיטית
+// (public/sister.js) תהיה רציפה; הוא מוסתר מקורא מסך ומהמקלדת, וב"בלי תנועה" מוסתר לגמרי.
+function sisterNav() {
+  const items = (clone) => SISTER_SITES.map(([emoji, url, text, tail]) => {
+    const tab = clone ? ' tabindex="-1"' : '';
+    const icon = `<span aria-hidden="true">${emoji}</span>`;
+    if (tail) return `<span class="sister-item">${icon} <a href="${url}" rel="noopener"${tab}>${attr(text)}</a>${attr(tail)}</span>`;
+    const cls = url === SISTER_INVITE ? ' class="sister-invite"' : '';
+    return `<a href="${url}" rel="noopener"${cls}${tab}>${icon} ${attr(text)}</a>`;
+  }).join('');
+  return `<nav class="sister" aria-label="האתרים הנוספים שלי"><span class="sister-lbl">עוד אתרים שלי</span>`
+    + `<div class="sister-view"><div class="sister-track"><div class="sister-set">${items(false)}</div>`
+    + `<div class="sister-set sister-clone" aria-hidden="true">${items(true)}</div></div></div></nav>`
+    + `<script src="./sister.js" defer vite-ignore></script>`;
 }
 
 // תפריט המעבדה בראש כל עמוד כלי: כל הכלים, עם הכלי הנוכחי מסומן
