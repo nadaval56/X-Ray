@@ -102,9 +102,10 @@ export function createRealScanner({ items }) {
     h('div', { class: 'rs-shelf-head' },
       h('p', { class: 'rs-shelf-title', text: 'המחסן' }),
       h('p', { class: 'rs-shelf-hint', text: 'גררו חפץ אל הצד הימני של המכונה, או הקישו עליו.' })),
+    info,
     h('div', { class: 'rs-grid' }, shelfItems));
 
-  const el = h('div', { class: 'xm' }, stage, info, shelf, status);
+  const el = h('div', { class: 'xm' }, stage, shelf, status);
 
   // ---------- גרירה ----------
   // עכבר ומגע: גוררים אל המכונה. הקשה פשוטה (בלי גרירה) שולחת את החפץ גם היא.
