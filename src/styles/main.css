@@ -656,6 +656,10 @@ a:hover { color: var(--accent-strong); }
   background: var(--bg-elev);
 }
 .callout p:last-child { margin-bottom: 0; }
+.old-prints { margin-top: 1.5rem; scroll-margin-top: 130px; }
+@media (min-width: 960px) { .old-prints { scroll-margin-top: 84px; } }
+.old-prints h3 { margin: 0 0 0.5rem; font-size: 1.0625rem; }
+.old-prints p { color: var(--text-2); line-height: 1.75; }
 
 .feedback {
   margin: 1rem 0 0;
