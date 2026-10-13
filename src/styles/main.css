@@ -490,6 +490,7 @@ a:hover { color: var(--accent-strong); }
 .card-thumb img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
 .card.is-disabled { opacity: 0.6; }
 @media (min-width: 960px) { .grid-4 { grid-template-columns: repeat(4, 1fr); } }
+@media (min-width: 1000px) { .grid-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
 .card-icon { width: 36px; height: 36px; color: var(--accent); margin-bottom: 0.25rem; }
 
 /* ---------- עמוד בית ---------- */
@@ -2049,9 +2050,32 @@ html.a11y-still .sister-clone { display: none; }
 .sun-badge.sun-C { background: #e7c07a; }
 .sun-badge.sun-M { background: #f0a36b; }
 .sun-badge.sun-X { background: #ef8a7f; }
-.sun-chart { display: block; width: 100%; max-width: 680px; height: auto; margin-top: 1rem; }
+.sun-chart { display: block; width: 100%; max-width: 560px; height: auto; margin-top: 1rem; }
 .sun-chart text { fill: var(--text-muted); font-size: 15px; font-family: var(--font); }
-#sky-feature-title, #sun-title { scroll-margin-top: 5rem; }
+#sky-feature-title, #sun-title, .sky-part { scroll-margin-top: 5rem; }
+
+/* שני החלקים של העמוד: תוכן עניינים קטן, וכותרת ממוספרת לכל חלק */
+.sky-parts { display: grid; gap: 0.75rem; grid-template-columns: minmax(0, 1fr); margin-bottom: 0.5rem; }
+@media (min-width: 720px) { .sky-parts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.sky-part-link {
+  display: flex; gap: 0.85rem; align-items: flex-start;
+  padding: 0.9rem 1rem; border: 1px solid var(--border); border-radius: var(--radius-lg);
+  background: var(--surface); color: var(--text); text-decoration: none;
+  transition: border-color 0.2s var(--ease);
+}
+.sky-part-link:hover { border-color: var(--accent); }
+.sky-part-link strong { display: block; margin-bottom: 0.2rem; }
+.sky-part-link .muted { font-size: 0.9375rem; line-height: 1.55; }
+.sky-part-num {
+  flex: none; display: inline-grid; place-items: center;
+  width: 2rem; height: 2rem; border-radius: 50%;
+  background: var(--accent-soft); color: var(--accent); font-weight: 800; font-size: 1rem;
+}
+.sky-part > h2 { display: flex; align-items: center; gap: 0.6rem; }
+.sky-part > h2::before { display: none; }
+.sky-part { padding-block: 2.5rem; }
+.sky-sub { margin: 2rem 0 0.75rem; font-size: 1.25rem; }
+.sky-intro { margin-bottom: 0.5rem; }
 .sun-band rect { fill: transparent; stroke: var(--border); stroke-width: 1; }
 .sun-band.sun-C rect { fill: rgba(231, 192, 122, 0.06); }
 .sun-band.sun-M rect { fill: rgba(240, 163, 107, 0.09); }
