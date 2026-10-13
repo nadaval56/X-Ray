@@ -3,7 +3,25 @@
     <meta name="theme-color" content="#0b0e12" />
     <meta name="color-scheme" content="dark" />
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="./a11y/a11y.css" />
+    <script>
+      /* העדפות הנגישות מוחלות לפני הציור הראשון, בלי הבהוב. נשמרות במכשיר בלבד. */
+      window.A11Y_CONFIG = { privacyUrl: './privacy.html', accessibilityUrl: './accessibility.html' };
+      window.PRIVACY_CONFIG = { appPrefixes: ['a11y:'], privacyUrl: './privacy.html', notice: false };
+      try {
+        var _p = localStorage.getItem('privacy:v1');
+        if (!_p || JSON.parse(_p).local !== false) {
+          var _r = document.documentElement, _a = localStorage.getItem('a11y:v1');
+          if (_a) {
+            _a = JSON.parse(_a);
+            if (_a.fs) _r.setAttribute('data-fs', _a.fs);
+            if (_a.mode) _r.classList.add('a11y-' + _a.mode);
+            ['links', 'readable', 'spacing', 'still', 'cursor', 'focus']
+              .forEach(function (k) { if (_a[k]) _r.classList.add('a11y-' + k); });
+          }
+        }
+      } catch (e) { /* מצב פרטי או אחסון חסום — הדף נטען כרגיל */ }
+    </script>
+    <script src="./a11y/privacy.js" defer vite-ignore></script>
+    <script src="./a11y/a11y.js" defer vite-ignore></script>
     <script type="module" src="./src/main.js"></script>

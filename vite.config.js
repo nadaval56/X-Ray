@@ -5,7 +5,7 @@ import { SITE, NAV, LAB, DISCLAIMER } from './src/config.js';
 
 const PAGES = [
   'index', 'cases', 'case', 'physics', 'history', 'about',
-  'lab', 'lab-thickness', 'lab-scanner', 'lab-window', 'lab-shadows', 'lab-dose', '404',
+  'lab', 'lab-thickness', 'lab-scanner', 'lab-window', 'lab-shadows', 'lab-dose', 'privacy', 'accessibility', '404',
 ];
 
 const partial = (name) => readFileSync(resolve(import.meta.dirname, 'src/partials', `${name}.html`), 'utf8');

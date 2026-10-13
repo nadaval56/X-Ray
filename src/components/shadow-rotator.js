@@ -449,7 +449,7 @@ export function createShadowRotator({ idPrefix = 'sr' } = {}) {
     sctx.beginPath(); sctx.arc(src[0], src[1] + 14, 6, 0, Math.PI * 2); sctx.fill();
 
     // תוויות
-    sctx.font = '500 26px Heebo, system-ui, sans-serif';
+    sctx.font = '500 26px "Heebo Variable", Heebo, system-ui, sans-serif';
     sctx.direction = 'rtl';
     sctx.fillStyle = '#b4bdc8';
     sctx.textAlign = 'center';
