@@ -12,14 +12,14 @@ export const SITE = {
 export const NAV = [
   { href: 'cases.html', label: 'מקרים', pages: ['cases', 'case'] },
   { href: 'physics.html', label: 'איך זה עובד', pages: ['physics'] },
-  { href: 'lab.html', label: 'מעבדה', pages: ['lab', 'lab-attenuation', 'lab-scanner', 'lab-window', 'lab-shadows', 'lab-dose'] },
+  { href: 'lab.html', label: 'מעבדה', pages: ['lab', 'lab-thickness', 'lab-scanner', 'lab-window', 'lab-shadows', 'lab-dose'] },
   { href: 'history.html', label: 'היסטוריה', pages: ['history'] },
   { href: 'about.html', label: 'אודות', pages: ['about'] },
 ];
 
 // כלי המעבדה, לפי הסדר — לתפריט המעבדה ולמעבר "הקודם / הבא" בעמודי הכלים
 export const LAB = [
-  { page: 'lab-attenuation', label: 'סימולטור בליעה' },
+  { page: 'lab-thickness', label: 'כמה עובי צריך?' },
   { page: 'lab-scanner', label: 'סורק מזוודות' },
   { page: 'lab-window', label: 'בהירות וניגודיות' },
   { page: 'lab-shadows', label: 'צורה וצל' },

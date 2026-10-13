@@ -1,16 +1,28 @@
 {
-  "_comment": "מקדמי בליעה לסימולטור. μ = (μ/ρ) × ρ, ביחידות 1/ס״מ. ראו content/sources.md.",
+  "_comment": "מקדמי בליעה לכלי 'כמה עובי צריך?'. μ = (μ/ρ) × ρ, ביחידות 1/ס״מ, באנרגיה אחת של 60 keV. ראו content/sources.md.",
   "energyKeV": 60,
   "source": {
     "title": "NIST X-Ray Mass Attenuation Coefficients (Hubbell & Seltzer), Standard Reference Database 126",
     "url": "https://physics.nist.gov/PhysRefData/XrayMassCoef/",
-    "verifiedOn": "2026-10-10"
+    "verifiedOn": "2026-10-13"
   },
   "materials": [
-    { "id": "air",   "label": "אוויר", "nistName": "Air, Dry (near sea level)", "muRho": 0.1875, "density": 0.001205, "url": "https://physics.nist.gov/PhysRefData/XrayMassCoef/ComTab/air.html" },
-    { "id": "fat",   "label": "שומן",  "nistName": "Adipose Tissue (ICRU-44)",  "muRho": 0.1974, "density": 0.95,     "url": "https://physics.nist.gov/PhysRefData/XrayMassCoef/ComTab/adipose.html" },
-    { "id": "water", "label": "מים",   "nistName": "Water, Liquid",             "muRho": 0.2059, "density": 1.0,      "url": "https://physics.nist.gov/PhysRefData/XrayMassCoef/ComTab/water.html" },
-    { "id": "bone",  "label": "עצם",   "nistName": "Bone, Cortical (ICRU-44)",  "muRho": 0.3148, "density": 1.92,     "url": "https://physics.nist.gov/PhysRefData/XrayMassCoef/ComTab/bone.html" },
-    { "id": "metal", "label": "מתכת (ברזל)", "nistName": "Iron (Z=26)",        "muRho": 1.205,  "density": 7.874,    "url": "https://physics.nist.gov/PhysRefData/XrayMassCoef/ElemTab/z26.html" }
+    { "id": "gold",     "label": "זהב",              "nistName": "Gold (Z=79)",               "muRho": 4.528,  "density": 19.32,    "url": "https://physics.nist.gov/PhysRefData/XrayMassCoef/ElemTab/z79.html" },
+    { "id": "lead",     "label": "עופרת",            "nistName": "Lead (Z=82)",               "muRho": 5.021,  "density": 11.35,    "url": "https://physics.nist.gov/PhysRefData/XrayMassCoef/ElemTab/z82.html" },
+    { "id": "copper",   "label": "נחושת",            "nistName": "Copper (Z=29)",             "muRho": 1.593,  "density": 8.96,     "url": "https://physics.nist.gov/PhysRefData/XrayMassCoef/ElemTab/z29.html" },
+    { "id": "steel",    "label": "פלדה (ברזל)",      "nistName": "Iron (Z=26)",               "muRho": 1.205,  "density": 7.874,    "url": "https://physics.nist.gov/PhysRefData/XrayMassCoef/ElemTab/z26.html" },
+    { "id": "aluminum", "label": "אלומיניום",        "nistName": "Aluminum (Z=13)",           "muRho": 0.2778, "density": 2.699,    "url": "https://physics.nist.gov/PhysRefData/XrayMassCoef/ElemTab/z13.html" },
+    { "id": "bone",     "label": "עצם",              "nistName": "Bone, Cortical (ICRU-44)",  "muRho": 0.3148, "density": 1.92,     "url": "https://physics.nist.gov/PhysRefData/XrayMassCoef/ComTab/bone.html" },
+    { "id": "muscle",   "label": "שריר",             "nistName": "Muscle, Skeletal (ICRU-44)", "muRho": 0.2048, "density": 1.05,     "url": "https://physics.nist.gov/PhysRefData/XrayMassCoef/ComTab/muscle.html" },
+    { "id": "water",    "label": "מים",              "nistName": "Water, Liquid",             "muRho": 0.2059, "density": 1.0,      "url": "https://physics.nist.gov/PhysRefData/XrayMassCoef/ComTab/water.html" },
+    { "id": "fat",      "label": "שומן",             "nistName": "Adipose Tissue (ICRU-44)",  "muRho": 0.1974, "density": 0.95,     "url": "https://physics.nist.gov/PhysRefData/XrayMassCoef/ComTab/adipose.html" },
+    { "id": "air",      "label": "אוויר",            "nistName": "Air, Dry (near sea level)", "muRho": 0.1875, "density": 0.001205, "url": "https://physics.nist.gov/PhysRefData/XrayMassCoef/ComTab/air.html" }
+  ],
+  "references": [
+    { "id": "steel",    "label": "לוחית פלדה",  "min": 0.5, "max": 5,  "step": 0.5, "value": 1 },
+    { "id": "copper",   "label": "מטבע נחושת",  "min": 0.5, "max": 3,  "step": 0.5, "value": 1.5 },
+    { "id": "lead",     "label": "סינר עופרת",  "min": 0.25, "max": 2, "step": 0.25, "value": 0.5 },
+    { "id": "aluminum", "label": "פח אלומיניום", "min": 1,  "max": 20, "step": 1,   "value": 5 },
+    { "id": "bone",     "label": "עצם",          "min": 2,  "max": 30, "step": 2,   "value": 10 }
   ]
 }
