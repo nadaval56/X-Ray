@@ -368,6 +368,240 @@
           "verifiedOn": "2026-10-13"
         }
       }
+    },
+    {
+      "id": "champagne",
+      "date": "2025-12-30",
+      "title": "צביר השמפניה",
+      "object": "RM J130558.9+263048.4",
+      "text": [
+        "צביר גלקסיות הוא אוסף ענק של מאות גלקסיות שכוח הכבידה מחזיק יחד, ובין הגלקסיות יש גז לוהט, מיליוני מעלות. את הגז הזה רואים בצילום הרנטגן. הצביר הזה התגלה ב-31 בדצמבר 2020, ויחד עם הגלקסיות שנראות כמו בועות, זה מה שנתן לו את הכינוי \"צביר השמפניה\".",
+        "בדרך כלל הגז הלוהט בצביר נראה כמו עיגול או אליפסה. כאן הוא נמתח לאורך, וזה סימן שבעצם יש פה שני צבירים שמתנגשים ומתאחדים לצביר אחד גדול. הגז שוקל יותר מכל הגלקסיות שבצביר ביחד, ויש בו יותר ממאה גלקסיות."
+      ],
+      "facts": [["מרחק", "כ-3.5 מיליארד שנות אור"], ["זמן צילום", "כ-8 שעות"]],
+      "page": "https://chandra.harvard.edu/photo/2025/champagne/",
+      "image": {
+        "file": "sky/champagne-2025.webp",
+        "width": 864, "height": 864,
+        "alt": "צילום רנטגן: ענן סגול מוארך מלמעלה למטה, מנומר בכתמים בהירים יותר כמו בועות, על רקע שחור.",
+        "source": {
+          "title": "Champagne Cluster — Chandra X-ray image",
+          "author": "NASA/CXC/UCDavis/F. Bouhrik et al.",
+          "url": "https://chandra.harvard.edu/photo/2025/champagne/",
+          "license": "Public-Domain",
+          "licenseUrl": "https://chandra.harvard.edu/photo/image_use.html",
+          "modifications": "שכבת הרנטגן בלבד (בלי שכבות של טלסקופים אחרים), המרה ל-WebP",
+          "verifiedOn": "2026-10-13"
+        }
+      }
+    },
+    {
+      "id": "snowman",
+      "date": "2025-12-22",
+      "title": "איש שלג מגלקסיות",
+      "object": "NGC 4782 / NGC 4783",
+      "text": [
+        "NGC 4782 ו-NGC 4783 הן שתי גלקסיות אליפטיות שכוח הכבידה קושר זו לזו, והן נמצאות בהתנגשות. כשמסובבים את התמונה, אחת מעל השנייה, הן נראות כמו איש שלג.",
+        "בצילום הרנטגן רואים \"צעיף\" של גז לוהט שנמתח בין שתי הגלקסיות, כמו גשר. הגז הזה כל כך חם שהוא זוהר בקרני X."
+      ],
+      "facts": [["מרחק", "כ-210 מיליון שנות אור"], ["זמן צילום", "כ-14 שעות"]],
+      "page": "https://chandra.harvard.edu/photo/2025/holidays/",
+      "image": {
+        "file": "sky/snowman-2025.webp",
+        "width": 864, "height": 858,
+        "alt": "צילום רנטגן: שרשרת של כתמים סגולים מעורפלים שמתפתלת מלמעלה למטה, ועוד כמה נקודות סגולות קטנות למטה משמאל.",
+        "source": {
+          "title": "NGC 4782/NGC 4783 (Holiday Collection) — Chandra X-ray image",
+          "author": "NASA/CXC/SAO",
+          "url": "https://chandra.harvard.edu/photo/2025/holidays/",
+          "license": "Public-Domain",
+          "licenseUrl": "https://chandra.harvard.edu/photo/image_use.html",
+          "modifications": "שכבת הרנטגן בלבד (בלי שכבות של טלסקופים אחרים), המרה ל-WebP",
+          "verifiedOn": "2026-10-13"
+        }
+      }
+    },
+    {
+      "id": "g272",
+      "date": "2025-11-24",
+      "title": "דלעת בחלל",
+      "object": "G272.2-3.2",
+      "text": [
+        "הכדור הזה הוא מה שנשאר מכוכב שהתפוצץ. לפי צילומי הרנטגן של צ'נדרה, זה היה פיצוץ מסוג מיוחד: ננס לבן, שארית קטנה וצפופה של כוכב, משך חומר מכוכב שכן עד שהתחולל בו פיצוץ גרעיני שהשמיד אותו לגמרי.",
+        "הפיצוץ דחף את החומר החוצה ופינה מקום, ואת החלל הזה ממלא עכשיו גז לוהט שזוהר בקרני X. בגלל הצורה העגולה והצבעים, בצ'נדרה כינו אותו \"דלעת החלל\"."
+      ],
+      "facts": [["מרחק", "כ-7,000 שנות אור"], ["זמן צילום", "כ-18 שעות"]],
+      "page": "https://chandra.harvard.edu/photo/2025/fall/",
+      "image": {
+        "file": "sky/g272-2025.webp",
+        "width": 864, "height": 841,
+        "alt": "צילום רנטגן: כדור עגול בגווני ורוד וכתום, ומסביבו כמה נקודות בהירות קטנות, על רקע שחור.",
+        "source": {
+          "title": "SNR G272.2-03.2 (Fall Collection) — Chandra X-ray image",
+          "author": "NASA/CXC/SAO",
+          "url": "https://chandra.harvard.edu/photo/2025/fall/",
+          "license": "Public-Domain",
+          "licenseUrl": "https://chandra.harvard.edu/photo/image_use.html",
+          "modifications": "שכבת הרנטגן בלבד (בלי שכבות של טלסקופים אחרים), המרה ל-WebP",
+          "verifiedOn": "2026-10-13"
+        }
+      }
+    },
+    {
+      "id": "casa",
+      "date": "2025-08-28",
+      "title": "רגע לפני הפיצוץ",
+      "object": "Cassiopeia A",
+      "text": [
+        "קסיופאה A היא מה שנשאר מכוכב ענק שהתפוצץ לפני כמה מאות שנים. צ'נדרה מצלם אותה כבר יותר מ-25 שנה. בצילום הזה כל צבע מראה יסוד אחר בשברי הכוכב: צורן, גופרית, סידן וברזל. הטבעת הכחולה בחוץ היא גל ההדף של הפיצוץ, שעדיין מתפשט.",
+        "מתוך הכמויות של צורן וניאון באזורים שונים, אסטרונומים גילו שממש כמה שעות לפני הפיצוץ, הפנים של הכוכב עבר סידור מחדש, פתאומי ואלים. זה עוזר להבין איך כוכבים ענקיים מתפוצצים בסוף חייהם."
+      ],
+      "facts": [["מרחק", "כ-11,000 שנות אור"], ["זמן צילום", "כ-11.5 ימים"]],
+      "page": "https://chandra.harvard.edu/photo/2025/casa/",
+      "image": {
+        "file": "sky/casa-2025.webp",
+        "width": 864, "height": 864,
+        "alt": "צילום רנטגן: טבעת עגולה של חוטים צבעוניים, כחולים בשוליים וכתומים, ירוקים וסגולים בפנים, על רקע שחור.",
+        "source": {
+          "title": "Cassiopeia A — Chandra X-ray image",
+          "author": "NASA/CXC/Meiji Univ./T. Sato et al.",
+          "url": "https://chandra.harvard.edu/photo/2025/casa/",
+          "license": "Public-Domain",
+          "licenseUrl": "https://chandra.harvard.edu/photo/image_use.html",
+          "modifications": "שכבת הרנטגן בלבד (בלי שכבות של טלסקופים אחרים), המרה ל-WebP",
+          "verifiedOn": "2026-10-13"
+        }
+      }
+    },
+    {
+      "id": "msh1552",
+      "date": "2025-08-20",
+      "title": "כף יד בחלל",
+      "object": "MSH 15-52",
+      "text": [
+        "הערפילית הזו נראית כמו כף יד עם אצבעות פרושות. במרכז שלה יש פולסר: כוכב נייטרונים שמסתובב מהר מאוד, שקוטרו רק כ-20 קילומטר. הוא נוצר כשכוכב כבד קרס והתפוצץ.",
+        "הפולסר הקטן הזה יורה חלקיקים מהירים מאוד, והם יוצרים את כל \"היד\", ערפילית שאורכה יותר מ-150 שנות אור. צ'נדרה פרסם את התמונה הראשונה של היד ב-2009, ומאז ממשיכים לצלם אותה."
+      ],
+      "facts": [["מרחק", "כ-17,000 שנות אור"], ["זמן צילום", "כ-8 ימים"]],
+      "page": "https://chandra.harvard.edu/photo/2025/msh1552/",
+      "image": {
+        "file": "sky/msh1552-2025.webp",
+        "width": 864, "height": 831,
+        "alt": "צילום רנטגן: ערפל כחול בצורת כף יד עם אצבעות שפונות למעלה, ובקצות האצבעות כתמים כתומים ולבנים.",
+        "source": {
+          "title": "MSH 15-52 — Chandra X-ray image",
+          "author": "NASA/CXC/Univ. of Hong Kong/S. Zhang et al.",
+          "url": "https://chandra.harvard.edu/photo/2025/msh1552/",
+          "license": "Public-Domain",
+          "licenseUrl": "https://chandra.harvard.edu/photo/image_use.html",
+          "modifications": "שכבת הרנטגן בלבד (בלי שכבות של טלסקופים אחרים), המרה ל-WebP",
+          "verifiedOn": "2026-10-13"
+        }
+      }
+    },
+    {
+      "id": "westerlund1",
+      "date": "2025-07-23",
+      "title": "מפעל כוכבים",
+      "object": "Westerlund 1",
+      "text": [
+        "וסטרלונד 1 הוא צביר כוכבים צפוף במיוחד, מהסוג שנקרא \"צביר-על\". זה הגדול והקרוב ביותר מסוגו לכדור הארץ, ונולדים בו כוכבים בקצב גבוה.",
+        "צ'נדרה צילם את הצביר יותר מ-40 פעמים במשך יותר מ-20 שנה, וגילה אלפי כוכבים שכל אחד מהם פולט קרני X. בצילום הם הנקודות הבהירות."
+      ],
+      "facts": [["מרחק", "כ-12,700 שנות אור"], ["זמן צילום", "כ-13 ימים"]],
+      "page": "https://chandra.harvard.edu/photo/2025/cosmic/",
+      "image": {
+        "file": "sky/westerlund1-2025.webp",
+        "width": 864, "height": 790,
+        "alt": "צילום רנטגן: ערפל ורוד-סגול במרכז, ועליו עשרות נקודות בהירות קטנות בלבן, בתכלת ובאדום.",
+        "source": {
+          "title": "Westerlund 1 (Cosmic Collection) — Chandra X-ray image",
+          "author": "NASA/CXC/SAO",
+          "url": "https://chandra.harvard.edu/photo/2025/cosmic/",
+          "license": "Public-Domain",
+          "licenseUrl": "https://chandra.harvard.edu/photo/image_use.html",
+          "modifications": "שכבת הרנטגן בלבד (בלי שכבות של טלסקופים אחרים), המרה ל-WebP",
+          "verifiedOn": "2026-10-13"
+        }
+      }
+    },
+    {
+      "id": "bullet",
+      "date": "2025-06-30",
+      "title": "צביר הקליע",
+      "object": "1E 0657-56",
+      "text": [
+        "כאן מתנגשים שני צבירי גלקסיות, אחת ההתנגשויות החזקות ביקום. בצילום הרנטגן רואים את הגז הלוהט של שני הצבירים. בצד אחד יש לגז צורה של קליע, ומכאן השם.",
+        "רוב החומר הרגיל בצביר הוא הגז הלוהט הזה. אבל מסתבר שרוב המסה בכלל לא נמצאת שם: היא בחומר אפל, שאי אפשר לראות בשום טלסקופ, אלא רק לפי האופן שבו הכבידה שלו מעקמת אור של גלקסיות רחוקות. ב-2006 הפרדה בין הגז לחומר האפל בצביר הזה הייתה ההוכחה הישירה הראשונה לכך שחומר אפל קיים."
+      ],
+      "facts": [["מרחק", "כ-3.7 מיליארד שנות אור"], ["זמן צילום", "כ-6 ימים"]],
+      "page": "https://chandra.harvard.edu/photo/2025/bullet/",
+      "image": {
+        "file": "sky/bullet-2025.webp",
+        "width": 864, "height": 692,
+        "alt": "צילום רנטגן: ענן ורוד רחב, ובצד ימין שלו קצה בהיר ומעוגל, כמו ראש של קליע.",
+        "source": {
+          "title": "Bullet Cluster — Chandra X-ray image",
+          "author": "NASA/CXC/SAO",
+          "url": "https://chandra.harvard.edu/photo/2025/bullet/",
+          "license": "Public-Domain",
+          "licenseUrl": "https://chandra.harvard.edu/photo/image_use.html",
+          "modifications": "שכבת הרנטגן בלבד (בלי שכבות של טלסקופים אחרים), המרה ל-WebP",
+          "verifiedOn": "2026-10-13"
+        }
+      }
+    },
+    {
+      "id": "j1610",
+      "date": "2025-06-09",
+      "title": "סילון מהיקום הצעיר",
+      "object": "J1610+1811",
+      "text": [
+        "העיגול הבהיר הוא קוואזר: חור שחור ענק שבולע חומר וזוהר בעוצמה אדירה. מהחור השחור יוצא סילון של חלקיקים, באורך של יותר מ-300,000 שנות אור, במהירות של יותר מ-90% ממהירות האור. בצילום הוא הכתם הקטן למעלה מימין.",
+        "האור שלו יצא לפני כ-11.6 מיליארד שנה, כשהיקום היה צעיר. אז הזוהר שנשאר מהמפץ הגדול היה צפוף הרבה יותר, והחלקיקים בסילון התנגשו בו ודחפו אותו לאנרגיה של קרני X. בזכות זה צ'נדרה יכול לראות סילון כל כך רחוק."
+      ],
+      "facts": [["מרחק", "כ-11.6 מיליארד שנות אור"], ["זמן צילום", "כ-23 שעות"]],
+      "page": "https://chandra.harvard.edu/photo/2025/j1610/",
+      "image": {
+        "file": "sky/j1610-2025.webp",
+        "width": 864, "height": 749,
+        "alt": "צילום רנטגן: עיגול לבן בהיר מאוד עם הילה סגולה, וכתם סגול קטן וחלש יותר למעלה מימין.",
+        "source": {
+          "title": "J1610+1811 — Chandra X-ray image",
+          "author": "NASA/CXC/CfA/J. Maithil et al.",
+          "url": "https://chandra.harvard.edu/photo/2025/j1610/",
+          "license": "Public-Domain",
+          "licenseUrl": "https://chandra.harvard.edu/photo/image_use.html",
+          "modifications": "שכבת הרנטגן בלבד (בלי שכבות של טלסקופים אחרים), המרה ל-WebP",
+          "verifiedOn": "2026-10-13"
+        }
+      }
+    },
+    {
+      "id": "cloud",
+      "date": "2025-01-14",
+      "title": "סריקת רנטגן לענן בלב הגלקסיה",
+      "object": "Stone molecular cloud",
+      "text": [
+        "לפעמים החור השחור במרכז הגלקסיה שלנו בולע גז, ואז הוא משחרר הבזק של קרני X לכל הכיוונים. כשההבזק עובר דרך ענן גז קר, כמו הענן שבתמונה, הוא מאיר בכל פעם \"פרוסה\" אחרת שלו, כמו סריקה.",
+        "אסטרונומים השתמשו בצילומים של צ'נדרה מ-20 שנה כדי לבנות מהפרוסות האלה מפה בתלת-ממד של שני עננים כאלה, לראשונה. הם גם חישבו שההבזק לא נמשך יותר מארבעה או חמישה חודשים."
+      ],
+      "facts": [["מרחק", "כ-26,000 שנות אור"], ["זמן צילום", "כ-19 ימים"]],
+      "page": "https://chandra.harvard.edu/photo/2025/cloud/",
+      "image": {
+        "file": "sky/cloud-2025.webp",
+        "width": 864, "height": 685,
+        "alt": "צילום רנטגן: ענן סגול-ורוד מעורפל ולא סדור, עם אזור לבן בהיר מימין למרכז, על רקע שחור.",
+        "source": {
+          "title": "Molecular Clouds in the Center of the Milky Way (Stone cloud) — Chandra X-ray image",
+          "author": "NASA/CXC/UConn/D. Alboslani et al.",
+          "url": "https://chandra.harvard.edu/photo/2025/cloud/",
+          "license": "Public-Domain",
+          "licenseUrl": "https://chandra.harvard.edu/photo/image_use.html",
+          "modifications": "שכבת הרנטגן בלבד (בלי שכבות של טלסקופים אחרים), המרה ל-WebP",
+          "verifiedOn": "2026-10-13"
+        }
+      }
     }
   ]
 }
