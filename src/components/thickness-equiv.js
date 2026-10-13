@@ -31,7 +31,6 @@ export function createThicknessEquiv({ materials, references }) {
   let ref = references[0];
   let mm = ref.value;
 
-  const headline = h('p', { class: 'te-headline', 'aria-live': 'polite' });
   const refChips = h('div', { class: 'chip-row', role: 'radiogroup', 'aria-label': 'מה בודקים' },
     references.map((r) => h('label', { class: 'chip' },
       h('input', { type: 'radio', name: 'te-ref', value: r.id, checked: r === ref, onchange: () => { ref = r; mm = r.value; syncSlider(); render(); } }),
@@ -51,11 +50,10 @@ export function createThicknessEquiv({ materials, references }) {
     h('div', { class: 'te-controls' },
       h('fieldset', {}, h('legend', { text: 'מה בודקים?' }), refChips),
       h('div', {}, h('label', { class: 'sim-label', for: 'te-thick' }, 'עובי: ', out), slider)),
-    headline,
     h('div', { class: 'te-chart' },
       h('div', { class: 'te-chart-head' },
         chartTitle,
-        h('span', { 'aria-hidden': 'true', text: 'בצילום' })),
+        h('span', { class: 'te-shade-head', 'aria-hidden': 'true', text: 'הצבע שמתקבל בצילום' })),
       rows),
     tileNote,
   );
@@ -69,15 +67,11 @@ export function createThicknessEquiv({ materials, references }) {
     const what = `${formatLength(mm / 10)} של ${ref.label}`;
     out.textContent = what;
     slider.setAttribute('aria-valuetext', what);
-    chartTitle.replaceChildren(h('strong', { text: what }), ' שווה ערך ל:');
+    chartTitle.setAttribute('aria-live', 'polite');
+    chartTitle.replaceChildren(h('strong', { text: what }), ' ', h('span', { class: 'te-nowrap', text: 'שווה ערך ל:' }));
 
     // הרשימה: כל החומרים האחרים (החומר שנבחר כבר כתוב בכותרת)
     const eq = materials.filter((m) => m.id !== ref.id).map((m) => ({ m, cm: blocking / mu(m) }));
-    const muscle = eq.find((e) => e.m.id === 'muscle');
-    headline.replaceChildren(
-      h('strong', { text: what }), ' עוצרים קרינה כמו ',
-      h('strong', { text: `${formatLength(muscle.cm)} של ${muscle.m.label}` }), '.');
-
     // סקאלה ליניארית: עד החומר הכי עבה שאינו אוויר. ארוך מזה — נחתך עם סימן שבירה.
     const maxCm = Math.max(...eq.filter((e) => e.m.id !== 'air').map((e) => e.cm));
     rows.replaceChildren(...eq.map(({ m, cm }) => {
