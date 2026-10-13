@@ -30,7 +30,7 @@ const src = materials.source;
 document.getElementById('credits-data').append(creditsList([
   h('li', {},
     h('a', { class: 'credit-title', href: src.url, rel: 'noopener', target: '_blank', text: src.title }),
-    h('div', {}, `מקדמי הבליעה בסימולטור (${materials.energyKeV} keV). אומת: `, h('time', { datetime: src.verifiedOn, text: src.verifiedOn })),
+    h('div', {}, `מקדמי הבליעה בכלי "כמה עובי צריך?" (${materials.energyKeV} keV). אומת: `, h('time', { datetime: src.verifiedOn, text: src.verifiedOn })),
     h('div', { class: 'muted', text: 'National Institute of Standards and Technology — נתונים של ממשלת ארה"ב.' }),
   ),
   h('li', {},
