@@ -1,12 +1,12 @@
-// הגדרות אתר מרוכזות. שם האתר והדומיין טרם נקבעו — זה ה-placeholder היחיד.
+// הגדרות אתר מרוכזות. שם האתר טרם נקבע סופית — זה ה-placeholder היחיד.
 // הקובץ נטען גם ב-Node (vite.config.js) וגם בדפדפן, ולכן אין בו API של דפדפן.
 
 export const SITE = {
   name: 'רנטגן',            // TODO: שם סופי
   tagline: 'לראות מבפנים',  // TODO: לאשר
-  domain: 'example.org',    // TODO: דומיין
-  // כתובת האתר החי (לקישורים מלאים ב-sitemap וב-Open Graph). TODO: לעדכן כשייקבע דומיין.
-  url: 'https://nadaval56.github.io/X-Ray/',
+  domain: 'roentgen.co.il',
+  // כתובת האתר החי (לקישורים מלאים ב-sitemap וב-Open Graph). הדומיין מוגדר ב-GitHub Pages ובקובץ public/CNAME.
+  url: 'https://roentgen.co.il/',
 };
 
 export const NAV = [
