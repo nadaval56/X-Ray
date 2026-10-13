@@ -15,17 +15,93 @@
           <p class="lead">בשדה התעופה כל מזוודה עוברת ברנטגן. גררו חפץ מהמחסן אל מכונת השיקוף, וראו מה הסורק רואה.</p>
         </header>
         <div id="lab-root"></div>
-        <section class="section prose">
-          <h2>למה יש צבעים?</h2>
-          <p>הסורק מצלם כל חפץ פעמיים, בשתי עוצמות של קרינה. לפי ההבדל בין שני הצילומים הוא מעריך מאיזה חומר כל חלק עשוי, וצובע אותו: כתום לחומרים אורגניים, ירוק לחומרים שבאמצע, וכחול למתכות.</p>
-          <p>ובתצוגת שחור-לבן? שימו לב שהיא הפוכה מצילום בבית חולים: מה שעוצר הרבה קרינה נראה כהה, והמקומות שהקרינה עברה בהם בקלות נשארים בהירים.</p>
-          <p class="muted">הצילומים אמיתיים, מסורק ביטחוני של דואר וחבילות, מתוך המאגר <a href="https://zenodo.org/records/2654887" target="_blank" rel="noopener">COMPASS-XP</a> של אוניברסיטת UCL בלונדון (Griffin, Caldwell, Andrews), ברישיון CC BY 4.0. חתכנו כל צילום סביב החפץ.</p>
-          <h2>לא רק מזוודות</h2>
-          <p>בשנות ה-70 היו שניסו לשלוח בדואר מכתבים מסוכנים, ובמקומות רבים התחילו להעביר מכתבים ברנטגן לפני שמסרו אותם לנמען. על חלק מהמעטפות הטביעו חותמת שמספרת שהמכתב נבדק.</p>
-          <figure class="xray-figure media-figure mail-figure" data-media="xray-mail-1974"></figure>
-          <figure class="xray-figure media-figure mail-figure" data-media="xray-mail-1990"></figure>
-          <p>גם היום, דואר שמגיע למשרדי ממשלה ולמקומות רגישים עובר שיקוף רנטגן לפני שהוא מגיע לנמען.</p>
-          <p>עוד על מעטפות שעברו שיקוף, ועל מה שהבודקים מחפשים, אפשר לקרוא בכתבה <a href="https://banknote.co.il/%d7%9e%d7%94%d7%9e%d7%a7%d7%a8%d7%94-%d7%a9%d7%94%d7%95%d7%91%d7%99%d7%9c-%d7%9c%d7%9e%d7%94%d7%a4%d7%9b%d7%94-%d7%9b%d7%a9%d7%a7%d7%a8%d7%a0%d7%99-x-%d7%a9%d7%99%d7%a0%d7%95-%d7%90%d7%aa-%d7%94/" target="_blank" rel="noopener">"דואר X: כשהמכתבים שלך כבר לא פרטיים"</a> מאת נדב אלשיך.</p>
+        <section class="sx-section" aria-labelledby="why-colours">
+          <header class="sx-head">
+            <span class="sx-kicker">איך הסורק יודע?</span>
+            <h2 id="why-colours">למה יש צבעים?</h2>
+          </header>
+
+          <ol class="sx-steps">
+            <li class="sx-step">
+              <span class="sx-step-num" aria-hidden="true">1</span>
+              <span class="sx-step-ico" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="10" cy="24" r="5" fill="currentColor"/><path d="M18 24h22M18 17l20-4M18 31l20 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="3 4" opacity=".7"/></svg></span>
+              <strong>צילום בקרינה חלשה</strong>
+              <span>הסורק מצלם את החפץ פעם אחת.</span>
+            </li>
+            <li class="sx-step">
+              <span class="sx-step-num" aria-hidden="true">2</span>
+              <span class="sx-step-ico" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="10" cy="24" r="6" fill="currentColor"/><path d="M18 24h24M18 16l22-5M18 32l22 5" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></span>
+              <strong>צילום בקרינה חזקה</strong>
+              <span>ומיד עוד פעם, בעוצמה אחרת.</span>
+            </li>
+            <li class="sx-step">
+              <span class="sx-step-num" aria-hidden="true">3</span>
+              <span class="sx-step-ico" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="6" y="10" width="20" height="20" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="20" y="18" width="20" height="20" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="23" cy="21" r="3.5" fill="#e8902f"/><circle cx="31" cy="27" r="3.5" fill="#5fbf3f"/><circle cx="25" cy="31" r="3.5" fill="#2b7fd8"/></svg></span>
+              <strong>השוואה וצביעה</strong>
+              <span>לפי ההבדל בין שני הצילומים הוא מעריך מאיזה חומר כל חלק עשוי, וצובע אותו.</span>
+            </li>
+          </ol>
+
+          <ul class="sx-colours">
+            <li class="sx-colour sx-orange">
+              <img src="./images/scanner/1845-colour.webp" alt="צילום הסורק של בננה: צורה כתומה" loading="lazy" decoding="async" />
+              <div><strong>כתום</strong><span>חומרים אורגניים: אוכל, מים, בד, נייר, עץ ורוב סוגי הפלסטיק.</span><small>בדוגמה: בננה</small></div>
+            </li>
+            <li class="sx-colour sx-green">
+              <img src="./images/scanner/0995-colour.webp" alt="צילום הסורק של קופת חיסכון: צורה ירוקה" loading="lazy" decoding="async" />
+              <div><strong>ירוק</strong><span>חומרים שבאמצע: לא אורגניים, ולא מתכת כבדה.</span><small>בדוגמה: קופת חיסכון</small></div>
+            </li>
+            <li class="sx-colour sx-blue">
+              <img src="./images/scanner/0927-colour.webp" alt="צילום הסורק של צרור מפתחות: צורות כחולות כהות" loading="lazy" decoding="async" />
+              <div><strong>כחול</strong><span>מתכות: פלדה, נחושת, ברזל.</span><small>בדוגמה: צרור מפתחות</small></div>
+            </li>
+          </ul>
+
+          <div class="sx-flip">
+            <div class="sx-flip-pair" aria-hidden="true">
+              <figure><img src="./images/scanner/0178-colour.webp" alt="" loading="lazy" decoding="async" /><figcaption>צבע</figcaption></figure>
+              <figure><img src="./images/scanner/0178-grey.webp" alt="" loading="lazy" decoding="async" /><figcaption>שחור-לבן</figcaption></figure>
+            </div>
+            <div class="sx-flip-text">
+              <h3>ובתצוגת שחור-לבן?</h3>
+              <p>שימו לב שהיא הפוכה מצילום בבית חולים: מה שעוצר הרבה קרינה נראה כהה, והמקומות שהקרינה עברה בהם בקלות נשארים בהירים. בדוגמה: האוזניות, פעם בצבע ופעם בשחור-לבן.</p>
+            </div>
+          </div>
+
+          <p class="sx-credit">הצילומים אמיתיים, מסורק ביטחוני של דואר וחבילות, מתוך המאגר <a href="https://zenodo.org/records/2654887" target="_blank" rel="noopener">COMPASS-XP</a> של אוניברסיטת UCL בלונדון (Griffin, Caldwell, Andrews), ברישיון CC BY 4.0. חתכנו כל צילום סביב החפץ.</p>
+        </section>
+
+        <section class="sx-section sx-archive" aria-labelledby="not-only-bags">
+          <header class="sx-head">
+            <span class="sx-kicker">מהארכיון</span>
+            <h2 id="not-only-bags">לא רק מזוודות</h2>
+          </header>
+
+          <div class="sx-then-now">
+            <article class="sx-era">
+              <span class="sx-era-tag">שנות ה-70</span>
+              <p>היו שניסו לשלוח בדואר מכתבים מסוכנים, ובמקומות רבים התחילו להעביר מכתבים ברנטגן לפני שמסרו אותם לנמען. על חלק מהמעטפות הטביעו חותמת שמספרת שהמכתב נבדק.</p>
+            </article>
+            <article class="sx-era">
+              <span class="sx-era-tag">היום</span>
+              <p>גם היום, דואר שמגיע למשרדי ממשלה ולמקומות רגישים עובר שיקוף רנטגן לפני שהוא מגיע לנמען.</p>
+            </article>
+          </div>
+
+          <div class="sx-envelopes">
+            <figure class="sx-envelope media-figure" data-media="xray-mail-1974"></figure>
+            <figure class="sx-envelope media-figure" data-media="xray-mail-1990"></figure>
+          </div>
+
+          <a class="sx-article" href="https://banknote.co.il/%d7%9e%d7%94%d7%9e%d7%a7%d7%a8%d7%94-%d7%a9%d7%94%d7%95%d7%91%d7%99%d7%9c-%d7%9c%d7%9e%d7%94%d7%a4%d7%9b%d7%94-%d7%9b%d7%a9%d7%a7%d7%a8%d7%a0%d7%99-x-%d7%a9%d7%99%d7%a0%d7%95-%d7%90%d7%aa-%d7%94/" target="_blank" rel="noopener">
+            <span class="sx-article-ico" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="5" y="11" width="38" height="26" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M6 13l18 13 18-13" fill="none" stroke="currentColor" stroke-width="2"/><rect x="32" y="15" width="7" height="8" rx="1" fill="currentColor" opacity=".5"/></svg></span>
+            <span class="sx-article-text">
+              <small>לקריאה נוספת</small>
+              <strong>"דואר X: כשהמכתבים שלך כבר לא פרטיים"</strong>
+              <span>עוד על מעטפות שעברו שיקוף, ועל מה שהבודקים מחפשים. כתבה מאת נדב אלשיך.</span>
+            </span>
+            <span class="sx-article-arrow" aria-hidden="true">←</span>
+          </a>
         </section>
         <!-- @labpager -->
       </div>
