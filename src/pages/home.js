@@ -18,6 +18,6 @@ document.getElementById('sky-home').append(
       h('p', { class: 'sky-date', text: 'השמש ברנטגן' }),
       h('h3', {}, h('a', { class: 'card-link', href: './sky.html#sun-title', text: 'כמה קרני X השמש פולטת עכשיו?' })),
       sunCard(sun, { compact: true }),
-      h('p', {}, 'מדידה של לוויין GOES, מתעדכנת פעם ביום. השמש שקטה כשהאות היא ', h('bdi', { text: 'A' }), ' או ', h('bdi', { text: 'B' }),
+      h('p', {}, 'מדידה של לוויין GOES, מתעדכנת כל שעה. השמש שקטה כשהאות היא ', h('bdi', { text: 'A' }), ' או ', h('bdi', { text: 'B' }),
         ', ויש התפרצות כשהיא ', h('bdi', { text: 'M' }), ' או ', h('bdi', { text: 'X' }), '.'))),
 );

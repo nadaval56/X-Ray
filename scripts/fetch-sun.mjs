@@ -1,7 +1,7 @@
 // "השמש ברנטגן": מושך את שטף קרני X של השמש מהאתר "השמש היום" (sunspots.co.il),
 // שכבר אוסף אותו מ-NOAA (לוויין GOES). כך לא מושכים את אותם נתונים פעמיים.
 //
-// רץ בזמן ה-build ב-GitHub Actions (פעם ביום, ב-.github/workflows/pages.yml), ולא בדפדפן:
+// רץ בזמן ה-build ב-GitHub Actions (כל שעה, ב-.github/workflows/pages.yml), ולא בדפדפן:
 // האתר לא טוען שום דבר מצד שלישי, והגולש מקבל רק קובץ שלנו.
 //
 //   node scripts/fetch-sun.mjs
@@ -15,13 +15,29 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = resolve(ROOT, 'content/sun.json');
-const URL = 'https://media.sunspots.co.il/today.json';
+// xray.json מתעדכן שם כל שעה (48 שעות אחרונות); today.json רק פעם ביום — גיבוי בלבד
+const SOURCES = ['https://media.sunspots.co.il/xray.json', 'https://media.sunspots.co.il/today.json'];
+const DAY_MS = 864e5;
+
+async function load(url) {
+  const res = await fetch(url, { headers: { 'User-Agent': 'XRayEduSite/0.1 (+https://github.com/nadaval56/X-Ray)' }, signal: AbortSignal.timeout(20000) });
+  if (!res.ok) throw new Error(`${url}: HTTP ${res.status}`);
+  const d = await res.json();
+  const xray = d.xray ?? d; // today.json: {xray:{…}}; xray.json: {latest, series}
+  if (!xray?.latest?.class) throw new Error(`${url}: אין נתוני קרני X`);
+  return { xray, generatedAt: d.generated_at };
+}
 
 async function main() {
-  const res = await fetch(URL, { headers: { 'User-Agent': 'XRayEduSite/0.1 (+https://github.com/nadaval56/X-Ray)' }, signal: AbortSignal.timeout(20000) });
-  if (!res.ok) throw new Error(`HTTP ${res.status}`);
-  const { xray, generated_at: generatedAt } = await res.json();
-  const series = (xray?.series ?? []).filter(([t, f]) => typeof t === 'string' && f > 0);
+  let got, firstErr;
+  for (const url of SOURCES) {
+    try { got = await load(url); break; } catch (e) { firstErr ??= e; }
+  }
+  if (!got) throw firstErr;
+  const { xray, generatedAt } = got;
+  // היממה האחרונה בלבד (עד המדידה האחרונה)
+  const end = Date.parse(xray.latest.t);
+  const series = (xray.series ?? []).filter(([t, f]) => typeof t === 'string' && f > 0 && end - Date.parse(t) <= DAY_MS);
   if (!xray?.latest?.class || series.length < 10) throw new Error('אין נתוני קרני X בקובץ');
   const peak = series.reduce((a, b) => (b[1] > a[1] ? b : a));
   const out = {
