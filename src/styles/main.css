@@ -802,10 +802,13 @@ a:hover { color: var(--accent-strong); }
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 1rem;
-  margin-bottom: 0.5rem;
+  align-items: end;
+  margin-bottom: 0.6rem;
   font-size: 0.8125rem;
   color: var(--text-muted);
 }
+.te-chart-title { font-size: 1rem; color: var(--text-2); }
+.te-chart-title strong { color: var(--text); }
 .te-rows { display: grid; gap: 0.45rem; margin: 0; padding: 0; list-style: none; }
 .te-row {
   display: grid;

@@ -44,6 +44,7 @@ export function createThicknessEquiv({ materials, references }) {
   }
 
   const rows = h('ol', { class: 'te-rows' });
+  const chartTitle = h('span', { class: 'te-chart-title' });
   const tileNote = h('p', { class: 'te-tile-note muted' });
 
   const el = h('div', { class: 'te' },
@@ -52,9 +53,9 @@ export function createThicknessEquiv({ materials, references }) {
       h('div', {}, h('label', { class: 'sim-label', for: 'te-thick' }, 'עובי: ', out), slider)),
     headline,
     h('div', { class: 'te-chart' },
-      h('div', { class: 'te-chart-head', 'aria-hidden': 'true' },
-        h('span', { text: 'כמה עובי צריך מכל חומר כדי לעצור אותה כמות קרינה' }),
-        h('span', { text: 'בצילום' })),
+      h('div', { class: 'te-chart-head' },
+        chartTitle,
+        h('span', { 'aria-hidden': 'true', text: 'בצילום' })),
       rows),
     tileNote,
   );
@@ -64,13 +65,17 @@ export function createThicknessEquiv({ materials, references }) {
     const blocking = mu(refMat) * (mm / 10); // μ·x
     const T = Math.exp(-blocking);
     const shade = Math.round(255 * (1 - T)); // כמו בצילום בבית חולים: מה שבולע יותר — בהיר יותר
-    out.textContent = formatLength(mm / 10);
-    slider.setAttribute('aria-valuetext', formatLength(mm / 10));
+    // "1 מ״מ של לוחית פלדה" — העובי יחד עם מה שנבחר, כדי שיהיה ברור על מה מדברים
+    const what = `${formatLength(mm / 10)} של ${ref.label}`;
+    out.textContent = what;
+    slider.setAttribute('aria-valuetext', what);
+    chartTitle.replaceChildren(h('strong', { text: what }), ' שווה ערך ל:');
 
-    const eq = materials.map((m) => ({ m, cm: blocking / mu(m) }));
+    // הרשימה: כל החומרים האחרים (החומר שנבחר כבר כתוב בכותרת)
+    const eq = materials.filter((m) => m.id !== ref.id).map((m) => ({ m, cm: blocking / mu(m) }));
     const muscle = eq.find((e) => e.m.id === 'muscle');
     headline.replaceChildren(
-      h('strong', { text: `${formatLength(mm / 10)} של ${refMat.label}` }), ' עוצרים קרינה כמו ',
+      h('strong', { text: what }), ' עוצרים קרינה כמו ',
       h('strong', { text: `${formatLength(muscle.cm)} של ${muscle.m.label}` }), '.');
 
     // סקאלה ליניארית: עד החומר הכי עבה שאינו אוויר. ארוך מזה — נחתך עם סימן שבירה.
@@ -78,7 +83,7 @@ export function createThicknessEquiv({ materials, references }) {
     rows.replaceChildren(...eq.map(({ m, cm }) => {
       const broken = cm > maxCm * 1.01;
       const pct = broken ? 100 : Math.max(0.6, (cm / maxCm) * 100);
-      return h('li', { class: `te-row${m.id === ref.id ? ' is-ref' : ''}${broken ? ' is-broken' : ''}` },
+      return h('li', { class: `te-row${broken ? ' is-broken' : ''}` },
         h('span', { class: 'te-name', text: m.label }),
         h('span', { class: 'te-track' },
           h('span', { class: `te-bar te-${m.id}`, style: `width:${pct}%` }),
@@ -87,7 +92,7 @@ export function createThicknessEquiv({ materials, references }) {
         h('span', { class: 'te-tile', style: `background: rgb(${shade}, ${shade}, ${shade})`, 'aria-hidden': 'true' }));
     }));
     const pass = T < 0.01 ? 'פחות מ-1%' : `רק ${Math.round(T * 100)}%`;
-    tileNote.textContent = `כל השכבות ברשימה נותנות בצילום בדיוק אותו גוון, כי כל אחת מהן עוצרת אותה כמות של קרינה: ${pass} מהקרינה עוברת דרכן.`;
+    tileNote.textContent = `כל השכבות ברשימה נותנות בצילום בדיוק אותו גוון כמו ${what}, כי כל אחת מהן עוצרת אותה כמות של קרינה: ${pass} מהקרינה עוברת דרכן.`;
   }
 
   syncSlider();
