@@ -42,8 +42,8 @@ const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;');
 const LOGO = `<svg viewBox="0 0 64 64" width="54" height="54"><rect x="2" y="2" width="60" height="60" rx="14" fill="none" stroke="#7cc7dc" stroke-width="3"/><g fill="none" stroke="#7cc7dc" stroke-linecap="round" stroke-width="2.3"><path stroke-width="2.2" d="M29.6 11.5C24 9.6 18.5 9.9 13.5 12M34.4 11.5C40 9.6 45.5 9.9 50.5 12"/><path d="M28.8 15.5C25.1 13.1 19.5 17.5 19.5 20.7S23.5 23.5 27.0 24.1M35.2 15.5C38.9 13.1 44.5 17.5 44.5 20.7S40.5 23.5 37.0 24.1M28.8 22.5C22.6 20.1 15.0 24.8 15.0 28.4S19.0 31.5 22.5 32.2M35.2 22.5C41.4 20.1 49.0 24.8 49.0 28.4S45.0 31.5 41.5 32.2M28.8 29.5C21.3 27.1 12.5 31.9 12.5 35.7S16.5 39.0 20.0 39.8M35.2 29.5C42.7 27.1 51.5 31.9 51.5 35.7S47.5 39.0 44.0 39.8M28.8 36.5C21.0 34.1 12.0 38.9 12.0 42.7S16.0 46.0 19.5 46.8M35.2 36.5C43.0 34.1 52.0 38.9 52.0 42.7S48.0 46.0 44.5 46.8M28.8 43.5C21.8 41.1 13.5 45.6 13.5 49.0S17.5 52.0 21.0 52.7M35.2 43.5C42.2 41.1 50.5 45.6 50.5 49.0S46.5 52.0 43.0 52.7"/></g><g fill="#7cc7dc"><rect x="29.8" y="9.0" width="4.4" height="3.9" rx="1.4"/><rect x="29.8" y="14.2" width="4.4" height="3.9" rx="1.4"/><rect x="29.8" y="19.4" width="4.4" height="3.9" rx="1.4"/><rect x="29.8" y="24.6" width="4.4" height="3.9" rx="1.4"/><rect x="29.8" y="29.8" width="4.4" height="3.9" rx="1.4"/><rect x="29.8" y="35.0" width="4.4" height="3.9" rx="1.4"/><rect x="29.8" y="40.2" width="4.4" height="3.9" rx="1.4"/><rect x="29.8" y="45.4" width="4.4" height="3.9" rx="1.4"/><rect x="29.8" y="50.6" width="4.4" height="3.9" rx="1.4"/></g></svg>`;
 
 // כרטיס: טקסט מימין, תמונה משמאל. בלי תמונה — הטקסט לכל הרוחב, עם סמל גדול.
-function card({ kicker, title, text, visual, credit: cr, fit = 'contain' }) {
-  const panel = visual
+function card({ kicker, title, text, visual, credit: cr, fit = 'contain', panelHtml }) {
+  const panel = panelHtml ? panelHtml : visual
     ? `<div class="panel"><img src="${visual}" style="object-fit:${fit}">${cr ? `<span class="cr">${esc(cr)}</span>` : ''}</div>`
     : `<div class="panel empty">${LOGO.replace(/width="54" height="54"/, 'width="300" height="300"')}</div>`;
   return `<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8"><style>${fontCss}
@@ -60,6 +60,8 @@ p{margin-top:18px;font-size:28px;line-height:1.45;color:#b4bdc8;display:-webkit-
 .panel{position:relative;flex:none;width:520px;height:534px;border-radius:22px;overflow:hidden;background:#05070a;border:2px solid #262e39;display:grid;place-items:center}
 .panel img{width:100%;height:100%}
 .panel.empty{background:radial-gradient(circle,#132028,#05070a 75%)}
+.panel.collage{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:6px;background:#262e39;place-items:stretch}
+.panel.collage img{width:100%;height:100%;min-height:0;object-fit:cover;background:#05070a}
 .cr{position:absolute;inset-inline:0;bottom:0;padding:8px 14px;font-size:15px;color:#c8d0d9;background:linear-gradient(transparent,rgba(0,0,0,.85));direction:ltr;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 </style></head><body>
 <div class="txt"><div class="brand">${LOGO}<div>רנטגן<small>לראות מבפנים</small></div></div>
@@ -112,12 +114,17 @@ const KICKERS = { lab: 'מעבדה', privacy: 'פרטיות', accessibility: 'נ
 for (const [page, s] of Object.entries(share.pages)) {
   let visual = null, cr = '', fit = 'contain';
   if (s.image) { visual = imgUri(s.image); cr = credits[s.image] ?? ''; }
+  // קולאז' של כמה צילומים — לעמוד הבית, שמייצג את כל האתר ולא מקרה אחד
+  let panelHtml;
+  if (s.collage) {
+    panelHtml = `<div class="panel collage">${s.collage.map((f) => `<img src="${imgUri(f)}">`).join('')}<span class="cr">${esc([...new Set(s.collage.map((f) => (f.startsWith('scanner/') ? SCANNER_CREDIT : credits[f] ?? '').split(' · ')[0]))].join(' · '))}</span></div>`;
+  }
   if (s.screenshot) {
     visual = await shot(s.screenshot);
     fit = 'contain';
     if (s.screenshot.page.includes('scanner')) cr = SCANNER_CREDIT;
   }
-  await render(page, card({ kicker: KICKERS[page] ?? (page.startsWith('lab-') ? 'מעבדה' : ''), title: s.title, text: s.text, visual, credit: cr, fit }));
+  await render(page, card({ kicker: KICKERS[page] ?? (page.startsWith('lab-') ? 'מעבדה' : ''), title: s.title, text: s.text, visual, credit: cr, fit, panelHtml }));
 }
 for (const c of cases) {
   const im = c.images.find((i) => i.role === 'main');
