@@ -36,32 +36,50 @@ export function createRealScanner({ items, colors }) {
   let last = 0;
 
   // ---------- המכונה ----------
-  const screen = h('div', { class: 'xm-screen' }, h('p', { class: 'xm-idle', text: 'המסך של הסורק' }));
+  const screen = h('div', { class: 'xm-screen' },
+    h('p', { class: 'xm-idle', text: 'המסך של הסורק' }),
+    h('span', { class: 'xm-scanlines', 'aria-hidden': 'true' }));
   const trayLayer = h('div', { class: 'xm-trays', 'aria-hidden': 'true' });
 
+  // לוח הבקרה על גוף המכונה: כפתור עגול (אדום = עצירה, ירוק = המשך), מתג צבע/אפור ומחוון מהירות
+  const pauseBtn = h('button', { type: 'button', class: 'xm-power', 'aria-pressed': 'false', disabled: true, onclick: () => setPaused(!paused) },
+    h('span', { class: 'xm-power-icon', 'aria-hidden': 'true' }), h('span', { class: 'xm-pause-text visually-hidden', text: 'עצירה' }));
   const modeBtns = [['colour', 'צבע'], ['grey', 'אפור']].map(([id, label]) =>
-    h('button', { type: 'button', class: 'xm-key', 'aria-pressed': String(id === mode), text: label,
-      onclick: () => setMode(id) }));
-  const pauseBtn = h('button', { type: 'button', class: 'xm-key xm-pause', 'aria-pressed': 'false', disabled: true, onclick: () => setPaused(!paused) },
-    h('span', { class: 'xm-pause-icon', 'aria-hidden': 'true' }), h('span', { class: 'xm-pause-text', text: 'עצירה' }));
+    h('button', { type: 'button', class: `xm-mode xm-mode-${id}`, 'aria-pressed': String(id === mode), onclick: () => setMode(id) },
+      h('span', { class: 'xm-mode-led', 'aria-hidden': 'true' }), label));
   const speedInput = h('input', { type: 'range', class: 'xm-speed-input', min: '0', max: String(SPEEDS.length - 1), step: '1', value: '2',
     'aria-label': 'מהירות המסוע', 'aria-valuetext': 'רגילה' });
   speedInput.addEventListener('input', () => {
     speed = SPEEDS[Number(speedInput.value)];
     speedInput.setAttribute('aria-valuetext', ['איטית מאוד', 'איטית', 'רגילה', 'מהירה', 'מהירה מאוד'][Number(speedInput.value)]);
   });
+  const chevrons = (n) => h('span', { class: 'xm-chev', 'aria-hidden': 'true', text: '‹'.repeat(n) });
 
+  const trefoil = () => h('span', { class: 'xm-trefoil', 'aria-hidden': 'true' });
   const dropHint = h('div', { class: 'xm-drop', 'aria-hidden': 'true' }, h('span', { text: 'הניחו כאן' }));
   const stage = h('div', { class: 'xm-stage' },
-    h('div', { class: 'xm-belt', 'aria-hidden': 'true' }),
+    h('div', { class: 'xm-belt', 'aria-hidden': 'true' },
+      h('span', { class: 'xm-belt-surface' }), h('span', { class: 'xm-rollers' }),
+      h('span', { class: 'xm-leg xm-leg-r' }), h('span', { class: 'xm-leg xm-leg-l' }),
+      h('span', { class: 'xm-plate' }, trefoil())),
     trayLayer,
-    h('div', { class: 'xm-body', 'aria-hidden': 'true' },
-      h('div', { class: 'xm-curtain xm-curtain-in' }), h('div', { class: 'xm-curtain xm-curtain-out' })),
-    h('div', { class: 'xm-beam', 'aria-hidden': 'true' }),
+    h('div', { class: 'xm-body' },
+      h('div', { class: 'xm-curtain xm-curtain-in', 'aria-hidden': 'true' }),
+      h('div', { class: 'xm-curtain xm-curtain-out', 'aria-hidden': 'true' }),
+      h('div', { class: 'xm-panel' },
+        pauseBtn,
+        h('div', { class: 'xm-modes', role: 'group', 'aria-label': 'תצוגת הסורק' }, modeBtns),
+        h('label', { class: 'xm-speed' }, h('span', { class: 'visually-hidden', text: 'מהירות' }), chevrons(1), speedInput, chevrons(3))),
+      h('div', { class: 'xm-window', 'aria-hidden': 'true' }, h('span', { class: 'xm-beam' })),
+      h('div', { class: 'xm-sticker', 'aria-hidden': 'true' }, trefoil(), h('span', { text: 'קרינה' }))),
+    h('div', { class: 'xm-neck', 'aria-hidden': 'true' }),
     h('div', { class: 'xm-monitor' },
+      h('div', { class: 'xm-status', 'aria-hidden': 'true' },
+        h('span', { class: 'xm-led' }),
+        h('span', { class: 'xm-st xm-st-idle', text: 'מוכן' }), h('span', { class: 'xm-st xm-st-run', text: 'סורק' }), h('span', { class: 'xm-st xm-st-pause', text: 'מושהה' }),
+        h('span', { class: 'xm-brand', text: 'X-RAY' })),
       screen,
-      h('div', { class: 'xm-keys' }, pauseBtn, h('div', { class: 'xm-modes', role: 'group', 'aria-label': 'תצוגת הסורק' }, modeBtns))),
-    h('label', { class: 'xm-speed' }, h('span', { text: 'מהירות' }), speedInput),
+      ['tl', 'tr', 'bl', 'br'].map((c) => h('span', { class: `xm-screw xm-screw-${c}`, 'aria-hidden': 'true' }))),
     dropHint,
   );
   const status = h('p', { class: 'visually-hidden', role: 'status', 'aria-live': 'polite' });
