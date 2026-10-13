@@ -13,7 +13,7 @@
       },
       "link": {
         "label": "המקרה: מה בקופסה?",
-        "href": "case.html?id=compass-01"
+        "href": "case-compass-01.html"
       },
       "image": {
         "file": "history/crookes-tubes.webp",
@@ -67,7 +67,7 @@
       },
       "link": {
         "label": "המקרה: מה בבטן של הנחש?",
-        "href": "case.html?id=snake-meal-01"
+        "href": "case-snake-meal-01.html"
       },
       "image": {
         "file": "history/schuster-hands-1896.webp",

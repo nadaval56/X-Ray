@@ -14,7 +14,8 @@ export const getCase = (id) => cases.find((c) => c.id === id);
 export const mainImage = (c) => c.images.find((im) => im.role === 'main');
 export const imagesByRole = (c, role) => c.images.filter((im) => im.role === role);
 export const imageUrl = (file) => `${import.meta.env.BASE_URL}images/cases/${file}`;
-export const caseUrl = (id) => `./case.html?id=${encodeURIComponent(id)}`;
+// לכל מקרה עמוד סטטי משלו, עם כותרת ותמונת שיתוף משלו (נוצר ב-build; בשרת הפיתוח — הפניה ב-vite.config.js).
+export const caseUrl = (id) => `./case-${encodeURIComponent(id)}.html`;
 
 export const media = mediaData.items;
 export const mediaById = (id) => media.find((m) => m.id === id);

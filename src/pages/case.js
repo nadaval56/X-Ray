@@ -15,7 +15,8 @@ import { SITE } from '../config.js';
 const MISSES_BEFORE_ANSWER = 2;
 
 const root = document.getElementById('case-root');
-const id = new URLSearchParams(location.search).get('id');
+// כתובת סטטית (case-<id>.html, נוצרת ב-build) או הכתובת הישנה case.html?id=<id>
+const id = document.documentElement.dataset.caseId || new URLSearchParams(location.search).get('id');
 const c = id && getCase(id);
 
 if (!c) {
