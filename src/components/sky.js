@@ -71,10 +71,10 @@ export function sunCard(sun, { compact = false } = {}) {
   return h('figure', { class: 'sun-card' },
     head,
     stale
-      ? h('p', { class: 'sun-stale' }, 'הנתונים כאן לא עודכנו כמה ימים. את המדידה העדכנית אפשר לראות באתר „השמש היום“.')
+      ? h('p', { class: 'sun-stale' }, 'הנתונים כאן לא עודכנו כמה ימים. את המדידה העדכנית אפשר לראות באתר "השמש היום".')
       : sunChart(sun.series),
     h('figcaption', {},
-      h('a', { href: 'https://sunspots.co.il/#xray-title', rel: 'noopener', target: '_blank' }, 'לגרף החי באתר „השמש היום“'),
+      h('a', { href: 'https://sunspots.co.il/#xray-title', rel: 'noopener', target: '_blank' }, 'לגרף החי באתר "השמש היום"'),
       ' · נתונים: לוויין GOES של NOAA'));
 }
 
