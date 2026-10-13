@@ -1,4 +1,5 @@
 import timeline from '../../content/timeline.json';
 import { createTimeline } from '../components/timeline.js';
 
-document.getElementById('timeline-root').append(createTimeline(timeline).el);
+// replaceChildren: ב-HTML יש גרסה סטטית של ציר הזמן (נוצרת ב-build), וה-JS מחליף אותה
+document.getElementById('timeline-root').replaceChildren(createTimeline(timeline).el);

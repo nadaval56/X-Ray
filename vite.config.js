@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import { resolve, basename } from 'node:path';
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { SITE, NAV, LAB, DISCLAIMER, SISTER_SITES, SISTER_INVITE } from './src/config.js';
+import * as prerender from './scripts/lib/prerender.mjs';
 
 const PAGES = [
   'index', 'cases', 'case', 'physics', 'history', 'sky', 'about',
@@ -12,6 +13,16 @@ const SHARE = JSON.parse(readFileSync(resolve(import.meta.dirname, 'content/shar
 const CASES = readdirSync(resolve(import.meta.dirname, 'content/cases'))
   .filter((f) => f.endsWith('.json'))
   .map((f) => JSON.parse(readFileSync(resolve(import.meta.dirname, 'content/cases', f), 'utf8')));
+
+const readContent = (f) => JSON.parse(readFileSync(resolve(import.meta.dirname, 'content', f), 'utf8'));
+const CATEGORIES = readContent('categories.json');
+
+// מכניס HTML סטטי לתוך אלמנט ריק (או אלמנט שיש בו רק <noscript>) בעמוד שנבנה
+function fill(html, open, inner) {
+  const re = new RegExp(`(${open.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})(?:\\s*<noscript>[\\s\\S]*?</noscript>\\s*)?(</div>)`);
+  if (!re.test(html)) throw new Error(`prerender: לא נמצא ${open}`);
+  return html.replace(re, (_, a, b) => `${a}${inner}${b}`);
+}
 
 const attr = (s) => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 const pageUrl = (page) => `${SITE.url}${page === 'index' ? '' : `${page}.html`}`;
@@ -122,6 +133,18 @@ function seoFiles() {
       });
     },
     generateBundle(_, bundle) {
+      // תוכן סטטי לעמודים שנבנים ב-JS (scripts/lib/prerender.mjs) — ה-JS מחליף אותו כשהוא רץ
+      const page = (name, fn) => { bundle[name].source = fn(String(bundle[name].source)); };
+      const sorted = [...CASES].sort((a, b) => a.difficulty - b.difficulty || a.title.localeCompare(b.title, 'he'));
+      page('cases.html', (html) => fill(html, '<div id="cases-root">', prerender.casesList(sorted, CATEGORIES)));
+      page('history.html', (html) => fill(html, '<div id="timeline-root">', prerender.timeline(readContent('timeline.json'))));
+      page('sky.html', (html) => {
+        const sky = readContent('sky.json');
+        html = fill(html, '<div id="sky-feature">', prerender.skyFeature(sky));
+        html = fill(html, '<div id="sky-archive">', prerender.skyArchive(sky));
+        return fill(html, '<div id="sun-root">', prerender.sunSummary(readContent('sun.json')));
+      });
+
       // עמוד סטטי לכל מקרה: עותק של case.html עם כותרת, תיאור ותמונת שיתוף משלו.
       // כך קישור למקרה שמשותף ברשת מציג את המקרה עצמו, ולא כרטיס כללי.
       const base = bundle['case.html'];
@@ -134,11 +157,12 @@ function seoFiles() {
           ogTitle: c.title, ogText: SHARE.case.text.replace('{question}', c.question),
           imageAlt: main?.alt,
         });
-        const html = String(base.source)
+        let html = String(base.source)
           .replace('<html lang="he" dir="rtl">', `<html lang="he" dir="rtl" data-case-id="${attr(c.id)}">`)
           .replace(/<title>.*?<\/title>/, `<title>${attr(title)}</title>`)
           .replace(/<meta name="description" content="[^"]*"/, `<meta name="description" content="${attr(description)}"`)
           .replace(/<!--og-->[\s\S]*?<!--\/og-->/, og);
+        html = fill(html, '<div class="container" id="case-root">', prerender.caseBody(c, CATEGORIES));
         this.emitFile({ type: 'asset', fileName: `case-${c.id}.html`, source: html });
       }
 

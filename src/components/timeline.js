@@ -17,6 +17,9 @@ export function createTimeline({ events }) {
       e.image && h('figure', { class: 'tl-figure' },
         h('img', { src: imgUrl(e.image.file), alt: e.image.alt, loading: 'lazy', decoding: 'async' }),
         h('figcaption', {}, e.image.caption, ' ',
+          // הדפסה מנגטיב: העצמות כהות — מפנה להסבר, כדי שלא ייראה כסתירה ל"עצם לבנה"
+          e.image.oldPrint && h('span', {}, 'זו הדפסה על נייר מהנגטיב, ולכן העצמות כהות (',
+            h('a', { href: './physics.html#old-prints', text: 'למה?' }), '). '),
           h('a', { href: e.image.source.url, rel: 'noopener', target: '_blank', text: 'מקור התמונה' })),
       ),
       h('p', { class: 'tl-date', text: e.date }),

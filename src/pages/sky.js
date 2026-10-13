@@ -25,5 +25,5 @@ const linked = fromHash();
 show(linked ?? items[0]);
 if (linked) requestAnimationFrame(() => featureTitle.scrollIntoView({ block: 'start' }));
 window.addEventListener('hashchange', () => { const it = fromHash(); if (it) show(it); });
-document.getElementById('sky-archive').append(archive.el);
-document.getElementById('sun-root').append(sunCard(sun));
+document.getElementById('sky-archive').replaceChildren(archive.el);
+document.getElementById('sun-root').replaceChildren(sunCard(sun));

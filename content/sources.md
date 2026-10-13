@@ -120,3 +120,10 @@ https://physics.nist.gov/PhysRefData/XrayMassCoef/ — אומת מול הטבל�
 - השמש: שטף קרני X מלוויין GOES של NOAA, דרך האתר "השמש היום" (https://media.sunspots.co.il/today.json), נמשך פעם ביום בזמן ה-build (scripts/fetch-sun.mjs).
 - סולם A/B/C/M/X, "כל אות חזקה פי 10": NOAA SWPC, "Solar Flares (Radio Blackouts)" — "The X-ray flux levels start with the 'A' level (nominally starting at 10^-8 W/m^2). The next level, ten times higher, is the 'B' level…". https://www.swpc.noaa.gov/phenomena/solar-flares-radio-blackouts
   התוויות "שקט / פעילות קלה / בינונית / חזקה" הן פישוט שלנו לאותיות.
+
+## הדפסות ישנות: למה העצמות כהות (physics.html#old-prints)
+
+- Moritz Jastrowitz, "The Roentgen Experiments with Cathode Rays and their Diagnostic Application" (1896), בתרגום לאנגלית ב-German History Intersections (GHI):
+  "Since denser bodies allow fewer rays to pass through, they appear as light figures on negatives and as dark objects on the developed photograph."
+  https://germanhistory-intersections.org/en/knowledge-and-education/ghis:document-145
+- ההדפסות של שוסטר ב-Wellcome Collection מתוארות שם כ-"Photoprint from radiograph", כלומר הדפסה מהצילום.
