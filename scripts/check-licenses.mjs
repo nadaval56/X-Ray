@@ -24,12 +24,16 @@ const groups = [
   { file: 'media.json', images: media },
   (() => { const sc = readJson(resolve(ROOT, 'content/scanner.json')); return { file: 'scanner.json', images: [{ file: `COMPASS-XP (${sc.items.length} סריקות)`, source: sc.source }] }; })(),
   { file: 'timeline.json', images: (readJson(resolve(ROOT, 'content/timeline.json')).events ?? []).map((e) => e.image).filter(Boolean) },
+  { file: 'sky.json', images: (readJson(resolve(ROOT, 'content/sky.json')).items ?? []).map((it) => it.image) },
 ];
+const SOURCE_FIELDS = ['title', 'author', 'url', 'license', 'licenseUrl', 'modifications', 'verifiedOn'];
 
 for (const { file, images } of groups) {
   for (const im of images) {
     count++;
     const where = `${file} → ${im.file ?? '?'}`;
+    const missing = SOURCE_FIELDS.filter((k) => !im.source?.[k]);
+    if (missing.length) errors.push(`${where}: חסר ב-source: ${missing.join(', ')}`);
     const license = im.source?.license?.trim();
     if (!license) { errors.push(`${where}: אין רישיון`); continue; }
     if (FORBIDDEN.test(license)) {

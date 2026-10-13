@@ -14,6 +14,7 @@ export const NAV = [
   { href: 'physics.html', label: 'איך זה עובד', pages: ['physics'] },
   { href: 'lab.html', label: 'מעבדה', pages: ['lab', 'lab-thickness', 'lab-scanner', 'lab-window', 'lab-shadows', 'lab-dose'] },
   { href: 'history.html', label: 'היסטוריה', pages: ['history'] },
+  { href: 'sky.html', label: 'השמיים', pages: ['sky'] },
   { href: 'about.html', label: 'אודות', pages: ['about'] },
 ];
 

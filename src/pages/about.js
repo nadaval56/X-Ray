@@ -6,11 +6,13 @@ import { initLessonNav } from '../lib/lesson-nav.js';
 import doses from '../../content/doses.json';
 import timeline from '../../content/timeline.json';
 import scanner from '../../content/scanner.json';
+import sky from '../../content/sky.json';
 
 const images = [
   ...cases.flatMap((c) => c.images.map((im) => ({ c, im }))),
   ...media.map((im) => ({ im })),
   ...timeline.events.filter((e) => e.image).map((e) => ({ im: e.image, where: `ציר הזמן: ${e.title}` })),
+  ...sky.items.map((it) => ({ im: it.image, where: `השמיים ברנטגן: ${it.title}` })),
   { im: { file: `scanner/${scanner.items[0].scan}-colour.webp`, source: scanner.source }, where: `סורק המזוודות (${scanner.items.length} סריקות)` },
 ];
 document.getElementById('credits-images').append(
