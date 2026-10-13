@@ -21,12 +21,12 @@ export function casesList(cases, categories) {
       + `<div class="card-body"><h2><a class="card-link" href="./case-${esc(c.id)}.html">${esc(c.title)}</a></h2><p>${esc(c.question)}</p>`
       + `<div class="card-meta"><span class="tag">${esc(categories[c.category])}</span>${difficultyBadge(c.difficulty)}</div></div></article>`;
   }).join('');
-  return `<p class="result-count">${cases.length} מקרים</p><div class="grid">${cards}</div>`;
+  return `<p class="result-count">${cases.length} תיקים</p><div class="grid">${cards}</div>`;
 }
 
 export function caseBody(c, categories) {
   const main = c.images.find((im) => im.role === 'main');
-  return `<div class="case-head"><nav class="breadcrumb" aria-label="נתיב"><a href="./cases.html">מקרים</a> / ${esc(categories[c.category])}</nav>`
+  return `<div class="case-head"><nav class="breadcrumb" aria-label="נתיב"><a href="./cases.html">התיקים</a> / ${esc(categories[c.category])}</nav>`
     + `<div class="case-tags"><span class="tag">${esc(categories[c.category])}</span>${difficultyBadge(c.difficulty)}</div>`
     + `<h1>${esc(c.title)}</h1>`
     + `<section class="step" aria-labelledby="step-story"><div class="step-label"><span class="num" aria-hidden="true">1</span>הסיפור</div>`

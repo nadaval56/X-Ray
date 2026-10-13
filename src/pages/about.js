@@ -12,14 +12,14 @@ const images = [
   ...cases.flatMap((c) => c.images.map((im) => ({ c, im }))),
   ...media.map((im) => ({ im })),
   ...timeline.events.filter((e) => e.image).map((e) => ({ im: e.image, where: `ציר הזמן: ${e.title}` })),
-  ...sky.items.map((it) => ({ im: it.image, where: `השמיים ברנטגן: ${it.title}` })),
+  ...sky.items.map((it) => ({ im: it.image, where: `רנטגן בחלל: ${it.title}` })),
   { im: { file: `scanner/${scanner.items[0].scan}-colour.webp`, source: scanner.source }, where: `סורק המזוודות (${scanner.items.length} סריקות)` },
 ];
 document.getElementById('credits-images').append(
   images.length
     ? creditsList(images.map(({ c, im, where }) => {
       const li = creditItem(im, { context: where });
-      if (c) li.append(h('div', { class: 'muted' }, 'מופיעה במקרה: ', h('a', { href: caseUrl(c.id), text: c.title })));
+      if (c) li.append(h('div', { class: 'muted' }, 'מופיעה בתיק: ', h('a', { href: caseUrl(c.id), text: c.title })));
       // תמונה ממוזערת, כדי שיהיה ברור לאיזו תמונה הקרדיט שייך
       li.prepend(h('img', { class: 'credit-thumb', src: c ? imageUrl(im.file) : mediaUrl(im.file), alt: '', loading: 'lazy', decoding: 'async' }));
       li.classList.add('has-thumb');

@@ -111,7 +111,7 @@ async function render(name, html) {
   console.log('✓', `og/${name}.jpg`);
 }
 
-const KICKERS = { sky: 'מהחלל', lab: 'מעבדה', privacy: 'פרטיות', accessibility: 'נגישות', history: 'היסטוריה', physics: 'איך זה עובד', cases: 'מקרים' };
+const KICKERS = { sky: 'אסטרונומיה', lab: 'המעבדה', privacy: 'פרטיות', accessibility: 'נגישות', history: 'היסטוריה', physics: 'איך זה עובד', cases: 'התיקים' };
 for (const [page, s] of Object.entries(share.pages)) {
   let visual = null, cr = '', fit = 'contain';
   if (s.image) { visual = imgUri(s.image); cr = credits[s.image] ?? ''; }
@@ -125,12 +125,12 @@ for (const [page, s] of Object.entries(share.pages)) {
     fit = 'contain';
     if (s.screenshot.page.includes('scanner')) cr = SCANNER_CREDIT;
   }
-  await render(page, card({ kicker: KICKERS[page] ?? (page.startsWith('lab-') ? 'מעבדה' : ''), title: s.title, text: s.text, visual, credit: cr, fit, panelHtml }));
+  await render(page, card({ kicker: KICKERS[page] ?? (page.startsWith('lab-') ? 'המעבדה' : ''), title: s.title, text: s.text, visual, credit: cr, fit, panelHtml }));
 }
 for (const c of cases) {
   const im = c.images.find((i) => i.role === 'main');
   await render(`case-${c.id}`, card({
-    kicker: `מקרה לחקירה · ${catLabel(c.category)}`,
+    kicker: `תיק לחקירה · ${catLabel(c.category)}`,
     title: c.title,
     text: share.case.text.replace('{question}', c.question),
     visual: imgUri(`cases/${im.file}`),
