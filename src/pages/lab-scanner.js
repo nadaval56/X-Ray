@@ -3,7 +3,7 @@ import { h } from '../lib/dom.js';
 import { mediaById, mediaUrl } from '../data/content.js';
 import { createRealScanner } from '../components/real-scanner.js';
 
-document.getElementById('lab-root').append(createRealScanner({ items: scanner.items, colors: scanner.colors }).el);
+document.getElementById('lab-root').append(createRealScanner({ items: scanner.items }).el);
 
 // תמונות מ-content/media.json: <figure data-media="id">
 for (const fig of document.querySelectorAll('figure[data-media]')) {
