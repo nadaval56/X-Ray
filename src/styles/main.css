@@ -1963,7 +1963,7 @@ html.a11y-still .sister-clone { display: none; }
 
 /* ---------- השמיים ברנטגן ---------- */
 
-.sky-intro p { max-width: var(--measure); }
+.sky-intro, .sky-intro p { max-width: none; }
 .sky-feature {
   display: grid;
   gap: 1.25rem;
@@ -1981,7 +1981,7 @@ html.a11y-still .sister-clone { display: none; }
 .sky-figure figcaption { margin-top: 0.45rem; font-size: 0.8125rem; color: var(--text-muted); text-align: left; }
 .sky-figure figcaption a { color: var(--text-muted); }
 .sky-body h3 { margin: 0.2rem 0 0; font-size: clamp(1.35rem, 3.5vw, 1.75rem); line-height: 1.25; }
-.sky-body > p { color: var(--text-2); line-height: 1.75; margin: 0 0 0.8rem; max-width: var(--measure); }
+.sky-body > p { color: var(--text-2); line-height: 1.75; margin: 0 0 0.8rem; }
 .sky-date { margin: 0; font-size: 0.875rem; color: var(--text-muted); }
 .sky-body > .sky-object { margin: 0.15rem 0 0.9rem; font-size: 0.875rem; color: var(--accent); text-align: right; }
 .sky-facts { display: flex; flex-wrap: wrap; gap: 0.6rem 1.75rem; margin: 1rem 0; }
@@ -2023,7 +2023,7 @@ html.a11y-still .sister-clone { display: none; }
 .sky-credit { margin-top: 1.25rem; font-size: 0.875rem; }
 
 /* השמש ברנטגן */
-.sun-lead { max-width: var(--measure); color: var(--text-2); line-height: 1.75; }
+.sun-lead { max-width: none; color: var(--text-2); line-height: 1.75; }
 .sun-card {
   margin: 1rem 0 0;
   padding: 1rem 1.1rem;
