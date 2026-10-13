@@ -1560,9 +1560,8 @@ a:hover { color: var(--accent-strong); }
 .rr-hl-days { color: var(--accent); }
 .rr-sub { margin: -0.6rem 0 0; font-size: 0.875rem; }
 
-.rr-calendars { display: grid; gap: 1.25rem; }
-/* במחשב תמיד שתי עמודות, כדי שלוח השנה לא ישנה גודל כשמתווספת שנה שנייה */
-@media (min-width: 900px) { .rr-calendars { grid-template-columns: 1fr 1fr; } }
+.rr-calendars { display: grid; gap: 1.25rem; width: 100%; max-width: 42rem; justify-self: center; }
+/* שנה מעל שנה, בכל גודל מסך: לוח שנה שני מתווסף מתחת לראשון, באותו גודל */
 .rr-year.is-new { animation: rr-new 0.35s var(--ease); }
 @keyframes rr-new { from { opacity: 0; transform: translateY(8px); } }
 @media (prefers-reduced-motion: reduce) { .rr-year.is-new { animation: none; } }
