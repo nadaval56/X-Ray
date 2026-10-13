@@ -127,3 +127,4 @@ https://physics.nist.gov/PhysRefData/XrayMassCoef/ — אומת מול הטבל�
   "Since denser bodies allow fewer rays to pass through, they appear as light figures on negatives and as dark objects on the developed photograph."
   https://germanhistory-intersections.org/en/knowledge-and-education/ghis:document-145
 - ההדפסות של שוסטר ב-Wellcome Collection מתוארות שם כ-"Photoprint from radiograph", כלומר הדפסה מהצילום.
+- צ'נדרה מקיף את כדור הארץ: "Orbit: 10,000 km x 140,161 km", Chandra Specifications, https://chandra.harvard.edu/about/specs.html (נבדק 2026-10-13).
