@@ -787,16 +787,6 @@ a:hover { color: var(--accent-strong); }
 .te fieldset { margin: 0; padding: 0; border: 0; min-width: 0; }
 .te legend { display: block; margin-bottom: 0.5rem; padding: 0; font-size: 0.875rem; font-weight: 500; color: var(--text-muted); }
 
-.te-headline {
-  margin: 0;
-  padding: 0.9rem 1rem;
-  border-inline-start: 3px solid var(--accent);
-  background: var(--bg);
-  border-radius: var(--radius-sm);
-  font-size: 1.125rem;
-  line-height: 1.5;
-}
-.te-headline strong { font-variant-numeric: tabular-nums; }
 
 .te-chart-head {
   display: grid;
@@ -808,6 +798,9 @@ a:hover { color: var(--accent-strong); }
   color: var(--text-muted);
 }
 .te-chart-title { font-size: 1rem; color: var(--text-2); }
+.te-nowrap { white-space: nowrap; }
+.te-shade-head { width: 5.5rem; text-align: center; line-height: 1.25; margin-inline-end: -1.125rem; }
+@media (max-width: 560px) { .te-shade-head { width: 4.2rem; margin-inline-end: -0.6rem; } }
 .te-chart-title strong { color: var(--text); }
 .te-rows { display: grid; gap: 0.45rem; margin: 0; padding: 0; list-style: none; }
 .te-row {
