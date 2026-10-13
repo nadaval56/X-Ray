@@ -85,5 +85,5 @@ export function skyArchive(sky) {
 
 export function sunSummary(sun) {
   return `<div class="sun-card"><p>המדידה האחרונה: <bdi>${esc(sun.latest.class)}</bdi> (<time datetime="${esc(sun.latest.t)}">${esc(sun.latest.t.slice(0, 10))}</time>). `
-    + `<a href="https://sunspots.co.il/#xray-title" rel="noopener" target="_blank">לגרף החי באתר „השמש היום“</a></p></div>`;
+    + `<a href="https://sunspots.co.il/#xray-title" rel="noopener" target="_blank">לגרף החי באתר "השמש היום"</a></p></div>`;
 }
