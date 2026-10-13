@@ -40,7 +40,7 @@ export function createRealScanner({ items }) {
     h('span', { class: 'xm-scanlines', 'aria-hidden': 'true' }));
   const trayLayer = h('div', { class: 'xm-trays', 'aria-hidden': 'true' });
 
-  // לוח הבקרה על גוף המכונה: כפתור עגול (אדום = עצירה, ירוק = המשך), מתג צבע/אפור ומחוון מהירות
+  // לוח הבקרה על גוף המכונה: מתג צבע/אפור ומחוון מהירות. מתחתיו כפתור עגול (אדום = עצירה, ירוק = המשך)
   const pauseBtn = h('button', { type: 'button', class: 'xm-power', 'aria-pressed': 'false', disabled: true, onclick: () => setPaused(!paused) },
     h('span', { class: 'xm-power-icon', 'aria-hidden': 'true' }), h('span', { class: 'xm-pause-text visually-hidden', text: 'עצירה' }));
   const modeBtns = [['colour', 'צבע'], ['grey', 'אפור']].map(([id, label]) =>
@@ -66,10 +66,11 @@ export function createRealScanner({ items }) {
       h('div', { class: 'xm-curtain xm-curtain-in', 'aria-hidden': 'true' }),
       h('div', { class: 'xm-curtain xm-curtain-out', 'aria-hidden': 'true' }),
       h('div', { class: 'xm-panel' },
-        pauseBtn,
         h('div', { class: 'xm-modes', role: 'group', 'aria-label': 'תצוגת הסורק' }, modeBtns),
         h('label', { class: 'xm-speed' }, h('span', { class: 'visually-hidden', text: 'מהירות' }), chevrons(1), speedInput, chevrons(3))),
       h('div', { class: 'xm-window', 'aria-hidden': 'true' }, h('span', { class: 'xm-beam' })),
+      // הכפתור העגול בחזית המכונה, מתחת ללוח הבקרה; מדבקת הקרינה בצד השני של חלון הסריקה
+      h('div', { class: 'xm-power-wrap' }, pauseBtn),
       h('div', { class: 'xm-sticker', 'aria-hidden': 'true' }, trefoil(), h('span', { text: 'קרינה' }))),
     h('div', { class: 'xm-neck', 'aria-hidden': 'true' }),
     h('div', { class: 'xm-monitor' },

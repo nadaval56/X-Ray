@@ -1347,14 +1347,14 @@ a:hover { color: var(--accent-strong); }
 .xm-curtain-out { left: -2px; border-radius: 0 4px 0 0; }
 .xm-panel {
   position: absolute; top: 5%; left: 4%; right: 4%; height: 32%;
-  display: flex; align-items: center; justify-content: space-between; gap: 4%; padding: 0 3%;
+  display: flex; align-items: center; justify-content: center; gap: 8%; padding: 0 6%;
   border-radius: 7px;
   background: linear-gradient(180deg, #161b22, #1d232b);
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6), 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 /* כפתור עגול: אדום בזמן נסיעה (עצירה), ירוק כשהמסוע מושהה (המשך), כבוי כשאין מה להזיז */
 .xm-power {
-  flex: none; position: relative; height: 78%; aspect-ratio: 1; padding: 0; border-radius: 50%; cursor: pointer;
+  flex: none; position: relative; height: 100%; aspect-ratio: 1; padding: 0; border-radius: 50%; cursor: pointer;
   display: grid; place-items: center;
   border: 2px solid #11151a;
   background: radial-gradient(circle at 35% 30%, #ff8a80, #e0362b 45%, #8e1c15);
@@ -1391,7 +1391,7 @@ a:hover { color: var(--accent-strong); }
 .xm-mode-grey[aria-pressed='true'] .xm-mode-led { background: #e6e9ec; box-shadow: 0 0 6px rgba(230, 233, 236, 0.8); }
 .xm-mode:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
 /* מחוון מהירות: פיידר אופקי. ימין = לאט, שמאל = מהר (כיוון הנסיעה) */
-.xm-speed { display: flex; align-items: center; gap: 3px; flex: 1; min-width: 0; max-width: 11rem; color: #7f8a96; font-size: clamp(0.75rem, 1.8vw, 1rem); line-height: 1; }
+.xm-speed { display: flex; align-items: center; gap: 3px; flex: 1; min-width: 0; max-width: 13rem; color: #7f8a96; font-size: clamp(0.75rem, 1.8vw, 1rem); line-height: 1; }
 .xm-chev { flex: none; letter-spacing: -0.15em; font-weight: 700; }
 .xm-speed-input {
   flex: 1; min-width: 0; height: 22px; margin: 0; background: transparent; cursor: pointer;
@@ -1422,8 +1422,9 @@ a:hover { color: var(--accent-strong); }
 .xm-stage.is-paused .xm-beam { animation: none; opacity: 0.5; }
 @keyframes xm-beam { 50% { box-shadow: 0 0 14px 5px rgba(124, 199, 220, 0.75); } }
 /* מדבקת אזהרה על הגוף */
+.xm-power-wrap { position: absolute; right: 13%; top: 50%; height: 30%; display: flex; align-items: center; }
 .xm-sticker {
-  position: absolute; right: 10%; top: 50%; height: 26%;
+  position: absolute; left: 10%; top: 50%; height: 26%;
   display: flex; align-items: center; gap: 5%; padding: 1.5% 3%;
   border-radius: 3px; background: #f2c230; color: #161616; font-weight: 800;
   font-size: clamp(0.5rem, 1.25vw, 0.75rem); letter-spacing: 0.02em;
@@ -1434,13 +1435,12 @@ a:hover { color: var(--accent-strong); }
 @media (max-width: 640px) {
   .xm-sticker span:last-child { display: none; }
   .xm-panel {
-    height: 50%; padding: 2% 4%;
-    display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-rows: 1fr 1fr; gap: 6% 6%;
+    height: 50%; padding: 2% 6%;
+    display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: 1fr 1fr; gap: 6%;
     align-items: center; justify-items: center;
   }
-  .xm-power { grid-row: 1 / span 2; height: 72%; }
-  .xm-modes { grid-column: 2; }
-  .xm-speed { grid-column: 2; width: 100%; max-width: none; }
+  .xm-power-wrap { top: 61%; height: 30%; right: 11%; }
+  .xm-speed { width: 100%; max-width: none; }
   .xm-mode { min-height: 22px; }
   .xm-curtain { top: 57%; }
   .xm-window { top: 60%; }
@@ -1947,6 +1947,11 @@ html.a11y-still .sister-clone { display: none; }
 .il-plate { fill: none; stroke: #2a3038; stroke-width: 5; stroke-linecap: round; }
 .il-jaw { fill: #4a525c; }
 .il-tooth { fill: #eef2f5; }
+.il-enamel { fill: #ffffff; filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.4)); }
+.il-dentin { fill: #b9c1c9; }
+.il-dentin-in { fill: #b9c1c9; }
+.il-pulp { fill: #2a3038; }
+.il-gum { fill: #5c646e; }
 .il-tooth-new { fill: #cfd6dd; }
 .il-day { fill: var(--surface-2); stroke: var(--border-strong); }
 .il-day-on { fill: var(--accent); }
