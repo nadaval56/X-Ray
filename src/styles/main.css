@@ -1874,3 +1874,27 @@ kbd { padding: 0.05em 0.4em; border: 1px solid var(--border-strong); border-bott
 .privacy-status { margin: 0 0 0.75rem; color: var(--text); }
 .privacy-dump { margin: 0.75rem 0 0; padding: 0.75rem; max-height: 14rem; overflow: auto; direction: ltr; text-align: left; white-space: pre-wrap; word-break: break-all; font-family: var(--font-mono); font-size: 0.8125rem; color: var(--text-2); background: var(--bg); border-radius: var(--radius-sm); }
 .legal-updated { margin: 0.5rem 0 0; font-size: 0.875rem; }
+
+/* ---------- עוד אתרים שלי (פס בתחתית הפוטר) ----------
+   אזור גלילה רגיל שאפשר להחליק באצבע; public/sister.js מזיז אותו לאט כשלא נוגעים בו,
+   ועוצר במגע, בריחוף, במיקוד מקלדת וב"בלי תנועה". קישורים בלבד — שום דבר לא נטען מבחוץ. */
+.sister { display: flex; align-items: center; gap: 0.6rem; min-width: 0; margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border); line-height: 1.6; }
+.sister-lbl { flex: none; font-size: 0.75rem; color: var(--text-muted); white-space: nowrap; }
+.sister-view {
+  flex: 1; min-width: 0; overflow-x: auto; overflow-y: hidden; scrollbar-width: none; overscroll-behavior-x: contain;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 1.25rem, #000 calc(100% - 1.25rem), transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0, #000 1.25rem, #000 calc(100% - 1.25rem), transparent 100%);
+}
+.sister-view::-webkit-scrollbar { display: none; }
+.sister-track { display: flex; width: max-content; }
+.sister-set { display: flex; gap: 0.5rem; padding-inline-end: 0.5rem; }
+.sister a, .sister .sister-item {
+  flex: none; white-space: nowrap; font-size: 0.75rem; color: var(--text-2); text-decoration: none;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 999px; padding: 0.15rem 0.75rem;
+}
+.sister a:hover { color: var(--text); border-color: var(--border-strong); }
+.sister a.sister-invite { color: var(--accent); border-color: rgba(124, 199, 220, 0.45); }
+.sister .sister-item a { border: 0; padding: 0; border-radius: 0; background: none; font-size: inherit; color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { .sister-clone { display: none; } }
+html.a11y-still .sister-clone { display: none; }
+@media print { .sister { display: none; } }
