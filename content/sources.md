@@ -56,6 +56,11 @@ https://physics.nist.gov/PhysRefData/XrayMassCoef/ — אומת מול הטבל�
 | seahorse-01 | Wikimedia Commons, Smithsonian NMNH | PD-USGov-SI |
 | compass-01 | Wellcome Collection q3kvkvak (Röntgen, 1895) | Public Domain Mark |
 | door-plate-01 | Wellcome Collection w6y7a4mj (Röntgen) | CC BY 4.0 |
+| pneumonia-01 | PMC12576348 (Cureus 2025) | CC BY 4.0 — בעמוד המאמר ב-PMC. הוסר עיגול שצויר סביב הממצא |
+| pacemaker-01 | PMC8887692 (Cureus 2022) | CC BY 3.0 — בעמוד המאמר ב-PMC |
+
+- דלקת ריאות, "שקיקי האוויר מתמלאים בנוזל": NHLBI, "Pneumonia" — "It causes the air sacs, or alveoli, of the lungs to fill up with fluid or pus." https://www.nhlbi.nih.gov/health/pneumonia (נבדק 2026-10-13).
+- הרעיון לתיק הקוצב ("בלע נגן mp3?") של נדב. חיפשנו צילום אחד שבו גם קוצב וגם דלקת ריאות, ולא נמצא ברישיון מותר: PMC4921173 (דלקת ריאות שמוסתרת מאחורי ICD) הוא CC BY-NC-ND; ‏PMC9314221 ו-PMC6764542 הם NC; ב-PMC7864261 (CC BY) יש גם דקסטרוקרדיה, כלומר עיקרון נוסף. צילום הקוצב "X-ray of pacemaker with right atrial and ventricular lead.jpg" מסומן ב-Commons כ-CC BY, אבל המאמר המקורי (PMC4286824) הוא CC BY-NC-SA. נפסל.
 
 ### מקורות שנבדקו ונפסלו
 - **Wellcome V0029523** (יד עם טבעת, רנטגן) — ב-Commons מסומן נחלת הכלל, אבל ב-Wellcome עצמו CC BY-NC. לא בשימוש.
