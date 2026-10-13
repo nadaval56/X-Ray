@@ -1118,39 +1118,98 @@ a:hover { color: var(--accent-strong); }
   .tl-list::before { inset-inline-start: 35px; }
 }
 
-/* ---------- סורק מזוודות (צילומים אמיתיים) ---------- */
-.rs { display: grid; gap: 1.5rem; }
+/* ---------- סורק מזוודות: מכונת שיקוף ---------- */
+.xm { display: grid; gap: 1rem 1.5rem; }
 @media (min-width: 960px) {
-  .rs { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); align-items: start; }
-  .rs-stage { position: sticky; top: 84px; }
+  .xm { grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr); grid-template-rows: auto 1fr; grid-template-areas: "shelf stage" "shelf info"; align-items: start; }
+  .xm-stage { grid-area: stage; }
+  .xm-info { grid-area: info; }
+  .xm-shelf { grid-area: shelf; position: sticky; top: 84px; }
 }
-.rs-stage {
-  scroll-margin-top: 72px;
-  padding: 1.15rem;
+
+.xm-stage {
+  position: relative;
+  aspect-ratio: 5 / 3.1;
+  border-radius: var(--radius-lg);
+  background: radial-gradient(ellipse at 50% 0%, #1a222c, #0b0e12 75%);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+}
+/* בנייד: המכונה נשארת למעלה בזמן שגוללים במחסן, כדי שאפשר יהיה לגרור אליה */
+@media (max-width: 959px) {
+  .xm-stage { position: sticky; top: 64px; z-index: 6; box-shadow: 0 10px 18px rgba(0, 0, 0, 0.45); }
+}
+/* מסוע */
+.xm-belt {
+  position: absolute; left: 0; right: 0; bottom: 4%; height: 9%;
+  background: repeating-linear-gradient(90deg, #2a323d 0 14px, #1f262f 14px 28px);
+  border-block: 2px solid #3a4553;
+}
+.xm-stage.is-running .xm-belt { animation: xm-belt 0.6s linear infinite; }
+@keyframes xm-belt { from { background-position: 0 0; } to { background-position: -28px 0; } }
+/* מגש עם החפץ */
+.xm-tray {
+  position: absolute; bottom: 9%; width: 21%; aspect-ratio: 1; padding: 0;
+  border: 2px solid #8a95a3; border-radius: 10px; overflow: hidden;
+  background: #cfd5dc; cursor: grab; touch-action: none; z-index: 2;
+}
+.xm-tray img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+.xm-tray.is-out:hover { border-color: var(--accent); }
+.xm-tray:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+/* גוף המכונה: המגש נעלם בתוכו */
+.xm-body {
+  position: absolute; left: 31%; width: 38%; bottom: 2%; height: 50%; z-index: 3;
+  border-radius: 14px 14px 6px 6px;
+  background: linear-gradient(180deg, #3b4654, #2a323d 60%, #222932);
+  border: 2px solid #4b5766;
+}
+.xm-curtain { position: absolute; top: 12%; bottom: 8%; width: 7%; background: repeating-linear-gradient(90deg, #11161c 0 4px, #1c232c 4px 7px); opacity: 0.95; }
+.xm-curtain-in { right: -1px; border-radius: 0 6px 0 0; }
+.xm-curtain-out { left: -1px; border-radius: 6px 0 0 0; }
+/* מסך */
+.xm-monitor {
+  position: absolute; left: 30%; width: 40%; top: 4%; height: 47%; z-index: 4;
+  display: grid; place-items: center;
+  border-radius: 12px; background: #232a33; border: 2px solid #4b5766;
+}
+.xm-screen { position: relative; height: 88%; aspect-ratio: 1; border-radius: 6px; overflow: hidden; background: #070a0d; }
+.xm-xray { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.xm-xray:not([src]) { visibility: hidden; }
+.xm-idle { position: absolute; inset: 0; display: grid; place-items: center; margin: 0; padding: 0.4rem; text-align: center; font-size: 0.8125rem; color: var(--text-muted); }
+.xm-screen.has-image .xm-idle { display: none; }
+/* קו הקרינה */
+.xm-beam { position: absolute; left: calc(50% - 1px); width: 2px; top: 52%; bottom: 6%; z-index: 4; background: var(--accent); box-shadow: 0 0 10px 3px rgba(124, 199, 220, 0.55); opacity: 0; transition: opacity 0.2s; }
+.xm-stage.is-running .xm-beam { opacity: 0.9; }
+/* אזור ההנחה */
+.xm-drop {
+  position: absolute; right: 2%; bottom: 7%; width: 25%; height: 44%; z-index: 1;
+  display: grid; place-items: center; border: 2px dashed transparent; border-radius: 12px;
+  color: var(--accent); font-size: 0.8125rem; font-weight: 600; pointer-events: none;
+}
+.xm-drop span { opacity: 0; }
+.xm.is-dragging .xm-drop { border-color: rgba(124, 199, 220, 0.5); }
+.xm.is-dragging .xm-drop span { opacity: 1; }
+.xm-stage.is-over .xm-drop { border-color: var(--accent); background: rgba(124, 199, 220, 0.12); }
+.xm-ghost {
+  position: fixed; z-index: 1000; width: 88px; height: 88px; object-fit: cover; pointer-events: none;
+  transform: translate(-50%, -50%) rotate(-4deg); border-radius: 10px; border: 2px solid var(--accent);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.55);
+}
+/* מידע */
+.xm-info {
+  padding: 1rem 1.15rem;
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   background: var(--bg-elev);
 }
-@media (min-width: 720px) { .rs-stage { padding: 1.5rem; } }
-.rs-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.75rem; margin-bottom: 1rem; }
-.rs-title { margin: 0; font-size: 1.375rem; }
-.rs-modes .chip { cursor: pointer; font: inherit; font-size: 0.875rem; }
-.rs-panels { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
-.rs-panel { margin: 0; }
-.rs-panel figcaption { margin-top: 0.4rem; text-align: center; font-size: 0.875rem; color: var(--text-muted); }
-.rs-frame { position: relative; aspect-ratio: 1; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border-strong); }
-.rs-frame-photo { background: #1c222b; }
-.rs-frame-xray { background: #0d1014; border: 5px solid #232a33; }
-.rs-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.rs-photo:not([src]), .rs-xray:not([src]) { visibility: hidden; }
-.rs-idle { position: absolute; inset: 0; display: grid; place-items: center; margin: 0; padding: 1rem; text-align: center; font-size: 0.9375rem; color: var(--text-muted); }
-.rs.has-item .rs-idle { display: none; }
-.rs-beam { position: absolute; top: 0; bottom: 0; width: 3px; background: var(--accent); box-shadow: 0 0 14px 4px rgba(124, 199, 220, 0.6); opacity: 0; }
-.rs.is-scanning .rs-beam { opacity: 1; }
-.rs-note { margin: 1rem 0 0; color: var(--text); line-height: 1.65; }
-.rs-note:empty { display: none; }
-.rs-extra { margin: 0.4rem 0 0; }
-.rs-extra:empty { display: none; }
+.xm-info-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.6rem; }
+.xm-title { margin: 0; font-size: 1.25rem; }
+.xm-info .chip { cursor: pointer; font: inherit; font-size: 0.875rem; }
+.xm-note { margin: 0.75rem 0 0; color: var(--text); line-height: 1.65; }
+.xm-extra { margin: 0.35rem 0 0; }
+.xm-extra:empty { display: none; }
 .rs-legend { display: grid; gap: 0.35rem; margin: 1rem 0 0; padding: 0.75rem 0.9rem; list-style: none; border-top: 1px solid var(--border); font-size: 0.875rem; color: var(--text-2); }
 .rs-legend li { display: flex; align-items: center; gap: 0.45rem; }
 .rs-swatch { flex: none; width: 14px; height: 14px; border-radius: 4px; }
@@ -1160,6 +1219,9 @@ a:hover { color: var(--accent-strong); }
 .rs-shelf-title { margin: 0 0 0.6rem; font-weight: 600; }
 .rs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 0.5rem; }
 .rs-item {
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
   display: grid;
   gap: 0.3rem;
   padding: 0.35rem 0.35rem 0.5rem;
@@ -1176,6 +1238,10 @@ a:hover { color: var(--accent-strong); }
 .rs-item img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 6px; }
 .rs-item:hover { border-color: var(--border-strong); color: var(--text); }
 .rs-item[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); color: var(--text); }
+
+.rs-item.is-on-belt { opacity: 0.45; }
+.rs-item img { pointer-events: none; }
+@media (max-width: 959px) { .rs-grid { grid-template-columns: repeat(4, 1fr); } }
 
 /* ---------- בהירות וניגודיות ---------- */
 .wl-canvas { width: 100%; height: auto; display: block; }
