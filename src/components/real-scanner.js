@@ -1,7 +1,7 @@
-// מכונת שיקוף: גוררים חפץ מהמחסן אל הצד הימני של המכונה. המגש נוסע שמאלה על המסוע ונבלע במכונה.
-// על המסך צילום הרנטגן "נוסע" יחד עם המגש — נכנס מימין, עובר במרכז ויוצא משמאל, כמו בסורק אמיתי.
-// כשהמגש יוצא מהמכונה גם הצילום יוצא מהמסך. אפשר לעצור את המסוע כדי להתבונן, ולשנות את המהירות.
-// גוררים את המגש שיצא חזרה ימינה — הוא עובר שוב. גוררים חפץ חדש — הקודם חוזר למחסן.
+// מכונת שיקוף: גוררים חפץ מהמחסן אל הצד הימני של המכונה. המגש נוסע שמאלה על המסוע, נבלע במכונה,
+// יוצא מהצד השני וממשיך עד שהוא נעלם. על המסך צילום הרנטגן "נוסע" יחד עם המגש — נכנס מימין,
+// עובר במרכז ויוצא משמאל, כמו בסורק אמיתי. אפשר להעמיס כמה חפצים: כולם נוסעים יחד, כמו במסוע רגיל.
+// שנייה וחצי אחרי שהמגש האחרון נעלם, המסוע עוצר. אפשר לעצור אותו ידנית כדי להתבונן, ולשנות מהירות.
 // במגע ובמקלדת: הקשה / Enter על חפץ שולחת אותו למכונה.
 //
 // הצילומים אמיתיים, מסורק ביטחוני דו-אנרגטי (מאגר COMPASS-XP, ‏CC BY 4.0) — ראו content/scanner.json.
@@ -12,7 +12,9 @@ const img = (scan, kind) => `${import.meta.env.BASE_URL}images/scanner/${scan}-$
 
 // גאומטריה באחוזים מרוחב הבמה
 const ENTRY = 87;            // מרכז המגש בכניסה (ימין)
-const EXIT = 13;             // מרכז המגש ביציאה (שמאל)
+const GONE = -11;            // מרכז המגש כשהוא כבר מחוץ לבמה (שמאל)
+const GAP = 4;               // רווח מינימלי בין מגשים על המסוע
+const IDLE_STOP = 1.5;       // שניות של מסוע ריק עד שהמכונה עוצרת
 const BEAM = 50;             // קו הקרינה במרכז המכונה
 const TRAY = 20;             // רוחב מגש
 const BASE_SPEED = 6;        // אחוזי במה בשנייה במהירות 1 (נסיעה שלמה ≈ 12 שניות)
@@ -24,19 +26,18 @@ const SPEEDS = [0.4, 0.6, 1, 1.5, 2.5];
  * @param {{items:Array<{id:string,label:string,text:string}>}} opts.colors
  */
 export function createRealScanner({ items, colors }) {
-  let current = null;     // החפץ שעל המסוע
+  let trays = [];         // {it, pos, trayEl, xrayEl, seen} — מימין לשמאל לפי סדר ההעמסה
   let mode = 'colour';
-  let pos = EXIT;         // מרכז המגש
+  let running = false;
+  let idle = 0;           // כמה זמן המסוע ריק
   let paused = false;
   let speed = 1;
   let raf = 0;
   let last = 0;
 
   // ---------- המכונה ----------
-  const screenImg = h('img', { class: 'xm-xray', alt: '', decoding: 'async', draggable: 'false' });
-  const screen = h('div', { class: 'xm-screen' }, screenImg, h('p', { class: 'xm-idle', text: 'המסך של הסורק' }));
-  const trayImg = h('img', { alt: '', draggable: 'false' });
-  const tray = h('button', { type: 'button', class: 'xm-tray', hidden: true, 'aria-label': 'להעביר שוב בסורק' }, trayImg);
+  const screen = h('div', { class: 'xm-screen' }, h('p', { class: 'xm-idle', text: 'המסך של הסורק' }));
+  const trayLayer = h('div', { class: 'xm-trays', 'aria-hidden': 'true' });
 
   const modeBtns = [['colour', 'צבע'], ['grey', 'אפור']].map(([id, label]) =>
     h('button', { type: 'button', class: 'xm-key', 'aria-pressed': String(id === mode), text: label,
@@ -53,7 +54,7 @@ export function createRealScanner({ items, colors }) {
   const dropHint = h('div', { class: 'xm-drop', 'aria-hidden': 'true' }, h('span', { text: 'הניחו כאן' }));
   const stage = h('div', { class: 'xm-stage' },
     h('div', { class: 'xm-belt', 'aria-hidden': 'true' }),
-    tray,
+    trayLayer,
     h('div', { class: 'xm-body', 'aria-hidden': 'true' },
       h('div', { class: 'xm-curtain xm-curtain-in' }), h('div', { class: 'xm-curtain xm-curtain-out' })),
     h('div', { class: 'xm-beam', 'aria-hidden': 'true' }),
@@ -130,14 +131,13 @@ export function createRealScanner({ items, colors }) {
     const r = stage.getBoundingClientRect();
     return ev.clientX >= r.left && ev.clientX <= r.right && ev.clientY >= r.top && ev.clientY <= r.bottom;
   };
-  makeDraggable(tray, () => current);
 
   // ---------- תצוגה ----------
   function setMode(id) {
     mode = id;
     modeBtns.forEach((b, k) => b.setAttribute('aria-pressed', String(['colour', 'grey'][k] === mode)));
     legend.hidden = mode !== 'colour';
-    if (current) screenImg.src = img(current.scan, mode);
+    trays.forEach((t) => { t.xrayEl.src = img(t.it.scan, mode); });
   }
 
   function setPaused(v) {
@@ -148,73 +148,115 @@ export function createRealScanner({ items, colors }) {
     if (!paused) last = performance.now();
   }
 
-  // מיקום המגש והצילום. הצילום זז על המסך באותו קצב: כשהמגש במרכז המכונה הצילום במרכז המסך,
+  // מיקום כל מגש וכל צילום. הצילום זז על המסך באותו קצב: כשהמגש במרכז המכונה הצילום במרכז המסך,
   // וכל רוחב-מגש של נסיעה מזיז את הצילום ברוחב מסך שלם.
   function render() {
-    tray.style.left = `${pos - TRAY / 2}%`;
-    const shift = (pos - BEAM) / TRAY; // 1 = מחוץ למסך מימין, ‎−1 = מחוץ למסך משמאל
-    screenImg.style.transform = `translateX(${shift * 100}%)`;
-    screen.classList.toggle('has-image', Math.abs(shift) < 1);
+    let onScreen = false;
+    for (const t of trays) {
+      t.trayEl.style.left = `${t.pos - TRAY / 2}%`;
+      const shift = (t.pos - BEAM) / TRAY; // 1 = מחוץ למסך מימין, ‎−1 = מחוץ למסך משמאל
+      t.xrayEl.style.transform = `translateX(${shift * 100}%)`;
+      if (Math.abs(shift) < 1) onScreen = true;
+    }
+    screen.classList.toggle('has-image', onScreen);
+  }
+
+  function remove(t) {
+    t.trayEl.remove();
+    t.xrayEl.remove();
+    trays = trays.filter((x) => x !== t);
+  }
+
+  // החפץ הגיע למרכז הסורק: המידע מתחת למכונה עובר אליו
+  function showInfo(it) {
+    title.textContent = it.label;
+    note.textContent = it.note;
+    extra.replaceChildren(...(it.link ? [h('a', { href: `./${it.link.href}`, text: it.link.label })] : []));
+    status.textContent = `${it.label} בסורק. ${it.note}`;
   }
 
   function tick(t) {
     const dt = Math.min(0.1, (t - last) / 1000);
     last = t;
-    if (!paused) pos = Math.max(EXIT, pos - BASE_SPEED * speed * dt);
+    if (!paused) {
+      for (const tr of trays) {
+        tr.pos -= BASE_SPEED * speed * dt;
+        if (!tr.seen && tr.pos <= BEAM) { tr.seen = true; showInfo(tr.it); }
+      }
+      trays.filter((tr) => tr.pos <= GONE).forEach(remove);
+      idle = trays.length ? 0 : idle + dt;
+    }
     render();
-    if (pos > EXIT) { raf = requestAnimationFrame(tick); return; }
-    done();
+    if (idle < IDLE_STOP) { raf = requestAnimationFrame(tick); return; }
+    stop();
   }
 
-  function done() {
+  function start() {
+    stage.classList.add('is-running');
+    pauseBtn.disabled = false;
+    idle = 0;
+    if (running) return;
+    running = true;
+    last = performance.now();
+    raf = requestAnimationFrame(tick);
+  }
+
+  function stop() {
+    running = false;
+    cancelAnimationFrame(raf);
     stage.classList.remove('is-running');
+    setPaused(false);
     pauseBtn.disabled = true;
-    tray.classList.add('is-out');
-    note.textContent = current.note;
-    extra.replaceChildren(...(current.link ? [h('a', { href: `./${current.link.href}`, text: current.link.label })] : []));
-    status.textContent = `${current.label} יצא מהסורק. ${current.note}`;
   }
 
   function load(it) {
     if (!it?.scan) return;
-    cancelAnimationFrame(raf);
-    current = items.find((x) => x.scan === it.scan);
-    // חפץ קודם על המסוע "נדרס" וחוזר למחסן — מספיק להחליף את המגש
-    tray.hidden = false;
-    tray.classList.remove('is-out');
-    trayImg.src = img(current.scan, 'photo');
-    trayImg.alt = current.label;
-    tray.setAttribute('aria-label', `${current.label} — להעביר שוב בסורק`);
-    shelfItems.forEach((b, k) => b.classList.toggle('is-on-belt', items[k] === current));
-    title.textContent = current.label;
-    note.textContent = 'החפץ נוסע בסורק. אפשר לעצור את המסוע כדי להתבונן בצילום.';
-    extra.replaceChildren();
-    screenImg.src = img(current.scan, mode);
-    screenImg.alt = `צילום הסורק של ${current.label}`;
-    status.textContent = `${current.label} נכנס לסורק.`;
-    setPaused(false);
+    const item = items.find((x) => x.scan === it.scan);
+    const t = {
+      it: item,
+      seen: false,
+      trayEl: h('div', { class: 'xm-tray' }, h('img', { src: img(item.scan, 'photo'), alt: '', draggable: 'false' })),
+      xrayEl: h('img', { class: 'xm-xray', src: img(item.scan, mode), alt: `צילום הסורק של ${item.label}`, decoding: 'async', draggable: 'false' }),
+    };
 
     if (prefersReducedMotion()) {
-      // בלי תנועה: המגש עומד במרכז המכונה והצילום על המסך, עם כפתור "המשך" להוצאה
-      pos = BEAM;
+      // בלי תנועה: חפץ אחד בכל פעם, עומד במרכז המכונה עם הצילום על המסך. "המשך" מוציא אותו.
+      [...trays].forEach(remove);
+      t.pos = BEAM;
+      t.seen = true;
+      trays.push(t);
+      trayLayer.append(t.trayEl);
+      screen.append(t.xrayEl);
       render();
+      showInfo(item);
       stage.classList.add('is-running');
       pauseBtn.disabled = false;
       setPaused(true);
       return;
     }
-    pos = ENTRY;
+
+    // מגש חדש נכנס מימין; אם יש מגש קרוב לכניסה, החדש מחכה מאחוריו על המסוע
+    const back = trays.length ? trays[trays.length - 1].pos : -Infinity;
+    t.pos = Math.max(ENTRY, back + TRAY + GAP);
+    trays.push(t);
+    trayLayer.append(t.trayEl);
+    screen.append(t.xrayEl);
+    if (trays.every((x) => x === t || x.seen)) {
+      // אין חפץ אחר בדרך למרכז: המידע מתחיל להראות את החפץ החדש
+      title.textContent = item.label;
+      note.textContent = 'החפץ נוסע בסורק. אפשר לעצור את המסוע כדי להתבונן בצילום.';
+      extra.replaceChildren();
+    }
+    status.textContent = `${item.label} עלה על המסוע.`;
     render();
-    stage.classList.add('is-running');
-    pauseBtn.disabled = false;
-    last = performance.now();
-    raf = requestAnimationFrame(tick);
+    if (paused) setPaused(false);
+    start();
     if (stage.getBoundingClientRect().top < 0) stage.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
-  // בלי תנועה: "המשך" מוציא את המגש מיד
+  // בלי תנועה: "המשך" מוציא את החפץ מיד
   pauseBtn.addEventListener('click', () => {
-    if (prefersReducedMotion() && !paused && current) { pos = EXIT; render(); done(); }
+    if (prefersReducedMotion() && !paused && trays.length) { [...trays].forEach(remove); render(); stop(); }
   });
 
   legend.hidden = false;
