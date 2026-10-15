@@ -122,7 +122,8 @@ export function galaxyMap({ ra, dec, distanceLy, label: name, imgBase = './image
     + `<line class="map-sightline" x1="${f1(sun[0])}" y1="${f1(sun[1])}" x2="${f1(o[0])}" y2="${f1(o[1])}"/>`
     + label('map-label', cx, cy - (atCenter ? 18 : 12), 'מרכז הגלקסיה')
     + `<circle class="map-sun" cx="${f1(sun[0])}" cy="${f1(sun[1])}" r="4.5"/>`
-    + label('map-label', sun[0], sun[1] + 20, 'השמש: אנחנו כאן')
+    // עצם קרוב מאוד לשמש (כמה אלפי שנות אור): התווית של השמש יורדת, כדי שהעיגול לא יסתיר אותה
+    + label('map-label', sun[0], sun[1] + (Math.hypot(o[0] - sun[0], o[1] - sun[1]) < 26 ? 32 : 20), 'השמש: אנחנו כאן')
     + `<circle class="map-target-ring" cx="${f1(o[0])}" cy="${f1(o[1])}" r="9"/><circle class="map-target" cx="${f1(o[0])}" cy="${f1(o[1])}" r="3.2"/>`
     + `<g class="map-scale"><line x1="${f1(W - 16 - bar)}" y1="${W - 16}" x2="${W - 16}" y2="${W - 16}"/>`
     + `<text x="${W - 16}" y="${W - 24}" text-anchor="start">10,000 שנות אור</text></g>`
