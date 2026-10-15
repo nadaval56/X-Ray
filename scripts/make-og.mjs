@@ -3,7 +3,7 @@
 //
 //   npm run build && npx vite preview --port 4173 &
 //   node scripts/make-og.mjs [http://localhost:4173]
-//   OG_ONLY=sky node scripts/make-og.mjs   — רק תמונות "השמיים ברנטגן" (sky-<id>.jpg), בלי שרת
+//   OG_ONLY=sky node scripts/make-og.mjs   — רק תמונות "רנטגן בחלל" (sky-<id>.jpg), בלי שרת
 //
 // נדרש Playwright (לא תלות של הפרויקט). אם הוא לא מותקן מקומית, אפשר להצביע עליו:
 //   PLAYWRIGHT_MODULE=/path/to/playwright/index.mjs CHROMIUM_PATH=/path/to/chrome node scripts/make-og.mjs
@@ -113,7 +113,7 @@ async function render(name, html) {
 }
 
 const ONLY = process.env.OG_ONLY;
-const KICKERS = { sky: 'מהחלל', lab: 'מעבדה', privacy: 'פרטיות', accessibility: 'נגישות', history: 'היסטוריה', physics: 'איך זה עובד', cases: 'מקרים' };
+const KICKERS = { sky: 'אסטרונומיה', lab: 'המעבדה', privacy: 'פרטיות', accessibility: 'נגישות', history: 'היסטוריה', physics: 'איך זה עובד', cases: 'התיקים' };
 for (const [page, s] of Object.entries(ONLY ? {} : share.pages)) {
   let visual = null, cr = '', fit = 'contain';
   if (s.image) { visual = imgUri(s.image); cr = credits[s.image] ?? ''; }
@@ -127,22 +127,22 @@ for (const [page, s] of Object.entries(ONLY ? {} : share.pages)) {
     fit = 'contain';
     if (s.screenshot.page.includes('scanner')) cr = SCANNER_CREDIT;
   }
-  await render(page, card({ kicker: KICKERS[page] ?? (page.startsWith('lab-') ? 'מעבדה' : ''), title: s.title, text: s.text, visual, credit: cr, fit, panelHtml }));
+  await render(page, card({ kicker: KICKERS[page] ?? (page.startsWith('lab-') ? 'המעבדה' : ''), title: s.title, text: s.text, visual, credit: cr, fit, panelHtml }));
 }
 for (const c of ONLY ? [] : cases) {
   const im = c.images.find((i) => i.role === 'main');
   await render(`case-${c.id}`, card({
-    kicker: `מקרה לחקירה · ${catLabel(c.category)}`,
+    kicker: `תיק לחקירה · ${catLabel(c.category)}`,
     title: c.title,
     text: share.case.text.replace('{question}', c.question),
     visual: imgUri(`cases/${im.file}`),
     credit: credit(im.source),
   }));
 }
-// עמוד לכל תמונה ב"השמיים ברנטגן"
+// עמוד לכל תמונה ב"רנטגן בחלל"
 for (const it of json('content/sky.json').items) {
   await render(`sky-${it.id}`, card({
-    kicker: "השמיים ברנטגן · טלסקופ החלל צ'נדרה",
+    kicker: "רנטגן בחלל · טלסקופ החלל צ'נדרה",
     title: it.title,
     text: it.text[0],
     visual: imgUri(it.image.file),

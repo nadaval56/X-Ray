@@ -1,4 +1,4 @@
-// HTML סטטי לעמודים שנבנים ב-JavaScript: רשימת המקרים, עמוד מקרה, ציר הזמן ו"השמיים ברנטגן".
+// HTML סטטי לעמודים שנבנים ב-JavaScript: רשימת המקרים, עמוד מקרה, ציר הזמן ו"רנטגן בחלל".
 // נכנס לקובצי ה-HTML בזמן ה-build (vite.config.js), כדי שמי שקורא את ה-HTML בלי להריץ JS —
 // סורקים, תצוגות קישור, דפדפן בלי JS — יקבל את התוכן. כשה-JS רץ הוא מחליף את התוכן הזה בגרסה האינטראקטיבית,
 // ולכן המבנה והמחלקות כאן תואמים לרכיבים ב-src/ (כדי שלא תהיה קפיצה בעמוד).
@@ -23,12 +23,12 @@ export function casesList(cases, categories) {
       + `<div class="card-body"><h2><a class="card-link" href="./case-${esc(c.id)}.html">${esc(c.title)}</a></h2><p>${esc(c.question)}</p>`
       + `<div class="card-meta"><span class="tag">${esc(categories[c.category])}</span>${difficultyBadge(c.difficulty)}</div></div></article>`;
   }).join('');
-  return `<p class="result-count">${cases.length} מקרים</p><div class="grid">${cards}</div>`;
+  return `<p class="result-count">${cases.length} תיקים</p><div class="grid">${cards}</div>`;
 }
 
 export function caseBody(c, categories) {
   const main = c.images.find((im) => im.role === 'main');
-  return `<div class="case-head"><nav class="breadcrumb" aria-label="נתיב"><a href="./cases.html">מקרים</a> / ${esc(categories[c.category])}</nav>`
+  return `<div class="case-head"><nav class="breadcrumb" aria-label="נתיב"><a href="./cases.html">התיקים</a> / ${esc(categories[c.category])}</nav>`
     + `<div class="case-tags"><span class="tag">${esc(categories[c.category])}</span>${difficultyBadge(c.difficulty)}</div>`
     + `<h1>${esc(c.title)}</h1>`
     + `<section class="step" aria-labelledby="step-story"><div class="step-label"><span class="num" aria-hidden="true">1</span>הסיפור</div>`
@@ -59,7 +59,7 @@ export function timeline({ events }) {
   return `<div class="timeline">${nav}<ol class="tl-list">${items}</ol></div>`;
 }
 
-// ---------- השמיים ברנטגן ----------
+// ---------- רנטגן בחלל ----------
 
 const dateFmt = new Intl.DateTimeFormat('he-IL', { day: 'numeric', month: 'long', year: 'numeric' });
 const skyDate = (iso) => dateFmt.format(new Date(`${iso}T12:00:00Z`));
@@ -131,7 +131,7 @@ export function skyObject(it, items) {
     ...(it.where?.source && !(it.moreSources ?? []).some((s) => s.url === it.where.source.url) && it.where.source.url !== it.page ? [it.where.source] : []),
   ];
   const navLink = (o, rel, label) => (o ? `<a class="sky-pager-${rel}" href="./sky-${esc(o.id)}.html"><span class="muted">${label}</span>${esc(o.title)}</a>` : '<span></span>');
-  return `<nav class="breadcrumb" aria-label="נתיב"><a href="./sky.html">השמיים ברנטגן</a> / <a href="./sky.html#sky-archive-title">כל התמונות</a></nav>`
+  return `<nav class="breadcrumb" aria-label="נתיב"><a href="./sky.html">רנטגן בחלל</a> / <a href="./sky.html#sky-archive-title">כל התמונות</a></nav>`
     + `<header class="sky-object-head"><p class="sky-date">טלסקופ החלל צ'נדרה · <time datetime="${esc(it.date)}">${skyDate(it.date)}</time></p>`
     + `<h1>${esc(it.title)}</h1><p class="sky-object" dir="ltr" lang="en">${esc(it.object)}</p></header>`
     + `<article class="sky-feature"><figure class="sky-figure"><img src="${img(esc(im.file))}" alt="${esc(im.alt)}" width="${im.width}" height="${im.height}" decoding="async">`

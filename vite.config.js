@@ -61,7 +61,8 @@ function layoutPartials() {
         const page = basename(ctx.filename, '.html');
         const navItems = NAV.map((item) => {
           const current = item.pages.includes(page) ? ' aria-current="page"' : '';
-          return `<li><a href="./${item.href}"${current}>${item.label}</a></li>`;
+          const icon = item.icon ? `<svg class="nav-icon" viewBox="0 0 36 36" aria-hidden="true" focusable="false">${item.icon}</svg>` : '';
+          return `<li><a href="./${item.href}"${current}>${icon}<span>${item.label}</span></a></li>`;
         }).join('\n          ');
 
         const title = html.match(/<title>(.*?)<\/title>/)?.[1]?.replaceAll('{{SITE_NAME}}', SITE.name) ?? SITE.name;
@@ -71,8 +72,8 @@ function layoutPartials() {
 
         const isTool = LAB.some((t) => t.page === page);
         return html
-          // בעמודי כלי המעבדה: תווית "מעבדה" מעל הכותרת, כמו בשאר העמודים
-          .replace('<header class="page-head">', isTool ? '<header class="page-head">\n          <span class="eyebrow">מעבדה</span>' : '<header class="page-head">')
+          // בעמודי כלי המעבדה: תווית "המעבדה" מעל הכותרת, כמו בשאר העמודים
+          .replace('<header class="page-head">', isTool ? '<header class="page-head">\n          <span class="eyebrow">המעבדה</span>' : '<header class="page-head">')
           .replace('<!-- @labnav -->', labNav(page))
           .replace('<!-- @labpager -->', labPager(page))
           .replace('<!-- @head -->', `${partial('head')}\n    ${og}`)
@@ -129,7 +130,7 @@ function seoFiles() {
       server.middlewares.use((req, _res, next) => {
         const m = req.url?.match(/^\/case-([\w-]+)\.html(\?.*)?$/);
         if (m) req.url = `/case.html?id=${m[1]}`;
-        // עמודי "השמיים ברנטגן" נבנים רק ב-build (npm run build && npm run preview)
+        // עמודי "רנטגן בחלל" נבנים רק ב-build (npm run build && npm run preview)
         if (/^\/sky-(?!object)[\w-]+\.html/.test(req.url ?? '')) req.url = '/sky-object.html';
         next();
       });
@@ -168,11 +169,11 @@ function seoFiles() {
         this.emitFile({ type: 'asset', fileName: `case-${c.id}.html`, source: html });
       }
 
-      // עמוד סטטי לכל תמונה ב"השמיים ברנטגן": sky-<id>.html
+      // עמוד סטטי לכל תמונה ב"רנטגן בחלל": sky-<id>.html
       const skyItems = [...readContent('sky.json').items].sort((a, b) => b.date.localeCompare(a.date));
       const skyBase = bundle['sky-object.html'];
       for (const it of skyItems) {
-        const title = `${it.title} · השמיים ברנטגן · ${SITE.name}`;
+        const title = `${it.title} · רנטגן בחלל · ${SITE.name}`;
         const description = `${it.object}: ${it.text[0]}`.slice(0, 158);
         const og = metaTags({ page: `sky-${it.id}`, title, description, ogTitle: it.title, ogText: description, imageAlt: it.image.alt });
         let html = String(skyBase.source)

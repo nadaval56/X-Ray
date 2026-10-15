@@ -60,10 +60,10 @@ function render() {
     (state.category === 'all' || c.category === state.category) &&
     (state.difficulty === 'all' || String(c.difficulty) === state.difficulty));
 
-  count.textContent = shown.length === 1 ? 'מקרה אחד' : `${shown.length} מקרים`;
+  count.textContent = shown.length === 1 ? 'תיק אחד' : `${shown.length} תיקים`;
   list.replaceChildren(...(shown.length
     ? shown.map(card)
-    : [h('p', { class: 'empty-state', style: 'grid-column: 1 / -1' }, 'עדיין אין מקרים שמתאימים לסינון הזה. מקרים חדשים יתווספו בקרוב.')]));
+    : [h('p', { class: 'empty-state', style: 'grid-column: 1 / -1' }, 'עדיין אין תיקים שמתאימים לסינון הזה. תיקים חדשים יתווספו בקרוב.')]));
 
   const q = new URLSearchParams();
   if (state.category !== 'all') q.set('category', state.category);

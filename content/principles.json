@@ -42,5 +42,9 @@
   "bone-healing": {
     "title": "איך רואים שבר שהחלים?",
     "href": "physics.html#fractures"
+  },
+  "lung-air": {
+    "title": "למה ריאה חולה נראית בהירה יותר?",
+    "href": "physics.html#why-white"
   }
 }

@@ -56,6 +56,18 @@ https://physics.nist.gov/PhysRefData/XrayMassCoef/ — אומת מול הטבל�
 | seahorse-01 | Wikimedia Commons, Smithsonian NMNH | PD-USGov-SI |
 | compass-01 | Wellcome Collection q3kvkvak (Röntgen, 1895) | Public Domain Mark |
 | door-plate-01 | Wellcome Collection w6y7a4mj (Röntgen) | CC BY 4.0 |
+| pneumonia-01 | PMC12576348 (Cureus 2025) | CC BY 4.0 — בעמוד המאמר ב-PMC. הוסר עיגול שצויר סביב הממצא |
+| pacemaker-01 | PMC8887692 (Cureus 2022) | CC BY 3.0 — בעמוד המאמר ב-PMC |
+
+- דלקת ריאות, "שקיקי האוויר מתמלאים בנוזל": NHLBI, "Pneumonia" — "It causes the air sacs, or alveoli, of the lungs to fill up with fluid or pus." https://www.nhlbi.nih.gov/health/pneumonia (נבדק 2026-10-13).
+- הרעיון לתיק הקוצב ("בלע נגן mp3?") של נדב. חיפשנו צילום אחד שבו גם קוצב וגם דלקת ריאות, ולא נמצא ברישיון מותר: PMC4921173 (דלקת ריאות שמוסתרת מאחורי ICD) הוא CC BY-NC-ND; ‏PMC9314221 ו-PMC6764542 הם NC; ב-PMC7864261 (CC BY) יש גם דקסטרוקרדיה, כלומר עיקרון נוסף. צילום הקוצב "X-ray of pacemaker with right atrial and ventricular lead.jpg" מסומן ב-Commons כ-CC BY, אבל המאמר המקורי (PMC4286824) הוא CC BY-NC-SA. נפסל.
+
+### טענות כלליות בתיקים (נבדק 2026-10-15)
+- **compass-01**, רנטגן גילה את הקרניים בווירצבורג: University of Würzburg, University Archives, "Wilhelm Conrad Röntgen" — "In 1888 Röntgen decided to return to Würzburg, to work as an ordinary professor for physics", "Röntgen made the discovery of the X-rays on the 8th of November 1895". https://www.uni-wuerzburg.de/en/uniarchiv/personalities/eminent-scholars/wilhelm-conrad-roentgen/
+- **extra-tooth-01**, צילום פנורמי: MedlinePlus, "Dental x-rays" — "Requires a special machine that rotates around the head. The x-ray captures all of the jaws and teeth in one shot." https://medlineplus.gov/ency/article/003801.htm
+- **growing-hands-01**, לוחות גדילה: KidsHealth (Nemours), "Growth Plates" — לוחות הגדילה נמצאים ליד קצות העצמות הארוכות, מתקשים בהדרגה לעצם מלאה ("closed growth plate") בסוף ההתבגרות, "For girls, this usually is when they're 13–15; for boys, it's when they're 15–17." https://kidshealth.org/en/parents/growth-plates.html. המראה הכהה בצילום: KidsHealth, "X-Ray Exam: Bone Age Study" — "they're softer and contain less mineral, making them appear darker on an X-ray image than the rest of the bone." https://kidshealth.org/en/parents/xray-bone-age.html. בעקבות זה תוקן נוסח העיקרון (היה "סחוס בולע קרינה כמו רקמה רכה").
+- **mixed-teeth-01**, אמייל: Young MF. "Skeletal biology: Where matrix meets mineral." Matrix Biology 2016;52–54:1–6 — "tooth enamel is the hardest and most highly mineralized tissue in the body", ‏96% מינרל. https://pmc.ncbi.nlm.nih.gov/articles/PMC5524450/
+- **seahorse-01**, סוסון ים הוא דג: NOAA, Hawaiian Islands Humpback Whale National Marine Sanctuary, דף פעילות "Sea Horses" — "Sea horses are actually fish and have gills that they use to breathe", וסנפירים קטנים ליד הראש לשם היגוי. https://www.librarieshawaii.org/wp-content/uploads/2021/06/09_NOAA-Activities_Seahorses.pdf. ‏National Geographic Kids, "Seahorse" — "Seahorses are tiny fishes", "Tiny, spiny plates cover seahorses' bodies". https://kids.nationalgeographic.com/animals/fish/facts/seahorse
 
 ### מקורות שנבדקו ונפסלו
 - **Wellcome V0029523** (יד עם טבעת, רנטגן) — ב-Commons מסומן נחלת הכלל, אבל ב-Wellcome עצמו CC BY-NC. לא בשימוש.
@@ -110,10 +122,12 @@ https://physics.nist.gov/PhysRefData/XrayMassCoef/ — אומת מול הטבל�
 - המעטפה מ-1974 ("THIS MAIL WAS X-RAYED"): מהאוסף של נדב אלשיך, מתוך הכתבה "דואר X: כשהמכתבים שלך כבר לא פרטיים" (banknote.co.il, 2024-11-20). שם הנמען הוסתר.
 - אחרי התקפות האנתרקס ב-2001, דואר למשרדי ממשל בארה"ב עובר הקרנה (להשמדת חיידקים — זה לא צילום). לא מוזכר באתר, רק לידיעת העורך.
 
-## השמיים ברנטגן (content/sky.json, content/sun.json)
+## רנטגן בחלל (content/sky.json, content/sun.json)
 
 - התמונות: מצפה הרנטגן צ'נדרה, https://chandra.harvard.edu/photo/ — "For Chandra content, no claim to copyright is being asserted and the material may be used in accordance with NASA guidelines", אבל "multiwavelength images with non-NASA data" עשויות להיות מוגנות.
   https://chandra.harvard.edu/photo/image_use.html (נבדק 2026-10-13). לכן נכנסת רק תמונת ה-X-ray בלבד (קובץ `*_xray*.jpg` בעמוד התמונה), ורק אם הקרדיט של חלק הרנטגן כולו נאס"א/CXC. נפסלו ב-2026: SMC (‏ESA/XMM-Newton בקרדיט הרנטגן), ‏Sgr C (אותו דבר), מיזוג כוכבי נייטרונים (איור CC BY-NC-SA בעמוד). כמה תמונות דילגנו כי שכבת הרנטגן לבדה היא כתם לא ברור (JADES-ID1, ‏"תפוח האדמה האדום", ‏X-ray dot, ‏NGC 2353, ‏bhgrowth).
+  2025 (נבדק 2026-10-13): נכנסו 9. נפסלו M31 ו-PSZ2 G181 (‏ESA/XMM-Newton בשכבת הרנטגן), ‏Centaurus A מאוסף הסוניפיקציה (כבר באתר, ושכבת הרנטגן משלבת IXPE ו-XMM), ‏3D models, ‏GRO J1655-40 ו-X-ray Arithmetic (אין קובץ רנטגן נפרד), והטרנטולה (כבר באתר מ-2026). דילגנו על נקודה או כתם לא ברור: Wolf 359, ‏TOI 1227 b, ‏AT2024tvd, ‏AT 2024wpp, ‏RACS J0320, ‏NGC 6278, ‏ASKAP J1832, ‏G359.13 ("העצם"), ‏Helix, ‏Centaurus filaments, ‏G287, ‏Infinity Galaxy, ‏NGC 6099 (הקובץ לא נטען מהשרת, ובכל מקרה מקור נקודתי).
+  2024 (נבדק 2026-10-13): נכנסו 7. בערפילית הסרטן שכבת הרנטגן היא צ'נדרה ו-IXPE, ושניהם של נאס"א (NASA/MSFC, כמו בתמונת שבתאי). ‏1054 והפולסר בערפילית הסרטן: https://chandra.harvard.edu/photo/2018/crab/ ("reportedly first seen from Earth in 1054 A.D."). נפסלו בגלל ESA/XMM-Newton בשכבת הרנטגן: SS 433 (גם IXPE), ‏SNR 1181, ‏3C 58 ("combines X-rays from Chandra & XMM-Newton"), סקר החורים השחורים (bhsim). כבר באתר: Cassiopeia A, ‏Westerlund 1. אין קובץ רנטגן נפרד: Centaurus A knots, ‏collide, ‏decoupling, ‏exoplanets, ‏Sgr A* (football), ‏LID-568, ‏timelapse, ‏Galactic Center vent, ‏sonify8. דילגנו על נקודה, כתם או לוח מתויג: AT2019qiz, ‏AT2018fyk, ‏SDSS J1531, ‏H1821+643, ‏NGC 602, ‏Abell 478, ‏BCG survey (ארבעה צילומים עם כיתוב).
 - העובדות בכל כרטיס (מרחק, זמן צילום, תוכן המחקר) — מעמוד התמונה עצמו, שהקישור אליו שמור בשדה `page`. ב-Sgr A East בעמוד יש סתירה בזמן הצילום (422 שעות מול "5 days 6 hours"), ולכן לא הוצג.
 - הצבעים "לא אמיתיים": Chandra, "Adding Color to Chandra Images" — "X rays … cannot be seen with the human eye", והצבעים "are chosen to bring out important details". https://chandra.harvard.edu/photo/false_color.html
 - האטמוספרה עוצרת קרני רנטגן מהחלל: NobelPrize.org, The Nobel Prize in Physics 2002, Popular information (אותו מקור כמו בציר הזמן).
