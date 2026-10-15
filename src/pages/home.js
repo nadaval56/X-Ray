@@ -11,7 +11,7 @@ document.getElementById('sky-home').append(
     h('div', { class: 'card-thumb' }, h('img', { src: `${import.meta.env.BASE_URL}images/${latest.image.file}`, alt: latest.image.alt, loading: 'lazy', decoding: 'async' })),
     h('div', { class: 'card-body' },
       h('p', { class: 'sky-date' }, "תמונה חדשה מטלסקופ החלל צ'נדרה · ", h('time', { datetime: latest.date, text: skyDate(latest.date) })),
-      h('h3', {}, h('a', { class: 'card-link', href: `./sky.html#${latest.id}`, text: latest.title })),
+      h('h3', {}, h('a', { class: 'card-link', href: `./sky-${latest.id}.html`, text: latest.title })),
       h('p', { text: latest.text[0] }))),
   h('article', { class: 'card sky-home-card' },
     h('div', { class: 'card-body' },

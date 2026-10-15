@@ -19,7 +19,7 @@ export const NAV = [
     icon: '<path d="M14 4h8M15 4v10L6 29a2 2 0 0 0 1.7 3h20.6a2 2 0 0 0 1.7-3L21 14V4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/><path d="M10.5 23h15l3 5.5H7.5z" fill="currentColor" opacity=".5"/>' },
   { href: 'history.html', label: 'היסטוריה', pages: ['history'],
     icon: '<path d="M9 4h18M9 32h18M11 4c0 8 7 10 7 14s-7 6-7 14M25 4c0 8-7 10-7 14s7 6 7 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M13 30c1-3 5-5 5-8 0 3 4 5 5 8z" fill="currentColor" opacity=".6"/>' },
-  { href: 'sky.html', label: 'רנטגן בחלל', pages: ['sky'],
+  { href: 'sky.html', label: 'רנטגן בחלל', pages: ['sky', 'sky-object'],
     icon: '<path d="M15 6l2.2 6.8L24 15l-6.8 2.2L15 24l-2.2-6.8L6 15l6.8-2.2z" fill="currentColor"/><path d="M27 21l1 3 3 1-3 1-1 3-1-3-3-1 3-1z" fill="currentColor" opacity=".6"/><circle cx="28" cy="8" r="1.5" fill="currentColor" opacity=".6"/>' },
   { href: 'about.html', label: 'אודות', pages: ['about'],
     icon: '<circle cx="18" cy="18" r="13" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M18 16v9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="18" cy="11.5" r="1.6" fill="currentColor"/>' },

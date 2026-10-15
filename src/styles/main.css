@@ -2095,3 +2095,60 @@ html.a11y-still .sister-clone { display: none; }
   .sky-home-card:first-child .card-thumb { flex: 0 0 40%; aspect-ratio: 1; border-bottom: 0; border-inline-end: 1px solid var(--border); }
 }
 .sky-home-card .card-thumb img { object-position: center; }
+
+/* ---------- עמוד לכל תמונה (sky-<id>.html) ---------- */
+
+.sky-object-page { padding-block: 1.5rem 3rem; }
+.sky-object-head { margin-bottom: 1.25rem; }
+.sky-object-head h1 { margin: 0.25rem 0 0.1rem; font-size: clamp(1.7rem, 5vw, 2.4rem); line-height: 1.2; }
+.sky-object-head .sky-object { margin: 0; color: var(--accent); text-align: right; }
+.sky-where, .sky-more-text, .sky-sources { margin-top: 2.5rem; }
+.sky-where h2, .sky-more-text h2, .sky-sources h2 { font-size: clamp(1.3rem, 3.5vw, 1.6rem); margin: 0 0 0.6rem; }
+.sky-where > p, .sky-more-text p { color: var(--text-2); line-height: 1.8; max-width: 70ch; }
+.sky-more-text { max-width: none; }
+.sky-map-fig { margin: 1rem 0 0; padding: 0.75rem; border: 1px solid var(--border); border-radius: var(--radius-lg); background: #05080c; max-width: 620px; }
+.sky-map-fig svg { display: block; width: 100%; height: auto; font-family: var(--font); }
+.sky-map-fig figcaption { margin-top: 0.5rem; font-size: 0.875rem; line-height: 1.6; color: var(--text-muted); }
+.sky-sources ul { margin: 0 0 0.75rem; padding-inline-start: 1.2rem; }
+.sky-sources li { margin-bottom: 0.3rem; }
+.sky-sources .muted { font-size: 0.875rem; }
+.sky-pager { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; margin-top: 2.5rem; }
+.sky-pager a { display: flex; flex-direction: column; gap: 0.2rem; padding: 0.8rem 1rem; border: 1px solid var(--border); border-radius: var(--radius); text-decoration: none; color: var(--text); font-weight: 600; }
+.sky-pager a:hover { border-color: var(--accent); }
+.sky-pager .muted { font-size: 0.8125rem; font-weight: 400; }
+.sky-pager-older { text-align: left; }
+.sky-feature .sky-more.btn { margin-top: 0.5rem; }
+
+/* המפות. צבעים קבועים: המפה תמיד על רקע לילה */
+.map-sky { fill: #0c1622; stroke: #36404d; stroke-width: 1; }
+.map-grid { fill: none; stroke: #1d2a38; stroke-width: 0.7; }
+.map-mw { fill: none; stroke: rgba(196, 210, 230, 0.16); stroke-width: 15; stroke-linecap: round; stroke-linejoin: round; }
+.map-south { fill: rgba(255, 255, 255, 0.04); stroke: #4a5563; stroke-width: 0.8; stroke-dasharray: 3 3; }
+.map-south-label { fill: #8a95a3; font-size: 13px; }
+.map-gc { fill: #c9d4e2; }
+.map-mw-label, .map-landmark text { fill: #9aa5b3; font-size: 13px; }
+.map-landmark circle { fill: #8a95a3; }
+.map-target { fill: #e7c07a; }
+.map-target-ring { fill: none; stroke: #e7c07a; stroke-width: 1.6; }
+.map-target-stem { stroke: #e7c07a; stroke-width: 1.2; }
+.map-target-label { fill: #e7c07a; font-size: 15px; font-weight: 600; }
+.map-label { fill: #b4bdc8; font-size: 14px; }
+.map-sun { fill: #ffd27a; }
+.map-sightline { stroke: #e7c07a; stroke-width: 1; stroke-dasharray: 4 3; opacity: 0.8; }
+.mw-stop-0 { stop-color: #e9e2cf; stop-opacity: 0.55; }
+.mw-stop-1 { stop-color: #8fa3bd; stop-opacity: 0.28; }
+.mw-stop-2 { stop-color: #4b5d75; stop-opacity: 0.05; }
+.map-scale line { stroke: #b4bdc8; stroke-width: 1.5; }
+.map-scale text { fill: #b4bdc8; font-size: 13px; }
+.map-axis { stroke: #4a5563; stroke-width: 1.5; }
+.map-tick { stroke: #4a5563; stroke-width: 1; }
+.map-tick-label { fill: #8a95a3; font-size: 13px; }
+.map-ref { fill: #b4bdc8; }
+.map-ref-label { fill: #b4bdc8; font-size: 13px; }
+.map-orbit { fill: none; stroke: #36404d; stroke-width: 1; }
+.map-planet { fill: #b4bdc8; }
+.map-leader { stroke: #4a5563; stroke-width: 0.8; }
+@media (max-width: 600px) {
+  .sky-map-fig text { font-size: 19px; }
+  .sky-map-fig .map-target-label { font-size: 21px; }
+}
