@@ -109,7 +109,7 @@ function whereSection(it) {
   if (w.home === 'milkyway') {
     depth = `<h2 id="depth-t">איפה זה בשביל החלב?</h2>`
       + `<p>שביל החלב הוא הגלקסיה שלנו: דיסק שטוח וענקי של כוכבים, גז ואבק, והשמש היא אחד מהכוכבים שבו. כך נראה המקום של <span dir="ltr">${name}</span> אם היינו מסתכלים על הגלקסיה מלמעלה.${lightAgo ? ` ${lightAgo}.` : ''}</p>`
-      + `<figure class="sky-map-fig">${galaxyMap({ ra: w.ra, dec: w.dec, distanceLy: w.distanceLy, label: it.object })}<figcaption>איור של אמן: כך נראה שביל החלב מלמעלה, עם הזרועות הספירליות והמוט שבמרכז. את השמש ואת <span dir="ltr">${name}</span> סימנו אנחנו, לפי הכיוון בשמיים והמרחק. איור: <a href="https://images.nasa.gov/details/PIA10748" rel="noopener" target="_blank" dir="ltr">NASA/JPL-Caltech/R. Hurt</a>.</figcaption></figure>`;
+      + `<figure class="sky-map-fig">${galaxyMap({ ra: w.ra, dec: w.dec, distanceLy: w.distanceLy, label: it.object })}<figcaption>איור של אמן: כך נראה שביל החלב מלמעלה, עם הזרועות הספירליות והמוט שבמרכז. מהשמש עד מרכז הגלקסיה יש כ-26,000 שנות אור. את השמש ואת <span dir="ltr">${name}</span> סימנו אנחנו, לפי הכיוון בשמיים והמרחק. איור: <a href="https://images.nasa.gov/details/PIA10748" rel="noopener" target="_blank" dir="ltr">NASA/JPL-Caltech/R. Hurt</a>.</figcaption></figure>`;
   } else {
     const where = w.home === 'lmc' ? 'בענן מגלן הגדול, גלקסיה קטנה שמקיפה את שביל החלב'
       : w.home === 'smc' ? 'בענן מגלן הקטן, גלקסיה קטנה שמקיפה את שביל החלב' : 'הרחק מחוץ לגלקסיה שלנו';

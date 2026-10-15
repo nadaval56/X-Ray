@@ -75,7 +75,8 @@ const label = (cls, x, y, text, W = 420) => {
   return `<text class="${cls}" x="${f1(ax)}" y="${f1(y)}" text-anchor="${anchor}">${esc(text)}</text>`;
 };
 
-export function skyMap({ ra, dec, label: name, imgBase = './images/' }) {
+export function skyMap({ ra, dec, label: full, imgBase = './images/' }) {
+  const name = shortName(full);
   const { W, H } = PAN;
   const [ox, oy] = panEq(ra, dec);
   const far = ([x, y], d = 30) => Math.hypot(x - ox, y - oy) > d;
@@ -88,12 +89,15 @@ export function skyMap({ ra, dec, label: name, imgBase = './images/' }) {
     .map(([n, [x, y]]) => label('map-neighbor', x, y + 14, n)).join('');
   const [gx, gy] = pan(0, 0);
   return `<svg class="sky-map" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(`צילום של כל השמיים, עם שביל החלב לרוחבו. ${name} מסומן בעיגול.`)}">`
+    + arrowDef('arr-s')
     + `<image href="${imgBase}${PANORAMA.file}" x="0" y="0" width="${W}" height="${H}" preserveAspectRatio="none"/>`
     + `<path class="map-south" d="M${south.map((p) => `${f1(p[0])},${f1(p[1])}`).join('L')}Z"/>`
     + label('map-south-label', scp[0], Math.max(...south.map((p) => p[1])) + 13, 'לא עולה בישראל')
     + (far([gx, gy]) ? label('map-mw-label', gx, gy - 12, 'מרכז שביל החלב') : '')
     + marks + hoods
-    + `<circle class="map-target-ring" cx="${f1(ox)}" cy="${f1(oy)}" r="9"/><circle class="map-target" cx="${f1(ox)}" cy="${f1(oy)}" r="3"/>`
+    + `<circle class="map-target-ring" cx="${f1(ox)}" cy="${f1(oy)}" r="7"/>`
+    // שם העצם למעלה, בשמיים הכהים שמעל שביל החלב (או למטה, אם העצם עצמו למעלה), עם חץ אליו
+    + callout({ to: [ox, oy], at: [Math.min(Math.max(ox, 12 + name.length * 4), W - 12 - name.length * 4), oy > 60 ? 18 : H - 8], text: name, cls: 'map-callout map-callout-target', arrow: 'arr-s', gap: 9 })
     + `</svg>`;
 }
 
@@ -106,7 +110,27 @@ const SUN_IN_ART = [0.5131, 0.7169];
 // המרחק מהשמש למרכז הגלקסיה: כ-26,000 שנות אור (כמו בכרטיסים של Sgr A* ו-Sgr A East)
 export const SUN_TO_CENTER_LY = 26000;
 
-export function galaxyMap({ ra, dec, distanceLy, label: name, imgBase = './images/' }) {
+// תווית רחוקה מהנקודה, עם קו וחץ אליה. align הוא הצד הוויזואלי: 'left' = הטקסט מתחיל ב-x ונמשך ימינה.
+// שם קצר לתווית על המפה: בלי מה שבסוגריים ("Guitar Nebula (PSR B2224+65)" → "Guitar Nebula")
+const shortName = (t) => t.replace(/\s*\(.*?\)\s*/g, ' ').trim();
+const isLatin = (t) => !/[֐-׿]/.test(t);
+function callout({ to, at, text, align = 'center', cls = 'map-callout', arrow, gap = 11 }) {
+  const latin = isLatin(text);
+  const anchor = align === 'center' ? 'middle' : (align === 'left') === latin ? 'start' : 'end';
+  const [tx, ty] = at;
+  // הקו יוצא מקצה הטקסט שקרוב לנקודה: מתחת לטקסט אם הנקודה למטה, מעליו אם למעלה
+  const below = to[1] > ty;
+  const sx = align === 'center' ? tx : align === 'left' ? tx + 14 : tx - 14;
+  const sy = below ? ty + 6 : ty - 16;
+  const len = Math.hypot(to[0] - sx, to[1] - sy);
+  const ex = to[0] - ((to[0] - sx) / len) * gap, ey = to[1] - ((to[1] - sy) / len) * gap;
+  return `<line class="map-leader-arrow" x1="${f1(sx)}" y1="${f1(sy)}" x2="${f1(ex)}" y2="${f1(ey)}" marker-end="url(#${arrow})"/>`
+    + `<text class="${cls}" x="${f1(tx)}" y="${f1(ty)}" text-anchor="${anchor}"${latin ? ' direction="ltr"' : ''}>${esc(text)}</text>`;
+}
+const arrowDef = (id) => `<defs><marker id="${id}" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="map-arrowhead" d="M0,0L10,5L0,10z"/></marker></defs>`;
+
+export function galaxyMap({ ra, dec, distanceLy, label: full, imgBase = './images/' }) {
+  const name = shortName(full);
   const W = 420, cx = W / 2, cy = W / 2;
   const sun = [SUN_IN_ART[0] * W, SUN_IN_ART[1] * W];
   const r0 = Math.hypot(cx - sun[0], cy - sun[1]), k = r0 / SUN_TO_CENTER_LY;
@@ -115,18 +139,23 @@ export function galaxyMap({ ra, dec, distanceLy, label: name, imgBase = './image
   const { l } = eqToGal(ra, dec);
   const d = distanceLy * k, c = Math.cos(l * D), sn = Math.sin(l * D);
   const o = [sun[0] + d * (c * u0[0] + sn * u90[0]), sun[1] + d * (c * u0[1] + sn * u90[1])];
-  const atCenter = Math.hypot(o[0] - cx, o[1] - cy) < 10;
-  const bar = 10000 * k;
-  return `<svg class="galaxy-map" viewBox="0 0 ${W} ${W}" role="img" aria-label="${esc(`איור של שביל החלב במבט מלמעלה: המרכז, השמש, ו${name}.`)}">`
+  // התוויות בפינות הכהות של האיור, עם חץ אל הנקודה. כל נקודה מקבלת את הפינה הפנויה הקרובה אליה.
+  const corners = { tl: [{ at: [12, 24], align: 'left' }], tr: [{ at: [W - 12, 24], align: 'right' }], br: [{ at: [W - 12, W - 14], align: 'right' }], bl: [{ at: [12, W - 14], align: 'left' }] };
+  const free = new Set(['tl', 'tr', 'br', 'bl']);
+  const pick = (pt) => {
+    const best = [...free].sort((p, q) => Math.hypot(corners[p][0].at[0] - pt[0], corners[p][0].at[1] - pt[1]) - Math.hypot(corners[q][0].at[0] - pt[0], corners[q][0].at[1] - pt[1]))[0];
+    free.delete(best);
+    return corners[best][0];
+  };
+  const sunC = pick(sun), objC = pick(o), cenC = pick([cx, cy]);
+  return `<svg class="galaxy-map" viewBox="0 0 ${W} ${W}" role="img" aria-label="${esc(`איור של שביל החלב במבט מלמעלה: המרכז, מערכת השמש, ו${name}.`)}">`
+    + arrowDef('arr-g')
     + `<image href="${imgBase}${GALAXY_ART.file}" x="0" y="0" width="${W}" height="${W}"/>`
-    + `<line class="map-sightline" x1="${f1(sun[0])}" y1="${f1(sun[1])}" x2="${f1(o[0])}" y2="${f1(o[1])}"/>`
-    + label('map-label', cx, cy - (atCenter ? 18 : 12), 'מרכז הגלקסיה')
-    + `<circle class="map-sun" cx="${f1(sun[0])}" cy="${f1(sun[1])}" r="4.5"/>`
-    // עצם קרוב מאוד לשמש (כמה אלפי שנות אור): התווית של השמש יורדת, כדי שהעיגול לא יסתיר אותה
-    + label('map-label', sun[0], sun[1] + (Math.hypot(o[0] - sun[0], o[1] - sun[1]) < 26 ? 32 : 20), 'השמש: אנחנו כאן')
-    + `<circle class="map-target-ring" cx="${f1(o[0])}" cy="${f1(o[1])}" r="9"/><circle class="map-target" cx="${f1(o[0])}" cy="${f1(o[1])}" r="3.2"/>`
-    + `<g class="map-scale"><line x1="${f1(W - 16 - bar)}" y1="${W - 16}" x2="${W - 16}" y2="${W - 16}"/>`
-    + `<text x="${W - 16}" y="${W - 24}" text-anchor="start">10,000 שנות אור</text></g>`
+    + `<circle class="map-sun" cx="${f1(sun[0])}" cy="${f1(sun[1])}" r="3.5"/>`
+    + `<circle class="map-target-ring" cx="${f1(o[0])}" cy="${f1(o[1])}" r="7"/>`
+    + callout({ to: [cx, cy], ...cenC, text: 'מרכז הגלקסיה', arrow: 'arr-g', gap: 8 })
+    + callout({ to: sun, ...sunC, text: 'מערכת השמש (אנחנו)', arrow: 'arr-g', gap: 6 })
+    + callout({ to: o, ...objC, text: name, cls: 'map-callout map-callout-target', arrow: 'arr-g', gap: 9 })
     + `</svg>`;
 }
 
@@ -146,7 +175,8 @@ function targetLabel(label, x, y, W) {
   return `<text class="map-target-label" x="${f1(ax)}" y="${y}" text-anchor="${latin ? anchor : { start: 'end', end: 'start', middle: 'middle' }[anchor]}"${latin ? ' direction="ltr"' : ''}>${esc(label)}</text>`;
 }
 
-export function distanceScale({ distanceLy, label, home }) {
+export function distanceScale({ distanceLy, label: full, home }) {
+  const label = shortName(full);
   const W = 420, H = 190, L = 22, Rm = 22, axisY = 50;
   const lo = 4, hi = 10; // 10⁴ עד 10¹⁰ שנות אור
   const x = (ly) => L + ((Math.log10(ly) - lo) / (hi - lo)) * (W - L - Rm);
