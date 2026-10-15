@@ -116,7 +116,7 @@ function whereSection(it) {
       : w.home === 'smc' ? 'בענן מגלן הקטן, גלקסיה קטנה שמקיפה את שביל החלב' : 'הרחק מחוץ לגלקסיה שלנו';
     depth = `<h2 id="depth-t">כמה זה רחוק?</h2>`
       + `<p><span dir="ltr">${name}</span> נמצא ${where}.${lightAgo ? ` ${lightAgo}.` : ''}${cmp ? ` הוא רחוק מאיתנו פי ${cmp.times} מ${cmp.ref}.` : ''}</p>`
-      + `<figure class="sky-map-fig">${distanceScale({ distanceLy: w.distanceLy, label: it.object, home: w.home })}<figcaption>הקו בקנה מידה אמיתי: כל המרחקים לפי אותו סרגל. מה שקרוב אלינו נדחס ליד "אנחנו", ולכן התוויות שלו פרושות לצדדים, עם חץ אל המקום האמיתי על הקו.</figcaption></figure>`;
+      + `<figure class="sky-map-fig">${distanceScale({ distanceLy: w.distanceLy, label: it.object, home: w.home })}<figcaption>הקו בקנה מידה אמיתי.</figcaption></figure>`;
   }
   return `<section class="sky-where" aria-labelledby="where-t">${skyPart}</section><section class="sky-where" aria-labelledby="depth-t">${depth}</section>`;
 }
