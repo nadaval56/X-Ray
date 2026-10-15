@@ -5,7 +5,7 @@
 //
 // בעמוד מקרה נכנסים רק הסיפור, השאלה והצילום — לא התשובה ("חקירה לפני הסבר").
 
-import { skyMap, galaxyMap, distanceScale, solarMap, israelLine } from '../../src/lib/sky-maps.js';
+import { skyMap, galaxyMap, distanceScale, distanceCompare, solarMap, israelLine, risesInIsrael } from '../../src/lib/sky-maps.js';
 
 const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const img = (file) => `./images/${file}`;
@@ -103,7 +103,7 @@ function whereSection(it) {
   const skyPart = `<h2 id="where-t">איפה זה בשמיים?</h2>`
     + `<p><span dir="ltr">${name}</span> נמצא בקבוצת הכוכבים <strong>${esc(w.constellation)}</strong> (<span dir="ltr" lang="en">${esc(w.constellationEn)}</span>). ${israelLine(w.dec)}</p>`
     + `<figure class="sky-map-fig">${skyMap({ ra: w.ra, dec: w.dec, label: it.object })}`
-    + `<figcaption>כל השמיים בצילום אחד, פרוסים כמו מפת עולם. הרצועה הבהירה היא שביל החלב — הדיסק של הגלקסיה שלנו, כשמסתכלים עליו מבפנים — ובאמצע התמונה מרכז הגלקסיה. העיגול הצהוב מסמן את <span dir="ltr">${name}</span>, והאזור המקווקו אף פעם לא זורח בישראל. `
+    + `<figcaption>כל השמיים בצילום אחד, פרוסים כמו מפת עולם. הרצועה הבהירה היא שביל החלב — הדיסק של הגלקסיה שלנו, כשמסתכלים עליו מבפנים — ובאמצע התמונה מרכז הגלקסיה. העיגול הצהוב מסמן את <span dir="ltr">${name}</span>${risesInIsrael(w.dec) ? '' : ', והאזור המקווקו אף פעם לא זורח בישראל'}. `
     + `צילום: <a href="https://www.eso.org/public/images/eso0932a/" rel="noopener" target="_blank" dir="ltr">ESO/S. Brunier</a> (<a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener" target="_blank" dir="ltr">CC BY 4.0</a>), עם סימונים שלנו.</figcaption></figure>`;
   let depth;
   if (w.home === 'milkyway') {
@@ -111,11 +111,12 @@ function whereSection(it) {
       + `<p>שביל החלב הוא הגלקסיה שלנו: דיסק שטוח וענקי של כוכבים, גז ואבק, והשמש היא אחד מהכוכבים שבו. כך נראה המקום של <span dir="ltr">${name}</span> אם היינו מסתכלים על הגלקסיה מלמעלה.${lightAgo ? ` ${lightAgo}.` : ''}</p>`
       + `<figure class="sky-map-fig">${galaxyMap({ ra: w.ra, dec: w.dec, distanceLy: w.distanceLy, label: it.object })}<figcaption>איור של אמן: כך נראה שביל החלב מלמעלה, עם הזרועות הספירליות והמוט שבמרכז. מהשמש עד מרכז הגלקסיה יש כ-26,000 שנות אור. את השמש ואת <span dir="ltr">${name}</span> סימנו אנחנו, לפי הכיוון בשמיים והמרחק. איור: <a href="https://images.nasa.gov/details/PIA10748" rel="noopener" target="_blank" dir="ltr">NASA/JPL-Caltech/R. Hurt</a>.</figcaption></figure>`;
   } else {
+    const cmp = distanceCompare(w);
     const where = w.home === 'lmc' ? 'בענן מגלן הגדול, גלקסיה קטנה שמקיפה את שביל החלב'
       : w.home === 'smc' ? 'בענן מגלן הקטן, גלקסיה קטנה שמקיפה את שביל החלב' : 'הרחק מחוץ לגלקסיה שלנו';
     depth = `<h2 id="depth-t">כמה זה רחוק?</h2>`
-      + `<p><span dir="ltr">${name}</span> נמצא ${where}.${lightAgo ? ` ${lightAgo}.` : ''} בסרגל אפשר להשוות למרחקים מוכרים יותר.</p>`
-      + `<figure class="sky-map-fig">${distanceScale({ distanceLy: w.distanceLy, label: it.object, home: w.home })}<figcaption>המרחקים בשנות אור מאיתנו. בסרגל הזה כל שנתה רחוקה פי 10 מהקודמת, אחרת המרחקים לא היו נכנסים בשורה אחת.</figcaption></figure>`;
+      + `<p><span dir="ltr">${name}</span> נמצא ${where}.${lightAgo ? ` ${lightAgo}.` : ''}${cmp ? ` הוא רחוק מאיתנו פי ${cmp.times} מ${cmp.ref}.` : ''}</p>`
+      + `<figure class="sky-map-fig">${distanceScale({ distanceLy: w.distanceLy, label: it.object, home: w.home })}<figcaption>הקו בקנה מידה אמיתי: כל המרחקים לפי אותו סרגל. מה שקרוב אלינו נדחס ליד "אנחנו", ולכן התוויות שלו פרושות לצדדים, עם חץ אל המקום האמיתי על הקו.</figcaption></figure>`;
   }
   return `<section class="sky-where" aria-labelledby="where-t">${skyPart}</section><section class="sky-where" aria-labelledby="depth-t">${depth}</section>`;
 }

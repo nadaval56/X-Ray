@@ -38,6 +38,9 @@ export function eqToGal(ra, dec) {
 export const ISRAEL_LAT = 31.8;
 
 /** משפט קצר: האם רואים את האזור מישראל, ועד כמה הוא עולה */
+/** האם העצם עולה אי פעם מעל האופק בישראל */
+export const risesInIsrael = (dec) => 90 - Math.abs(ISRAEL_LAT - dec) > 0;
+
 export function israelLine(dec) {
   const max = 90 - Math.abs(ISRAEL_LAT - dec);
   if (max <= 0) return 'האזור הזה בשמיים לא עולה אף פעם מעל האופק בישראל. רואים אותו רק ממקומות דרומיים יותר על כדור הארץ.';
@@ -104,13 +107,17 @@ const segsCross = ([a, b], [c, d]) => {
 };
 
 // תיבת תווית עם חץ אל הנקודה. box: המלבן, to: הנקודה, gap: כמה לעצור לפניה
-function boxLabel({ box, to, text, fs, target = false, arrow, gap }) {
+function boxLabel({ box, to, text, sub, fs, target = false, arrow, gap }) {
   const [sx, sy] = edgePoint(box, to);
   const len = Math.hypot(to[0] - sx, to[1] - sy) || 1;
   const ex = to[0] - ((to[0] - sx) / len) * gap, ey = to[1] - ((to[1] - sy) / len) * gap;
   const line = len > gap + 4 ? `<line class="map-leader-arrow" x1="${f1(sx)}" y1="${f1(sy)}" x2="${f1(ex)}" y2="${f1(ey)}" marker-end="url(#${arrow})"/>` : '';
   return `${line}<g class="map-box${target ? ' is-target' : ''}"><rect x="${f1(box.x)}" y="${f1(box.y)}" width="${f1(box.w)}" height="${f1(box.h)}" rx="4"/>`
-    + `<text x="${f1(box.x + box.w / 2)}" y="${f1(box.y + box.h / 2 + fs * 0.36)}" text-anchor="middle" font-size="${fs}"${isLatin(text) ? ' direction="ltr"' : ''}>${esc(text)}</text></g>`;
+    + (sub
+      ? `<text x="${f1(box.x + box.w / 2)}" y="${f1(box.y + 4 + fs)}" text-anchor="middle" font-size="${fs}"${isLatin(text) ? ' direction="ltr"' : ''}>${esc(text)}</text>`
+        // direction מפורש: שורה שמתחילה במספר נשארת מימין לשמאל ("2.5 מיליון", לא "מיליון ... 2.5")
+        + `<text class="map-box-sub" x="${f1(box.x + box.w / 2)}" y="${f1(box.y + 7 + fs * 2)}" text-anchor="middle" font-size="${fs - 2}" direction="rtl" unicode-bidi="embed">${esc(sub)}</text></g>`
+      : `<text x="${f1(box.x + box.w / 2)}" y="${f1(box.y + box.h / 2 + fs * 0.36)}" text-anchor="middle" font-size="${fs}"${isLatin(text) ? ' direction="ltr"' : ''}>${esc(text)}</text></g>`);
 }
 const labelBox = (text, fs) => ({ w: textW(text, fs) + 12, h: fs + 9 });
 const arrowDef = (id) => `<defs><marker id="${id}" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="map-arrowhead" d="M0,0L10,5L0,10z"/></marker></defs>`;
@@ -132,6 +139,7 @@ export function skyMap({ ra, dec, label: full, imgBase = './images/' }) {
   const [ox, oy] = panEq(ra, dec);
   const far = ([x, y], d) => Math.hypot(x - ox, y - oy) > d;
   // האזור שלא זורח בישראל: עיגול סביב הקוטב השמימי הדרומי, עד δ = φ − 90
+  const hidden = !risesInIsrael(dec);
   const south = range(0, 360, 3).map((r) => panEq(r, ISRAEL_LAT - 90));
   const scp = panEq(0, -90);
   const [gx, gy] = pan(0, 0);
@@ -139,7 +147,8 @@ export function skyMap({ ra, dec, label: full, imgBase = './images/' }) {
     ...LANDMARKS.map(([n, r, d]) => { const [x, y] = panEq(r, d); return { ...plain(n, x, y - 5, W), dot: [x, y], cls: 'map-landmark' }; }),
     ...NEIGHBORS.map(([n, l, b]) => { const [x, y] = pan(l, b); return { ...plain(n, x, y + 14, W), dot: [x, y], cls: 'map-neighbor' }; }),
     { ...plain('מרכז שביל החלב', gx, gy - 9, W), cls: 'map-mw-label' },
-    { ...plain('לא זורח בישראל', scp[0], Math.max(...south.map((p) => p[1])) + 13, W), cls: 'map-south-label', keep: true },
+    // האזור שלא זורח בישראל מסומן רק כשהעצם עצמו בתוכו — אחרת זה סתם עוד פרט על המפה
+    ...(hidden ? [{ ...plain('לא זורח בישראל', scp[0], Math.max(...south.map((p) => p[1])) + 13, W), cls: 'map-south-label', keep: true }] : []),
   ].filter((p) => p.keep || !overlap(p.rect, rectOf(ox, oy, 22, 22), 4));
 
   // תיבת שם העצם: מבין כמה מקומות סביבו, זה שלא נוגע בשום תווית ושהקו שלו לא חוצה אף אחת
@@ -165,7 +174,7 @@ export function skyMap({ ra, dec, label: full, imgBase = './images/' }) {
   return `<svg class="sky-map" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(`צילום של כל השמיים, עם שביל החלב לרוחבו. ${name} מסומן בעיגול.`)}">`
     + arrowDef('arr-s')
     + `<image href="${imgBase}${PANORAMA.file}" x="0" y="0" width="${W}" height="${H}" preserveAspectRatio="none"/>`
-    + `<path class="map-south" d="M${south.map((p) => `${f1(p[0])},${f1(p[1])}`).join('L')}Z"/>`
+    + (hidden ? `<path class="map-south" d="M${south.map((p) => `${f1(p[0])},${f1(p[1])}`).join('L')}Z"/>` : '')
     + shown.map((p) => (p.dot ? `<circle class="map-dot" cx="${f1(p.dot[0])}" cy="${f1(p.dot[1])}" r="1.5"/>` : '') + plainSvg(p, p.cls)).join('')
     + `<circle class="map-target-ring" cx="${f1(ox)}" cy="${f1(oy)}" r="6"/>`
     + boxLabel({ box, to: [ox, oy], text: name, fs: FS_BOX, target: true, arrow: 'arr-s', gap: 8 })
@@ -228,9 +237,9 @@ export function galaxyMap({ ra, dec, distanceLy, label: full, imgBase = './image
 
 // נקודות ייחוס (שנות אור). מקורות ב-sources.md.
 const REFS = [
-  { id: 'gc', name: 'מרכז שביל החלב', ly: SUN_TO_CENTER_LY },
-  { id: 'lmc', name: 'ענן מגלן הגדול', ly: 160000 },
-  { id: 'm31', name: 'גלקסיית אנדרומדה', ly: 2500000 },
+  { id: 'gc', name: 'מרכז שביל החלב', short: 'מרכז הגלקסיה שלנו', ly: SUN_TO_CENTER_LY },
+  { id: 'lmc', name: 'ענן מגלן הגדול', short: 'ענן מגלן הגדול', ly: 160000 },
+  { id: 'm31', name: 'גלקסיית אנדרומדה', short: 'גלקסיית אנדרומדה', ly: 2500000 },
 ];
 
 // מסדר תיבות בשורה אחת: כל אחת קרובה ככל האפשר למקום שלה, בלי חפיפה, בתוך הגבולות. הסדר נשמר,
@@ -244,38 +253,57 @@ function pushApart(boxes, lo, hi, gap = 6) {
   return bs;
 }
 
+// מרחק במילים: "26,000 שנות אור", "2.5 מיליון שנות אור", "מיליארד שנות אור"
+export function lyWords(ly) {
+  const num = (v) => (v >= 100 ? Math.round(v) : Math.round(v * 10) / 10).toLocaleString('en-US');
+  if (ly >= 1e9) return ly < 1.05e9 ? 'מיליארד שנות אור' : `${num(ly / 1e9)} מיליארד שנות אור`;
+  if (ly >= 1e6) return `${num(ly / 1e6)} מיליון שנות אור`;
+  return `${Math.round(ly).toLocaleString('en-US')} שנות אור`;
+}
+
+// השוואה במשפט אחד: העצם לעומת נקודת הייחוס הרחוקה ביותר שעדיין קרובה ממנו
+export function distanceCompare({ distanceLy, home }) {
+  const ref = refsFor(home).filter((r) => r.ly < distanceLy).at(-1);
+  if (!ref) return '';
+  const k = distanceLy / ref.ly;
+  const times = k >= 100 ? (Math.round(k / 10) * 10).toLocaleString('en-US') : k >= 10 ? Math.round(k) : Math.round(k * 10) / 10;
+  return { ref: ref.short, times };
+}
+const refsFor = (home) => REFS.filter((r) => !(home === 'lmc' && r.id === 'lmc'));
+
+// ציר אנכי בקנה מידה אמיתי (לא לוגריתמי): למעלה אנחנו, ולמטה העצם או נקודת הייחוס הרחוקה ביותר.
+// מה שקרוב נדחס ליד "אנחנו", והתוויות שלו נפרשות לשני צידי הציר עם חץ אל המקום האמיתי.
 export function distanceScale({ distanceLy, label: full, home }) {
   const label = shortName(full);
-  const W = 360, H = 124, L = 18, Rm = 18, axisY = 58, FS_REF = 12;
-  const lo = 4, hi = 10; // 10⁴ עד 10¹⁰ שנות אור
-  const x = (ly) => L + ((Math.min(Math.max(Math.log10(ly), lo), hi) - lo) / (hi - lo)) * (W - L - Rm);
-  const ox = x(distanceLy);
-  // שם העצם בתיבה מעל הציר, עם חץ אל הנקודה
-  const tb = labelBox(label, FS_BOX);
-  const tcx = Math.min(Math.max(ox, tb.w / 2 + 3), W - tb.w / 2 - 3);
-  const tBox = rectOf(tcx, 6 + tb.h / 2, tb.w, tb.h);
-  const tFrom = edgePoint(tBox, [ox, axisY]);
-  // תוויות השנתות מעל הציר — חוץ ממי שהחץ של העצם עובר דרכה
-  const tickLabels = [[1e4, '10 אלף'], [1e6, 'מיליון'], [1e9, 'מיליארד']]
-    .map(([v, t]) => ({ t, x: x(v), w: textW(t, FS_SMALL) }))
-    .map((k) => ({ ...k, x: Math.min(Math.max(k.x, k.w / 2 + 2), W - k.w / 2 - 2) }))
-    .filter((k) => !segHits(tFrom, [ox, axisY], rectOf(k.x, axisY - 12, k.w + 4, FS_SMALL + 2)) && !overlap(tBox, rectOf(k.x, axisY - 12, k.w, FS_SMALL)));
-  // נקודות הייחוס: תיבות קטנות בשורה מתחת לציר, וקו אל הנקודה של כל אחת
-  const refs = pushApart(REFS.filter((r) => !(home === 'lmc' && r.id === 'lmc'))
-    .map((r) => ({ ...r, want: x(r.ly), ...labelBox(r.name, FS_REF) })), 3, W - 3);
-  const refSvg = refs.map((r) => {
-    const box = rectOf(r.cx, axisY + 34, r.w, r.h);
-    return `<circle class="map-ref" cx="${f1(x(r.ly))}" cy="${axisY}" r="3.5"/>`
-      + boxLabel({ box, to: [x(r.ly), axisY], text: r.name, fs: FS_REF, arrow: 'arr-d', gap: 5 });
+  const W = 360, top = 40, bottom = 372, H = bottom + 18, ax = W / 2, FS_REF = 12;
+  const pts = [...refsFor(home).map((r) => ({ text: r.name, ly: r.ly })), { text: label, ly: distanceLy, target: true }]
+    .sort((p, q) => p.ly - q.ly);
+  const max = Math.max(...pts.map((p) => p.ly));
+  const y = (ly) => top + (ly / max) * (bottom - top);
+  // צד לכל תווית: העצם מימין, ונקודות הייחוס מתחלפות שמאל-ימין, מהקרובה לרחוקה
+  let flip = false;
+  for (const p of pts) {
+    Object.assign(p, { sub: lyWords(p.ly) }, labelBox(p.text.length > lyWords(p.ly).length ? p.text : lyWords(p.ly), p.target ? FS_BOX : FS_REF));
+    p.h = (p.target ? FS_BOX : FS_REF) * 2 + 12;
+    p.side = p.target ? 'r' : (flip = !flip) ? 'l' : 'r';
+    p.want = y(p.ly);
+  }
+  // בכל צד: מסדרים את התיבות לגובה בלי חפיפה (pushApart עובד על ציר אחד; כאן הציר הוא y)
+  for (const side of ['l', 'r']) {
+    const col = pts.filter((p) => p.side === side).map((p) => ({ p, want: p.want, w: p.h }));
+    pushApart(col, top + 4, bottom + 14, 8).forEach(({ p, cx }) => { p.cy = cx; });
+  }
+  const boxes = pts.map((p) => {
+    const box = { x: p.side === 'l' ? ax - 36 - p.w : ax + 36, y: p.cy - p.h / 2, w: p.w, h: p.h };
+    return `<circle class="${p.target ? 'map-target' : 'map-ref'}" cx="${ax}" cy="${f1(y(p.ly))}" r="${p.target ? 5 : 3.5}"/>`
+      + boxLabel({ box, to: [ax, y(p.ly)], text: p.text, sub: p.sub, fs: p.target ? FS_BOX : FS_REF, target: p.target, arrow: 'arr-d', gap: 6 });
   }).join('');
-  const ticks = [1e4, 1e5, 1e6, 1e7, 1e8, 1e9, 1e10].map((v) => `<line class="map-tick" x1="${f1(x(v))}" y1="${axisY - 4}" x2="${f1(x(v))}" y2="${axisY + 4}"/>`).join('')
-    + tickLabels.map((k) => `<text class="map-tick-label" x="${f1(k.x)}" y="${axisY - 9}" text-anchor="middle" font-size="${FS_SMALL}">${k.t}</text>`).join('');
-  return `<svg class="distance-scale" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(`סרגל מרחקים: ${label}, לעומת מרכז שביל החלב, ${home === 'lmc' ? '' : 'ענן מגלן הגדול, '}וגלקסיית אנדרומדה.`)}">`
+  return `<svg class="distance-scale" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(`ציר מרחקים בקנה מידה אמיתי: ${pts.map((p) => `${p.text}, ${p.sub}`).join('; ')}.`)}">`
     + arrowDef('arr-d')
-    + `<line class="map-axis" x1="${L}" y1="${axisY}" x2="${W - Rm}" y2="${axisY}"/>${ticks}${refSvg}`
-    + `<circle class="map-target" cx="${f1(ox)}" cy="${axisY}" r="5"/>`
-    + boxLabel({ box: tBox, to: [ox, axisY], text: label, fs: FS_BOX, target: true, arrow: 'arr-d', gap: 7 })
-    + `</svg>`;
+    + `<line class="map-axis" x1="${ax}" y1="${top}" x2="${ax}" y2="${bottom}"/>`
+    + `<circle class="map-sun" cx="${ax}" cy="${top}" r="4.5"/>`
+    + `<text class="map-label" x="${ax}" y="${top - 12}" text-anchor="middle" font-size="${FS_BOX}">אנחנו</text>`
+    + boxes + `</svg>`;
 }
 
 // ---------- מערכת השמש ----------
