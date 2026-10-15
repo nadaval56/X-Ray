@@ -103,12 +103,13 @@ function whereSection(it) {
   const skyPart = `<h2 id="where-t">איפה זה בשמיים?</h2>`
     + `<p><span dir="ltr">${name}</span> נמצא בקבוצת הכוכבים <strong>${esc(w.constellation)}</strong> (<span dir="ltr" lang="en">${esc(w.constellationEn)}</span>). ${israelLine(w.dec)}</p>`
     + `<figure class="sky-map-fig">${skyMap({ ra: w.ra, dec: w.dec, label: it.object })}`
-    + `<figcaption>כל כיפת השמיים במפה אחת, כמו מפה של כדור הארץ: למעלה הצפון, למטה הדרום. העיגול הצהוב מסמן את <span dir="ltr">${name}</span>, והרצועה הבהירה היא שביל החלב — הדיסק של הגלקסיה שלנו, כשמסתכלים עליו מבפנים. את האזור התחתון, המקווקו, אף פעם לא רואים מישראל.</figcaption></figure>`;
+    + `<figcaption>כל השמיים בצילום אחד, פרוסים כמו מפת עולם. הרצועה הבהירה היא שביל החלב — הדיסק של הגלקסיה שלנו, כשמסתכלים עליו מבפנים — ובאמצע התמונה מרכז הגלקסיה. העיגול הצהוב מסמן את <span dir="ltr">${name}</span>, ואת האזור המקווקו אף פעם לא רואים מישראל. `
+    + `צילום: <a href="https://www.eso.org/public/images/eso0932a/" rel="noopener" target="_blank" dir="ltr">ESO/S. Brunier</a> (<a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener" target="_blank" dir="ltr">CC BY 4.0</a>), עם סימונים שלנו.</figcaption></figure>`;
   let depth;
   if (w.home === 'milkyway') {
     depth = `<h2 id="depth-t">איפה זה בשביל החלב?</h2>`
       + `<p>שביל החלב הוא הגלקסיה שלנו: דיסק שטוח וענקי של כוכבים, גז ואבק, והשמש היא אחד מהכוכבים שבו. כך נראה המקום של <span dir="ltr">${name}</span> אם היינו מסתכלים על הגלקסיה מלמעלה.${lightAgo ? ` ${lightAgo}.` : ''}</p>`
-      + `<figure class="sky-map-fig">${galaxyMap({ ra: w.ra, dec: w.dec, distanceLy: w.distanceLy, label: it.object })}<figcaption>ציור סכמטי: הזרועות הספירליות של הגלקסיה לא מצוירות, והמיקום מחושב מהכיוון בשמיים ומהמרחק.</figcaption></figure>`;
+      + `<figure class="sky-map-fig">${galaxyMap({ ra: w.ra, dec: w.dec, distanceLy: w.distanceLy, label: it.object })}<figcaption>איור של אמן: כך נראה שביל החלב מלמעלה, עם הזרועות הספירליות והמוט שבמרכז. את השמש ואת <span dir="ltr">${name}</span> סימנו אנחנו, לפי הכיוון בשמיים והמרחק. איור: <a href="https://images.nasa.gov/details/PIA10748" rel="noopener" target="_blank" dir="ltr">NASA/JPL-Caltech/R. Hurt</a>.</figcaption></figure>`;
   } else {
     const where = w.home === 'lmc' ? 'בענן מגלן הגדול, גלקסיה קטנה שמקיפה את שביל החלב'
       : w.home === 'smc' ? 'בענן מגלן הקטן, גלקסיה קטנה שמקיפה את שביל החלב' : 'הרחק מחוץ לגלקסיה שלנו';

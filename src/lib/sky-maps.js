@@ -2,9 +2,8 @@
 // מחרוזות SVG בלבד, בלי DOM: הקובץ רץ גם בזמן ה-build (scripts/lib/prerender.mjs) וגם בדפדפן.
 //
 // שלוש מפות, לפי where.home ב-content/sky.json:
-//   - מפת השמיים (כל עצם עם ra/dec): כל כיפת השמיים בהיטל האמר, רצועת שביל החלב,
-//     והאזור שלא עולה אף פעם מעל האופק בישראל.
-//   - שביל החלב מלמעלה (home: milkyway): איפה העצם ביחס לשמש ולמרכז הגלקסיה.
+//   - מפת השמיים (כל עצם עם ra/dec): על פנורמה אמיתית של כל השמיים (ESO), עם האזור שלא עולה בישראל.
+//   - שביל החלב מלמעלה (home: milkyway): על איור של NASA, ביחס לשמש ולמרכז הגלקסיה.
 //   - סרגל מרחקים לוגריתמי (lmc / smc / extragalactic), ומסלולי כוכבי הלכת (solar).
 // ה-SVG יורש את כיוון העמוד (RTL): text-anchor="start" מיישר לימין ו-"end" לשמאל.
 // המקורות למספרים הקבועים כאן ב-content/sources.md, בסעיף "מפות 'איפה זה?'".
@@ -52,97 +51,81 @@ export function israelLine(dec) {
 
 // ---------- מפת השמיים ----------
 
-const SKY = { W: 420, H: 222, cx: 210, cy: 111, s: 200 / (2 * Math.SQRT2) };
-
-// היטל האמר. ra גדל שמאלה, כמו כשמסתכלים על השמיים; במרכז המפה ra = 12h.
-function hammer(ra, dec) {
-  let lam = (180 - ra) % 360;
-  if (lam > 180) lam -= 360;
-  if (lam < -180) lam += 360;
-  return hammerLam(lam, dec);
-}
-
-// lam: מעלות מהמרכז, −180 (שמאל) עד 180 (ימין)
-function hammerLam(lam, dec) {
-  const phi = dec * D, l = lam * D;
-  const z = Math.sqrt(1 + Math.cos(phi) * Math.cos(l / 2));
-  return [SKY.cx + SKY.s * (2 * Math.SQRT2 * Math.cos(phi) * Math.sin(l / 2)) / z, SKY.cy - SKY.s * (Math.SQRT2 * Math.sin(phi)) / z];
-}
-
-// קו פתוח, שנשבר כשהוא חוצה את קצה המפה
-function polyline(points) {
-  let d = '', prev;
-  for (const p of points) {
-    d += `${!prev || Math.abs(p[0] - prev[0]) > 60 ? 'M' : 'L'}${f1(p[0])},${f1(p[1])}`;
-    prev = p;
-  }
-  return d;
-}
+// רקע: פנורמה של כל השמיים, ESO/S. Brunier (eso0932a, CC BY 4.0), בהיטל שווה-מרחקים
+// בקואורדינטות גלקטיות: מרכז הגלקסיה באמצע, l גדל שמאלה, b = +90 למעלה.
+// כיול: ענן מגלן הגדול (l = 280.5°, b = −32.9°) יושב בתמונה בדיוק במקום שהנוסחה נותנת.
+export const PANORAMA = { file: 'sky/maps/milkyway-panorama.webp', credit: 'ESO/S. Brunier', license: 'CC BY 4.0' };
+const PAN = { W: 420, H: 210 };
+const wrapL = (l) => { const x = ((l % 360) + 360) % 360; return x > 180 ? x - 360 : x; };
+const pan = (l, b) => [PAN.W * (0.5 - wrapL(l) / 360), PAN.H * (0.5 - b / 180)];
+const panEq = (ra, dec) => { const g = eqToGal(ra, dec); return pan(g.l, g.b); };
 
 const range = (a, b, step) => Array.from({ length: Math.floor((b - a) / step) + 1 }, (_, i) => a + i * step);
 
-// כמה קבוצות כוכבים מוכרות, לעיגון. מרכז הקבוצה מתיבת המידע בוויקיפדיה (ראו sources.md).
-const LANDMARKS = [
-  ['אוריון', 75, 5], ['הדובה הגדולה', 160, 55.4], ['אריה', 165, 15], ['ברבור', 309.3, 42],
-  ['עקרב', 253.3, -30.7], ['הצלב הדרומי', 187.5, -60],
-];
+// כמה קבוצות כוכבים מוכרות, לעיגון (ra, dec). מרכז הקבוצה מתיבת המידע בוויקיפדיה (ראו sources.md).
+// מעט תוויות בכוונה: במסך של טלפון יותר מזה כבר מתנגש.
+const LANDMARKS = [['אוריון', 75, 5], ['הדובה הגדולה', 160, 55.4], ['אריה', 165, 15], ['ברבור', 309.3, 42]];
+// גלקסיות שכנות שרואים בפנורמה (l, b מ-SIMBAD)
+const NEIGHBORS = [['אנדרומדה', 121.17, -21.57]];
 
-export function skyMap({ ra, dec, label }) {
-  const { W, H } = SKY;
-  const grid = [
-    ...[-60, -30, 0, 30, 60].map((d) => polyline(range(-180, 180, 4).map((lam) => hammerLam(lam, d)))),
-    ...range(0, 330, 30).map((r) => polyline(range(-90, 90, 3).map((d) => hammer(r + 0.001, d)))),
-  ].map((d) => `<path class="map-grid" d="${d}"/>`).join('');
-  const band = polyline(range(0, 360, 2).map((l) => { const e = galToEq(l, 0); return hammer(e.ra, e.dec); }));
-  const gc = galToEq(0, 0);
-  const [gx, gy] = hammer(gc.ra, gc.dec);
-  // האזור שלא עולה בישראל: מתחת ל-δ = φ − 90
-  const limit = ISRAEL_LAT - 90;
-  const south = range(-180, 180, 4).map((lam) => hammerLam(lam, limit));
-  const pole = hammerLam(0, -90);
-  const southPath = `M${south.map((p) => `${f1(p[0])},${f1(p[1])}`).join('L')}L${f1(pole[0])},${f1(pole[1])}Z`;
-  const [ox, oy] = hammer(ra, dec);
-  const marks = LANDMARKS
-    .map(([name, r, d]) => [name, ...hammer(r, d)])
-    .filter(([, x, y]) => Math.hypot(x - ox, y - oy) > 34 && Math.hypot(x - gx, y - gy) > 34)
-    .map(([name, x, y]) => `<g class="map-landmark"><circle cx="${f1(x)}" cy="${f1(y)}" r="1.8"/><text x="${f1(x)}" y="${f1(y - 5)}" text-anchor="middle">${esc(name)}</text></g>`).join('');
-  const gcLabel = Math.hypot(gx - ox, gy - oy) > 30
-    ? `<text class="map-mw-label" x="${f1(Math.min(Math.max(gx, 60), 360))}" y="${f1(gy - 9)}" text-anchor="middle">מרכז שביל החלב</text>` : '';
-  return `<svg class="sky-map" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(`מפה של כל השמיים. ${label} מסומן בעיגול.`)}">`
-    + `<ellipse class="map-sky" cx="${SKY.cx}" cy="${SKY.cy}" rx="${2 * Math.SQRT2 * SKY.s}" ry="${Math.SQRT2 * SKY.s}"/>${grid}`
-    + `<path class="map-mw" d="${band}"/>`
-    + `<path class="map-south" d="${southPath}"/>`
-    + `<text class="map-south-label" x="${f1(Math.abs(ox - SKY.cx) < 60 && oy > pole[1] - 40 ? (ox > SKY.cx ? SKY.cx - 70 : SKY.cx + 70) : SKY.cx)}" y="${f1(pole[1] - 10)}" text-anchor="middle">לא עולה בישראל</text>`
-    + `<circle class="map-gc" cx="${f1(gx)}" cy="${f1(gy)}" r="2.5"/>${gcLabel}${marks}`
-    + `<circle class="map-target-ring" cx="${f1(ox)}" cy="${f1(oy)}" r="9"/><circle class="map-target" cx="${f1(ox)}" cy="${f1(oy)}" r="3.2"/>`
+// תווית שלא יוצאת מהמפה: ליד הקצוות היא נצמדת פנימה (ב-RTL: start = מיושר לימין)
+const label = (cls, x, y, text, W = 420) => {
+  const anchor = x < 50 ? 'end' : x > W - 50 ? 'start' : 'middle';
+  const ax = x < 50 ? Math.max(x - 8, 4) : x > W - 50 ? Math.min(x + 8, W - 4) : x;
+  return `<text class="${cls}" x="${f1(ax)}" y="${f1(y)}" text-anchor="${anchor}">${esc(text)}</text>`;
+};
+
+export function skyMap({ ra, dec, label: name, imgBase = './images/' }) {
+  const { W, H } = PAN;
+  const [ox, oy] = panEq(ra, dec);
+  const far = ([x, y], d = 30) => Math.hypot(x - ox, y - oy) > d;
+  // האזור שלא עולה בישראל: עיגול סביב הקוטב השמימי הדרומי, עד δ = φ − 90
+  const south = range(0, 360, 3).map((r) => panEq(r, ISRAEL_LAT - 90));
+  const scp = panEq(0, -90);
+  const marks = LANDMARKS.map(([n, r, d]) => [n, panEq(r, d)]).filter(([, p]) => far(p, 50))
+    .map(([n, [x, y]]) => `<g class="map-landmark"><circle cx="${f1(x)}" cy="${f1(y)}" r="1.6"/>${label('', x, y - 5, n)}</g>`).join('');
+  const hoods = NEIGHBORS.map(([n, l, b]) => [n, pan(l, b)]).filter(([, p]) => far(p, 36))
+    .map(([n, [x, y]]) => label('map-neighbor', x, y + 14, n)).join('');
+  const [gx, gy] = pan(0, 0);
+  return `<svg class="sky-map" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(`צילום של כל השמיים, עם שביל החלב לרוחבו. ${name} מסומן בעיגול.`)}">`
+    + `<image href="${imgBase}${PANORAMA.file}" x="0" y="0" width="${W}" height="${H}" preserveAspectRatio="none"/>`
+    + `<path class="map-south" d="M${south.map((p) => `${f1(p[0])},${f1(p[1])}`).join('L')}Z"/>`
+    + label('map-south-label', scp[0], Math.max(...south.map((p) => p[1])) + 13, 'לא עולה בישראל')
+    + (far([gx, gy]) ? label('map-mw-label', gx, gy - 12, 'מרכז שביל החלב') : '')
+    + marks + hoods
+    + `<circle class="map-target-ring" cx="${f1(ox)}" cy="${f1(oy)}" r="9"/><circle class="map-target" cx="${f1(ox)}" cy="${f1(oy)}" r="3"/>`
     + `</svg>`;
 }
 
 // ---------- שביל החלב מלמעלה ----------
 
+// רקע: איור של שביל החלב במבט מלמעלה, NASA/JPL-Caltech/R. Hurt (PIA10748), חתוך לריבוע 8%–92%.
+// מקום השמש באיור נלקח מהגרסה המסומנת של אותו איור (PIA19341, מסובבת ב-90°) — ראו sources.md.
+export const GALAXY_ART = { file: 'sky/maps/milkyway-top.webp', credit: 'NASA/JPL-Caltech/R. Hurt', license: 'NASA (public domain)' };
+const SUN_IN_ART = [0.5131, 0.7169];
 // המרחק מהשמש למרכז הגלקסיה: כ-26,000 שנות אור (כמו בכרטיסים של Sgr A* ו-Sgr A East)
 export const SUN_TO_CENTER_LY = 26000;
-const DISK_LY = 50000; // רדיוס הדיסק בציור. כ-100,000 שנות אור קוטר — ראו sources.md
 
-export function galaxyMap({ ra, dec, distanceLy, label }) {
-  const W = 420, H = 300, cx = 210, cy = 146, R = 128, k = R / DISK_LY;
-  const sun = [cx, cy + SUN_TO_CENTER_LY * k];
+export function galaxyMap({ ra, dec, distanceLy, label: name, imgBase = './images/' }) {
+  const W = 420, cx = W / 2, cy = W / 2;
+  const sun = [SUN_IN_ART[0] * W, SUN_IN_ART[1] * W];
+  const r0 = Math.hypot(cx - sun[0], cy - sun[1]), k = r0 / SUN_TO_CENTER_LY;
+  // l = 0: מהשמש אל המרכז. מבט מהקוטב הצפוני של הגלקסיה, ולכן l = 90° שמאלה ממנו.
+  const u0 = [(cx - sun[0]) / r0, (cy - sun[1]) / r0], u90 = [u0[1], -u0[0]];
   const { l } = eqToGal(ra, dec);
-  // מבט מהקוטב הצפוני של הגלקסיה: l = 0 לכיוון המרכז (למעלה), l = 90° שמאלה
-  const o = [sun[0] - distanceLy * Math.sin(l * D) * k, sun[1] - distanceLy * Math.cos(l * D) * k];
-  const atCenter = Math.hypot(o[0] - cx, o[1] - cy) < 8;
+  const d = distanceLy * k, c = Math.cos(l * D), sn = Math.sin(l * D);
+  const o = [sun[0] + d * (c * u0[0] + sn * u90[0]), sun[1] + d * (c * u0[1] + sn * u90[1])];
+  const atCenter = Math.hypot(o[0] - cx, o[1] - cy) < 10;
   const bar = 10000 * k;
-  return `<svg class="galaxy-map" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(`שביל החלב במבט מלמעלה: המרכז, השמש, ו${label}.`)}">`
-    + `<defs><radialGradient id="mw-disk"><stop offset="0" class="mw-stop-0"/><stop offset=".25" class="mw-stop-1"/><stop offset="1" class="mw-stop-2"/></radialGradient></defs>`
-    + `<circle cx="${cx}" cy="${cy}" r="${R}" fill="url(#mw-disk)"/>`
+  return `<svg class="galaxy-map" viewBox="0 0 ${W} ${W}" role="img" aria-label="${esc(`איור של שביל החלב במבט מלמעלה: המרכז, השמש, ו${name}.`)}">`
+    + `<image href="${imgBase}${GALAXY_ART.file}" x="0" y="0" width="${W}" height="${W}"/>`
     + `<line class="map-sightline" x1="${f1(sun[0])}" y1="${f1(sun[1])}" x2="${f1(o[0])}" y2="${f1(o[1])}"/>`
-    + `<circle class="map-gc" cx="${cx}" cy="${cy}" r="3"/>`
-    + `<text class="map-label" x="${cx}" y="${cy - (atCenter ? 16 : 9)}" text-anchor="middle">מרכז הגלקסיה</text>`
-    + `<circle class="map-sun" cx="${f1(sun[0])}" cy="${f1(sun[1])}" r="4"/>`
-    + `<text class="map-label" x="${f1(sun[0])}" y="${f1(sun[1] + 17)}" text-anchor="middle">השמש (אנחנו)</text>`
+    + label('map-label', cx, cy - (atCenter ? 18 : 12), 'מרכז הגלקסיה')
+    + `<circle class="map-sun" cx="${f1(sun[0])}" cy="${f1(sun[1])}" r="4.5"/>`
+    + label('map-label', sun[0], sun[1] + 20, 'השמש: אנחנו כאן')
     + `<circle class="map-target-ring" cx="${f1(o[0])}" cy="${f1(o[1])}" r="9"/><circle class="map-target" cx="${f1(o[0])}" cy="${f1(o[1])}" r="3.2"/>`
-    + `<g class="map-scale"><line x1="${W - 16 - bar}" y1="${H - 14}" x2="${W - 16}" y2="${H - 14}"/>`
-    + `<text x="${W - 16}" y="${H - 22}" text-anchor="start">10,000 שנות אור</text></g>`
+    + `<g class="map-scale"><line x1="${f1(W - 16 - bar)}" y1="${W - 16}" x2="${W - 16}" y2="${W - 16}"/>`
+    + `<text x="${W - 16}" y="${W - 24}" text-anchor="start">10,000 שנות אור</text></g>`
     + `</svg>`;
 }
 

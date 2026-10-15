@@ -45,6 +45,36 @@
         "modifications": "הקטנה, המרה ל-WebP, הסתרת שם הנמען",
         "verifiedOn": "2026-10-12"
       }
+    },
+    {
+      "id": "sky-map-panorama",
+      "file": "sky/maps/milkyway-panorama.webp",
+      "alt": "פנורמה של כל השמיים: רצועה בהירה של שביל החלב עוברת לרוחב התמונה, ובאמצעה מרכז הגלקסיה.",
+      "caption": "רקע למפות \"איפה זה בשמיים?\" ברנטגן בחלל.",
+      "source": {
+        "title": "The Milky Way panorama (eso0932a)",
+        "author": "ESO/S. Brunier",
+        "url": "https://www.eso.org/public/images/eso0932a/",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "modifications": "הקטנה ל-1600×800, המרה ל-WebP, סימונים מעל התמונה",
+        "verifiedOn": "2026-10-15"
+      }
+    },
+    {
+      "id": "sky-map-top",
+      "file": "sky/maps/milkyway-top.webp",
+      "alt": "איור של שביל החלב במבט מלמעלה: גלקסיה ספירלית עם מוט בהיר במרכז וזרועות כחלחלות.",
+      "caption": "רקע למפות \"איפה זה בשביל החלב?\" ברנטגן בחלל.",
+      "source": {
+        "title": "Our Milky Way Gets a Makeover (Artist Concept), PIA10748",
+        "author": "NASA/JPL-Caltech/R. Hurt",
+        "url": "https://images.nasa.gov/details/PIA10748",
+        "license": "US-Gov-PD",
+        "licenseUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "modifications": "חיתוך לריבוע (8%–92%), הקטנה ל-900 פיקסלים, המרה ל-WebP, סימונים מעל התמונה",
+        "verifiedOn": "2026-10-15"
+      }
     }
   ]
 }
