@@ -5,6 +5,8 @@
 //
 // בעמוד מקרה נכנסים רק הסיפור, השאלה והצילום — לא התשובה ("חקירה לפני הסבר").
 
+import { skyMap, galaxyMap, distanceScale, solarMap, israelLine } from '../../src/lib/sky-maps.js';
+
 const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const img = (file) => `./images/${file}`;
 const DIFFICULTY_LABELS = { 1: 'מתחילים', 2: 'בינוני', 3: 'מאתגר' };
@@ -73,14 +75,74 @@ export function skyFeature(sky) {
     + `<h3 id="sky-t-${esc(it.id)}">${esc(it.title)}</h3><p class="sky-object" dir="ltr" lang="en">${esc(it.object)}</p>`
     + it.text.map((p) => `<p>${esc(p)}</p>`).join('')
     + `<dl class="sky-facts">${it.facts.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>`
-    + `<a class="sky-more" href="${esc(it.page)}" rel="noopener" target="_blank">לעמוד התמונה באתר צ'נדרה (באנגלית)</a></div></article>`;
+    + `<a class="sky-more btn" href="./sky-${esc(it.id)}.html">לעמוד המלא: איפה זה בשמיים, ועוד</a></div></article>`;
 }
 
-// בלי JS הארכיון הוא רשימת קישורים למקור (הכפתורים שמחליפים תמונה דורשים JS)
+// הארכיון: קישור לעמוד של כל תמונה (sky-<id>.html)
 export function skyArchive(sky) {
-  return `<ul class="sky-archive">${newestFirst(sky.items).map((it) => `<li><a class="sky-tile" href="${esc(it.page)}" rel="noopener" target="_blank">`
+  return `<ul class="sky-archive">${newestFirst(sky.items).map((it) => `<li><a class="sky-tile" href="./sky-${esc(it.id)}.html">`
     + `<img src="${img(esc(it.image.file))}" alt="" loading="lazy" decoding="async"><span class="sky-tile-title">${esc(it.title)}</span>`
     + `<span class="sky-tile-date">${skyDate(it.date)}</span></a></li>`).join('')}</ul>`;
+}
+
+// ---------- עמוד לכל תמונה (sky-<id>.html) ----------
+
+const fact = (it, key) => it.facts.find(([k]) => k === key)?.[1];
+
+function whereSection(it) {
+  const w = it.where;
+  if (!w) return '';
+  const name = esc(it.object);
+  const dist = fact(it, 'מרחק');
+  const lightAgo = dist && /שנות אור/.test(dist) ? `האור שצ'נדרה קלט ממנו יצא לדרך לפני ${esc(dist.replace('שנות אור', 'שנה'))}` : '';
+  if (w.home === 'solar') {
+    return `<section class="sky-where" aria-labelledby="where-t"><h2 id="where-t">איפה זה?</h2>`
+      + `<p>שבתאי הוא כוכב לכת במערכת השמש שלנו, השישי במרחק מהשמש. בציור: המסלולים של כדור הארץ, מאדים, צדק ושבתאי סביב השמש, בקנה מידה אמיתי של המרחקים.</p>`
+      + `<figure class="sky-map-fig">${solarMap({ label: 'שבתאי' })}<figcaption>המקום של כל כוכב לכת על המסלול שלו בציור הוא להמחשה בלבד. כוכבי הלכת עצמם קטנים מכדי להיראות בקנה המידה הזה.</figcaption></figure></section>`;
+  }
+  const skyPart = `<h2 id="where-t">איפה זה בשמיים?</h2>`
+    + `<p><span dir="ltr">${name}</span> נמצא בקבוצת הכוכבים <strong>${esc(w.constellation)}</strong> (<span dir="ltr" lang="en">${esc(w.constellationEn)}</span>). ${israelLine(w.dec)}</p>`
+    + `<figure class="sky-map-fig">${skyMap({ ra: w.ra, dec: w.dec, label: it.object })}`
+    + `<figcaption>כל כיפת השמיים במפה אחת, כמו מפה של כדור הארץ: למעלה הצפון, למטה הדרום. העיגול הצהוב מסמן את <span dir="ltr">${name}</span>, והרצועה הבהירה היא שביל החלב — הדיסק של הגלקסיה שלנו, כשמסתכלים עליו מבפנים. את האזור התחתון, המקווקו, אף פעם לא רואים מישראל.</figcaption></figure>`;
+  let depth;
+  if (w.home === 'milkyway') {
+    depth = `<h2 id="depth-t">איפה זה בשביל החלב?</h2>`
+      + `<p>שביל החלב הוא הגלקסיה שלנו: דיסק שטוח וענקי של כוכבים, גז ואבק, והשמש היא אחד מהכוכבים שבו. כך נראה המקום של <span dir="ltr">${name}</span> אם היינו מסתכלים על הגלקסיה מלמעלה.${lightAgo ? ` ${lightAgo}.` : ''}</p>`
+      + `<figure class="sky-map-fig">${galaxyMap({ ra: w.ra, dec: w.dec, distanceLy: w.distanceLy, label: it.object })}<figcaption>ציור סכמטי: הזרועות הספירליות של הגלקסיה לא מצוירות, והמיקום מחושב מהכיוון בשמיים ומהמרחק.</figcaption></figure>`;
+  } else {
+    const where = w.home === 'lmc' ? 'בענן מגלן הגדול, גלקסיה קטנה שמקיפה את שביל החלב'
+      : w.home === 'smc' ? 'בענן מגלן הקטן, גלקסיה קטנה שמקיפה את שביל החלב' : 'הרחק מחוץ לגלקסיה שלנו';
+    depth = `<h2 id="depth-t">כמה זה רחוק?</h2>`
+      + `<p><span dir="ltr">${name}</span> נמצא ${where}.${lightAgo ? ` ${lightAgo}.` : ''} בסרגל אפשר להשוות למרחקים מוכרים יותר.</p>`
+      + `<figure class="sky-map-fig">${distanceScale({ distanceLy: w.distanceLy, label: it.object, home: w.home })}<figcaption>המרחקים בשנות אור מאיתנו. בסרגל הזה כל שנתה רחוקה פי 10 מהקודמת, אחרת המרחקים לא היו נכנסים בשורה אחת.</figcaption></figure>`;
+  }
+  return `<section class="sky-where" aria-labelledby="where-t">${skyPart}</section><section class="sky-where" aria-labelledby="depth-t">${depth}</section>`;
+}
+
+/** עמוד מלא לתמונה אחת. items ממוינים מהחדש לישן. */
+export function skyObject(it, items) {
+  const im = it.image;
+  const i = items.indexOf(it);
+  const newer = items[i - 1], older = items[i + 1];
+  const facts = [...it.facts, ...(it.where?.constellation ? [['קבוצת כוכבים', it.where.constellation]] : [])];
+  const sources = [
+    { label: `Chandra: ${it.object}`, url: it.page },
+    ...(it.moreSources ?? []),
+    ...(it.where?.source && !(it.moreSources ?? []).some((s) => s.url === it.where.source.url) && it.where.source.url !== it.page ? [it.where.source] : []),
+  ];
+  const navLink = (o, rel, label) => (o ? `<a class="sky-pager-${rel}" href="./sky-${esc(o.id)}.html"><span class="muted">${label}</span>${esc(o.title)}</a>` : '<span></span>');
+  return `<nav class="breadcrumb" aria-label="נתיב"><a href="./sky.html">השמיים ברנטגן</a> / <a href="./sky.html#sky-archive-title">כל התמונות</a></nav>`
+    + `<header class="sky-object-head"><p class="sky-date">טלסקופ החלל צ'נדרה · <time datetime="${esc(it.date)}">${skyDate(it.date)}</time></p>`
+    + `<h1>${esc(it.title)}</h1><p class="sky-object" dir="ltr" lang="en">${esc(it.object)}</p></header>`
+    + `<article class="sky-feature"><figure class="sky-figure"><img src="${img(esc(im.file))}" alt="${esc(im.alt)}" width="${im.width}" height="${im.height}" decoding="async">`
+    + `<figcaption dir="ltr">X-ray: <a href="${esc(im.source.url)}" rel="noopener" target="_blank">${esc(im.source.author)}</a></figcaption></figure>`
+    + `<div class="sky-body">${it.text.map((p) => `<p>${esc(p)}</p>`).join('')}`
+    + `<dl class="sky-facts">${facts.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl></div></article>`
+    + whereSection(it)
+    + (it.more?.length ? `<section class="sky-more-text prose" aria-labelledby="more-t"><h2 id="more-t">עוד על ${it.where?.name ? esc(it.where.name) : `<span dir="ltr">${esc(it.object)}</span>`}</h2>${it.more.map((p) => `<p>${esc(p)}</p>`).join('')}</section>` : '')
+    + `<section class="sky-sources" aria-labelledby="src-t"><h2 id="src-t">מקורות</h2><ul>${sources.map((s) => `<li><a href="${esc(s.url)}" rel="noopener" target="_blank">${esc(s.label)}</a></li>`).join('')}</ul>`
+    + `<p class="muted">התמונה: שכבת הרנטגן מתוך הפרסום של צ'נדרה (נאס"א), בלי שכבות מטלסקופים אחרים. הצבעים נבחרו כדי להראות את הנתונים — העין לא רואה קרני X.</p></section>`
+    + `<nav class="sky-pager" aria-label="תמונות נוספות">${navLink(newer, 'newer', 'החדשה יותר')}${navLink(older, 'older', 'הקודמת')}</nav>`;
 }
 
 export function sunSummary(sun) {

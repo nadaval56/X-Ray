@@ -20,22 +20,16 @@ export function skyFeature(item) {
       h('p', { class: 'sky-object', dir: 'ltr', lang: 'en', text: item.object }),
       item.text.map((p) => h('p', { text: p })),
       h('dl', { class: 'sky-facts' }, item.facts.map(([k, v]) => h('div', {}, h('dt', { text: k }), h('dd', { text: v })))),
-      h('a', { class: 'sky-more', href: item.page, rel: 'noopener', target: '_blank' }, "לעמוד התמונה באתר צ'נדרה (באנגלית)")));
+      h('a', { class: 'sky-more btn', href: `./sky-${item.id}.html` }, 'לעמוד המלא: איפה זה בשמיים, ועוד')));
 }
 
-/** רשת הארכיון. onPick(item) נקרא בלחיצה. */
-export function skyArchive(items, onPick) {
-  const buttons = new Map();
-  const list = h('ul', { class: 'sky-archive' }, items.map((it) => {
-    const b = h('button', { type: 'button', class: 'sky-tile', 'aria-pressed': 'false', onclick: () => onPick(it) },
+/** רשת הארכיון: קישור לעמוד של כל תמונה (sky-<id>.html, נוצר ב-build) */
+export function skyArchive(items) {
+  return h('ul', { class: 'sky-archive' }, items.map((it) => h('li', {},
+    h('a', { class: 'sky-tile', href: `./sky-${it.id}.html` },
       h('img', { src: imgUrl(it.image.file), alt: '', loading: 'lazy', decoding: 'async' }),
       h('span', { class: 'sky-tile-title', text: it.title }),
-      h('span', { class: 'sky-tile-date', text: skyDate(it.date) }));
-    buttons.set(it.id, b);
-    return h('li', {}, b);
-  }));
-  const select = (id) => buttons.forEach((b, key) => b.setAttribute('aria-pressed', String(key === id)));
-  return { el: list, select };
+      h('span', { class: 'sky-tile-date', text: skyDate(it.date) })))));
 }
 
 // ---------- השמש ברנטגן ----------

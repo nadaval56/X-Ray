@@ -3,6 +3,7 @@
 //
 //   npm run build && npx vite preview --port 4173 &
 //   node scripts/make-og.mjs [http://localhost:4173]
+//   OG_ONLY=sky node scripts/make-og.mjs   — רק תמונות "השמיים ברנטגן" (sky-<id>.jpg), בלי שרת
 //
 // נדרש Playwright (לא תלות של הפרויקט). אם הוא לא מותקן מקומית, אפשר להצביע עליו:
 //   PLAYWRIGHT_MODULE=/path/to/playwright/index.mjs CHROMIUM_PATH=/path/to/chrome node scripts/make-og.mjs
@@ -111,8 +112,9 @@ async function render(name, html) {
   console.log('✓', `og/${name}.jpg`);
 }
 
+const ONLY = process.env.OG_ONLY;
 const KICKERS = { sky: 'מהחלל', lab: 'מעבדה', privacy: 'פרטיות', accessibility: 'נגישות', history: 'היסטוריה', physics: 'איך זה עובד', cases: 'מקרים' };
-for (const [page, s] of Object.entries(share.pages)) {
+for (const [page, s] of Object.entries(ONLY ? {} : share.pages)) {
   let visual = null, cr = '', fit = 'contain';
   if (s.image) { visual = imgUri(s.image); cr = credits[s.image] ?? ''; }
   // קולאז' של כמה צילומים — לעמוד הבית, שמייצג את כל האתר ולא מקרה אחד
@@ -127,7 +129,7 @@ for (const [page, s] of Object.entries(share.pages)) {
   }
   await render(page, card({ kicker: KICKERS[page] ?? (page.startsWith('lab-') ? 'מעבדה' : ''), title: s.title, text: s.text, visual, credit: cr, fit, panelHtml }));
 }
-for (const c of cases) {
+for (const c of ONLY ? [] : cases) {
   const im = c.images.find((i) => i.role === 'main');
   await render(`case-${c.id}`, card({
     kicker: `מקרה לחקירה · ${catLabel(c.category)}`,
@@ -135,6 +137,16 @@ for (const c of cases) {
     text: share.case.text.replace('{question}', c.question),
     visual: imgUri(`cases/${im.file}`),
     credit: credit(im.source),
+  }));
+}
+// עמוד לכל תמונה ב"השמיים ברנטגן"
+for (const it of json('content/sky.json').items) {
+  await render(`sky-${it.id}`, card({
+    kicker: "השמיים ברנטגן · טלסקופ החלל צ'נדרה",
+    title: it.title,
+    text: it.text[0],
+    visual: imgUri(it.image.file),
+    credit: credit(it.image.source),
   }));
 }
 await browser.close();

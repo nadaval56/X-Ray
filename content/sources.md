@@ -121,6 +121,22 @@ https://physics.nist.gov/PhysRefData/XrayMassCoef/ — אומת מול הטבל�
 - סולם A/B/C/M/X, "כל אות חזקה פי 10": NOAA SWPC, "Solar Flares (Radio Blackouts)" — "The X-ray flux levels start with the 'A' level (nominally starting at 10^-8 W/m^2). The next level, ten times higher, is the 'B' level…". https://www.swpc.noaa.gov/phenomena/solar-flares-radio-blackouts
   התוויות "שקט / פעילות קלה / בינונית / חזקה" הן פישוט שלנו לאותיות.
 
+## עמוד לכל תמונה ב"השמיים ברנטגן" (sky-<id>.html)
+
+- הטקסט "עוד על..." (`more` ב-content/sky.json) נכתב מחדש בעברית מהעמודים שבשדה `moreSources` של כל פריט — עמוד התמונה של צ'נדרה, עמודי צ'נדרה קודמים על אותו עצם, ויקיפדיה האנגלית (לעובדות בלבד), SIMBAD ותקצירי מאמרים ב-arXiv. המקורות מוצגים בעמוד עצמו. נבדק 2026-10-15.
+- המיקום בשמיים (`where.ra`, `where.dec`, ‏J2000) — מ-"Fast Facts" בעמוד התמונה של צ'נדרה. חריגים: Sgr A East — ב-Fast Facts כתוב Dec ‎-20°‎, טעות דפוס (Sgr A* נמצא ב-‎-29°‎), ולכן המיקום מ-SIMBAD. שבתאי — אין מיקום קבוע, ולכן מוצגת מפת מסלולים.
+- "מבוא" לחלק של צ'נדרה (sky.html): "X-rays come from objects that are millions of degrees Celsius—such as pulsars, galactic supernovae remnants, and the accretion disk of black holes", ‏NASA Science, "X-Rays", https://science.nasa.gov/ems/11_xrays/ . המראות והגלאים: "The incoming X-rays are focused by the mirrors…", והגלאים מספקים "number, position, energy and time of arrival" — Chandra, Science Instruments, https://chandra.harvard.edu/about/science_instruments.html (נבדק 2026-10-15).
+
+### מפות "איפה זה?" (src/lib/sky-maps.js)
+
+- מפת השמיים: היטל האמר של כיפת השמיים, חישוב שלנו. רצועת שביל החלב היא קו הרוחב הגלקטי 0, מומר לקואורדינטות משווניות בעזרת הקוטב הגלקטי הצפוני ב-J2000 (α = 192.85948°, ‏δ = 27.12825°, ‏l של הקוטב השמימי = 122.93192°) — הקבועים המקובלים, למשל ב-Wikipedia, "Galactic coordinate system".
+- "לא עולה בישראל": כוכב בנטייה δ מגיע לגובה מרבי של 90° − |φ − δ|, וב-φ = 31.8° (ירושלים) כל מה שמתחת ל-δ = −58.2° לא עולה מעל האופק. גאומטריה, בלי שבירת אור באטמוספרה.
+- מרכזי קבוצות הכוכבים שמסומנות לעיגון (אוריון 5h +5°, הדובה הגדולה 10.67h +55.4°, אריה 11h +15°, ברבור 20.62h +42°, עקרב 16.89h −30.7°, הצלב הדרומי 12.5h −60°): מתיבת המידע של כל קבוצה בוויקיפדיה האנגלית (נבדק 2026-10-15).
+- שביל החלב מלמעלה: המרחק מהשמש למרכז, כ-26,000 שנות אור, כמו בכרטיסים של Sgr A* ו-Sgr A East (צ'נדרה). הדיסק מצויר ברדיוס 50,000 שנות אור, כלומר קוטר של כ-100,000 — "about 100,000 light years … across", ‏NASA Imagine the Universe, "The Milky Way Galaxy", https://imagine.gsfc.nasa.gov/features/cosmic/milkyway_info.html; הזרועות לא מצוירות בכוונה. מיקום העצם: הקו הגלקטי l שלו (מחושב מ-ra/dec) והמרחק שבכרטיס.
+- סרגל המרחקים: ענן מגלן הגדול כ-160,000 שנות אור (צ'נדרה, עמוד 30 Doradus), גלקסיית אנדרומדה כ-2.5 מיליון שנות אור (NASA, Hubble Messier Catalog, Messier 31: "2.5 million light-years").
+- מסלולי כוכבי הלכת: מרחק ממוצע מהשמש — כדור הארץ 149.6, מאדים 228.0, צדק 778.5, שבתאי 1,432.0 מיליון ק"מ. NASA Planetary Fact Sheet, https://nssdc.gsfc.nasa.gov/planetary/factsheet/ (נבדק 2026-10-15).
+- נפסלו בסינון של 2025 (מעבר לכללים שלמעלה): M31 ו-G181 (‏XMM-Newton בשכבת הרנטגן), אוספים של כמה עצמים (holidays, ‏cosmic, ‏fall, ‏sonify10, ‏xa, ‏3dmodels), וכתמים לא ברורים (helix, ‏infinity, ‏j1610, ‏lprt, ‏red6, ‏smbhs, ‏wolf359, ‏baby, ‏bhtde, ‏bone, ‏fbot, ‏g287, ענן האבן במרכז הגלקסיה). 30 Doradus של 2025 — כבר יש לנו את של 2026.
+
 ## הדפסות ישנות: למה העצמות כהות (physics.html#old-prints)
 
 - Moritz Jastrowitz, "The Roentgen Experiments with Cathode Rays and their Diagnostic Application" (1896), בתרגום לאנגלית ב-German History Intersections (GHI):

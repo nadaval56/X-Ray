@@ -5,7 +5,7 @@ import { SITE, NAV, LAB, DISCLAIMER, SISTER_SITES, SISTER_INVITE } from './src/c
 import * as prerender from './scripts/lib/prerender.mjs';
 
 const PAGES = [
-  'index', 'cases', 'case', 'physics', 'history', 'sky', 'about',
+  'index', 'cases', 'case', 'physics', 'history', 'sky', 'sky-object', 'about',
   'lab', 'lab-thickness', 'lab-scanner', 'lab-window', 'lab-shadows', 'lab-dose', 'privacy', 'accessibility', '404',
 ];
 
@@ -129,6 +129,8 @@ function seoFiles() {
       server.middlewares.use((req, _res, next) => {
         const m = req.url?.match(/^\/case-([\w-]+)\.html(\?.*)?$/);
         if (m) req.url = `/case.html?id=${m[1]}`;
+        // עמודי "השמיים ברנטגן" נבנים רק ב-build (npm run build && npm run preview)
+        if (/^\/sky-(?!object)[\w-]+\.html/.test(req.url ?? '')) req.url = '/sky-object.html';
         next();
       });
     },
@@ -166,9 +168,26 @@ function seoFiles() {
         this.emitFile({ type: 'asset', fileName: `case-${c.id}.html`, source: html });
       }
 
+      // עמוד סטטי לכל תמונה ב"השמיים ברנטגן": sky-<id>.html
+      const skyItems = [...readContent('sky.json').items].sort((a, b) => b.date.localeCompare(a.date));
+      const skyBase = bundle['sky-object.html'];
+      for (const it of skyItems) {
+        const title = `${it.title} · השמיים ברנטגן · ${SITE.name}`;
+        const description = `${it.object}: ${it.text[0]}`.slice(0, 158);
+        const og = metaTags({ page: `sky-${it.id}`, title, description, ogTitle: it.title, ogText: description, imageAlt: it.image.alt });
+        let html = String(skyBase.source)
+          .replace(/<title>.*?<\/title>/, `<title>${attr(title)}</title>`)
+          .replace(/<meta name="description" content="[^"]*"/, `<meta name="description" content="${attr(description)}"`)
+          .replace(/<!--og-->[\s\S]*?<!--\/og-->/, og);
+        html = fill(html, '<div class="container sky-object-page" id="sky-object-root">', prerender.skyObject(it, skyItems));
+        this.emitFile({ type: 'asset', fileName: `sky-${it.id}.html`, source: html });
+      }
+      delete bundle['sky-object.html'];
+
       const urls = [
-        ...PAGES.filter((p) => p !== 'case' && p !== '404').map((p) => (p === 'index' ? '' : `${p}.html`)),
+        ...PAGES.filter((p) => p !== 'case' && p !== 'sky-object' && p !== '404').map((p) => (p === 'index' ? '' : `${p}.html`)),
         ...CASES.map((c) => `case-${c.id}.html`),
+        ...skyItems.map((it) => `sky-${it.id}.html`),
       ]
         .map((u) => `  <url><loc>${SITE.url}${u}</loc></url>`)
         .join('\n');
