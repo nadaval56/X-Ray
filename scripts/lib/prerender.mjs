@@ -103,7 +103,7 @@ function whereSection(it) {
   const skyPart = `<h2 id="where-t">איפה זה בשמיים?</h2>`
     + `<p><span dir="ltr">${name}</span> נמצא בקבוצת הכוכבים <strong>${esc(w.constellation)}</strong> (<span dir="ltr" lang="en">${esc(w.constellationEn)}</span>). ${israelLine(w.dec)}</p>`
     + `<figure class="sky-map-fig">${skyMap({ ra: w.ra, dec: w.dec, label: it.object })}`
-    + `<figcaption>כל השמיים בצילום אחד, פרוסים כמו מפת עולם. הרצועה הבהירה היא שביל החלב — הדיסק של הגלקסיה שלנו, כשמסתכלים עליו מבפנים — ובאמצע התמונה מרכז הגלקסיה. העיגול הצהוב מסמן את <span dir="ltr">${name}</span>, ואת האזור המקווקו אף פעם לא רואים מישראל. `
+    + `<figcaption>כל השמיים בצילום אחד, פרוסים כמו מפת עולם. הרצועה הבהירה היא שביל החלב — הדיסק של הגלקסיה שלנו, כשמסתכלים עליו מבפנים — ובאמצע התמונה מרכז הגלקסיה. העיגול הצהוב מסמן את <span dir="ltr">${name}</span>, והאזור המקווקו אף פעם לא זורח בישראל. `
     + `צילום: <a href="https://www.eso.org/public/images/eso0932a/" rel="noopener" target="_blank" dir="ltr">ESO/S. Brunier</a> (<a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener" target="_blank" dir="ltr">CC BY 4.0</a>), עם סימונים שלנו.</figcaption></figure>`;
   let depth;
   if (w.home === 'milkyway') {

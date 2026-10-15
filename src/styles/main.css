@@ -2132,16 +2132,18 @@ html.a11y-still .sister-clone { display: none; }
 .sky-map-fig text { paint-order: stroke; stroke: rgba(0, 0, 0, 0.8); stroke-width: 3px; stroke-linejoin: round; }
 .sky-map-fig image { image-rendering: auto; }
 .map-south { fill: rgba(0, 0, 0, 0.35); stroke: rgba(255, 255, 255, 0.55); stroke-width: 0.9; stroke-dasharray: 3 3; }
-.map-south-label { fill: #c8d0d9; font-size: 12px; }
-.map-mw-label, .map-landmark text, .map-neighbor { fill: #c8d0d9; font-size: 12px; }
-.map-landmark circle { fill: #c8d0d9; }
+.map-south-label { fill: #c8d0d9; }
+.map-mw-label, .map-landmark, .map-neighbor { fill: #c8d0d9; }
 .map-target { fill: #e7c07a; }
 .map-target-ring { fill: none; stroke: #ffd98a; stroke-width: 2; }
 .map-target-stem { stroke: #e7c07a; stroke-width: 1.2; }
 .map-target-label { fill: #e7c07a; font-size: 15px; font-weight: 600; }
-.map-callout { fill: #e8ecf1; font-size: 14px; }
-.map-callout-target { fill: #ffd98a; font-weight: 600; }
-.map-leader-arrow { stroke: rgba(255, 255, 255, 0.85); stroke-width: 1.2; }
+.map-box rect { fill: rgba(8, 12, 18, 0.82); stroke: rgba(255, 255, 255, 0.45); stroke-width: 0.8; }
+.map-box text { fill: #e8ecf1; stroke: none; }
+.map-box.is-target rect { stroke: #ffd98a; }
+.map-box.is-target text { fill: #ffd98a; font-weight: 600; }
+.map-dot { fill: #c8d0d9; }
+.map-leader-arrow { stroke: rgba(255, 255, 255, 0.85); stroke-width: 1.1; }
 .map-arrowhead { fill: rgba(255, 255, 255, 0.9); }
 .map-label { fill: #e8ecf1; font-size: 14px; }
 .map-sun { fill: #ffd27a; stroke: #000; stroke-width: 1; }
@@ -2157,8 +2159,4 @@ html.a11y-still .sister-clone { display: none; }
 .map-orbit { fill: none; stroke: #36404d; stroke-width: 1; }
 .map-planet { fill: #b4bdc8; }
 .map-leader { stroke: #4a5563; stroke-width: 0.8; }
-@media (max-width: 600px) {
-  .sky-map-fig text { font-size: 19px; }
-  .sky-map-fig .map-target-label { font-size: 21px; }
-  .sky-map-fig .sky-map text { font-size: 15px; }
-}
+
