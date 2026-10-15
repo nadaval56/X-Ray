@@ -2104,9 +2104,18 @@ html.a11y-still .sister-clone { display: none; }
 .sky-object-head .sky-object { margin: 0; color: var(--accent); text-align: right; }
 .sky-where, .sky-more-text, .sky-sources { margin-top: 2.5rem; }
 .sky-where h2, .sky-more-text h2, .sky-sources h2 { font-size: clamp(1.3rem, 3.5vw, 1.6rem); margin: 0 0 0.6rem; }
-.sky-where > p, .sky-more-text p { color: var(--text-2); line-height: 1.8; max-width: 70ch; }
+.sky-where > p, .sky-more-text p { color: var(--text-2); line-height: 1.8; max-width: none; }
+.sky-more-text, .sky-more-text.prose { max-width: none; }
+/* בדסקטופ: ההסבר בצד אחד והמפה בצד השני, כדי לנצל את כל הרוחב */
+@media (min-width: 900px) {
+  .sky-where { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); column-gap: 2rem; align-items: start; }
+  .sky-where > h2 { grid-column: 1 / -1; }
+  .sky-where > p { grid-column: 1; }
+  .sky-where > .sky-map-fig { grid-column: 2; grid-row: 2 / span 3; margin-top: 0; max-width: none; }
+  .sky-where > .sky-map-fig:has(.galaxy-map) { max-width: 480px; }
+}
 .sky-more-text { max-width: none; }
-.sky-map-fig { margin: 1rem 0 0; padding: 0.75rem; border: 1px solid var(--border); border-radius: var(--radius-lg); background: #05080c; max-width: 620px; }
+.sky-map-fig { margin: 1rem 0 0; padding: 0.5rem; border: 1px solid var(--border); border-radius: var(--radius-lg); background: #05080c; max-width: 620px; }
 .sky-map-fig svg { display: block; width: 100%; height: auto; font-family: var(--font); }
 .sky-map-fig figcaption { margin-top: 0.5rem; font-size: 0.875rem; line-height: 1.6; color: var(--text-muted); }
 .sky-sources ul { margin: 0 0 0.75rem; padding-inline-start: 1.2rem; }
@@ -2120,26 +2129,22 @@ html.a11y-still .sister-clone { display: none; }
 .sky-feature .sky-more.btn { margin-top: 0.5rem; }
 
 /* המפות. צבעים קבועים: המפה תמיד על רקע לילה */
-.map-sky { fill: #0c1622; stroke: #36404d; stroke-width: 1; }
-.map-grid { fill: none; stroke: #1d2a38; stroke-width: 0.7; }
-.map-mw { fill: none; stroke: rgba(196, 210, 230, 0.16); stroke-width: 15; stroke-linecap: round; stroke-linejoin: round; }
-.map-south { fill: rgba(255, 255, 255, 0.04); stroke: #4a5563; stroke-width: 0.8; stroke-dasharray: 3 3; }
-.map-south-label { fill: #8a95a3; font-size: 13px; }
-.map-gc { fill: #c9d4e2; }
-.map-mw-label, .map-landmark text { fill: #9aa5b3; font-size: 13px; }
-.map-landmark circle { fill: #8a95a3; }
+.sky-map-fig text { paint-order: stroke; stroke: rgba(0, 0, 0, 0.8); stroke-width: 3px; stroke-linejoin: round; }
+.sky-map-fig image { image-rendering: auto; }
+.map-south { fill: rgba(0, 0, 0, 0.35); stroke: rgba(255, 255, 255, 0.55); stroke-width: 0.9; stroke-dasharray: 3 3; }
+.map-south-label { fill: #c8d0d9; font-size: 12px; }
+.map-mw-label, .map-landmark text, .map-neighbor { fill: #c8d0d9; font-size: 12px; }
+.map-landmark circle { fill: #c8d0d9; }
 .map-target { fill: #e7c07a; }
 .map-target-ring { fill: none; stroke: #e7c07a; stroke-width: 1.6; }
 .map-target-stem { stroke: #e7c07a; stroke-width: 1.2; }
 .map-target-label { fill: #e7c07a; font-size: 15px; font-weight: 600; }
-.map-label { fill: #b4bdc8; font-size: 14px; }
+.map-label { fill: #e8ecf1; font-size: 14px; }
 .map-sun { fill: #ffd27a; }
-.map-sightline { stroke: #e7c07a; stroke-width: 1; stroke-dasharray: 4 3; opacity: 0.8; }
-.mw-stop-0 { stop-color: #e9e2cf; stop-opacity: 0.55; }
-.mw-stop-1 { stop-color: #8fa3bd; stop-opacity: 0.28; }
-.mw-stop-2 { stop-color: #4b5d75; stop-opacity: 0.05; }
+.map-sightline { stroke: #ffd98a; stroke-width: 1.4; stroke-dasharray: 4 3; }
 .map-scale line { stroke: #b4bdc8; stroke-width: 1.5; }
-.map-scale text { fill: #b4bdc8; font-size: 13px; }
+.map-scale text { fill: #e8ecf1; font-size: 13px; }
+.map-scale line { stroke: #e8ecf1; }
 .map-axis { stroke: #4a5563; stroke-width: 1.5; }
 .map-tick { stroke: #4a5563; stroke-width: 1; }
 .map-tick-label { fill: #8a95a3; font-size: 13px; }
@@ -2151,4 +2156,5 @@ html.a11y-still .sister-clone { display: none; }
 @media (max-width: 600px) {
   .sky-map-fig text { font-size: 19px; }
   .sky-map-fig .map-target-label { font-size: 21px; }
+  .sky-map-fig .sky-map text { font-size: 15px; }
 }
