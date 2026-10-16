@@ -255,7 +255,7 @@ function pushApart(boxes, lo, hi, gap = 6) {
 
 // מרחק במילים: "26,000 שנות אור", "2.5 מיליון שנות אור", "מיליארד שנות אור"
 export function lyWords(ly) {
-  const num = (v) => (v >= 100 ? Math.round(v) : Math.round(v * 10) / 10).toLocaleString('en-US');
+  const num = (v) => (v >= 100 ? Math.round(v) : Number(v.toFixed(v < 10 ? 2 : 1))).toLocaleString('en-US');
   if (ly >= 1e9) return ly < 1.05e9 ? 'מיליארד שנות אור' : `${num(ly / 1e9)} מיליארד שנות אור`;
   if (ly >= 1e6) return `${num(ly / 1e6)} מיליון שנות אור`;
   return `${Math.round(ly).toLocaleString('en-US')} שנות אור`;
